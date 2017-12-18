@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Records</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only tools>
+                <ion-icon name="more" ></ion-icon>
+            </button>
+        </ion-buttons>    
+        
+      
+    
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-content>
+    
+    
+    <ion-searchbar
+        [(ngModel)]="properties.search"
+        [showCancelButton]="shouldShowCancel"
+        (ionCancel)="searchCancelled()"
+        placeholder="Search Exercises"
+        class="flat-search">
+    </ion-searchbar>   
+
+    
+    <ion-list class="record-exercises">
+        <button ion-item detail-none *ngFor="let exercise of exercises | exerciseSearch:properties.search; let i = index" (click)="viewRecords(exercise)">
+            {{exercise.name}}
+        </button> 
+    </ion-list> 
+</ion-content>

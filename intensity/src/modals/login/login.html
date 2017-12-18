@@ -1,0 +1,129 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Login
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="light">Skip</span>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+    
+    <div class='login-intro'>
+        <img src="assets/imgs/cloud.png"/>
+        <p>Create an account to keep your data safe.</p>
+    </div>
+    
+    <div class='facebook-login'>        
+        <button ion-button icon-start (click)="facebookLogin()">
+            <ion-icon name="logo-facebook"></ion-icon>
+            Login with Facebook
+        </button>
+        
+        <p class="login-error" *ngIf="errors.facebookLogin">{{errors.facebookLogin}}</p>  
+        
+    </div>
+    
+    <div class="login-loading" *ngIf="properties.loading">
+        <ion-spinner></ion-spinner>
+    </div>
+    
+    <form class="login-form" ion-list (ngSubmit)="login()" *ngIf="properties.activeForm === 'login' && !properties.loading">
+
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" name="email" required [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" name="password" required [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+          
+          
+        <p class="login-error" *ngIf="errors.login">{{errors.login}}</p>  
+
+        <a ion-button color="light" (click)="properties.activeForm = 'register'">
+            Register
+        </a>
+
+        
+        <button ion-button type='submit'>
+            Login
+        </button>        
+        
+        
+         <a class="forgot-password" (click)="properties.activeForm = 'resetPassword'">Forgot Password?</a> 
+          
+    </form>  
+    
+    
+    
+    <form class="login-form" ion-list (ngSubmit)="register()" *ngIf="properties.activeForm === 'register' && !properties.loading">
+
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="Email" name="email" required [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" name="password" required [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+          
+        <ion-item>
+            <ion-label floating>Repeat Password</ion-label>
+            <ion-input type="password" name="repeatPassword" required [(ngModel)]="user.repeatPassword"></ion-input>
+        </ion-item>    
+          
+        <p class="login-error" *ngIf="errors.register">{{errors.register}}</p>  
+
+        <button ion-button  type='submit'>
+            Register
+        </button>           
+          
+        <a ion-button color="light" (click)="properties.activeForm = 'login'">
+            Login
+        </a>
+
+        
+       
+        
+        
+    </form>     
+    
+    
+    
+    
+    <form class="login-form" ion-list (ngSubmit)="resetPassword()" *ngIf="properties.activeForm === 'resetPassword' && !properties.loading">
+
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="Email" name="email" required [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+       
+        <p class="login-error" *ngIf="errors.reset">{{errors.reset}}</p>
+
+        <button ion-button  type='submit'>
+            Reset
+        </button>           
+          
+        <a ion-button color="light" (click)="properties.activeForm = 'login'">
+            Login
+        </a>
+
+        
+       
+        
+        
+    </form>       
+    
+    
+    
+</ion-content>

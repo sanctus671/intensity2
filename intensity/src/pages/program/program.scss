@@ -1,0 +1,45 @@
+.workout-description{
+    
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin:20px;
+}
+
+.workout-description.show-all{
+    display:block;
+    -webkit-line-clamp: initial;
+}
+
+.workout-tabs{
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    background-color: white;   
+    margin: 20px;
+    margin-bottom:0px;
+}
+
+.program-workouts{
+    margin-top:20px;
+}
+
+.workout-tabs .button-small{
+    font-size: 0.9rem;
+    -webkit-box-shadow: none;
+    box-shadow: none;    
+}
+
+.workout-list ion-list-header{
+background-color: #d44735;
+    color: white;
+}
+
+.workout-list ion-item p{
+    font-size:1.2rem;
+}
+
+.program-footer{
+    text-align: center;
+}

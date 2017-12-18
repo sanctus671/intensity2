@@ -1,0 +1,53 @@
+#leaderboard-segments.extended-segments ion-segment{
+    width:390%;
+}
+
+h3.leaderboard-exercise{
+        text-align: center;
+}
+
+h3.leaderboard-exercise ion-icon{
+font-size: 0.8em;
+    line-height: 22px;
+    color: #cccccc;
+    position: absolute;
+    right: 20px;    
+}
+
+h3.leaderboard-exercise ion-icon:active{
+    color:#444;
+}
+
+.diary-empty.leaderboard-empty{
+    color: #d6d6d6;
+    max-width: 100px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40%;    
+}
+
+.leaderboard-list ion-icon{
+    color: #cccccc;
+    position:relative;
+}
+
+.leaderboard-list ion-icon:first-of-type{
+    margin-right:20px;
+}
+
+.leaderboard-list ion-icon:active{
+    color:#444;
+}
+
+.leaderboard-list ion-icon.liked{
+    color:black;
+}
+
+.leaderboard-list ion-badge{
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    font-size: 0.8rem;
+    line-height: 10px;
+    padding: 3px 6px; 
+}

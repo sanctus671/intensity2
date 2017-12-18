@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Select Exercise
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+    
+    
+    <ion-searchbar
+        [(ngModel)]="properties.search"
+        [showCancelButton]="shouldShowCancel"
+        (ionCancel)="searchCancelled()"
+        placeholder="Search Exercises"
+        class="flat-search">
+    </ion-searchbar>   
+
+    <ion-segment color="primary" [(ngModel)]="properties.activeTab">
+        <ion-segment-button value="exercises">
+            Exercises
+        </ion-segment-button>        
+        <ion-segment-button value="musclegroups">
+            Musclegroups
+        </ion-segment-button>
+      <ion-segment-button value="types">
+            Exercise Types
+      </ion-segment-button>      
+    </ion-segment>      
+    
+    
+    
+    
+    
+    <ion-list class="add-diary-list" *ngIf="properties.activeTab==='exercises'">
+        <button ion-item detail-none *ngFor="let exercise of recentExercises | exerciseSearch:properties.search; let i = index" (click)="selectExercise(exercise)">
+            {{exercise.name}}
+            <ion-icon name='more' item-end (click)="openViewDetails($event, exercise)"></ion-icon>
+        </button> 
+    </ion-list>
+    
+    
+    <ion-list class="add-diary-list"  *ngIf="properties.activeTab==='musclegroups'">
+        <button ion-item detail-none *ngFor="let musclegroup of musclegroups; let i = index" (click)="selectMusclegroup(musclegroup)">
+            {{musclegroup}}
+        </button> 
+    </ion-list>    
+
+    <ion-list class="add-diary-list"  *ngIf="properties.activeTab==='types'">
+        <button ion-item detail-none *ngFor="let type of exerciseTypes; let i = index" (click)="selectExerciseType(type)">
+            {{type}}
+        </button> 
+    </ion-list>   
+
+    
+</ion-content>

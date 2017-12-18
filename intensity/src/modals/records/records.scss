@@ -1,0 +1,105 @@
+.records-card{
+    padding: 20px;
+    margin:15px;
+    width:calc(100% - 30px);
+}
+
+.records-bar{
+    height: 5px;
+    position: relative;
+    background-color: rgba(68,68,68,0.4);
+    border-radius: 50px;
+}
+
+.records-bar .current-bar{
+    height: 5px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    width: 0px;
+    left: 0px;
+    color: White;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+        max-width: 100%;
+}
+
+.records-bar .current-bar.completed{
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;    
+}
+
+.bar-text{
+    color: #fff;
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 10px;
+        white-space: nowrap;
+}
+
+.bar-text span{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+
+ion-card.records-card.red-background{
+    background-color:#d44735;
+}
+
+ion-card.records-card.orange-background{
+    background-color:#ff705e;
+}
+
+ion-card.records-card.yellow-background{
+    background-color:#e2ab34;
+}
+
+ion-card.records-card.darkorange-background{
+    background-color:#d6882c;
+}
+
+.records-estimated-max{
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 40px;
+    background-color: #d6882c;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.records-estimated-max.yellow-background{
+    background-color:#e2ab34;  
+}
+
+.records-estimated-max.red-background{
+    background-color:#d44735;
+}
+
+.records-estimated-max.orange-background{
+    background-color:#ff705e; 
+}
+
+.records-estimated-max ion-icon{
+font-size: 2.5em;
+    color: #ffffff;  
+}
+
+.records-estimated-max h2{
+font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 0px;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    color: white;
+}
+
+.records-estimated-max p{
+    margin-top: 5px;
+    font-weight: 300;
+    color: white;
+}
+
+.records-list .item{
+    text-align:center;
+}

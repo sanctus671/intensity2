@@ -1,0 +1,180 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{exercise.name}}</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only tools>
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>    
+    
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="diary-content">
+    
+    <ion-segment color="primary" [(ngModel)]="properties.activeTab" (ionChange)="tabChanged($event)">
+        <ion-segment-button value="diary">
+            Diary
+        </ion-segment-button>
+      <ion-segment-button value="history">
+            History
+      </ion-segment-button>
+      <ion-segment-button value="stats">
+            Stats
+      </ion-segment-button>        
+    </ion-segment>
+    
+    
+    <div *ngIf="properties.activeTab === 'diary'">
+    
+        <div class="diary-progress-bar" (click)="openGoalDetails()">
+
+        <round-progress     
+            [current]="exercise.goals.progress"
+            [max]="exercise.goals.goal"
+            [color]="'#d44735'"
+            [background]="'#eaeaea'"
+            [radius]="115"
+            [stroke]="15"></round-progress>
+
+
+            <div class="progress-bar-inner">
+                <span>{{exercise.goals.progress}}{{exercise.unit}}</span>
+            </div>    
+
+
+        </div>
+
+
+        <div class="diary-records">
+            <button ion-button clear icon-start color="primary" small (click)="openRecords()">
+                <ion-icon name="trophy"></ion-icon>
+                View Records
+            </button>
+        </div>
+
+
+
+
+        <ion-list class="diary-sets">
+
+            <ion-list-header class="diary-sets-header">
+
+                <span class="reps set-column">
+                    Reps
+                </span>
+
+                <span class="weight set-column">
+                    Weight
+                </span>        
+
+            </ion-list-header>
+
+
+            <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+
+                <ion-item *ngFor="let set of exercise.sets; let i = index"  (click)="openSet(set, i)">
+                    <ion-icon [ngClass]="{'completed' : !(!set.completed || set.completed === '0')}" name='checkmark-circle' (click)="toggleSet($event,set)"></ion-icon>
+                    <span class="reps set-column">{{set.reps}}</span>
+                    <span class="weight set-column">{{set.weight}}{{set.unit}}</span>            
+                </ion-item>
+
+            </ion-item-group>
+        </ion-list>
+
+    </div>
+    
+    
+    
+    <div *ngIf="properties.activeTab === 'history'">
+        <ion-list class="history-sets">
+
+
+            <ion-item *ngFor="let workout of exercise.history;let lst = last;let fst = first"  (click)="openWorkout(workout, i)" [ngClass]="{'first-item':fst,'last-item':lst, 'light':workout.sets.length <= 2, 'medium':workout.sets.length > 2 && workout.sets.length < 6, 'heavy':workout.sets.length > 5}">
+                <span class="history-date">
+                    <h3>{{getDay(workout.assigneddate)}}</h3>
+                    <p>{{formatDate(workout.assigneddate)}}</p>
+                </span>
+                <span class="history-details">
+                    <h3>{{workout.sets.length}} set<span *ngIf="workout.sets.length !== 1">s</span></h3>
+                    <p>{{getAverageReps(workout.sets) | number: '1.0-0'}} reps / {{getAverageWeight(workout.sets) | number: '1.0-0'}}{{getUnits(workout.sets)}}</p>
+                </span>                
+                <ion-icon name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, workout)" [okText]="'Copy To Date'"></ion-icon>
+            </ion-item>  
+            
+        </ion-list>
+    
+        <ion-infinite-scroll (ionInfinite)="loadMoreHistory($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>  
+        
+    </div>
+    
+    <div class="stats-section" *ngIf="properties.activeTab === 'stats'">
+        
+        
+        <div class="stats-timeframes">
+            <button ion-button small (click)="changeStatsTimeframe('forever')" [outline]="stats.timeframe !== 'forever'">Lifetime</button>
+            <button ion-button small (click)="changeStatsTimeframe('1 Year')" [outline]="stats.timeframe !== '1 Year'">1 Year</button>
+            <button ion-button small (click)="changeStatsTimeframe('6 Months')" [outline]="stats.timeframe !== '6 Months'">6 Months</button>
+            <button ion-button small (click)="changeStatsTimeframe('1 Month')" [outline]="stats.timeframe !== '1 Month'">1 Month</button>
+            <button ion-button small (click)="changeStatsTimeframe('1 Week')" [outline]="stats.timeframe !== '1 Week'">1 Week</button>
+        </div>
+        <div [chart]="stats.chart"></div>
+        <h3 class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>
+        
+        <div class="extra-stats">
+        
+            <ion-card class="red-background">
+              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>
+              <div class="card-title">{{stats.extra.best.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Maximum</div>
+            </ion-card>  
+            
+            
+            <ion-card class="orange-background">
+              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>
+              <div class="card-title">{{stats.extra.worst.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Minimum</div>
+            </ion-card>        
+        
+        </div>  
+
+
+        <div class="extra-stats" >
+        
+            <ion-card class="yellow-background">
+              <div class="card-title">{{stats.extra.average.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Average</div>
+            </ion-card>  
+            
+            
+            <ion-card class="darkorange-background">
+              <div class="card-title">{{stats.extra.growth.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Growth</div>
+            </ion-card>        
+        
+        </div> 
+
+        
+    </div>    
+    
+</ion-content>
+
+
+
+
+<ion-footer class="diary-footer">
+        <form name="diary-exercise-form" (ngSubmit)="addSet()">
+            
+            <ion-input name="reps" type="number" placeholder="Reps" [(ngModel)]="exercise.reps"></ion-input>
+            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="exercise.weight"></ion-input>
+            <div class="button-container">
+                <button type="submit" ion-button>Add</button>
+            </div>
+        </form>
+</ion-footer>

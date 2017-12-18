@@ -1,0 +1,175 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Stats</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only tools>
+                <ion-icon name="more" ></ion-icon>
+            </button>
+        </ion-buttons>    
+        
+      
+    
+    </ion-navbar>
+</ion-header>
+
+<ion-content  [ngClass]="{'display-borders':properties.activeTab === 'all'}">
+    
+    <ion-segment color="primary" [(ngModel)]="properties.activeTab">
+        <ion-segment-button value="all">
+            All
+        </ion-segment-button>        
+        <ion-segment-button value="general">
+            General
+        </ion-segment-button>
+      <ion-segment-button value="exercise">
+            Exercise
+      </ion-segment-button>
+      <ion-segment-button value="breakdown">
+            Breakdown
+      </ion-segment-button>        
+    </ion-segment>    
+    
+    
+    
+    <div class="stats-page-section general-stats" [hidden]="properties.activeTab !== 'general' && properties.activeTab !== 'all'">
+        <div [chart]="stats.heatmap" style="height:300px;"></div>
+        
+        
+        <div class="extra-stats" >
+        
+            <ion-card class="red-background">
+                <div class="card-subsubtitle">From {{stats.general.heatmap_date}}</div>
+                <div class="card-title">{{stats.general.heatmap.length}} Workouts</div>
+                <div class="card-subtitle">In the last year</div>
+            </ion-card>  
+            
+            
+            <ion-card class="orange-background">
+                <div class="card-subsubtitle">From {{formatDate(stats.general.best_streak.start)}}</div>
+              <div class="card-title">{{stats.general.best_streak.streak}} Weeks</div>
+              <div class="card-subtitle">Longest Weekly Streak</div>
+            </ion-card>        
+        
+            <ion-card class="yellow-background">
+                <div class="card-subsubtitle">From {{stats.general.current_streak_date}}</div>
+              <div class="card-title">{{stats.general.current_streak}} Weeks</div>
+              <div class="card-subtitle">Current Weekly Streak</div>
+            </ion-card>       
+            
+            <ion-card class="darkorange-background">
+                <div class="card-subsubtitle">{{formatDate(account.last_workout)}}</div>
+              <div class="card-title">{{account.last_workout_formatted}}</div>
+              <div class="card-subtitle">Last Workout</div>
+            </ion-card>              
+            
+        </div>        
+        
+    </div>
+    
+    
+    
+    <div class="stats-page-section exercise-stats" [hidden]="properties.activeTab !== 'exercise' && properties.activeTab !== 'all'">
+        
+        <h3 class="stats-metric stats-exercise" (click)="openChangeExercise()">{{exercise.name}} <ion-icon name="create"></ion-icon></h3>
+        
+        <div class="stats-timeframes">
+            <button ion-button small (click)="changeStatsTimeframe('forever')" [outline]="stats.timeframe !== 'forever'">Lifetime</button>
+            <button ion-button small (click)="changeStatsTimeframe('1 Year')" [outline]="stats.timeframe !== '1 Year'">1 Year</button>
+            <button ion-button small (click)="changeStatsTimeframe('6 Months')" [outline]="stats.timeframe !== '6 Months'">6 Months</button>
+            <button ion-button small (click)="changeStatsTimeframe('1 Month')" [outline]="stats.timeframe !== '1 Month'">1 Month</button>
+            <button ion-button small (click)="changeStatsTimeframe('1 Week')" [outline]="stats.timeframe !== '1 Week'">1 Week</button>
+        </div>
+        <div [chart]="stats.chart"></div>
+        <h3 class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>
+        
+        <div class="extra-stats">
+        
+            <ion-card class="red-background">
+              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>
+              <div class="card-title">{{stats.extra.best.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Maximum</div>
+            </ion-card>  
+            
+            
+            <ion-card class="orange-background">
+              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>
+              <div class="card-title">{{stats.extra.worst.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Minimum</div>
+            </ion-card>        
+        
+        </div>  
+
+
+        <div class="extra-stats" >
+        
+            <ion-card class="yellow-background">
+              <div class="card-title">{{stats.extra.average.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Average</div>
+            </ion-card>  
+            
+            
+            <ion-card class="darkorange-background">
+              <div class="card-title">{{stats.extra.growth.data | number: '1.0-0'}}{{stats.units}}</div>
+              <div class="card-subtitle">Growth</div>
+            </ion-card>        
+        
+        </div> 
+
+        
+    </div> 
+    
+    
+    <div class="stats-page-section pie-stats" [hidden]="properties.activeTab !== 'breakdown' && properties.activeTab !== 'all'">
+        <h2>Musclegroup Breakdown</h2>
+        <div [chart]="stats.piechart1"></div>
+        
+        <div class="extra-stats">
+        
+            <ion-card class="red-background">
+                <div class="card-subsubtitle">{{stats.general.musclegroup.most_tracked.data}}{{account.units}}</div>  
+                <div class="card-title">{{stats.general.musclegroup.most_tracked.name}}</div>
+                <div class="card-subtitle">Most Volume</div>
+            </ion-card>  
+            
+            
+            <ion-card class="orange-background">
+                <div class="card-subsubtitle">{{stats.general.musclegroup.least_tracked.data}}{{account.units}}</div>
+                <div class="card-title">{{stats.general.musclegroup.least_tracked.name}}</div>
+                <div class="card-subtitle">Least Volume</div>
+            </ion-card>          
+        
+        </div>          
+        
+        
+        
+        <h2>Exercise Type Breakdown</h2>
+        <div [chart]="stats.piechart2"></div>    
+        
+        
+        <div class="extra-stats" >
+        
+            <ion-card class="yellow-background">
+                <div class="card-subsubtitle">{{stats.general.exercise_type.most_tracked.data}}{{account.units}}</div>  
+                <div class="card-title">{{stats.general.exercise_type.most_tracked.name}}</div>
+                <div class="card-subtitle">Most Volume</div>
+            </ion-card>  
+            
+            
+            <ion-card class="darkorange-background">
+                <div class="card-subsubtitle">{{stats.general.exercise_type.least_tracked.data}}{{account.units}}</div>
+                <div class="card-title">{{stats.general.exercise_type.least_tracked.name}}</div>
+                <div class="card-subtitle">Least Volume</div>
+            </ion-card>        
+        
+        </div>         
+        
+        
+    </div>
+    
+    
+    
+</ion-content>

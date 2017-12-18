@@ -1,0 +1,85 @@
+.add-program-maxes ion-list-header{
+background-color: #e6e6e6;
+margin-bottom:0px;
+        margin-top: 30px;
+}
+.add-program-maxes ion-list-header.maxes-required{
+background-color: #d44735;
+    color: white;
+}
+
+.add-program-maxes > div{
+    margin-bottom:60px;
+}
+
+
+
+.program-start{
+    text-align:center;
+    font-size:16px;
+    font-weight:100;
+    margin-top:20px;
+}
+
+.program-start button{
+    margin-top:10px;
+}
+
+.program-end{
+    text-align:center;
+    margin-top:-10px;
+    font-size:12px;
+}
+
+.program-change-date{
+    text-align:center;
+}
+
+.add-program-options{
+        margin-top: 30px;
+}
+
+.add-program-options .more-header{
+        background-color: #e6e6e6;
+        margin-bottom:0px;
+}
+
+
+.add-program-options > div{
+    margin-bottom:60px;
+}
+
+.add-program-options.list .item-input:last-child{
+    border-bottom:0px;
+}
+
+.add-program-options .item-select{
+    margin-top:20px;
+}
+
+.add-program-footer::before{
+    background-image:none;
+}
+
+.add-program-footer button{
+width: 99%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+
+.exercise-progression-amounts-toggle{
+    padding-left: 16px;
+    font-size: 12px;
+    margin-bottom: 0px;    
+}
+
+.exercise-progression-amounts{
+        padding: 0px 50px;
+            margin-top: 20px;
+}
+
+.exercise-progression-amounts .item{
+    background-color:#e6e6e6;
+}

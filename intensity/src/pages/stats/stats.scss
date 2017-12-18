@@ -1,0 +1,38 @@
+.stats-page-section{
+    margin-top:20px;
+    padding-bottom:20px;
+    margin-bottom:40px;
+}
+
+.display-borders .stats-page-section:not(:last-of-type){
+        border-bottom: 1px solid #e6e6e6;
+}
+
+
+.general-stats .extra-stats{
+    margin-top:10px;
+}
+
+
+
+ion-content:not(.display-borders) .stats-page-section{
+    margin-bottom:0px;
+}
+
+h3.stats-metric.stats-exercise{
+    padding-bottom:0px;
+}
+
+.pie-stats h2{
+    text-align:center;
+        margin-bottom: 0px;
+}
+
+.pie-stats .extra-stats:not(:last-child){
+    margin-bottom:40px;
+}
+
+.pie-stats .extra-stats:last-child{
+    padding-bottom:0px;
+    margin-bottom:0px;
+}

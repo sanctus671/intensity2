@@ -1,0 +1,126 @@
+.tools-popover .popover-content{
+    width:150px;
+}
+
+.tools-popover .popover-content ion-list{
+    margin: 0px;
+    margin-bottom: 5px;    
+}
+
+.timer{
+        text-align: center;
+    border: 3px solid #b7b7b7;
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
+    margin: 0 auto;
+    margin-top: 20%;
+    position:relative;
+}
+
+
+.timer:active{
+    border-color:#d44735;
+}
+
+.timer .time{
+    position: absolute;
+    line-height: 245px;
+    width: 100%;
+    lefT: 0;
+    font-size: 50px;    
+}
+
+.timer .timer-actions{
+position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 10px;
+    font-size: 20px;  
+}
+
+.timer .timer-actions ion-icon{
+    color:#b7b7b7;
+}
+
+.timer:active .timer-actions ion-icon{
+    color:#d44735;
+}
+
+.timer-extra-actions{
+        text-align: Center;
+    margin-top: 30px;
+}
+
+.timer-options{
+    margin-top:30px;
+}
+
+.timer-options .list-header{
+    margin-bottom:0px;
+}
+
+.timer-options .item-block{
+        background-color: #ececec;
+}
+
+
+.timer.timer-stopped .time{
+  animation: blinker steps(1) 1s infinite;
+}
+@keyframes blinker {  
+  0% { visibility: visible; }
+  50% { visibility: hidden; }
+  100% { visibility: visible; }
+}
+
+
+.calculator{
+    padding-left: 20px;
+    padding-right: 30px;
+    margin-top: 10px;    
+}
+
+.calculator .result{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 300;    
+}
+
+.calculator .result.plates-result .label{
+        white-space: normal;
+}
+
+.list.bodyweight-list{
+margin-top: 20px;
+}
+
+.bodyweight-list .list-header{
+color: black;
+    font-size: 16px;
+    margin-bottom: 0px;
+    border-top: none;    
+}
+
+.bodyweight-list .list-header .item-inner{
+        border-bottom: 1px solid #dedede;
+}
+
+
+.bodyweight-list .item ion-icon[item-end]{
+    font-size: 22px;
+    color: #c2c2c2;   
+}
+
+.bodyweight-list .item ion-icon[item-end]:active{
+    color:#444;
+}
+
+.bodyweight-chart{
+        margin-top: 20px;
+}
+
+.footer.bodyweight-footer ion-input{
+    width:65%;
+}

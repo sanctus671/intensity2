@@ -1,0 +1,358 @@
+.diary-content{
+        background-color: rgb(236, 236, 236);
+}
+
+.diary-content ion-segment{
+    background-color:#fff;
+}
+
+.diary-progress-bar{
+    padding-top:30px;
+    position:relative;
+    background-color:#fff;
+}
+
+.diary-progress-bar round-progress{
+        margin: 0 auto;
+}
+
+.diary-progress-bar .progress-bar-inner{
+    width:100%;
+    position: absolute;
+    top:45px;
+    
+}
+
+.diary-progress-bar .progress-bar-inner span{
+        width: 200px;
+    height: 200px;
+    background-color: #eaeaea4a;
+    border-radius: 100px;
+    text-align: center;
+    line-height: 200px;
+    font-size: 34px;  
+    margin:0 auto;
+    display:block;
+}
+
+.diary-sets .set-column{
+    width:50%;
+    display:inline-block;
+    text-align: center;
+        font-size: 16px;
+    padding: 10px 0px;
+    
+}
+
+.diary-sets .item:last-child{
+    border-bottom:1px solid #dedede;
+}
+
+.diary-sets .list-header.item{
+    border-bottom:1px solid #dedede;
+}
+
+.diary-sets .reps{
+    border-right:1px solid #dedede;
+}
+
+.diary-sets .item, .diary-sets  .item-block .item-inner{
+    padding:0px;
+    min-height:0px;
+}
+
+.diary-sets ion-label{
+    margin:0px;
+}
+
+.diary-sets .list-header{
+    margin-bottom:0px;
+    min-height:0px;
+}
+
+.diary-sets .list-header .set-column{
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.diary-sets ion-icon{
+    color: #666;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    font-size: 1.4em;
+    opacity: 0.4;
+}
+
+
+.diary-sets ion-icon.completed{
+    color:#D44735;
+    opacity:1;
+}
+
+
+.diary-records{
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 20px;
+        background-color: white;
+    
+}
+
+.diary-footer{
+    background-color:white;
+}
+.diary-footer ion-input{
+    display:inline-block;
+    width: 35%;
+    font-size:16px;
+    vertical-align:middle;
+}
+
+.diary-footer ion-input:first-child{
+
+}
+
+.diary-footer .button-container{
+    width:26%;
+    text-align:right;
+    display:inline-block;
+}
+
+.diary-footer .button-container button{
+    margin-top: 2px;
+
+}
+
+.diary-footer .text-input{
+    margin: 0px 20px;
+    margin-top: 5px;
+    margin-right: 0px;
+    background-color: #f1f1f1;
+    padding: 8px 15px;
+    border-radius: 3px;
+}
+
+.diary-sets .reorder-enabled ion-item{
+    height:40px;
+    width:100%;
+}
+
+.diary-sets ion-item{
+    height:40px;
+}
+
+.diary-sets .reorder-enabled ion-item .input-wrapper ion-label{
+       position: absolute; 
+    height: 40px;
+    width: 100%;       
+}
+
+
+.diary-sets ion-reorder{
+    max-width: none;
+    position: absolute;
+    width: 100%;
+}
+.diary-sets ion-reorder ion-icon{
+    position:initial;
+        color: Transparent;
+}
+
+
+
+.list.history-sets .item-block .item-inner{
+    margin-left:40px;
+}
+
+.history-sets ion-label{
+    padding-left:0px;
+}
+.history-sets ion-label:before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #d44735;
+    left: 20px;
+    border-radius: 7px;
+    top: 40%;
+    background-color:White;
+}
+
+.history-sets .light ion-label:before{
+    border: 1px solid #d44735;
+    border-radius: 6px;
+        left: 21px;
+}
+
+.history-sets .heavy ion-label:before{
+    border: 3px solid #d44735;
+    border-radius: 8px;
+        left: 19px;
+}
+
+.history-sets ion-label:after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background-color: #d44735;
+    top: 0;
+    left: 26px;
+    z-index: -1;
+}
+
+.history-sets .first-item ion-label:after{
+        height: 50%;
+            top: auto;
+            bottom:0;
+}
+
+.history-sets .last-item ion-label:after{
+        height: 50%;
+}
+
+.history-sets .first-item.last-item ion-label:after{
+    height: 0px;
+    width: 0px;    
+}
+
+.history-sets .history-date{
+    display: inline-block;
+    width: 50%;
+}
+
+.history-sets .history-date h3{
+font-size: 1.2rem;
+color: #929292;
+}
+
+.history-sets .history-date p{
+font-size: 1rem;
+color: #929292;
+}
+
+
+.history-sets .history-details{
+        display: inline-block;
+}
+
+.history-sets .history-details h3{
+
+}
+
+.history-sets .history-details p{
+ font-size: 1.2rem;
+color: #929292;
+}
+
+.history-sets ion-icon{
+        color: #e0e0e0;
+}
+
+.history-sets ion-icon:active{
+    color:#444;
+}
+
+.stats-timeframes{
+     text-align: center;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    background-color: white;   
+}
+
+.stats-timeframes .button-small{
+    font-size:0.9rem;
+    box-shadow:none;
+}
+
+h3.stats-metric{
+    background-color: White;
+    margin: 0px;
+    padding-bottom: 20px;
+    text-align: center;
+    text-transform: capitalize;
+        position: relative;
+}
+
+h3.stats-metric ion-icon{
+font-size: 0.8em;
+    line-height: 22px;
+    color: #cccccc;
+    position: absolute;
+    right: 20px;    
+}
+
+h3.stats-metric ion-icon:active{
+    color:#444;
+}
+
+.extra-stats{
+    background-color:white;
+    padding-left:10px;
+    padding-right:10px;    
+    
+}
+
+.extra-stats:last-child{
+    padding-bottom:20px;
+}
+
+.extra-stats ion-card{
+    width: 50%;
+    width: calc(50% - 9px);
+    display: inline-block;   
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin:0px;
+    margin-bottom:5px;
+    color:White;
+}
+.extra-stats:last-child ion-card{
+    padding-top:16.5px;
+    padding-bottom:16.5px
+}
+
+
+.extra-stats ion-card:first-child{
+    margin-right:2.5px
+}
+
+.extra-stats ion-card:last-child{
+    margin-left:2.5px
+}
+
+
+
+.extra-stats ion-card .card-subsubtitle{
+    font-size:10px;
+        opacity: 0.7;
+}
+
+.extra-stats ion-card .card-subtitle{
+    font-size:12px;
+}
+
+.extra-stats ion-card .card-title{
+    font-size:18px;
+        text-transform: capitalize;
+    
+}
+
+.extra-stats ion-card.red-background{
+    background-color:#d44735;
+}
+
+.extra-stats ion-card.orange-background{
+    background-color:#ff705e;
+}
+
+.extra-stats ion-card.yellow-background{
+    background-color:#e2ab34;
+}
+
+.extra-stats ion-card.darkorange-background{
+    background-color:#d6882c;
+}

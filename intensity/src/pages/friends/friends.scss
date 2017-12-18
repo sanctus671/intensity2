@@ -1,0 +1,17 @@
+.friends-list ion-list-header{
+    border:none;
+    margin-bottom:0px;
+}
+.friends-list ion-list-header ion-label{
+    margin-bottom:0px;
+    text-transform:uppercase;
+}
+
+
+.friends-list .item-md ion-icon[item-end]{
+    color: #c2c2c2;
+}
+
+.friends-list .item-md ion-icon:active{
+    color:#444;
+}
