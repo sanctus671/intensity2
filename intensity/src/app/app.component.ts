@@ -26,7 +26,7 @@ import { AccountProvider } from '../providers/account/account';
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = FriendsPage;
+    rootPage: any = MessagesPage;
     
     premiumPage: any;
     profilePage: any;

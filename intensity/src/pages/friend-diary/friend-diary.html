@@ -3,11 +3,11 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Profile</ion-title>
+        <ion-title>Diary</ion-title>
 
         <ion-buttons end>
             <button ion-button icon-only tools>
-                <ion-icon name="more" ></ion-icon>
+                <ion-icon name="copy" ></ion-icon>
             </button>
         </ion-buttons>    
         
@@ -17,5 +17,48 @@
 </ion-header>
 
 <ion-content>
+    <span ion-datepicker [hidden]="true" (ionChanged)="copyWorkout($event)" [okText]="'Copy To Date'">Copy</span>
+    <div class="date-changer">
+        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>
+        <span ion-datepicker (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>
+        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" (click)="changeDay(1)"></ion-icon>
+    </div>
+    
+    <ion-slides initialSlide="7" (ionSlideDidChange)="workoutChanged()">
+
+        <ion-slide style="background-color:#ececec;" *ngFor="let slide of workoutSlides; let i = index" >
+            
+            <div class="diary-loading" *ngIf="workouts[i].loading">
+                <ion-spinner></ion-spinner>
+            </div>
+                   
+            <div class="diary-empty" *ngIf="workouts[i].workouts.length < 1 && !workouts[i].loading">
+                <ion-icon name='bookmarks'></ion-icon>
+                Diary Empty
+            </div>                   
+                   
+            <ion-list class='diary-exercise-list' *ngIf="!workouts[i].loading">
+              <ion-item *ngFor="let exercise of workouts[i].workouts; let i = index" (click)="selectExercise(exercise)" (press)="showOptions(exercise,i)">
+                  <h2>{{exercise.name}}</h2>
+                  <p *ngIf="exercise.sets.length < 11">
+                      <ion-icon *ngFor="let set of exercise.sets" [ngClass]="{'completed' : !(!set.completed || set.completed === '0')}" name='checkmark-circle'></ion-icon>
+                  </p>
+                  <p *ngIf="exercise.sets.length > 10">
+                      <span class="set-overflow">{{exercise.sets.length}}</span>
+                  </p>                  
+                  
+                  <div class="bar-progress" [ngStyle]="{'width': (exercise.goals.progress / exercise.goals.goal) * 100 + '%'}" [ngClass]="{'calibrating' : exercise.calibrating}"></div>
+                  <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>
+              </ion-item>
  
+                
+                
+            </ion-list>            
+            
+            
+        </ion-slide>
+
+    </ion-slides>
+
+    
 </ion-content>

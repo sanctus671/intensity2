@@ -3,11 +3,11 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Message</ion-title>
+        <ion-title>{{profile.display ? profile.display : profile.username}}</ion-title>
 
         <ion-buttons end>
-            <button ion-button icon-only>
-                <ion-icon name="person-add" ></ion-icon>
+            <button ion-button icon-only (click)="openProfile()">
+                <ion-icon name="person" ></ion-icon>
             </button>
         </ion-buttons>    
         
@@ -17,6 +17,37 @@
 </ion-header>
 
 <ion-content>
-
+    
+    <div class="diary-loading" *ngIf="properties.loading">
+        <ion-spinner></ion-spinner>
+    </div>    
+    
+    
+    <ion-list class="message-list" *ngIf="!properties.loading">
+        <ion-item class="message" *ngFor="let message of messages" [ngClass]="{'to-message':message.userid === account.id, 'from-message':message.userid !== account.id, 'before' : message.isBefore, 'after' : message.isAfter}">
+            <ion-avatar item-start *ngIf="message.userid !== account.id">
+                <img [src]="profile.dpFull">
+            </ion-avatar>              
+            <p>{{message.message}}</p>
+        </ion-item>
+        
+        
+    </ion-list>
+    
+    
  
 </ion-content>
+
+
+
+<ion-footer class="diary-footer message-footer">
+        <form name="diary-exercise-form" (ngSubmit)="sendMessage()">
+            
+            <ion-input name="message" type="text" placeholder="Aa" [(ngModel)]="message.message"></ion-input>
+            <div class="button-container">
+                <button ion-button icon-only clear type="submit">
+                    <ion-icon name="send" ></ion-icon>
+                </button>
+            </div>
+        </form>
+</ion-footer>

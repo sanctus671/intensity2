@@ -60,6 +60,7 @@ import { DiaryRecordsModal } from '../modals/diary-records/diary-records';
 import { RecordsModal } from '../modals/records/records';
 import { EditProfileModal } from '../modals/edit-profile/edit-profile';
 import { AddFriendsModal } from '../modals/add-friends/add-friends';
+import { SearchFriendsModal } from '../modals/search-friends/search-friends';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -72,6 +73,7 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
 import { AccountProvider } from '../providers/account/account';
 import { LeaderboardProvider } from '../providers/leaderboard/leaderboard';
 import { FriendsProvider } from '../providers/friends/friends';
+import { MessageProvider } from '../providers/message/message';
 import { ChartProvider } from '../providers/chart/chart';
 
 import {TimerService} from '../providers/timer/timer';
@@ -121,6 +123,7 @@ import {ArraySortPipe} from '../pipes/sort';
     DiaryRecordsModal,
     EditProfileModal,
     AddFriendsModal,
+    SearchFriendsModal,
     ProgramPopover,
     ProgramWorkoutPopover,
     ToolsDirective,
@@ -174,6 +177,7 @@ import {ArraySortPipe} from '../pipes/sort';
     DiaryRecordsModal,
     RecordsModal,
     EditProfileModal,
+    SearchFriendsModal,
     PopoverPage
   ],
   providers: [
@@ -192,6 +196,7 @@ import {ArraySortPipe} from '../pipes/sort';
     SocialSharing,
     ExerciseProvider,
     ProgramProvider,
+    MessageProvider,
     ChartProvider,
     {provide: HIGHCHARTS_MODULES, useFactory: highchartsModules}
   ]

@@ -1,0 +1,73 @@
+.message-list{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.message-list .message{
+    width:100%;
+}
+
+
+.message-list .message ion-label{
+    flex:none;
+        margin: 0px;
+    padding: 0px;
+        padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.message-list .message.from-message.before ion-label{
+    border-bottom-left-radius: 5px;
+}
+
+.message-list .message.from-message.after ion-label{
+    border-top-left-radius: 5px;
+}
+
+.message-list .message.to-message.before ion-label{
+    border-bottom-right-radius: 5px;
+}
+
+.message-list .message.to-message.after ion-label{
+    border-top-right-radius: 5px;
+}
+
+.message-list .message.from-message ion-avatar{
+        margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.message-list .message.from-message.before ion-avatar{
+    opacity:0;
+}
+
+.message-list .message.from-message ion-label{
+    background-color:#eee;
+}
+
+
+
+.message-list .message.to-message ion-label{
+    
+    background-color:#d44735;
+    position: absolute;
+    right: 15px;
+}
+
+.message-list .message.to-message ion-label p {
+    color:white;
+}
+
+
+.message-list .message .item-inner {
+    border-bottom:none;
+}
+
+
+.diary-footer.message-footer ion-input{
+        width: 75%;
+}
+
+.diary-footer.message-footer .button-container{
+    width:20%;
+}

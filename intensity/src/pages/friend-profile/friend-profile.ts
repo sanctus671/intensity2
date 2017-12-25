@@ -9,6 +9,10 @@ import { DiaryProvider } from '../../providers/diary/diary';
 
 import {AppSettings} from '../../app/app.settings';
 
+import { FriendDiaryPage } from '../../pages/friend-diary/friend-diary';
+
+import { MessagePage } from '../../pages/message/message';
+
 @Component({
   selector: 'page-friend-profile',
   templateUrl: 'friend-profile.html'
@@ -28,7 +32,7 @@ export class FriendProfilePage {
         this.friendProfile = this.params.data.friend;
         this.friendProfile.friendid = this.friendProfile.friendid ? this.friendProfile.friendid : this.friendProfile.userid;
         
-        
+        this.friendProfile.userid = this.friendProfile.friendid;
         console.log(this.friendProfile);
         
         this.friendProfile.dpFull = AppSettings.apiUrl.replace("index.php", "") + this.friendProfile.dp;
@@ -154,11 +158,11 @@ export class FriendProfilePage {
     }
     
     public openDiary(){
-        
+        this.navCtrl.push(FriendDiaryPage, {friend: this.friendProfile});
     }
     
     public sendMessage(){
-        
+        this.navCtrl.push(MessagePage, {profile: this.friendProfile, fromProfile:true});
     }
 
 }
