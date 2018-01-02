@@ -14,6 +14,14 @@ export function highchartsModules() {
 import { IonicStorageModule } from '@ionic/storage';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 import { DatePickerModule } from 'ion-datepicker';
 
@@ -61,6 +69,10 @@ import { RecordsModal } from '../modals/records/records';
 import { EditProfileModal } from '../modals/edit-profile/edit-profile';
 import { AddFriendsModal } from '../modals/add-friends/add-friends';
 import { SearchFriendsModal } from '../modals/search-friends/search-friends';
+import { ImportModal } from '../modals/import/import';
+import { GoalSettingsModal } from '../modals/goal-settings/goal-settings';
+import { CreateProgramModal } from '../modals/create-program/create-program';
+import { EditProgramExerciseModal } from '../modals/edit-program-exercise/edit-program-exercise';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -124,6 +136,10 @@ import {ArraySortPipe} from '../pipes/sort';
     EditProfileModal,
     AddFriendsModal,
     SearchFriendsModal,
+    ImportModal,
+    GoalSettingsModal,
+    CreateProgramModal,
+    EditProgramExerciseModal,
     ProgramPopover,
     ProgramWorkoutPopover,
     ToolsDirective,
@@ -178,6 +194,10 @@ import {ArraySortPipe} from '../pipes/sort';
     RecordsModal,
     EditProfileModal,
     SearchFriendsModal,
+    ImportModal,
+    GoalSettingsModal,    
+    CreateProgramModal,
+    EditProgramExerciseModal,
     PopoverPage
   ],
   providers: [
@@ -193,7 +213,15 @@ import {ArraySortPipe} from '../pipes/sort';
     FriendsProvider,
     Facebook,
     NativeAudio,
+    EmailComposer,
+    InAppPurchase,
+    InAppBrowser, 
     SocialSharing,
+    LocalNotifications,
+    File,
+    Push,
+    FileTransfer,
+    Camera,
     ExerciseProvider,
     ProgramProvider,
     MessageProvider,

@@ -1,0 +1,126 @@
+.restore-program{
+        background-color: #3d3d3d;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.restore-program ion-icon{
+        margin-right: 5px;
+}
+
+.program-info .item-checkbox{
+    margin-top: 10px;    
+}
+
+.add-program-workout{
+    border: 5px dashed #eba9a2;
+    border-radius: 2px;
+    padding: 20px 10px;
+    text-align: center;
+    background-color: #d4473529;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #eba9a2;
+    margin-top: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom:15px;
+}
+
+.add-program-workout:active{
+    border: 5px dashed #d44735;
+    color: #d44735;
+}
+
+.program-workouts .workout-list ion-list{
+    margin-bottom:0px;
+}
+
+.program-workouts .workout-list{
+    margin-bottom:16px;
+}
+
+.program-workouts ion-list-header ion-icon[item-end] {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-right: 15px;
+}
+
+.program-exercise-actions{
+    float: right;
+    top: 0px;
+    position: absolute;
+    right: 0;    
+}
+
+.program-workouts .program-exercise-actions ion-icon {
+    font-size: 1.5rem;
+    line-height: 2.6;
+        color: #b3b3b3;
+}
+
+.program-workouts .program-exercise-actions ion-icon{
+    margin-left:10px;
+}
+
+.program-workouts .program-exercise-actions ion-icon:active{
+    color:black;
+}
+
+.program-workouts ion-item-group ion-label {
+    margin: 0px;
+}
+
+.program-workouts .reorder-enabled ion-item{
+    height:61px;
+    width:100%;
+}
+
+.program-workouts ion-item-group ion-item{
+    height:61px;
+}
+
+.program-workouts .reorder-enabled ion-item .input-wrapper ion-label{
+       position: absolute; 
+    height: 39px;
+    width: 100%;       
+}
+
+.program-workouts .reorder-enabled ion-item .input-wrapper{
+    position:relative;
+}
+
+
+.program-workouts ion-reorder{
+    max-width: none;
+    position: absolute;
+    width: 100%;
+}
+.program-workouts ion-reorder ion-icon{
+    position:initial;
+        color: Transparent;
+}
+
+
+.program-workouts .diary-sets .item{
+    
+    padding-left: 16px;
+}
+
+.program-workouts .diary-sets .item-block .item-inner{
+    padding-right: 8px;
+}
+
+.program-workouts .diary-sets ion-icon {
+    position: initial;
+    opacity: 1;
+}
+
+.program-add-exercise{
+    margin-top:10px;
+}

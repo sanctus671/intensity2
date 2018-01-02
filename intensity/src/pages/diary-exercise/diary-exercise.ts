@@ -13,6 +13,7 @@ import {RoundProgressModule} from 'angular-svg-round-progressbar';
 
 import { EditSetModal } from '../../modals/edit-set/edit-set';
 import { DiaryRecordsModal } from '../../modals/diary-records/diary-records';
+import { SettingsPage } from '../../pages/settings/settings';
 
 import { DatePickerDirective } from 'ion-datepicker';
 
@@ -261,7 +262,7 @@ export class DiaryExercisePage {
                 {
                     text: 'Settings',
                     handler: data => {
-                       
+                       this.navCtrl.push(SettingsPage);
                    }
                 }
             ]
@@ -388,7 +389,7 @@ export class DiaryExercisePage {
         
         let setString = "";
         for (let set of workout.sets){
-            setString = setString + "<div class='histroy-set'>" + set['reps'] + " reps, " + set['weight'] + "kg, " + set['percentage'] + "%, " + set['rpe'] + "RPE</div>"
+            setString = setString + "<div class='histroy-set'>" + set['reps'] + " reps, " + set['weight'] + this.account.units + ", " + set['percentage'] + "%, " + set['rpe'] + "RPE</div>"
         }
         
         let alert = this.alertCtrl.create({

@@ -1,0 +1,106 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Create Program
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+    
+    <div class="restore-program" *ngIf="previousProgram" (click)="restoreProgram()">
+        <ion-icon name="refresh"></ion-icon>
+        Restore previously created program ({{previousProgram.workouts.length}} workout<span *ngIf="previousProgram.workouts.length !== 1">s</span>)
+    </div>
+    
+
+    <ion-list class="edit-profile program-info">    
+        <ion-item>
+            <ion-label floating>Program Name</ion-label>
+            <ion-input type="text" [(ngModel)]="program.name"></ion-input>
+        </ion-item>
+        
+       
+
+
+        <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-textarea [(ngModel)]="program.description" autosize></ion-textarea>
+        </ion-item>  
+
+        <ion-item>
+            <ion-label>Public</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="program.public"></ion-checkbox>
+        </ion-item>         
+        
+        
+    </ion-list>
+    
+    
+    <div class="workout-tabs">
+        <button ion-button small (click)="properties.activeTab = tab" (press)="openWeekOptions(tab, i)" [outline]="properties.activeTab !== tab" *ngFor="let tab of tabs;let i = index">{{tab}}</button>
+        <button ion-button small clear icon-start (click)="addWeek()">
+            <ion-icon name="add"></ion-icon>
+            Add Week
+        </button>
+    </div>   
+    
+    
+        <div class="program-workouts">
+
+            <div *ngFor="let workout of program.workouts; let workoutIndex = index" class="workout-list">
+                
+                <ion-list *ngIf="isInTab(workout)">
+                    <ion-list-header>
+                        <span (click)="workout.hide = !workout.hide">{{workout.name}}</span>
+                        <ion-icon name="git-compare" item-end (click)="moveWorkout(workout)"></ion-icon>
+                        <ion-icon name="copy" item-end (click)="copyWorkout(workout)"></ion-icon>
+                        <ion-icon name="create" item-end (click)="editWorkout(workout)"></ion-icon>
+                        <ion-icon name="trash" item-end (click)="deleteWorkout(workoutIndex, workout)"></ion-icon>
+                    </ion-list-header>
+                    
+                    
+                    <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event, workout)" *ngIf="!workout.hide" class="diary-sets">
+                        
+                        
+                        <ion-item *ngFor="let exercise of workout.exercises; let i = index" >
+                            <h2>{{exercise.name}}</h2>
+                            <p>{{exercise.sets ? exercise.sets : 0}} set<span *ngIf="exercise.sets !== '1'">s</span> of {{exercise.reps ? exercise.reps : 0}} rep<span *ngIf="exercise.reps !== '1'">s</span><span *ngIf="exercise.percentage && exercise.percentage > 0">, {{exercise.percentage}}%</span><span *ngIf="exercise.rpe && exercise.rpe > 0">, @{{exercise.rpe}}RPE</span></p>
+                            <div class="program-exercise-actions">
+                                <ion-icon name="copy" (click)="copyExercise($event, exercise,workout)"></ion-icon>
+                                <ion-icon name="create" (click)="editExercise($event, exercise)"></ion-icon>
+                                <ion-icon name="trash" (click)="deleteExercise($event, i,workout)"></ion-icon>
+                            </div>
+                        </ion-item>
+                        
+                    </ion-item-group>
+                    
+                    <button class="program-add-exercise" ion-button small clear icon-start (click)="addExercise(workout)" *ngIf="!workout.hide">
+                        <ion-icon name="add"></ion-icon>
+                        Add Exercise
+                    </button>  
+                    
+                </ion-list>
+              
+            </div>
+
+        </div>    
+    
+    
+    <div class="add-program-workout" (click)="addWorkout()">
+        <ion-icon name="add"></ion-icon> Add Workout
+    </div>
+    
+</ion-content>
+
+<ion-footer class="add-program-footer premium-footer">
+    <button ion-button (click)="create()">Create Program</button>
+</ion-footer>

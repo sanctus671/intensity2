@@ -66,5 +66,120 @@
 }
 
 
+/*dark theme ******************************************************************/
 
 
+.dark-theme ion-content{
+    background-color:black;
+        color: white;
+}
+
+.dark-theme .item{
+    background-color:black !important;
+        color: white;
+}
+
+.dark-theme .menu-list .item{
+    border-color:#232323;
+}
+
+.dark-theme .item .list-header{
+    background-color:black;
+        color: white;
+}
+
+.dark-theme .date-changer{
+    border-color:#232323;
+}
+
+.dark-theme ion-slide{
+    background-color:black !important;
+}
+
+.dark-theme .item .item-inner{
+    border-color:#232323;
+}
+
+.dark-theme .diary-exercise-list ion-item:after{
+    background-color:#232323;
+}
+
+.dark-theme .diary-progress-bar{
+    background-color:black;
+}
+
+.dark-theme .diary-records{
+    background-color:black;
+}
+
+.dark-theme .diary-content ion-segment{
+    background-color:black;
+}
+
+.dark-theme .diary-progress-bar .progress-bar-inner span{
+    background-color:#232323;
+}
+
+.dark-theme .diary-progress-bar svg circle{
+    stroke: rgb(212, 71, 53);
+}
+
+.dark-theme .stats-timeframes{
+    background-color:black;
+}
+
+.dark-theme .highcharts-container svg rect.highcharts-background{
+    fill:black;
+}
+
+.dark-theme h3.stats-metric{
+    background-color:black;
+}
+
+.dark-theme .extra-stats{
+    background-color:black;
+}
+
+.dark-theme .diary-footer{
+    background-color:#232323;
+}
+
+.dark-theme .diary-footer .text-input{
+    background-color:dimgrey;
+}
+
+
+.dark-theme .searchbar-md.flat-search .searchbar-input{
+    background-color:#232323;
+    border-color:#232323;
+}
+
+.dark-theme .card-md{
+    background-color:black;
+}
+
+.dark-theme .card-md h2{
+    color:white;
+}
+
+.dark-theme .alert-wrapper{
+    background-color:#232323;
+        color: white;
+}
+
+.dark-theme .alert-message, .dark-theme .alert-radio-label, .dark-theme .alert-input, .dark-theme .button-only-alert .alert-button{
+    color:white;
+}
+
+.dark-theme ionic2-datepicker .datepicker-wrapper{
+    background-color:black;
+    color:white;
+}
+
+.dark-theme ionic2-datepicker .button-ios, .dark-theme ionic2-datepicker .button-ios.activated{
+    color:white;
+}
+
+.dark-theme .popover-content{
+    background-color:black;
+}

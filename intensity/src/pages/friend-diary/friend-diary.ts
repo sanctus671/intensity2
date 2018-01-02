@@ -30,35 +30,22 @@ export class FriendDiaryPage {
     public workoutSlides: any;
     public selectedExercise: any;
     public friend: any;
+    public copyWorkoutOnly:boolean;
     
     constructor(public navCtrl: NavController, public params: NavParams, public modalCtrl: ModalController, public storage: Storage, private diaryProvider: DiaryProvider, private accountProvider: AccountProvider, public events: Events, public exerciseProvider: ExerciseProvider, private alertCtrl: AlertController, private socialSharing: SocialSharing, private friendsProvider: FriendsProvider) {
         
         
         this.friend = this.params.data.friend;
+        this.friend.friendid = this.friend.friendid ? this.friend.friendid : this.friend.userid;
+        this.friend.userid = this.friend.friendid;
         
+                
         this.selectedDate = new Date();
 
 
-
-        this.setupSlides();
-
-        this.events.subscribe('session:retreived', () => {
-            
-            if (this.workouts.length > 1 && !this.workouts[7].retreived) {
-                this.getWorkout(this.workouts[7]);
-            }
-        }); 
+        this.setupSlides(); 
         
-        this.events.subscribe('workout:copied', (data) => {
-            
-            for (let workout of this.workouts){
-                workout.retreived = false;
-            }
-                
-            this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
-            
-        });         
-        
+        this.copyWorkoutOnly = false;
         
         this.storage.get("account").then((data) => {
             this.account = data;
@@ -86,10 +73,6 @@ export class FriendDiaryPage {
     }
     
 
-       
-
-    
-    
     public getWorkout(workout) {
         
         if (workout.retreived){
@@ -112,16 +95,6 @@ export class FriendDiaryPage {
         
     }  
     
-    public updateExercise(exercise){
-            let formattedDate = moment(this.selectedDate).format('YYYY-MM-DD');
-            this.diaryProvider.getWorkout(formattedDate).then((data) => {
-                for (let workoutExercise of <Array<{}>> data){
-                    if (exercise["exerciseid"] === workoutExercise["exerciseid"]){
-                        exercise["sets"] = workoutExercise["sets"];
-                    }
-                }
-            });        
-    }
 
     
     private calculateDate(date, change){
@@ -196,24 +169,34 @@ export class FriendDiaryPage {
 
     }
 
-  
-    
-    private getProgressAmount(set){
-        if (this.account.goals.primary === "volume"){
-            return set.reps * set.weight;
-        }
-        else if (this.account.goals.primary === "reps"){
-            return parseFloat(set.reps);
-        }
-        else if (this.account.goals.primary === "weight"){
-            return parseFloat(set.weight)
-        }
-        return 0;
-    }    
-
     
     public selectExercise(exercise){
-
+        console.log(exercise);
+        let setString = "";
+        for (let set of exercise.sets){
+            setString = setString + "<div class='histroy-set'>" + set['reps'] + " reps, " + set['weight'] + this.account.units + ", " + set['percentage'] + "%, " + set['rpe'] + "RPE</div>"
+        }
+        
+        let progressPecentage = Math.round((exercise.goals.progress / exercise.goals.goal)*100);
+        
+        let alert = this.alertCtrl.create({
+            title: exercise.name,
+            subTitle: progressPecentage + "% complete",
+            message: setString,
+            buttons: [
+                {
+                    text: 'Dismiss',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Copy',
+                    handler: data => {
+                        this.datepicker.open();
+                   }
+                }
+            ]
+        });
+        alert.present();  
     }    
     
     public showOptions(exercise, index){
@@ -225,13 +208,14 @@ export class FriendDiaryPage {
                 text: 'Share',
                 handler: data => {
                     console.log('remove clicked');
-                var setText = "I tracked " + exercise.name + " on Intensity. These are my sets: " ;
+                var name = this.friend.display ? this.friend.display : this.friend.username;
+                var setText = name + " tracked " + exercise.name + " on Intensity. This is their sets: " ;
                 for (let set of exercise.sets){
                     setText = setText + set.reps + " reps with " + set.weight + set.unit + " (" + set.percentage + "%, " + set.rpe + "rpe), ";
                 }
                 setText = setText.replace(/^[,\s]+|[,\s]+$/g, '');
                 this.socialSharing
-                    .share(setText, "My workout on Intensity", null, "http://www.intensityapp.com/") // Share via native share sheet
+                    .share(setText, name + "'s workout on Intensity", null, "http://www.intensityapp.com/") // Share via native share sheet
                     .then((result) => {
                       // Success!
                     }, function(err) {
@@ -257,9 +241,12 @@ export class FriendDiaryPage {
         let alert = this.alertCtrl.create(alertObj);
         alert.present();
     } 
-    
+
     public copyWorkout(date){
-        console.log(date);
+        if (!this.selectedExercise){
+            this.doCopy("workout",date);
+            return;
+        }
         let data = {
             title: "What sets do you want to copy?",
             buttons: [
@@ -271,46 +258,9 @@ export class FriendDiaryPage {
                     text: 'Copy',
                     handler: data => {
                         
-                        
-                        
-                        let copy = {
-                            exerciseid: data === "sets" ? this.selectedExercise.exerciseid : null,
-                            userid: this.account.id,
-                            type:data,
-                            date: moment(date).format('YYYY-MM-DD'),
-                            assigneddate: moment(this.selectedDate).format('YYYY-MM-DD')
-                        }
+                        this.doCopy(data,date);
                         
 
-                        this.diaryProvider.copyWorkout(copy).then(() => {
-                            
-                            
-                            this.events.publish('workout:copied', {date:copy.date});
-                            
-                            let sets = 0;
-                            if (data === "sets"){
-                                sets = this.selectedExercise.sets.length;
-                            }
-                            else{
-                                let workout = this.workouts[this.slides.getActiveIndex()];
-                                for (let exercise of workout.workouts){
-                                    sets = sets + exercise.sets.length;
-                                }
-                            }
-                            
-                            
-                            let alert = this.alertCtrl.create({
-                                title: sets + " sets copied",
-                                subTitle: "To " + moment(date).format('MMMM Do YYYY'),
-                                buttons: [
-                                    {
-                                        text: 'OK',
-                                        role: 'cancel'
-                                    }
-                                ]
-                            });
-                            alert.present();              
-                        })
                        
                    }
                 }
@@ -328,6 +278,45 @@ export class FriendDiaryPage {
     }   
    
 
-    
+    private doCopy(copyType,date){
+        let copy = {
+            exerciseid: copyType === "sets" ? this.selectedExercise.exerciseid : null,
+            userid: this.friend.userid,
+            type:copyType,
+            date: moment(date).format('YYYY-MM-DD'),
+            assigneddate: moment(this.selectedDate).format('YYYY-MM-DD')
+        }
+
+
+        this.diaryProvider.copyWorkout(copy).then(() => {
+
+
+            this.events.publish('workout:copied', {date:copy.date});
+
+            let sets = 0;
+            if (copyType === "sets"){
+                sets = this.selectedExercise.sets.length;
+            }
+            else{
+                let workout = this.workouts[this.slides.getActiveIndex()];
+                for (let exercise of workout.workouts){
+                    sets = sets + exercise.sets.length;
+                }
+            }
+
+
+            let alert = this.alertCtrl.create({
+                title: sets + " sets copied",
+                subTitle: "To " + moment(date).format('MMMM Do YYYY'),
+                buttons: [
+                    {
+                        text: 'OK',
+                        role: 'cancel'
+                    }
+                ]
+            });
+            alert.present();              
+        })    
+    }    
 
 }

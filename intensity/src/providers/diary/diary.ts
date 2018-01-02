@@ -835,7 +835,33 @@ console.log(res);
                 });   
             })       
         })      
-    }     
+    } 
+    
+    
+    public getExport(userId){
+        return new Promise((resolve, reject) => {
+            
+            this.storage.get("session").then((session) => {            
+
+                let data = {key: AppSettings.apiKey, session: session, controller:"view", action:"getexport",userid:userId};
+
+                this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                    if (res["success"] === true){
+
+                        resolve(res["data"]);
+                    }
+                    else{reject(res);}                        
+
+                },(e) => {
+
+                        reject(e);
+
+
+                });   
+            })       
+        })        
+    }    
 
 
 }

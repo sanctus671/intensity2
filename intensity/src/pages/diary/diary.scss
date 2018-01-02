@@ -72,11 +72,11 @@ content: " ";
     left: 0px;
 }
 
-.diary-exercise-list .item-md ion-icon[item-end]{
+.diary-exercise-list .item-md ion-icon[item-end], ion-list .item-md ion-icon.ion-ios-arrow-forward{
     color: #c2c2c2;
 }
 
-.diary-exercise-list .item-md ion-icon:active{
+.diary-exercise-list .item-md ion-icon:active, ion-list .item-md ion-icon.ion-ios-arrow-forward:active{
     color:#444;
 }
 
@@ -210,6 +210,8 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated{
     font-size: 16px;    
         padding-left: 25px;
             font-weight: 400;
+                width: 100%;
+    display: block;
 }
 
 .button-only-alert .alert-button.activated {

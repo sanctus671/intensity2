@@ -185,4 +185,121 @@ export class AccountProvider {
 
 
 
+
+    public updateSettings(settings, userId){
+        return new Promise((resolve, reject) => {
+            this.storage.get("session").then((session) => {            
+                if (session){
+                    let data = {key: AppSettings.apiKey, session: session, controller:"edit", action:"updatesettings", userid:userId};
+                    Object.assign(data,settings);    
+
+
+                    this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                        if (res["success"] === true){
+
+                            resolve(res["data"]);
+
+                        }
+                        else{reject(res);}                        
+
+                    },(e) => {
+
+                        reject(e);
+
+                    });   
+                }
+                else{
+                    reject();
+                }
+            })       
+        })        
+    }
+    
+    
+    
+    public addTarget(userId){
+        return new Promise((resolve, reject) => {
+            this.storage.get("session").then((session) => {            
+                if (session){
+                    let data = {key: AppSettings.apiKey, session: session, controller:"create", action:"addtarget", userid:userId};
+
+                    this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                        if (res["success"] === true){
+
+                            resolve(res["data"]);
+
+                        }
+                        else{reject(res);}                        
+
+                    },(e) => {
+
+                        reject(e);
+
+                    });   
+                }
+                else{
+                    reject();
+                }
+            })       
+        })        
+    }    
+    
+    public updateTarget(target, userId){
+        return new Promise((resolve, reject) => {
+            this.storage.get("session").then((session) => {            
+                if (session){
+                    let data = {key: AppSettings.apiKey, session: session, controller:"edit", action:"updatetarget", userid:userId, id:target.id, exerciseid:target.exerciseid, target:target.target};
+
+                    this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                        if (res["success"] === true){
+
+                            resolve(res["data"]);
+
+                        }
+                        else{reject(res);}                        
+
+                    },(e) => {
+
+                        reject(e);
+
+                    });   
+                }
+                else{
+                    reject();
+                }
+            })       
+        })        
+    }
+    
+    
+    public removeTarget(target, userId){
+        return new Promise((resolve, reject) => {
+            this.storage.get("session").then((session) => {            
+                if (session){
+                    let data = {key: AppSettings.apiKey, session: session, controller:"edit", action:"deletetarget", userid:userId, id:target.id};
+
+                    this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                        if (res["success"] === true){
+
+                            resolve(res["data"]);
+
+                        }
+                        else{reject(res);}                        
+
+                    },(e) => {
+
+                        reject(e);
+
+                    });   
+                }
+                else{
+                    reject();
+                }
+            })       
+        })        
+    }        
 }

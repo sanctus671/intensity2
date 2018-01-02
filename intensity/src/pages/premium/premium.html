@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="profile-nav">
     <ion-navbar color="primary">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
@@ -17,5 +17,130 @@
 </ion-header>
 
 <ion-content>
+    
+    <div class="premium-header">
+        
+        <img src="assets/imgs/crown.png" />
+        
+        <h2>Improve your tracking</h2>
+        
+    </div>
+    
+    <ion-card class="premium-card">
+        <ion-list>
+            <ion-list-header>
+                <h2>Personalized Programs</h2>
+            </ion-list-header>             
+            <ion-item>
+                <ion-icon name="calendar" item-start></ion-icon>
+                <h2>Your own custom program</h2>
+                <p>Create programs with your own workouts and exercises.</p>
+            </ion-item> 
+            <ion-item>
+                <ion-icon name="body" item-start></ion-icon>
+                <h2>Strength specific</h2>
+                <p>Add details such as reps, weight, percentages, RPE, and custom notes.</p>
+            </ion-item>   
+            <ion-item>
+                <ion-icon name="megaphone" item-start></ion-icon>
+                <h2>Public promotion</h2>
+                <p>Make your program visible to all users of Intensity to use for themselves.</p>
+            </ion-item>    
+            <ion-item>
+                <ion-icon name="md-globe" item-start></ion-icon>
+                <h2>Unique URL</h2>
+                <p>Your program has a unique URL so you can share it with people outside of Intensity.</p>
+            </ion-item>    
+            <ion-item>
+                <ion-icon name="infinite" item-start></ion-icon>
+                <h2>Unlimited</h2>
+                <p>Create as many simple or complex programs as you require.</p>
+            </ion-item>            
+        </ion-list>
+    </ion-card>  
+    
+    
+    <ion-card class="premium-card">
+        <ion-list>
+            <ion-list-header>
+                <h2>Program Customizations</h2>
+            </ion-list-header>             
+            <ion-item>
+                <ion-icon name="create" item-start></ion-icon>
+                <h2>Modify existing programs</h2>
+                <p>Create your own version of existing programs in the Intensity database (e.g. 5/3/1).</p>
+            </ion-item> 
+            <ion-item>
+                <ion-icon name="share-alt" item-start></ion-icon>
+                <h2>Share</h2>
+                <p>Share your customized programs for other users to utilize.</p>
+            </ion-item>          
+        </ion-list>
+    </ion-card>     
+    
+    
+    <ion-card class="premium-card">
+        <ion-list>
+            <ion-list-header>
+                <h2>Theming</h2>
+            </ion-list-header>             
+            <ion-item>
+                <ion-icon name="contrast" item-start></ion-icon>
+                <h2>Dark theme</h2>
+                <p>The dark theme uses black and grey tonnes instead of light ones which can be easier on the eye.</p>
+            </ion-item> 
+            <ion-item>
+                <ion-icon name="flash" item-start></ion-icon>
+                <h2>Energy efficient</h2>
+                <p>Darker colors tend to use less power on most phones.</p>
+            </ion-item>          
+        </ion-list>
+    </ion-card>      
+    
+    <ion-card class="premium-card">
+        <ion-list>
+            <ion-list-header>
+                <h2>Support</h2>
+            </ion-list-header>             
+            <ion-item>
+                <ion-icon name="heart" item-start></ion-icon>
+                <h2>Priority support</h2>
+                <p>Stuck with something? We'll help right away.</p>
+            </ion-item> 
+            <ion-item>
+                <ion-icon name="git-pull-request" item-start></ion-icon>
+                <h2>Priority feature requests</h2>
+                <p>Have an idea for a new feature? We'll listen and add it to future releases.</p>
+            </ion-item>          
+        </ion-list>
+    </ion-card>  
+
+
+    <ion-card class="premium-card">
+        <ion-list>
+            <ion-list-header>
+                <h2>Ongoing Development</h2>
+            </ion-list-header>             
+            <ion-item>
+                <ion-icon name="code-working" item-start></ion-icon>
+                <h2>Support Us</h2>
+                <p>Help us to continue building and providing the best workout tracking app for strength athletes</p>
+            </ion-item> 
+            <ion-item>
+                <ion-icon name="logo-usd" item-start></ion-icon>
+                <h2>Reinvestment</h2>
+                <p>Subscription revenue always goes directly into supporting app development, website development, marketing costs, server costs, and supporting the lifting community however we can.</p>
+            </ion-item>          
+        </ion-list>
+    </ion-card>     
+    
+    <div class="restore">
+        <p>Already purchased premium?</p>
+        <button ion-button outline block (click)="restorePremium()">Restore Premium</button>
+    </div>    
  
 </ion-content>
+
+<ion-footer class="add-program-footer premium-footer">
+    <button ion-button (click)="buyPremium()">Upgrade - $4.99/month</button>
+</ion-footer>

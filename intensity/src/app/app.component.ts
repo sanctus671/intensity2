@@ -26,7 +26,7 @@ import { AccountProvider } from '../providers/account/account';
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = MessagesPage;
+    rootPage: any = ProgramsPage;
     
     premiumPage: any;
     profilePage: any;
@@ -34,6 +34,8 @@ export class MyApp {
     pages: Array<{title: string, component: any, icon: string}>;
 
     account: any;
+    
+    theme:string;
 
     constructor(public platform: Platform, public statusBar: StatusBar, public modalCtrl: ModalController, public splashScreen: SplashScreen, private accountProvider: AccountProvider, public events: Events, public storage: Storage) {
         this.initializeApp();
@@ -64,9 +66,45 @@ export class MyApp {
 
         }); 
         
+
+        
         
         this.premiumPage = {title: 'Premium', component: PremiumPage};
         this.profilePage = {title: 'Profile', component: ProfilePage};
+        
+        
+        this.events.subscribe('workout:added', (lastWorkout) => {
+            if (this.account.last_workout === "never" || moment(lastWorkout).isAfter(this.account.last_workout)){
+                this.account.last_workout = lastWorkout;
+                this.account.last_workout_formatted = moment(this.account.last_workout).add(1, 'd').fromNow();
+            }
+        })
+        
+        this.events.subscribe('user:logout', () => {
+            this.openLogin();
+        });
+        
+        this.storage.get("theme").then((data) => {
+            if (data){
+                this.theme = data;
+                if (this.theme === "dark"){
+                    document.querySelector("ion-app").className += " dark-theme";
+                }
+            }
+        });
+                
+        this.events.subscribe('theme:updated', (theme) => {
+            this.theme = theme;
+            if (this.theme === "dark"){
+                document.querySelector("ion-app").className += " dark-theme";
+            }
+            else{
+                if (document.querySelector("ion-app").classList.contains("dark-theme")){
+                    document.querySelector("ion-app").classList.remove("dark-theme");
+
+                }
+            }
+        })                
 
     }
   

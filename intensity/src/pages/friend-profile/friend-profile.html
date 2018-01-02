@@ -6,10 +6,10 @@
         <ion-title>Profile</ion-title>
 
         <ion-buttons end>
-            <button ion-button icon-only *ngIf="added">
+            <button ion-button icon-only *ngIf="added" (click)="removeFriend()">
                 <ion-icon name="remove-circle"></ion-icon>
             </button>
-            <button ion-button icon-only *ngIf="!added">
+            <button ion-button icon-only *ngIf="!added" (click)="addFriend()">
                 <ion-icon name="ios-add-circle"></ion-icon>
             </button>            
         </ion-buttons>    

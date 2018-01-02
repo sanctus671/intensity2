@@ -6,7 +6,7 @@
         <ion-title>Diary</ion-title>
 
         <ion-buttons end>
-            <button ion-button icon-only tools>
+            <button ion-button icon-only ion-datepicker (ionChanged)="copyWorkout($event)" [okText]="'Copy To Date'">
                 <ion-icon name="copy" ></ion-icon>
             </button>
         </ion-buttons>    
@@ -17,7 +17,6 @@
 </ion-header>
 
 <ion-content>
-    <span ion-datepicker [hidden]="true" (ionChanged)="copyWorkout($event)" [okText]="'Copy To Date'">Copy</span>
     <div class="date-changer">
         <ion-icon ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>
         <span ion-datepicker (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>

@@ -9,6 +9,8 @@ import { ProgramProvider } from '../../providers/program/program';
 
 import { ProgramPage } from '../../pages/program/program';
 
+import { CreateProgramModal } from '../../modals/create-program/create-program';
+
 @Component({
   selector: 'page-programs',
   templateUrl: 'programs.html'
@@ -79,6 +81,32 @@ export class ProgramsPage {
         this.navCtrl.push(ProgramPage, {program: program});
     }
 
-
+    public openCreateProgram(){
+        let modal = this.modalCtrl.create(CreateProgramModal); 
+        modal.onDidDismiss(data => {
+            if (data){
+                let alert = this.alertCtrl.create({
+                    title:"Program created",
+                    subTitle: "Your program has been added to the database.",
+                    buttons: [
+                        {
+                            text: 'Dismiss',
+                            role: 'cancel'
+                        }                                
+                    ]
+                });
+                alert.present();         
+            }                
+        });
+        
+        modal.onDidDismiss(program => {
+            if (program){
+                this.storage.set("previousProgram", program);
+                console.log(program);
+            }
+        })        
+        
+        modal.present();          
+    }
 
 }

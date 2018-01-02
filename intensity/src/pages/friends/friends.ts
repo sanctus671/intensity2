@@ -29,8 +29,8 @@ export class FriendsPage {
 
     
     constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage, private accountProvider: AccountProvider, private friendsProvider: FriendsProvider, private diaryProvider: DiaryProvider, public events: Events,private alertCtrl: AlertController) {
-        this.properties = {activeTab:"friends", activityPage:1, canloadmore:true};
-
+        this.properties = {activeTab:"friends", activityPage:1, canloadmore:true, paused:false};
+        this.account = {};
         
         this.storage.get("account").then((data) => {
             this.account = data;
@@ -43,6 +43,17 @@ export class FriendsPage {
         this.friendRequests = [];     
        
     }
+    
+    ionViewWillEnter(){
+        if (this.properties.paused){
+            this.properties.paused = false;
+            this.getFriends();
+        }
+    }
+    
+    ionViewWillLeave(){
+        this.properties.paused = true;
+    }    
 
     private getFriends(){
         this.storage.get("profile" + this.account.id).then((data) => { //preload
@@ -172,12 +183,23 @@ export class FriendsPage {
         alert.present();        
     }     
     
-    public acceptFriend(friend){
+    public acceptFriend(friend, index){
+        this.friendRequests.splice(index,1);
         
+        this.friendsProvider.addFriend(friend.userid).then(() => {
+            this.accountProvider.getAccount();
+            this.getFriends();
+            
+        });    
     }
     
-    public declineFriend(friend){
+    public declineFriend(friend, index){
+        this.friendRequests.splice(index,1);
         
+        this.friendsProvider.removeFriend(friend.userid).then(() => {
+            this.accountProvider.getAccount();
+            this.getFriends();
+        });         
     }
     
     public openAddFriends(){

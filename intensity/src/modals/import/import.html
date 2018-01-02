@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Import Data
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+    
+    <ion-list>
+        <ion-item>
+            <ion-label>Import From</ion-label>
+            <ion-select [(ngModel)]="import.type">
+                <ion-option value="fitnotes">FitNotes</ion-option>
+                <ion-option value="strong">Strong</ion-option>
+                <ion-option value="stronglifts">Stronglifts 5x5</ion-option>
+                <ion-option value="fitocracy">Fitocracy</ion-option>
+                <ion-option value="intensity">Intensity</ion-option>
+                <ion-option value="custom">Custom</ion-option>
+            </ion-select>
+       </ion-item>
+        
+        
+        <ion-item>
+            <ion-icon name="document" item-start></ion-icon>
+            <label>CSV File</label>
+            <input type="file" accept=".csv"  ngModel (change)="selectFile($event)" id="file-input" style="opacity: 0">
+            <button ion-button outline item-end>Choose File</button>
+        </ion-item>        
+
+        <p class="import-explaination" *ngIf="import.type">
+            Make sure your file is in CSV format with the following columns in the correct order:
+            <span *ngIf="import.type === 'fitnotes'">date, exercise, unit, weight, reps, sets, distance, distance unit, time</span>
+            <span *ngIf="import.type === 'strong'">date, (not imported), exercise, sets, weight, unit, reps, distance, distance unit, time</span>
+            <span *ngIf="import.type === 'stronglifts'">date, notes, repeated per exercise: exercise, unit, reps x 5</span>
+            <span *ngIf="import.type === 'fitocracy'">exercise, date, (not imported), weight, (not imported), reps, (not imported), unit</span>
+            <span *ngIf="import.type === 'intensity'">date, exercise, (not imported), reps, sets, weight, rpe, percentage, completed, notes</span>
+            <span *ngIf="import.type === 'custom'">date (in dd/mm/yyyy format), exercise, reps, sets, weight, rpe, percentage, completed (0 = no, 1 = yes), notes</span>
+        </p>
+        
+        <p class="import-explaination" *ngIf="import.type">
+            If the columns above do not match your exported file or if your import fails in any way, <a (click)="openEmail()">let us know</a>.
+        
+        </p>
+        
+        <div class="import-button" *ngIf="import.type && import.fileLocation">
+            <button ion-button item-end (click)="openImport()">Import</button>
+        </div>
+        
+        
+    </ion-list>
+    
+</ion-content>

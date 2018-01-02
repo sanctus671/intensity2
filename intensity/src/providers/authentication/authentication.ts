@@ -123,8 +123,62 @@ export class AuthenticationProvider {
         })       
   }
   
+  
+  public changePassword(oldPassword,newPassword, userId){
+        return new Promise((resolve, reject) => {
+            this.storage.get("session").then((session) => {            
+                if (session){            
+                    let data = {key:AppSettings.apiKey,session:session, controller:"edit", action:"updateuser", id:userId, oldpassword:oldPassword,password:newPassword};
+
+                    this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                        if (res["success"] === true){
+                                resolve();                     
+                        }
+                        else{reject(res);}                        
+
+                    },(e) => {
+                        reject(e);
+                    });   
+              
+                }
+                else{
+                    reject();
+                } 
+            });                    
+        })       
+  }  
+  
+
   public logout(){
-      this.storage.clear();
-  }
+        return new Promise((resolve, reject) => {
+            this.storage.clear();
+            this.storage.get("session").then((session) => {            
+                if (session){
+                    let data = {key: AppSettings.apiKey, session: session, controller:"authentication", action:"logout"};
+
+                    this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                        if (res["success"] === true){
+
+                            resolve(res["data"]);
+
+                        }
+                        else{resolve(res);}                        
+
+                    },(e) => {
+
+                        resolve();
+
+                    });   
+                }
+                else{
+                    console.log("here");
+                    resolve();
+                }
+            })       
+        })        
+    }        
+
 
 }

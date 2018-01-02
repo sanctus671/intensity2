@@ -24,10 +24,12 @@
     
     
     <ion-list class="message-list" *ngIf="!properties.loading">
-        <ion-item class="message" *ngFor="let message of messages" [ngClass]="{'to-message':message.userid === account.id, 'from-message':message.userid !== account.id, 'before' : message.isBefore, 'after' : message.isAfter}">
+        <ion-item class="message" *ngFor="let message of messages" (click)="message.showTime = !message.showTime" [ngClass]="{'to-message':message.userid === account.id, 'from-message':message.userid !== account.id, 'before' : message.isBefore, 'after' : message.isAfter, 'show-time': message.showTime}" >
+            
             <ion-avatar item-start *ngIf="message.userid !== account.id">
                 <img [src]="profile.dpFull">
             </ion-avatar>              
+            <ion-note *ngIf="message.showTime">{{getMessageTime(message.created)}}</ion-note>
             <p>{{message.message}}</p>
         </ion-item>
         
@@ -43,7 +45,7 @@
 <ion-footer class="diary-footer message-footer">
         <form name="diary-exercise-form" (ngSubmit)="sendMessage()">
             
-            <ion-input name="message" type="text" placeholder="Aa" [(ngModel)]="message.message"></ion-input>
+            <ion-input name="message" type="text" placeholder="Aa" [(ngModel)]="message"></ion-input>
             <div class="button-container">
                 <button ion-button icon-only clear type="submit">
                     <ion-icon name="send" ></ion-icon>

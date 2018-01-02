@@ -5,6 +5,8 @@ import * as moment from 'moment';
 
 import { AccountProvider } from '../../providers/account/account';
 
+import { FriendsProvider } from '../../providers/friends/friends';
+
 import { DiaryProvider } from '../../providers/diary/diary';
 
 import {AppSettings} from '../../app/app.settings';
@@ -26,11 +28,13 @@ export class FriendProfilePage {
     public activity: any;
     public added: boolean;
     
-    constructor(public navCtrl: NavController, public params: NavParams, public modalCtrl: ModalController, public storage: Storage, private accountProvider: AccountProvider, public events: Events,private alertCtrl: AlertController, private diaryProvider: DiaryProvider) {
-        this.properties = {activeTab: "profile", activityPage:1};
+    constructor(public navCtrl: NavController, public params: NavParams, public modalCtrl: ModalController, public storage: Storage, private accountProvider: AccountProvider, public events: Events,private alertCtrl: AlertController, private friendsProvider: FriendsProvider, private diaryProvider: DiaryProvider) {
+        this.properties = {activeTab: "profile", activityPage:1, fromMessage:false};
         
         this.friendProfile = this.params.data.friend;
         this.friendProfile.friendid = this.friendProfile.friendid ? this.friendProfile.friendid : this.friendProfile.userid;
+        
+        this.properties.fromMessage = this.params.data.fromMessage;
         
         this.friendProfile.userid = this.friendProfile.friendid;
         console.log(this.friendProfile);
@@ -149,12 +153,46 @@ export class FriendProfilePage {
         alert.present();        
     }  
     
-    public acceptFriend(){
-        
+    public addFriend(){
+        let alert = this.alertCtrl.create({
+            title: "Add User",
+            message: "Are you sure you want to add this user?",
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                },
+                {                    
+                    text: 'Yes',
+                    handler: data => {
+                        this.added = true;
+                        this.friendsProvider.addFriend(this.friendProfile.userid);
+                        console.log('Cancel clicked');
+                    }}                
+            ]
+        });
+        alert.present();         
     }
     
     public removeFriend(){
-        
+        let alert = this.alertCtrl.create({
+            title: "Delete Friend",
+            message: "Are you sure you want to delete this friend?",
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                },
+                {                    
+                    text: 'Yes',
+                    handler: data => {
+                        this.added = false;
+                        this.friendsProvider.removeFriend(this.friendProfile.userid);
+                        console.log('Cancel clicked');
+                    }}                
+            ]
+        });
+        alert.present();         
     }
     
     public openDiary(){
@@ -162,7 +200,12 @@ export class FriendProfilePage {
     }
     
     public sendMessage(){
-        this.navCtrl.push(MessagePage, {profile: this.friendProfile, fromProfile:true});
+        if (this.properties.fromMessage){
+            this.navCtrl.pop();
+        }
+        else{
+            this.navCtrl.push(MessagePage, {profile: this.friendProfile, fromProfile:true});
+        }
     }
 
 }

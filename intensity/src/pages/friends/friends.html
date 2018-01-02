@@ -74,14 +74,14 @@
     
     <div *ngIf="properties.activeTab === 'requests'">
         <ion-list class="friends-list">           
-            <ion-item *ngFor="let request of friendRequests" (click)="viewProfile(request, false)">
+            <ion-item *ngFor="let request of friendRequests; let i = index" (click)="viewProfile(request, false)">
                 <ion-avatar item-start>
                     <img [src]="getDp(request.dp)">
                 </ion-avatar>
                 <h2>{{request.display ? request.display : request.username}}</h2>
                 <p></p>
-                <button ion-button clear item-end (click)="declineFriend(request)">Decline</button>
-                <button ion-button clear item-end (click)="acceptFriend(request)">Accept</button>
+                <button ion-button clear item-end (click)="declineFriend(request,i)">Decline</button>
+                <button ion-button clear item-end (click)="acceptFriend(request,i)">Accept</button>
                 
             </ion-item>  
         </ion-list>

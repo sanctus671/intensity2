@@ -20,8 +20,8 @@
     
     <div class="profile-header">
         
-        <div class="profile-dp">
-            <img [src]="account.dp" />
+        <div class="profile-dp" (click)="changeAvatar()">
+            <img [src]="account.dp"/>
         </div>
         
 

@@ -14,6 +14,29 @@
     padding: 0px;
         padding: 10px 15px;
     border-radius: 15px;
+     overflow: visible;
+     transition:margin-top linear 200ms;
+
+}
+
+.message-list .message.show-time ion-label{
+        margin-top: 16px;
+}
+
+.message-list .message ion-note{
+    position: absolute;
+    top: -16px;
+font-size:10px;
+z-index:-1;
+}
+
+.message-list .message.from-message ion-note{
+    left: 73px;
+    top: 0;
+}
+
+.message-list .message.to-message ion-note{
+    right:0px;
 }
 
 .message-list .message.from-message.before ion-label{
@@ -43,6 +66,8 @@
 
 .message-list .message.from-message ion-label{
     background-color:#eee;
+    max-width: 75%;
+        margin-bottom: 5px;
 }
 
 
@@ -50,8 +75,20 @@
 .message-list .message.to-message ion-label{
     
     background-color:#d44735;
-    position: absolute;
+    position: relative;
     right: 15px;
+        max-width: 75%;
+        float:right;
+            margin-bottom: 5px;
+}
+
+.message-list .message.to-message .input-wrapper{
+    display: block;
+}
+
+.message-list .message ion-label p{
+    min-height:17px;
+    white-space: normal;
 }
 
 .message-list .message.to-message ion-label p {

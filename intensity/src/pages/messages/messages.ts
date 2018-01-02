@@ -36,17 +36,23 @@ export class MessagesPage {
             this.account = data;
         });                 
         
-        this.getMessages();
+        this.getMessages(true);
        
     }
     
-    private getMessages(){
-        this.properties.loading = true;
+    ionViewDidEnter() {
+        if (this.properties.loading){return;}
+        this.getMessages(false);
+    } 
+  
+     
+    private getMessages(showLoading){
+        this.properties.loading = showLoading && true;
         this.messageProvider.getConversations().then((data: Array<any>) => {
             this.properties.loading = false;
             console.log(data);
             this.messages = data;
-        })        
+        }).catch(() => {});        
     }
     
     
@@ -59,7 +65,14 @@ export class MessagesPage {
     }
     
     public openNewMessage(){
-        let modal = this.modalCtrl.create(SearchFriendsModal); 
+        let modal = this.modalCtrl.create(SearchFriendsModal);
+        modal.onDidDismiss(friend => {
+            console.log(friend);
+            if (friend){
+                friend.userid = friend.friendid;
+                this.goToMessage(friend);
+            }
+        }) 
         modal.present();        
     }
     

@@ -1,10 +1,9 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" [ngClass]="{'dark-theme':theme === 'dark'}">
 
 
     <ion-content>
 
         <div class="menu-header" menuClose (click)="openPage(profilePage)">
-            
             <div class="user-dp">
                 <img [src]="account.dp" />
             </div>
@@ -29,4 +28,4 @@
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{'dark-theme':theme === 'dark'}"></ion-nav>

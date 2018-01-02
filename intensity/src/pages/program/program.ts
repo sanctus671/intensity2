@@ -12,6 +12,7 @@ import {ProgramPopover, ProgramWorkoutPopover} from '../program-popover/program-
 import { DatePickerDirective } from 'ion-datepicker';
 import { AddProgramModal } from '../../modals/add-program/add-program';
 
+
 import { DiaryProvider } from '../../providers/diary/diary';
 
 @Component({
@@ -151,7 +152,6 @@ export class ProgramPage {
         modal.present();        
     } 
     
-    public addProgram(date){
-        console.log(date);
-    } 
+
+
 }
