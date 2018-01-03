@@ -31,7 +31,6 @@
     <preference name="FadeSplashScreen" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
-	<preference name="StatusBarBackgroundColor" value="#a01b0a" />
 	
     <platform name="android">
         <allow-intent href="market:*" />
