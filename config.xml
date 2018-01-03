@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.taylorhamling.intensity2" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <gap:config-file parent="/manifest" platform="android">
-        <application android:theme="@android:style/Theme.Holo.Light.NoActionBar" />
+        <application android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+        <application android:statusBarColor="#a01b0a" />
     </gap:config-file>
     <name>Intensity</name>
     <description>A workout tracking app.</description>
@@ -31,6 +32,7 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
     <preference name="StatusBarBackgroundColor" value="#a01b0a" />
+    <preference name="StatusBarStyle" value="lightcontent" />
 	
     <platform name="android">
         <allow-intent href="market:*" />
