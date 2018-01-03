@@ -96,13 +96,7 @@
     
     
     <engine name="android" spec="~6.3.0" />
-    <gap:plugin spec="https://github.com/brodybits/cordova-sqlite-legacy-build-support" />
-    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
-        <variable name="APP_ID" value="414561158706027" />
-        <variable name="APP_NAME" value="Intensity" />
-    </plugin>
 
-    
     <preference name="android-minSdkVersion" value="26" />
     <preference name="android-targetSdkVersion" value="26" />    
 </widget>
