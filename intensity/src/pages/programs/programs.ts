@@ -11,6 +11,8 @@ import { ProgramPage } from '../../pages/program/program';
 
 import { CreateProgramModal } from '../../modals/create-program/create-program';
 
+import { EditProgramModal } from '../../modals/edit-program/edit-program';
+
 @Component({
   selector: 'page-programs',
   templateUrl: 'programs.html'
@@ -37,7 +39,13 @@ export class ProgramsPage {
           
         
         this.getPrograms();
-        this.getRecentPrograms();      
+        this.getRecentPrograms();   
+        
+        this.events.subscribe('programs:modified', () => {
+            this.getCreatedPrograms();
+            this.getRecentPrograms();
+            this.getPrograms();
+        });           
        
     }
     
@@ -83,8 +91,9 @@ export class ProgramsPage {
 
     public openCreateProgram(){
         let modal = this.modalCtrl.create(CreateProgramModal); 
-        modal.onDidDismiss(data => {
-            if (data){
+        
+        modal.onDidDismiss(program => {
+            if (program){
                 let alert = this.alertCtrl.create({
                     title:"Program created",
                     subTitle: "Your program has been added to the database.",
@@ -95,18 +104,70 @@ export class ProgramsPage {
                         }                                
                     ]
                 });
-                alert.present();         
-            }                
-        });
-        
-        modal.onDidDismiss(program => {
-            if (program){
-                this.storage.set("previousProgram", program);
+                alert.present(); 
+                this.storage.set("previousProgram", program); 
+                this.programProvider.createProgram(program).then(() => {
+                    this.getCreatedPrograms();    
+                });
                 console.log(program);
             }
         })        
         
         modal.present();          
     }
+    
+    public openEditProgram(ev, program){
+        ev.stopPropagation();
+        ev.preventDefault();         
+        let modal = this.modalCtrl.create(EditProgramModal, {program:program}); 
+        modal.onDidDismiss(data => {
+            if (data){
+                let alert = this.alertCtrl.create({
+                    title:"Program update",
+                    subTitle: "Your program has successfully modified.",
+                    buttons: [
+                        {
+                            text: 'Dismiss',
+                            role: 'cancel'
+                        }                                
+                    ]
+                });
+                alert.present();    
+                this.programProvider.updateProgram(data).then(() => {
+                    this.events.publish('programs:modified');  
+                })
+                   
+            }                
+        });       
+        
+        modal.present();          
+    }   
+    
+    
+    public openDeleteProgram(ev, program, index){
+        ev.stopPropagation();
+        ev.preventDefault();         
+        let alert = this.alertCtrl.create({
+            title:"Confirm",
+            subTitle: "Are you sure you want to remove this program?",
+            buttons: [
+                {
+                    text: 'Dismiss',
+                    role: 'cancel'
+                },                
+                {
+                    text: 'Yes',
+                    handler: () => {
+                        this.programProvider.deleteProgram(program.id).then(() => {
+                            this.events.publish('programs:modified');
+                        });
+                        
+                    }
+                }                                 
+            ]
+        });
+        alert.present();                        
+         
+    }     
 
 }

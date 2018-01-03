@@ -12,7 +12,7 @@ import {ProgramPopover, ProgramWorkoutPopover} from '../program-popover/program-
 import { DatePickerDirective } from 'ion-datepicker';
 import { AddProgramModal } from '../../modals/add-program/add-program';
 
-
+import { CreateProgramModal } from '../../modals/create-program/create-program';
 import { DiaryProvider } from '../../providers/diary/diary';
 
 @Component({
@@ -152,6 +152,59 @@ export class ProgramPage {
         modal.present();        
     } 
     
-
+    public customizeProgram(){
+        let name = this.account.display ? this.account.display : this.account.username;
+        
+        let customizedProgram = this.deepCopy(this.program);
+        customizedProgram.name = name + "'s " + this.program.name;
+        customizedProgram.public = false;
+        
+        let modal = this.modalCtrl.create(CreateProgramModal, {program:customizedProgram}); 
+        
+        
+        
+        
+        modal.onDidDismiss(program => {
+            if (program){
+                this.navCtrl.pop(); 
+                let alert = this.alertCtrl.create({
+                    title:"Program created",
+                    subTitle: "Your customized version of " + this.program.name + " program has been added to the database.",
+                    buttons: [
+                        {
+                            text: 'Dismiss',
+                            role: 'cancel'
+                        }                                
+                    ]
+                });
+                alert.present();  
+                console.log("here");              
+                this.storage.set("previousProgram", program);
+                
+                this.programProvider.createProgram(program).then(() => {
+                    this.events.publish('programs:modified');
+                })
+                
+                
+                console.log(program);
+            }
+        })        
+        
+        modal.present();   
+        
+              
+    }
+    
+    
+    private deepCopy(oldObj: any) {
+        var newObj = oldObj;
+        if (oldObj && typeof oldObj === "object") {
+            newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
+            for (var i in oldObj) {
+                newObj[i] = this.deepCopy(oldObj[i]);
+            }
+        }
+        return newObj;
+    }      
 
 }

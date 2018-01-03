@@ -71,7 +71,7 @@
                     <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event, workout)" *ngIf="!workout.hide" class="diary-sets">
                         
                         
-                        <ion-item *ngFor="let exercise of workout.exercises; let i = index" >
+                        <ion-item *ngFor="let exercise of workout.exercises; let i = index" (click)="editExercise($event, exercise)">
                             <h2>{{exercise.name}}</h2>
                             <p>{{exercise.sets ? exercise.sets : 0}} set<span *ngIf="exercise.sets !== '1'">s</span> of {{exercise.reps ? exercise.reps : 0}} rep<span *ngIf="exercise.reps !== '1'">s</span><span *ngIf="exercise.percentage && exercise.percentage > 0">, {{exercise.percentage}}%</span><span *ngIf="exercise.rpe && exercise.rpe > 0">, @{{exercise.rpe}}RPE</span></p>
                             <div class="program-exercise-actions">

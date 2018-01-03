@@ -28,4 +28,57 @@
 
 <ion-content>
 
+    
+<ion-list class="edit-set">
+
+    <ion-item>
+        <ion-label floating>Reps</ion-label>
+        <ion-input type="number" [(ngModel)]="exercise.reps"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Sets</ion-label>
+        <ion-input type="number" [(ngModel)]="exercise.sets"></ion-input>
+    </ion-item>    
+    
+
+    
+    <ion-item>
+        <ion-label floating>Weight</ion-label>
+        <ion-input type="number" [(ngModel)]="exercise.weight"></ion-input>
+    </ion-item>  
+
+    <p class="weight-explanation" *ngIf="exercise.weight">
+        It is recommended to avoid setting a specific weight, and instead use a percentage (intensity). The users max for that exercise will then be used to set the weights relative to their strength levels.
+    </p>    
+    
+    <ion-list-header class="rpe-header">
+        RPE
+        <ion-badge item-end>{{exercise.rpeScaled / 10}}</ion-badge>
+    </ion-list-header>    
+    <ion-item>
+        <ion-range [(ngModel)]="exercise.rpeScaled" min="60" max="100">
+            <ion-icon range-left name="remove" (click)="changeRpe(-5)"></ion-icon>
+            <ion-icon range-right name="add" (click)="changeRpe(5)"></ion-icon>
+        </ion-range>
+    </ion-item>    
+    
+    <ion-item>
+        <ion-label floating>Intensity (%)</ion-label>
+        <ion-input type="number" [(ngModel)]="exercise.percentage"></ion-input>
+        <button ion-button outline item-end (click)="determinePercentage()">Calculate</button>
+    </ion-item>
+    
+
+    <ion-item class="set-notes">
+        <ion-label floating>Notes</ion-label>
+        <ion-textarea [(ngModel)]="exercise.notes" autosize></ion-textarea>
+    </ion-item>    
+
+    
+</ion-list>
+           
+    
+    
+    
 </ion-content>

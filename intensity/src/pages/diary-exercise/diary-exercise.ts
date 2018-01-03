@@ -35,9 +35,13 @@ export class DiaryExercisePage {
     constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage, private diaryProvider: DiaryProvider, public events: Events, public params: NavParams, private alertCtrl: AlertController, private chartProvider: ChartProvider) {
         console.log(this.params);
         
-        this.properties = {activeTab:"diary", reorder:false};
+        this.properties = {activeTab:"diary", reorder:false, color:'#d44735'};
         this.selectedDate = this.params.data.date;
         this.exercise = this.params.data.exercise;
+        
+        if (this.exercise.calibrating){
+            this.properties.color = "#d47835";
+        }
         
         this.convertNumbers();
         
@@ -86,6 +90,7 @@ export class DiaryExercisePage {
         
         if (set.completed){
             this.exercise.goals.progress = this.exercise.goals.progress + this.getProgressAmount(set);
+            console.log(this.exercise.goals);
         }
         else{
             this.exercise.goals.progress = this.exercise.goals.progress - this.getProgressAmount(set);
@@ -93,9 +98,12 @@ export class DiaryExercisePage {
         
         this.diaryProvider.editSet(moment(this.selectedDate).format('YYYY-MM-DD'), this.exercise.exerciseid, set).then((data) =>{
             this.exercise.goals = data["goals"];
+            console.log(this.exercise.goals);
             this.exercise.records = data["records"];
             this.exercise.cailbrating = data["calibrating"];
             this.exercise.history = data["history"];
+        }).catch(() => {
+            
         })
             
     }
@@ -245,6 +253,23 @@ export class DiaryExercisePage {
     
     public openGoalDetails(){
         console.log(this.account);
+        
+        if (this.exercise.calibrating){
+            let alert = this.alertCtrl.create({
+                title:"Calibrating",
+                subTitle: "This is the first time you have tracked this exercise. Intensity needs to gather more data to be able to push you to reach your goals.",
+                message: goalDescription,
+                buttons: [
+                    {
+                        text: 'Dismiss',
+                        role: 'cancel'
+                    }
+                ]
+            });
+            alert.present();   
+            return;          
+        }
+        
         let progressPecentage = Math.round((this.exercise.goals.progress / this.exercise.goals.goal)*100);
         let remaining = this.exercise.goals.goal - this.exercise.goals.progress;
         let remainingPercentage = Math.round((remaining / this.exercise.goals.goal) * 100)

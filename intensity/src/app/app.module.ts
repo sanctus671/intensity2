@@ -73,6 +73,7 @@ import { ImportModal } from '../modals/import/import';
 import { GoalSettingsModal } from '../modals/goal-settings/goal-settings';
 import { CreateProgramModal } from '../modals/create-program/create-program';
 import { EditProgramExerciseModal } from '../modals/edit-program-exercise/edit-program-exercise';
+import { EditProgramModal } from '../modals/edit-program/edit-program';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -139,6 +140,7 @@ import {ArraySortPipe} from '../pipes/sort';
     ImportModal,
     GoalSettingsModal,
     CreateProgramModal,
+    EditProgramModal,
     EditProgramExerciseModal,
     ProgramPopover,
     ProgramWorkoutPopover,
@@ -197,6 +199,7 @@ import {ArraySortPipe} from '../pipes/sort';
     ImportModal,
     GoalSettingsModal,    
     CreateProgramModal,
+    EditProgramModal,
     EditProgramExerciseModal,
     PopoverPage
   ],

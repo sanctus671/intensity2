@@ -239,7 +239,7 @@ export class DiaryPage {
                     workoutExercise.records = data["records"];
                     if (data["reps"] > 0)workoutExercise.reps = data["reps"];
                     if (data["weight"] > 0)workoutExercise.weight = data["weight"];
-                    workoutExercise.unit = data["unit"];
+                    workoutExercise.unit = data["unit"] ? data["unit"] : this.account.units;
 
 
                 })

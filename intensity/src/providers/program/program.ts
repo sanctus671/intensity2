@@ -246,7 +246,83 @@ export class ProgramProvider {
                 });   
             })       
         })      
-    }        
+    }
+    
+    
+    public createProgram(program){
+        return new Promise((resolve, reject) => {
+            
+            this.storage.get("session").then((session) => {            
+
+                let data = {key: AppSettings.apiKey, session: session, controller:"create", action:"createfullprogram", program:program};
+
+                this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                    if (res["success"] === true){
+
+                        resolve(res["data"]);
+                    }
+                    else{reject(res);}                        
+
+                },(e) => {
+
+                        reject(e);
+
+                });   
+            })       
+        })      
+    } 
+    
+    public updateProgram(program){
+        return new Promise((resolve, reject) => {
+            
+            this.storage.get("session").then((session) => {            
+
+                let data = {key: AppSettings.apiKey, session: session, controller:"edit", action:"updatefullprogram", program:program};
+
+                this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                    if (res["success"] === true){
+
+                        resolve(res["data"]);
+                    }
+                    else{reject(res);}                        
+
+                },(e) => {
+
+                        reject(e);
+
+                });   
+            })       
+        })      
+    }   
+    
+    
+    public deleteProgram(id){
+        return new Promise((resolve, reject) => {
+            
+            this.storage.get("session").then((session) => {            
+
+                let data = {key: AppSettings.apiKey, session: session, controller:"edit", action:"deleteprogram", id:id};
+
+                this.http.post(AppSettings.apiUrl, data).subscribe((res) => {
+
+                    if (res["success"] === true){
+
+                        resolve(res["data"]);
+                    }
+                    else{reject(res);}                        
+
+                },(e) => {
+
+                        reject(e);
+
+                });   
+            })       
+        })      
+    }     
+    
+                
 }
 
 

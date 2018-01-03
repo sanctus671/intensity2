@@ -11,41 +11,52 @@ import {SelectExerciseModal} from '../../modals/select-exercise/select-exercise'
 
 import {EditProgramExerciseModal} from '../../modals/edit-program-exercise/edit-program-exercise';
 
+import { ProgramProvider } from '../../providers/program/program';
+
 @Component({
-    selector: 'create-program',
-    templateUrl: 'create-program.html'
+    selector: 'edit-program',
+    templateUrl: 'edit-program.html'
 })
 
-export class CreateProgramModal {
+export class EditProgramModal {
     @ViewChild(Content) content: Content;
     public program: any;
     public account:any;
     public tabs: Array<any>;
     public properties: any;
-    public previousProgram:any;
     
     
-    constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, private toastCtrl: ToastController, private diaryProvider: DiaryProvider, public storage: Storage, private alertCtrl: AlertController, public modalCtrl: ModalController) {
+    constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, private toastCtrl: ToastController, private diaryProvider: DiaryProvider, public storage: Storage, private alertCtrl: AlertController, public modalCtrl: ModalController, private programProvider: ProgramProvider) {
        
-        this.properties = {activeTab:"Week 1"};
+        this.properties = {activeTab:"Week 1", loading:true};
         
         this.storage.get("account").then((data) => {
             this.account = data;
         });         
         
-        
-        this.storage.get("previousProgram").then((data) => {
-            if (data){
-                this.previousProgram = data;
-            }
-        })    
+   
 
 
-        this.program = {name:"", description:"", public:false, duration:7, workouts:[{day:1, name:"Day 1", exercises:[]}]};
+        this.program = this.params.data.program;
         
-        if (this.params.data.program){
-            this.program = this.params.data.program;
-        }
+        this.program.public = parseInt(this.program.public);
+        
+        console.log(this.program);
+        this.programProvider.getProgram(this.program.id).then((data) =>  {
+            console.log(data);
+            this.properties.loading = false
+            this.program = data;
+            this.program.public = parseInt(this.program.public);
+            this.program.workouts.sort(function(a, b){
+                return a.day - b.day;
+            }); 
+            console.log(this.program);
+            this.calculateTabs();
+        })
+        .catch(() => {
+            this.properties.loading = false;
+        })        
+        
         
         this.tabs = [];
         
@@ -72,48 +83,7 @@ export class CreateProgramModal {
         return index === tab;
         
     }  
-    
-    public restoreProgram(){ 
-        
-        let alertObj = {
-            title: "Confirm",
-            message:"Restoring this program will overwrite your existing program.",
-            buttons: [        
-              {
-                text: 'Cancel',
-                role: 'cancel'
-              },          
-              {
-                text: 'Restore',
-                handler: data => {                    
-                    this.properties.activeTab = "Week 1";
-                    this.program = {};
 
-                    this.program = this.deepCopy(this.previousProgram);
-                    
-                    
-                    this.calculateTabs();
-                }
-              }
-            ]
-        };
-        let alert = this.alertCtrl.create(alertObj);
-        alert.present();         
-        
-        
-    } 
-    
-    private deepCopy(oldObj: any) {
-        var newObj = oldObj;
-        if (oldObj && typeof oldObj === "object") {
-            newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
-            for (var i in oldObj) {
-                newObj[i] = this.deepCopy(oldObj[i]);
-            }
-        }
-        return newObj;
-    }   
-    
     public addWeek(){
         this.program.duration += 7;
         this.calculateTabs();
@@ -300,7 +270,7 @@ export class CreateProgramModal {
             newDay = weekEndDay;
         }        
         
-        this.program.workouts.push({name:"Day " + newDay, day:newDay, added:true, exercises:[]});
+        this.program.workouts.push({name:"Day " + newDay, day:newDay, exercises:[]});
         setTimeout(()=>{this.content.scrollToBottom();},200);
     }   
 
@@ -514,25 +484,8 @@ export class CreateProgramModal {
     
     
 
-    public create() {
-        
-        this.program.workouts.sort(function(a,b){
-            return a.day - b.day;
-        });
-        
-        for (let workout of this.program.workouts){
-            workout.ordering = workout.day;
-            for (var index in workout.exercise){
-                workout.exercise[index].ordering = index;
-            }
-        }
-        
-        console.log(this.program);
-        
-        
-        
-        
-        //this.viewCtrl.dismiss(this.program);
+    public update() {
+        this.viewCtrl.dismiss(this.program);
     }
 
 
@@ -540,7 +493,7 @@ export class CreateProgramModal {
         
         let alertObj = {
             title: "Wait!",
-            message:"By leaving, you will lose this current program.",
+            message:"By leaving, you will lose your current changes.",
             buttons: [        
               {
                 text: 'Cancel',

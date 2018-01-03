@@ -32,11 +32,10 @@
     <div *ngIf="properties.activeTab === 'diary'">
     
         <div class="diary-progress-bar" (click)="openGoalDetails()">
-
         <round-progress     
             [current]="exercise.goals.progress"
             [max]="exercise.goals.goal"
-            [color]="'#d44735'"
+            [color]="properties.color"
             [background]="'#eaeaea'"
             [radius]="115"
             [stroke]="15"></round-progress>

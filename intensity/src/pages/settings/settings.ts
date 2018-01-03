@@ -50,7 +50,7 @@ export class SettingsPage {
     
     public updateSettings(){
         this.storage.set("account",this.account);
-        this.accountProvider.updateSettings(this.account, this.account.id);
+        this.accountProvider.updateSettings({autocomplete:this.account.autocomplete, leaderboard:this.account.leaderboard}, this.account.id);
     }
     
     public updateTheme(){
