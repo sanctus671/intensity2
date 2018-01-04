@@ -25867,7 +25867,8 @@ ion-navbar.toolbar {
 
 .timer .time {
   position: absolute;
-  line-height: 245px;
+  position: absolute;
+  top: 90px;
   width: 100%;
   lefT: 0;
   font-size: 50px;
@@ -26565,7 +26566,7 @@ ion-card.records-card.red-background {
 }
 
 ion-card.records-card.orange-background {
-  background-color: #ff705e;
+  background-color: #e07337;
 }
 
 ion-card.records-card.yellow-background {
@@ -26595,7 +26596,7 @@ ion-card.records-card.darkorange-background {
 }
 
 .records-estimated-max.orange-background {
-  background-color: #ff705e;
+  background-color: #e07337;
 }
 
 .records-estimated-max ion-icon {
@@ -26810,7 +26811,7 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-mark {
   border-radius: 2px;
-  background-color: #d447353d;
+  background-color: #f5d3cf;
 }
 
 .button-only-alert .alert-button .button-inner {
@@ -26918,7 +26919,7 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 .diary-progress-bar .progress-bar-inner .text {
   font-size: 34px;
   position: relative;
-  top: -116px;
+  top: -120px;
   text-align: center;
   margin: 0 auto;
   width: 200px;
@@ -27220,7 +27221,7 @@ h3.stats-metric ion-icon:active {
 }
 
 .extra-stats ion-card.orange-background {
-  background-color: #ff705e;
+  background-color: #e07337;
 }
 
 .extra-stats ion-card.yellow-background {
