@@ -8990,7 +8990,7 @@ var MyApp = (function () {
             // Here you can do any higher level native things you might need.
             _this.statusBar.styleDefault();
             if (_this.platform.is("android")) {
-                _this.statusBar.backgroundColorByHexString("#B71C1C");
+                _this.statusBar.backgroundColorByHexString("#9c2111");
             }
             _this.splashScreen.hide();
         });
