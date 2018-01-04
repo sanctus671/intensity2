@@ -8988,9 +8988,12 @@ var MyApp = (function () {
         this.platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            _this.statusBar.styleDefault();
             if (_this.platform.is("android")) {
-                //this.statusBar.backgroundColorByHexString("#9c2111");
+                _this.statusBar.backgroundColorByHexString("#9c2111");
+                _this.statusBar.styleLightContent();
+            }
+            else {
+                //this.statusBar.styleDefault();
             }
             _this.splashScreen.hide();
         });
