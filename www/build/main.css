@@ -25681,7 +25681,7 @@ ion-navbar.toolbar {
 .menu-header {
   background-color: #D44735;
   padding: 20px 15px;
-  color: #ffffffde;
+  color: #fbf1f0;
 }
 
 .menu-header p {
@@ -26293,7 +26293,7 @@ ion-card.records-card.red-background {
 }
 
 ion-card.records-card.orange-background {
-  background-color: #ff705e;
+  background-color: #e07337;
 }
 
 ion-card.records-card.yellow-background {
@@ -26908,13 +26908,22 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 .diary-progress-bar .progress-bar-inner span {
   width: 200px;
   height: 200px;
-  background-color: #eaeaea4a;
+  background-color: #f9f9f9;
   border-radius: 100px;
   text-align: center;
-  line-height: 200px;
-  font-size: 34px;
   margin: 0 auto;
   display: block;
+}
+
+.diary-progress-bar .progress-bar-inner .text {
+  font-size: 34px;
+  position: relative;
+  top: -116px;
+  text-align: center;
+  margin: 0 auto;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .diary-sets .set-column {
