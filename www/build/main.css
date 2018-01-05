@@ -25985,6 +25985,17 @@ ion-navbar.toolbar {
   width: 65%;
 }
 
+.help-message {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 30px;
+}
+
+.send-button {
+  text-align: center;
+  margin-top: 30px;
+}
+
 .searchbar-md.flat-search {
   padding: 8px 0px;
 }

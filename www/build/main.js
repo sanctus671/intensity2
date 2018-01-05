@@ -4016,7 +4016,7 @@ var ImportModal = (function () {
     };
     ImportModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'import',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\import\import.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Import Data\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <ion-list>\n        <ion-item>\n            <ion-label>Import From</ion-label>\n            <ion-select [(ngModel)]="import.type">\n                <ion-option value="fitnotes">FitNotes</ion-option>\n                <ion-option value="strong">Strong</ion-option>\n                <ion-option value="stronglifts">Stronglifts 5x5</ion-option>\n                <ion-option value="fitocracy">Fitocracy</ion-option>\n                <ion-option value="intensity">Intensity</ion-option>\n                <ion-option value="custom">Custom</ion-option>\n            </ion-select>\n       </ion-item>\n        \n        \n        <ion-item>\n            <ion-icon name="document" item-start></ion-icon>\n            <label>CSV File</label>\n            <input type="file" accept=".csv"  ngModel (change)="selectFile($event)" id="file-input" style="opacity: 0">\n            <button ion-button outline item-end>Choose File</button>\n        </ion-item>        \n\n        <p class="import-explaination" *ngIf="import.type">\n            Make sure your file is in CSV format with the following columns in the correct order:\n            <span *ngIf="import.type === \'fitnotes\'">date, exercise, unit, weight, reps, sets, distance, distance unit, time</span>\n            <span *ngIf="import.type === \'strong\'">date, (not imported), exercise, sets, weight, unit, reps, distance, distance unit, time</span>\n            <span *ngIf="import.type === \'stronglifts\'">date, notes, repeated per exercise: exercise, unit, reps x 5</span>\n            <span *ngIf="import.type === \'fitocracy\'">exercise, date, (not imported), weight, (not imported), reps, (not imported), unit</span>\n            <span *ngIf="import.type === \'intensity\'">date, exercise, (not imported), reps, sets, weight, rpe, percentage, completed, notes</span>\n            <span *ngIf="import.type === \'custom\'">date (in dd/mm/yyyy format), exercise, reps, sets, weight, rpe, percentage, completed (0 = no, 1 = yes), notes</span>\n        </p>\n        \n        <p class="import-explaination" *ngIf="import.type">\n            If the columns above do not match your exported file or if your import fails in any way, <a (click)="openEmail()">let us know</a>.\n        \n        </p>\n        \n        <div class="import-button" *ngIf="import.type && import.fileLocation">\n            <button ion-button item-end (click)="openImport()">Import</button>\n        </div>\n        \n        \n    </ion-list>\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\import\import.html"*/
+            selector: 'import',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\import\import.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Import Data\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n    \n    <input type="file" name="test-input"/>\n    <ion-list>\n        <ion-item>\n            <ion-label>Import From</ion-label>\n            <ion-select [(ngModel)]="import.type">\n                <ion-option value="fitnotes">FitNotes</ion-option>\n                <ion-option value="strong">Strong</ion-option>\n                <ion-option value="stronglifts">Stronglifts 5x5</ion-option>\n                <ion-option value="fitocracy">Fitocracy</ion-option>\n                <ion-option value="intensity">Intensity</ion-option>\n                <ion-option value="custom">Custom</ion-option>\n            </ion-select>\n       </ion-item>\n        \n        \n        <ion-item>\n            <ion-icon name="document" item-start></ion-icon>\n            <label>CSV File</label>\n            <input type="file" (change)="selectFile($event)" id="file-input" name="file-input" style="opacity: 0">\n            <button ion-button outline item-end>Choose File</button>\n        </ion-item>        \n\n        \n        \n        <p class="import-explaination" *ngIf="import.type">\n            Make sure your file is in CSV format with the following columns in the correct order:\n            <span *ngIf="import.type === \'fitnotes\'">date, exercise, unit, weight, reps, sets, distance, distance unit, time</span>\n            <span *ngIf="import.type === \'strong\'">date, (not imported), exercise, sets, weight, unit, reps, distance, distance unit, time</span>\n            <span *ngIf="import.type === \'stronglifts\'">date, notes, repeated per exercise: exercise, unit, reps x 5</span>\n            <span *ngIf="import.type === \'fitocracy\'">exercise, date, (not imported), weight, (not imported), reps, (not imported), unit</span>\n            <span *ngIf="import.type === \'intensity\'">date, exercise, (not imported), reps, sets, weight, rpe, percentage, completed, notes</span>\n            <span *ngIf="import.type === \'custom\'">date (in dd/mm/yyyy format), exercise, reps, sets, weight, rpe, percentage, completed (0 = no, 1 = yes), notes</span>\n        </p>\n        \n        <p class="import-explaination" *ngIf="import.type">\n            If the columns above do not match your exported file or if your import fails in any way, <a (click)="openEmail()">let us know</a>.\n        \n        </p>\n        \n        <div class="import-button" *ngIf="import.type && import.fileLocation">\n            <button ion-button item-end (click)="openImport()">Import</button>\n        </div>\n        \n        \n    </ion-list>\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\import\import.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_email_composer__["a" /* EmailComposer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */]])
     ], ImportModal);
@@ -7633,6 +7633,7 @@ var LoginModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_tools_calculator__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tools_bodyweight__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tools_help__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__ = __webpack_require__(382);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7648,10 +7649,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PopoverPage = (function () {
-    function PopoverPage(viewCtrl, modalCtrl) {
+    function PopoverPage(viewCtrl, modalCtrl, timerService) {
         this.viewCtrl = viewCtrl;
         this.modalCtrl = modalCtrl;
+        this.timerService = timerService;
+        this.properties = { timerRunning: false, stopwatchRunning: false };
+        this.properties.stopwatchRunning = this.timerService.stopwatchProperties.started;
+        this.properties.timerRunning = this.timerService.countdownTimerProperties.started;
     }
     PopoverPage.prototype.openTimer = function () {
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_tools_timer__["a" /* TimerModal */]);
@@ -7678,11 +7684,12 @@ var PopoverPage = (function () {
     };
     PopoverPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'tools-popover',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\popover.html"*/`<ion-list>\n    <button ion-item (click)="openTimer()">Timer</button>\n    <button ion-item (click)="openCalculator()">Calculator</button>\n    <button ion-item (click)="openBodyweight()">Bodyweight</button>\n    <button ion-item (click)="openHelp()">Help</button>\n</ion-list>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\popover.html"*/
+            selector: 'tools-popover',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\popover.html"*/`<ion-list>\n    <button ion-item (click)="openTimer()">Timer <span *ngIf="properties.timerRunning || properties.stopwatchRunning">(running)</span></button>\n    <button ion-item (click)="openCalculator()">Calculator</button>\n    <button ion-item (click)="openBodyweight()">Bodyweight</button>\n    <button ion-item (click)="openHelp()">Help</button>\n</ion-list>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\popover.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__["a" /* TimerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__["a" /* TimerService */]) === "function" && _c || Object])
     ], PopoverPage);
     return PopoverPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=popover.js.map
@@ -7716,6 +7723,15 @@ var TimerModal = (function () {
         this.properties = { activeTab: "stopwatch", stopwatchStarted: false, timerStarted: false, stopwatchInitialStart: true, timerInitialStart: true };
         this.timerOptions = { time: 60000, timeRaw: "1970-01-01T00:01:00.000Z", playSound: false, repeat: false };
     }
+    TimerModal.prototype.ionViewDidEnter = function () {
+        this.initialSetup();
+    };
+    TimerModal.prototype.initialSetup = function () {
+        this.properties.stopwatchStarted = this.timerService.stopwatchProperties.started;
+        this.properties.timerStarted = this.timerService.countdownTimerProperties.started;
+        this.timerOptions.playSound = this.timerService.countdownTimerProperties.playSound;
+        this.timerOptions.repeat = this.timerService.countdownTimerProperties.repeat;
+    };
     TimerModal.prototype.getStopwatchTime = function () {
         return this.formatTime(this.timerService.stopwatch);
     };
@@ -7790,9 +7806,10 @@ var TimerModal = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'timer',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Timer\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n    <ion-segment [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="stopwatch">\n            Stopwatch\n        </ion-segment-button>\n        <ion-segment-button value="timer">\n            Countdown\n        </ion-segment-button>\n    </ion-segment>    \n    \n    <div *ngIf="properties.activeTab === \'stopwatch\'" >\n        <div class="stopwatch timer" (click)="toggleStopwatch()" [ngClass]="{\'timer-stopped\':!properties.stopwatchStarted && !properties.stopwatchInitialStart && stopwatchNotZero()}">\n            <div class="time">{{getStopwatchTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  *ngIf="!properties.stopwatchStarted"></ion-icon>\n                <ion-icon name="pause" *ngIf="properties.stopwatchStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetStopwatch()">Reset </button>\n        </div>\n    </div>\n    \n    \n    <div *ngIf="properties.activeTab === \'timer\'">\n\n        <div class="stopwatch timer" (click)="toggleTimer()" [ngClass]="{\'timer-stopped\':!properties.timerStarted && !properties.timerInitialStart}">\n            <div class="time">{{getTimerTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  [hidden]="properties.timerStarted"></ion-icon>\n                <ion-icon name="pause" [hidden]="!properties.timerStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetTimer()">Reset </button>\n            \n\n        </div>        \n        \n        <ion-list class="timer-options" (click)="showMore = !showMore">\n            <ion-list-header>\n                Timer Options\n                <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n            </ion-list-header>\n            <ion-item-group *ngIf="showMore">\n                <ion-item>\n                    <ion-label>Countdown From</ion-label>\n                    <ion-datetime displayFormat="mm:ss" [(ngModel)]="timerOptions.timeRaw" (ionChange)="updateTimerProperties()"></ion-datetime>\n                </ion-item>            \n                <ion-item>\n                    <ion-label>Play Sound At 0</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.playSound" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>            \n                <ion-item>\n                    <ion-label>Repeat</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.repeat" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>     \n            </ion-item-group>        \n        </ion-list>   \n    </div>\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */]) === "function" && _b || Object])
     ], TimerModal);
     return TimerModal;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=timer.js.map
@@ -7808,6 +7825,8 @@ var TimerModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__ = __webpack_require__(480);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__ = __webpack_require__(470);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7820,15 +7839,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var TimerService = (function () {
-    function TimerService(nativeAudio) {
+    function TimerService(nativeAudio, events, platform, localNotifications) {
+        var _this = this;
         this.nativeAudio = nativeAudio;
+        this.events = events;
+        this.platform = platform;
+        this.localNotifications = localNotifications;
         this.stopwatch = 0;
         this.countdownTimer = 60000;
         this.countdownTimerProperties = { playSound: false, repeat: true, time: 60000, started: false };
         this.stopwatchProperties = { started: false };
         this.timer = __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__["TimerObservable"].create(0, 10);
-        this.nativeAudio.preloadSimple('timerFinished', '../../assets/audio/timer.mp3');
+        this.nativeAudio.preloadSimple('timerFinished', 'assets/audio/timer.mp3');
+        platform.ready().then(function () {
+            _this.platform.pause.subscribe(function () {
+                _this.localNotifications.schedule({
+                    id: 1,
+                    title: 'Timer is running',
+                    text: 'Continue your session!',
+                    ongoing: true
+                });
+            });
+            _this.platform.resume.subscribe(function () {
+                _this.localNotifications.clear(1);
+            });
+        });
     }
     TimerService.prototype.startStopwatch = function () {
         var _this = this;
@@ -7836,10 +7874,12 @@ var TimerService = (function () {
         this.stopwatchSubscription = this.timer.subscribe(function (t) {
             _this.stopwatch += 10;
         });
+        this.events.publish("stopwatch:started");
     };
     TimerService.prototype.stopStopwatch = function () {
         this.stopwatchProperties.started = false;
         this.stopwatchSubscription.unsubscribe();
+        this.events.publish("stopwatch:stopped");
     };
     TimerService.prototype.resetStopwatch = function () {
         this.stopwatch = 0;
@@ -7861,10 +7901,12 @@ var TimerService = (function () {
                 }
             }
         });
+        this.events.publish("timer:started");
     };
     TimerService.prototype.stopTimer = function () {
         this.countdownTimerProperties.started = false;
         this.timerSubscription.unsubscribe();
+        this.events.publish("timer:stopped");
     };
     TimerService.prototype.resetTimer = function () {
         console.log(this.countdownTimerProperties);
@@ -7880,9 +7922,10 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _d || Object])
     ], TimerService);
     return TimerService;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=timer.js.map
@@ -8297,6 +8340,8 @@ var BodyweightProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HelpModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_email_composer__ = __webpack_require__(119);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8308,20 +8353,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var HelpModal = (function () {
-    function HelpModal(viewCtrl) {
+    function HelpModal(viewCtrl, storage, emailComposer) {
+        var _this = this;
         this.viewCtrl = viewCtrl;
+        this.storage = storage;
+        this.emailComposer = emailComposer;
+        this.contact = { subject: "", message: "" };
+        this.account = {};
+        this.storage.get("account").then(function (data) {
+            _this.account = data;
+        });
     }
+    HelpModal.prototype.sendMessage = function () {
+        var email = {
+            to: ["support@intensityapp.com"],
+            subject: "Suport request: " + this.contact.subject,
+            body: 'UserID: ' + this.account.id + '<br>User Email: ' + this.account.email + '<br>Message: ' + this.contact.message,
+            isHtml: true
+        };
+        this.emailComposer.open(email);
+    };
     HelpModal.prototype.dismiss = function () {
         this.viewCtrl.dismiss();
     };
     HelpModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'help',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Help\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/
+            selector: 'help',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Help\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    <p class="help-message">\n        If you require assistance with anything to do with the app, or just need to get in touch, fill out the below form.\n    </p>\n    <ion-list>\n        <ion-item>\n            <ion-label>Subject</ion-label>\n            <ion-select [(ngModel)]="contact.subject">\n                <ion-option value="Genereal Help">Genereal Help</ion-option>\n              <ion-option value="Report Bug">Report Bug</ion-option>\n              <ion-option value="Connection Issue">Connection Issue</ion-option>\n              <ion-option value="Data Import Error">Data Import Error</ion-option>\n              <ion-option value="Feature Request">Feature Request</ion-option>\n              <ion-option value="Other">Other</ion-option>\n            </ion-select>\n        </ion-item>     \n\n\n        <ion-item class="set-notes">\n            <ion-label floating>Message</ion-label>\n            <ion-textarea [(ngModel)]="contact.message" autosize></ion-textarea>\n        </ion-item>   \n    </ion-list>   \n    \n    <div class="send-button">\n        <button ion-button (click)="sendMessage()">\n            <span ion-text>Send</span>\n        </button>     \n    </div>\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_email_composer__["a" /* EmailComposer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_email_composer__["a" /* EmailComposer */]) === "function" && _c || Object])
     ], HelpModal);
     return HelpModal;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=help.js.map
@@ -9005,15 +9070,14 @@ var MyApp = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/`<ion-menu [content]="content" [ngClass]="{\'dark-theme\':theme === \'dark\'}">\n\n\n    <ion-content>\n\n        <div class="menu-header" menuClose (click)="openPage(profilePage)">\n            <div class="user-dp">\n                <img [src]="account.dp" />\n            </div>\n            <div class="username">\n                {{account.username}}\n            </div>\n            <p>{{account.streak}} week streak, last workout {{account.last_workout_formatted}}</p>\n        </div>\n\n        <ion-list class=\'menu-list\'>\n            <button menuClose ion-item class=\'menu-premium\' (click)="openPage(premiumPage)">\n                <ion-icon name=\'star\' item-start></ion-icon>\n                Explore Premium\n            </button>            \n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-start></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{\'dark-theme\':theme === \'dark\'}"></ion-nav>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_17__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_17__providers_account_account__["a" /* AccountProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_17__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=app.component.js.map
