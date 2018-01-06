@@ -26756,6 +26756,11 @@ ion-slides {
   color: #d6d6d6;
 }
 
+.diary-empty.empty-state {
+  text-align: center;
+  font-size: 18px;
+}
+
 .diary-empty ion-icon {
   display: block;
   font-size: 80px;
@@ -26936,6 +26941,13 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
   width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.diary-exercise-unit {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
 }
 
 .diary-sets .set-column {
