@@ -8888,6 +8888,7 @@ var MyApp = (function () {
             }
             else {
                 _this.getAccount();
+                _this.savePushId();
             }
         });
         this.premiumPage = { title: 'Premium', component: __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__["a" /* PremiumPage */] };
@@ -8932,6 +8933,7 @@ var MyApp = (function () {
             if (data) {
                 _this.events.publish('session:retreived');
                 _this.getAccount();
+                _this.savePushId();
             }
             else {
                 //skipped, create an anonymous user account
@@ -8942,6 +8944,7 @@ var MyApp = (function () {
                 _this.auth.registerAnonymous().then(function (account) {
                     _this.events.publish('session:retreived');
                     _this.getAccount();
+                    _this.savePushId();
                     loading_1.dismiss();
                     var alert = _this.alertCtrl.create({
                         title: 'Success',
@@ -8992,6 +8995,18 @@ var MyApp = (function () {
             _this.events.publish('user:retreived');
         });
     };
+    MyApp.prototype.savePushId = function () {
+        var _this = this;
+        this.oneSignal.getIds().then(function (data) {
+            if (data.userId) {
+                //save
+                _this.auth.savePushId(data.userId);
+                console.log(data.userId);
+            }
+        }).catch(function (e) {
+            console.log(e);
+        });
+    };
     MyApp.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
@@ -9008,21 +9023,20 @@ var MyApp = (function () {
             if (_this.platform.is('cordova')) {
                 console.log("initializing push notifications");
                 _this.oneSignal.startInit("f500d613-213a-4a7b-9be0-a101ecbc36ed", "654916760436");
-                _this.oneSignal.getIds().then(function (data) {
-                    console.log(status);
-                    if (data.userId) {
-                        //save
-                        _this.auth.savePushId(data.userId);
-                        console.log(data.userId);
-                    }
-                }).catch(function (e) {
-                    console.log(e);
-                });
-                _this.oneSignal.handleNotificationReceived().subscribe(function (data) {
-                    console.log(data);
-                });
                 _this.oneSignal.handleNotificationOpened().subscribe(function (data) {
                     console.log(data);
+                    if (!data.notification.isAppInFocus) {
+                        var pushData = data.notification.payload.additionalData;
+                        if (pushData.type === "friends") {
+                            _this.nav.push(__WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__["a" /* FriendsPage */]);
+                        }
+                        else if (pushData.type === "messages") {
+                            _this.nav.push(__WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__["a" /* MessagesPage */]);
+                        }
+                        else if (pushData.type === "leaderboard") {
+                            _this.nav.push(__WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */]);
+                        }
+                    }
                 });
                 _this.oneSignal.endInit();
                 console.log("ending initialization of push notifications");
