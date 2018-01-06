@@ -8991,13 +8991,20 @@ var MyApp = (function () {
                 //this.statusBar.styleDefault();
             }
             _this.splashScreen.hide();
-            _this.oneSignal.startInit("f500d613-213a-4a7b-9be0-a101ecbc36ed", "654916760436");
+            console.log("initializing push notifications");
+            _this.oneSignal.startInit("f500d613-213a-4a7b-9be0-a101ecbc36ed", "654916760436").then(function (data) {
+                console.log(data);
+            }).catch(function (e) {
+                console.log(e);
+            });
             _this.oneSignal.getPermissionSubscriptionState().then(function (status) {
                 console.log(status);
                 if (status.subscriptionStatus.pushToken) {
                     //save
                     console.log(status.subscriptionStatus.pushToken);
                 }
+            }).catch(function (e) {
+                console.log(e);
             });
             _this.oneSignal.handleNotificationReceived().subscribe(function (data) {
                 console.log(data);
