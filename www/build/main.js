@@ -2679,17 +2679,23 @@ var DiaryPage = (function () {
             }
         });
         this.events.subscribe('workout:copied', function (data) {
-            for (var _i = 0, _a = _this.workouts; _i < _a.length; _i++) {
-                var workout = _a[_i];
-                workout.retreived = false;
-            }
-            _this.getWorkout(_this.workouts[_this.slides.getActiveIndex()]);
+            _this.refreshWorkouts();
+        });
+        this.events.subscribe('requests:completed', function (data) {
+            _this.refreshWorkouts();
         });
         this.storage.get("account").then(function (data) {
             _this.account = data;
         });
         this.setMarkedDates();
     }
+    DiaryPage.prototype.refreshWorkouts = function () {
+        for (var _i = 0, _a = this.workouts; _i < _a.length; _i++) {
+            var workout = _a[_i];
+            workout.retreived = false;
+        }
+        this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
+    };
     DiaryPage.prototype.sendPush = function () {
         this.diaryProvider.sendPush().then(function (data) {
             console.log(data);
@@ -3141,19 +3147,20 @@ var DiaryPage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]) === "function" && _a || Object)
     ], DiaryPage.prototype, "slides", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */])
+        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */]) === "function" && _b || Object)
     ], DiaryPage.prototype, "datepicker", void 0);
     DiaryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-diary',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle [hidden]="reorderActive">\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Diary</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n        <ion-buttons class="reorder-close" left [hidden]="!reorderActive">\n            <button ion-button icon-only (click)="reorderActive = false">\n                <ion-icon name="close" ></ion-icon>\n            </button>\n        </ion-buttons>         \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <span ion-datepicker [hidden]="true" (ionChanged)="copyWorkout($event)" [okText]="\'Copy To Date\'">Copy</span>\n    <div class="date-changer">\n        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>\n        <span ion-datepicker [markDates]="markedWorkoutDates" (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>\n        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" (click)="changeDay(1)"></ion-icon>\n    </div>\n    \n    <ion-slides initialSlide="7" (ionSlideDidChange)="workoutChanged()">\n\n        <ion-slide style="background-color:#ececec;" *ngFor="let slide of workoutSlides; let i = index" >\n            \n            <div class="diary-loading" *ngIf="workouts[i].loading">\n                <ion-spinner></ion-spinner>\n            </div>\n                   \n            <div class="diary-empty" *ngIf="workouts[i].workouts.length < 1 && !workouts[i].loading">\n                <ion-icon name=\'bookmarks\'></ion-icon>\n                Diary Empty\n            </div>                   \n                   \n            <ion-list reorder="{{reorderActive}}" side="start" (ionItemReorder)="reorderItems($event)" class=\'diary-exercise-list\' *ngIf="!workouts[i].loading">\n              <ion-item *ngFor="let exercise of workouts[i].workouts; let i = index" (click)="selectExercise(exercise)" (press)="showOptions(exercise, i)">\n                  <h2>{{exercise.name}}</h2>\n                  <p *ngIf="exercise.sets.length < 11">\n                      <ion-icon *ngFor="let set of exercise.sets" [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set, exercise)"></ion-icon>\n                      <ion-icon class="add-set" name=\'add-circle\'  (click)="addSet($event,exercise)"></ion-icon>\n                  </p>\n                  <p *ngIf="exercise.sets.length > 10">\n                      <span class="set-overflow">{{exercise.sets.length}}</span>\n                      <ion-icon class="add-set" name=\'add-circle\'  (click)="addSet($event,exercise)"></ion-icon>\n                  </p>                  \n                  \n                  <div class="bar-progress" [ngStyle]="{\'width\': (exercise.goals.progress / exercise.goals.goal) * 100 + \'%\'}" [ngClass]="{\'calibrating\' : exercise.calibrating}"></div>\n                  <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n              </ion-item>\n \n                \n                \n            </ion-list>            \n            \n            \n        </ion-slide>\n\n    </ion-slides>\n    \n    <ion-fab bottom right>\n        <button ion-fab color="primary" (click)="openAddDiaryModal()">\n            <ion-icon name="add"></ion-icon>\n        </button>\n    </ion-fab>\n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]])
+        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" && _l || Object])
     ], DiaryPage);
     return DiaryPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 }());
 
 //# sourceMappingURL=diary.js.map
@@ -7774,7 +7781,7 @@ var OfflineProvider = (function () {
         this.completedRequests = [];
         this.network.onConnect().subscribe(function (data) {
             _this.events.publish("app:online");
-            _this.doRequests();
+            setTimeout(function () { _this.doRequests(); }, 2000);
         }, function (error) { return console.error(error); });
         this.network.onDisconnect().subscribe(function (data) {
             _this.events.publish("app:offline");
@@ -7808,7 +7815,7 @@ var OfflineProvider = (function () {
         this.storage.get("session").then(function (session) {
             if (session) {
                 _this.storage.get("failedRequests").then(function (requests) {
-                    if (requests) {
+                    if (requests && requests.length > 0) {
                         console.log(requests);
                         _this.properties.requestCount = requests.length;
                         _this.completedRequests = [];
@@ -7833,7 +7840,13 @@ var OfflineProvider = (function () {
                             _loop_1();
                         }
                     }
+                    else {
+                        _this.properties.inProgress = false;
+                    }
                 });
+            }
+            else {
+                _this.properties.inProgress = false;
             }
         });
     };
