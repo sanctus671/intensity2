@@ -92,13 +92,10 @@
     <gap:splash gap:platform="ios" src="resources/ios/splash/Default@3x~iphone~comany.png" />
     <gap:splash gap:platform="ios" src="resources/ios/splash/Default@2x~ipad~anyany.png" />
     <gap:splash gap:platform="ios" src="resources/ios/splash/Default@2x~ipad~comany.png" />
-    
-    
     <platform name="windows">
         <preference name="windows-appx-target" value="8.1-phone" />
-        <preference name="WindowsToastCapable" value="true" />        
+        <preference name="WindowsToastCapable" value="true" />
     </platform>
-    
     <icon src="resources/icon.png" />
     <gap:splash src="resources/splash.png" />
     <engine name="android" spec="~6.3.0" />
@@ -125,6 +122,6 @@
         <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera to take pictures for an avatar" />
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library to get pictures for an avatar" />
     </gap:plugin>
-    <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />       
-        
+    <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />
+    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
 </widget>

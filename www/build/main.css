@@ -25705,25 +25705,52 @@ ion-navbar.toolbar {
   margin-bottom: 5px;
 }
 
-.menu-list.list-md .item-block .item-inner {
+.menu-list.list .item-block .item-inner {
   border-bottom: 0px;
 }
 
-.menu-list.list-md .item-md {
+.menu-list.list .item {
   border-bottom: 1px solid #dedede;
 }
 
-.menu-list.list-md .item-md:last-child {
+.menu-list.list .item:last-child {
   border-bottom: 0px;
 }
 
-.menu-list.list-md .item-md ion-icon {
+.menu-list.list .item ion-icon {
   opacity: 0.7;
 }
 
-.menu-list.list-md .menu-premium.item-md ion-icon {
+.menu-list.list .menu-premium.item ion-icon {
   opacity: 1;
   color: #e5c100;
+}
+
+.offline-mode {
+  background-color: #383838;
+  color: white;
+  font-size: 12px;
+  padding: 10px 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.offline-mode ion-spinner {
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+}
+
+.offline-mode ion-spinner circle {
+  stroke: White;
+}
+
+ion-segment.segment-ios {
+  margin-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
 }
 
 /*dark theme ******************************************************************/
@@ -25848,6 +25875,10 @@ ion-navbar.toolbar {
 .tools-popover .popover-content ion-list {
   margin: 0px;
   margin-bottom: 5px;
+}
+
+.tools-popover .list-ios > .item-block:last-child {
+  border-bottom: none;
 }
 
 .timer {
@@ -26362,6 +26393,12 @@ ion-card.records-card.darkorange-background {
   text-align: center;
 }
 
+.unit {
+  margin: 0;
+  padding: 0p;
+  display: inline;
+}
+
 .edit-profile .item.item-select {
   margin-top: 20px;
 }
@@ -26634,6 +26671,10 @@ ion-card.records-card.darkorange-background {
   text-align: center;
 }
 
+.list-ios.records-list > .item-block:first-child {
+  border-top: none;
+}
+
 .slide-zoom {
   height: 100%;
   overflow-y: auto;
@@ -26867,6 +26908,14 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
   left: 0px;
 }
 
+.button-only-alert .alert-button-ios:before {
+  line-height: 38px;
+}
+
+.button-only-alert .alert-button-ios:last-child {
+  font-weight: normal;
+}
+
 .button-only-alert .share-button:before {
   content: "\f20f";
 }
@@ -26885,6 +26934,11 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 
 .button-only-alert .reorder-button:before {
   content: "\f2fc";
+}
+
+.alert-ios.button-only-alert .alert-button-group {
+  position: relative;
+  margin-left: 20px;
 }
 
 .diary-exercise-list ion-reorder {
@@ -26966,6 +27020,11 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
   border-bottom: 1px solid #dedede;
 }
 
+.diary-sets .list-header-ios {
+  background-color: white;
+  border-top: 1px solid #dedede;
+}
+
 .diary-sets .reps {
   border-right: 1px solid #dedede;
 }
@@ -27029,6 +27088,10 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 
 .diary-footer .button-container button {
   margin-top: 2px;
+}
+
+.diary-footer .button-container .button-ios {
+  max-height: 40px;
 }
 
 .diary-footer .text-input {
@@ -27435,6 +27498,10 @@ h3.leaderboard-exercise ion-icon:active {
   border-bottom: none;
 }
 
+.list-ios.message-list > .item-block {
+  border: none;
+}
+
 .diary-footer.message-footer ion-input {
   width: 75%;
 }
@@ -27453,6 +27520,10 @@ h3.leaderboard-exercise ion-icon:active {
 
 .messages-list .item.requires-reply h2, .messages-list .item.requires-reply p {
   font-weight: 700;
+}
+
+.list-ios.friends-list > .item-block:first-child {
+  border-top: none;
 }
 
 .premium-header {
@@ -27498,7 +27569,11 @@ h3.leaderboard-exercise ion-icon:active {
   margin-bottom: 20px;
 }
 
-.profile-nav.header-md::after {
+.premium-card .list-ios > .item-block:last-child {
+  border-bottom: 0px;
+}
+
+.profile-nav.header::after {
   background-image: none;
 }
 
@@ -27527,8 +27602,18 @@ h3.leaderboard-exercise ion-icon:active {
   content: "";
 }
 
+.profile-header .segment-ios {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
 .profile-content, .activity {
   margin-top: 15px;
+}
+
+.activity.list-ios > .item-block:first-child, .profile-content.list-ios > .item-block:first-child {
+  border-top: none;
 }
 
 .profile-dp {
@@ -27642,6 +27727,10 @@ h3.leaderboard-exercise ion-icon:active {
   /* remove scrollbar space */
   background: transparent;
   /* optional: just make scrollbar invisible */
+}
+
+.add-diary-list.list-ios > .item-block:first-child {
+  border-top: none;
 }
 
 .settings-list ion-list-header {
