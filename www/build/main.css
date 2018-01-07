@@ -25806,7 +25806,24 @@ ion-segment.segment-ios {
 }
 
 .dark-theme .diary-progress-bar svg circle {
+  stroke: dimgray !important;
+}
+
+.dark-theme .diary-progress-bar svg circle {
   stroke: #d44735;
+}
+
+.dark-theme .diary-sets .reps {
+  border-right: 1px solid #232323;
+}
+
+.dark-theme .diary-sets .list-header.item {
+  border-bottom: 1px solid #232323;
+  border-top: 1px solid #232323;
+}
+
+.dark-theme .diary-sets .item:last-child {
+  border-bottom: 1px solid #232323;
 }
 
 .dark-theme .stats-timeframes {
@@ -25865,6 +25882,10 @@ ion-segment.segment-ios {
 }
 
 .dark-theme .popover-content {
+  background-color: black;
+}
+
+.dark-theme .workout-tabs {
   background-color: black;
 }
 
