@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 123:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15,7 +15,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(231);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_import_import__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_goal_settings_goal_settings__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(126);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -316,7 +316,7 @@ var SettingsPage = (function () {
 
 /***/ }),
 
-/***/ 124:
+/***/ 126:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -420,7 +420,7 @@ var PremiumPage = (function () {
 
 /***/ }),
 
-/***/ 125:
+/***/ 127:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -431,9 +431,9 @@ var PremiumPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_message_message__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_message_message__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_profile_friend_profile__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -580,7 +580,7 @@ var MessagePage = (function () {
 
 /***/ }),
 
-/***/ 126:
+/***/ 128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -684,7 +684,7 @@ var MessageProvider = (function () {
 
 /***/ }),
 
-/***/ 127:
+/***/ 129:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -694,7 +694,7 @@ var MessageProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(130);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1170,7 +1170,24 @@ var CreateProgramModal = (function () {
 
 /***/ }),
 
-/***/ 128:
+/***/ 13:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppSettings; });
+var AppSettings = (function () {
+    function AppSettings() {
+    }
+    AppSettings.apiUrl = 'http://api.intensityapp.com/index.php';
+    AppSettings.apiKey = 'd22c3cf2949cd85a21ddcf725f71dcef';
+    return AppSettings;
+}());
+
+//# sourceMappingURL=app.settings.js.map
+
+/***/ }),
+
+/***/ 130:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1241,15 +1258,17 @@ var EditProgramExerciseModal = (function () {
 
 /***/ }),
 
-/***/ 129:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimerService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_native_audio__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_local_notifications__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__ = __webpack_require__(232);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1259,6 +1278,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1274,7 +1294,7 @@ var TimerService = (function () {
         this.countdownTimer = 60000;
         this.countdownTimerProperties = { playSound: false, repeat: true, time: 60000, started: false };
         this.stopwatchProperties = { started: false };
-        //this.timer = TimerObservable.create(0, 10);
+        this.timer = __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__["TimerObservable"].create(0, 10);
         this.nativeAudio.preloadSimple('timerFinished', 'assets/audio/timer.mp3');
         platform.ready().then(function () {
             _this.platform.pause.subscribe(function () {
@@ -1285,30 +1305,39 @@ var TimerService = (function () {
                         text: 'Continue your session!',
                         ongoing: true
                     });
+                    _this.pauseTimestamp = Math.floor(Date.now());
+                    console.log(_this.pauseTimestamp);
                 }
             });
             _this.platform.resume.subscribe(function () {
                 _this.localNotifications.clear(1);
+                if (_this.stopwatchProperties.started) {
+                    console.log((Math.floor(Date.now()) - _this.pauseTimestamp));
+                    console.log(_this.stopwatch);
+                    _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
+                    console.log(_this.stopwatch);
+                }
+                if (_this.countdownTimerProperties.started) {
+                    _this.countdownTimer -= (Math.floor(Date.now()) - _this.pauseTimestamp);
+                    console.log(Math.floor(Date.now()) - _this.pauseTimestamp);
+                    if (_this.countdownTimer < 0) {
+                        _this.countdownTimer = 0;
+                    }
+                }
             });
         });
     }
     TimerService.prototype.startStopwatch = function () {
         var _this = this;
         this.stopwatchProperties.started = true;
-        /*
-        this.stopwatchSubscription = this.timer.subscribe(t => {
-            this.stopwatch += 10;
-        });
-        */
-        this.stopwatchSubscription = setInterval(function () {
+        this.stopwatchSubscription = this.timer.subscribe(function (t) {
             _this.stopwatch += 10;
-        }, 10);
+        });
         this.events.publish("stopwatch:started");
     };
     TimerService.prototype.stopStopwatch = function () {
         this.stopwatchProperties.started = false;
-        //this.stopwatchSubscription.unsubscribe();
-        clearInterval(this.stopwatchSubscription);
+        this.stopwatchSubscription.unsubscribe();
         this.events.publish("stopwatch:stopped");
     };
     TimerService.prototype.resetStopwatch = function () {
@@ -1317,23 +1346,7 @@ var TimerService = (function () {
     TimerService.prototype.startTimer = function () {
         var _this = this;
         this.countdownTimerProperties.started = true;
-        /*
-        this.timerSubscription = this.timer.subscribe(t => {
-            this.countdownTimer -= 10;
-            if (this.countdownTimer <= 0){
-                if (this.countdownTimerProperties.playSound){
-                    this.nativeAudio.play('timerFinished');
-                }
-                if (this.countdownTimerProperties.repeat){
-                    this.resetTimer();
-                }
-                else{
-                    this.stopTimer();
-                }
-            }
-        });
-        */
-        this.timerSubscription = setInterval(function () {
+        this.timerSubscription = this.timer.subscribe(function (t) {
             _this.countdownTimer -= 10;
             if (_this.countdownTimer <= 0) {
                 if (_this.countdownTimerProperties.playSound) {
@@ -1346,13 +1359,12 @@ var TimerService = (function () {
                     _this.stopTimer();
                 }
             }
-        }, 10);
+        });
         this.events.publish("timer:started");
     };
     TimerService.prototype.stopTimer = function () {
         this.countdownTimerProperties.started = false;
-        //this.timerSubscription.unsubscribe();
-        clearInterval(this.timerSubscription);
+        this.timerSubscription.unsubscribe();
         this.events.publish("timer:stopped");
     };
     TimerService.prototype.resetTimer = function () {
@@ -1369,29 +1381,12 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_local_notifications__["a" /* LocalNotifications */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]])
     ], TimerService);
     return TimerService;
 }());
 
 //# sourceMappingURL=timer.js.map
-
-/***/ }),
-
-/***/ 13:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppSettings; });
-var AppSettings = (function () {
-    function AppSettings() {
-    }
-    AppSettings.apiUrl = 'http://api.intensityapp.com/index.php';
-    AppSettings.apiKey = 'd22c3cf2949cd85a21ddcf725f71dcef';
-    return AppSettings;
-}());
-
-//# sourceMappingURL=app.settings.js.map
 
 /***/ }),
 
@@ -1402,7 +1397,7 @@ var AppSettings = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(4);
@@ -2635,7 +2630,7 @@ var ExerciseProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_diary_exercise_diary_exercise__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_exercise_add_exercise__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(43);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3180,7 +3175,7 @@ var DiaryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular_highcharts__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_diary_records_diary_records__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_settings_settings__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_settings_settings__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3928,8 +3923,8 @@ var DiaryRecordsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_email_composer__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4450,7 +4445,7 @@ var AddExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_profile_friend_profile__ = __webpack_require__(68);
@@ -4665,9 +4660,9 @@ var FriendsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(43);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4964,10 +4959,10 @@ var FriendDiaryPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddFriendsModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_friends_friends__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_friends_friends__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_social_sharing__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_social_sharing__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friend_profile_friend_profile__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5104,9 +5099,9 @@ var AddFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_message_message__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_message_message__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_message_message__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_message_message__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_search_friends_search_friends__ = __webpack_require__(370);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_settings__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5288,7 +5283,7 @@ var SearchFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_social_sharing__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_social_sharing__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_select_exercise_select_exercise__ = __webpack_require__(52);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5603,8 +5598,8 @@ var LeaderboardProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_edit_profile_edit_profile__ = __webpack_require__(374);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_app_settings__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5880,7 +5875,7 @@ var EditProfileModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_program_program__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_create_program_create_program__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_create_program_create_program__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_program_edit_program__ = __webpack_require__(379);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6081,7 +6076,7 @@ var ProgramsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__program_popover_program_popover__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_add_program_add_program__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_create_program_create_program__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_create_program_create_program__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_diary_diary__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6281,7 +6276,7 @@ var ProgramPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ProgramWorkoutPopover; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_program_program__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
@@ -6559,7 +6554,7 @@ var AddProgramModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_program_program__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7920,10 +7915,9 @@ var OfflineProvider = (function () {
     };
     OfflineProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */]])
     ], OfflineProvider);
     return OfflineProvider;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=offline.js.map
@@ -7941,7 +7935,7 @@ var OfflineProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_tools_calculator__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tools_bodyweight__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tools_help__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__ = __webpack_require__(131);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8010,7 +8004,7 @@ var PopoverPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimerModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__ = __webpack_require__(131);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8215,205 +8209,6 @@ var CalculatorModal = (function () {
 }());
 
 //# sourceMappingURL=calculator.js.map
-
-/***/ }),
-
-/***/ 39:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FriendsProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/*
-  Generated class for the DiaryProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var FriendsProvider = (function () {
-    function FriendsProvider(http, storage, events) {
-        this.http = http;
-        this.storage = storage;
-        this.events = events;
-    }
-    FriendsProvider.prototype.searchUsers = function (search) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getusers", username: search };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getSuggestedFriends = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getsuggestedfriends", userid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.addFriend = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addfriend", friendid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.removeFriend = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "removefriend", friendid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getFriendDiary = function (userId, date) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, userid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getMessages = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getmessages", friendid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.createMessages = function (message, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "savemessage", friendid: userId, message: message };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getWorkout = function (date, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, v2: true, userid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]])
-    ], FriendsProvider);
-    return FriendsProvider;
-}());
-
-//# sourceMappingURL=friends.js.map
 
 /***/ }),
 
@@ -8803,13 +8598,212 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
+/***/ 40:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FriendsProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/*
+  Generated class for the DiaryProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var FriendsProvider = (function () {
+    function FriendsProvider(http, storage, events) {
+        this.http = http;
+        this.storage = storage;
+        this.events = events;
+    }
+    FriendsProvider.prototype.searchUsers = function (search) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getusers", username: search };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getSuggestedFriends = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getsuggestedfriends", userid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.addFriend = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addfriend", friendid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.removeFriend = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "removefriend", friendid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getFriendDiary = function (userId, date) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, userid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getMessages = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getmessages", friendid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.createMessages = function (message, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "savemessage", friendid: userId, message: message };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getWorkout = function (date, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, v2: true, userid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]])
+    ], FriendsProvider);
+    return FriendsProvider;
+}());
+
+//# sourceMappingURL=friends.js.map
+
+/***/ }),
+
 /***/ 416:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export highchartsModules */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(21);
@@ -8817,13 +8811,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__ = __webpack_require__(462);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_purchase__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_email_composer__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__ = __webpack_require__(231);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_local_notifications__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(233);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(474);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(234);
@@ -8832,14 +8826,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(480);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_diary_diary__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_exercise_diary_exercise__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_friends_friends__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friend_profile_friend_profile__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friend_diary_friend_diary__ = __webpack_require__(367);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_messages_messages__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_message_message__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_message_message__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_leaderboard_leaderboard__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__ = __webpack_require__(373);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_program_program__ = __webpack_require__(376);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_programs_programs__ = __webpack_require__(375);
@@ -8851,9 +8845,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_help__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(492);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(493);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43_ionic_long_press__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__modals_login_login__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__ = __webpack_require__(365);
@@ -8868,30 +8862,30 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_search_friends_search_friends__ = __webpack_require__(370);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_import_import__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_goal_settings_goal_settings__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_edit_program__ = __webpack_require__(379);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__ionic_native_status_bar__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__ionic_native_splash_screen__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_social_sharing__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_social_sharing__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_native_audio__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__providers_program_program__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_authentication_authentication__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_leaderboard_leaderboard__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_friends_friends__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_message_message__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_friends_friends__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_message_message__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_chart_chart__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_offline_offline__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_bodyweight_bodyweight__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(488);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(489);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(498);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9141,12 +9135,12 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__ = __webpack_require__(373);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_programs_programs__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_records_records__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stats_stats__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modals_login_login__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_moment__);
@@ -9713,7 +9707,7 @@ var ToolsDirective = (function () {
 
 /***/ }),
 
-/***/ 484:
+/***/ 492:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9765,7 +9759,7 @@ var Autosize = (function () {
 
 /***/ }),
 
-/***/ 488:
+/***/ 496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9798,7 +9792,7 @@ var ExerciseSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 489:
+/***/ 497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9831,7 +9825,7 @@ var ProgramSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 490:
+/***/ 498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10485,7 +10479,7 @@ var ChartProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10714,11 +10708,11 @@ var AuthenticationProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_diary_friend_diary__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_message_message__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_message_message__ = __webpack_require__(127);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
