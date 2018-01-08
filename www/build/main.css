@@ -26566,6 +26566,11 @@ ion-card.records-card.darkorange-background {
   margin-top: 20px;
 }
 
+.login-form a {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .forgot-password {
   display: block;
   margin-top: 15px;
