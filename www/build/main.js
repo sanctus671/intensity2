@@ -7782,6 +7782,7 @@ var OfflineProvider = (function () {
         }, function (error) { return console.error(error); });
         this.network.onDisconnect().subscribe(function (data) {
             _this.events.publish("app:offline");
+            //this.startHeartbeat();
         }, function (error) { return console.error(error); });
         this.platform.ready().then(function () {
             if ((!_this.network.type || _this.network.type === "none") && _this.platform.is("cordova")) {
