@@ -25682,6 +25682,21 @@ ion-navbar.toolbar {
   background-color: #D44735;
   padding: 20px 15px;
   color: #fbf1f0;
+  position: relative;
+}
+
+.menu-header.is-premium:after {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: 15px;
+  -webkit-transform: rotate(-25deg);
+  transform: rotate(-36deg);
+  background-image: url(/assets/imgs/crown.png);
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 15px;
 }
 
 .menu-header p {
@@ -25698,11 +25713,15 @@ ion-navbar.toolbar {
   overflow: hidden;
   border-radius: 25px;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .menu-header .username {
   font-size: 16px;
   margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .menu-list.list .item-block .item-inner {
@@ -26038,9 +26057,15 @@ ion-segment.segment-ios {
 }
 
 .help-message {
-  padding-left: 10px;
-  padding-right: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-top: 20px;
   margin-bottom: 30px;
+}
+
+.help-form {
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .send-button {
@@ -27325,7 +27350,6 @@ h3.stats-metric ion-icon:active {
 
 .extra-stats ion-card .card-title {
   font-size: 18px;
-  text-transform: capitalize;
 }
 
 .extra-stats ion-card.red-background {
@@ -27840,4 +27864,8 @@ h3.stats-metric.stats-exercise {
 .pie-stats .extra-stats:last-child {
   padding-bottom: 0px;
   margin-bottom: 0px;
+}
+
+.extra-stats.primary-stats ion-card .card-title {
+  text-transform: capitalize;
 }
