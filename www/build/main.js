@@ -1216,6 +1216,8 @@ var TimerService = (function () {
         this.timer = __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__["TimerObservable"].create(0, 10);
         this.nativeAudio.preloadSimple('timerFinished', 'assets/audio/timer.mp3');
         platform.ready().then(function () {
+            _this.backgroundMode.disableWebViewOptimizations();
+            _this.backgroundMode.setDefaults({ silent: true });
             _this.platform.pause.subscribe(function () {
                 if (_this.stopwatchProperties.started || _this.countdownTimerProperties.started) {
                     _this.localNotifications.schedule({
