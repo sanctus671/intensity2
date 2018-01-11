@@ -1224,10 +1224,7 @@ var TimerService = (function () {
                         text: 'Continue your session!',
                         ongoing: true
                     });
-                    if (_this.countdownTimerProperties.started && (_this.countdownTimerProperties.playSound || _this.countdownTimerProperties.repeat)) {
-                        _this.backgroundMode.enable();
-                    }
-                    else {
+                    if (!_this.backgroundMode.isEnabled()) {
                         _this.pauseTimestamp = Math.floor(Date.now());
                     }
                     console.log(_this.pauseTimestamp);
@@ -1235,10 +1232,7 @@ var TimerService = (function () {
             });
             _this.platform.resume.subscribe(function () {
                 _this.localNotifications.clear(1);
-                if (_this.countdownTimerProperties.started && (_this.countdownTimerProperties.playSound || _this.countdownTimerProperties.repeat)) {
-                    _this.backgroundMode.disable();
-                }
-                else {
+                if (!_this.backgroundMode.isEnabled()) {
                     if (_this.stopwatchProperties.started) {
                         _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
                     }
@@ -1271,6 +1265,9 @@ var TimerService = (function () {
     TimerService.prototype.startTimer = function () {
         var _this = this;
         this.countdownTimerProperties.started = true;
+        if (this.countdownTimerProperties.playSound || this.countdownTimerProperties.repeat) {
+            this.backgroundMode.enable();
+        }
         this.timerSubscription = this.timer.subscribe(function (t) {
             _this.countdownTimer -= 10;
             if (_this.countdownTimer <= 0) {
@@ -1291,6 +1288,9 @@ var TimerService = (function () {
         this.countdownTimerProperties.started = false;
         this.timerSubscription.unsubscribe();
         this.events.publish("timer:stopped");
+        if (this.backgroundMode.isEnabled()) {
+            this.backgroundMode.disable();
+        }
     };
     TimerService.prototype.resetTimer = function () {
         console.log(this.countdownTimerProperties);
@@ -1302,6 +1302,9 @@ var TimerService = (function () {
     TimerService.prototype.updateTimerOptions = function (options) {
         Object.assign(this.countdownTimerProperties, options);
         console.log(this.countdownTimerProperties);
+        if (this.countdownTimerProperties.started && (this.countdownTimerProperties.playSound || this.countdownTimerProperties.repeat)) {
+            this.backgroundMode.enable();
+        }
         this.resetTimer();
     };
     TimerService = __decorate([
