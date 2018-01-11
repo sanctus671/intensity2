@@ -25692,7 +25692,7 @@ ion-navbar.toolbar {
   left: 15px;
   -webkit-transform: rotate(-25deg);
   transform: rotate(-36deg);
-  background-image: url(/assets/imgs/crown.png);
+  background-image: url(../assets/imgs/crown.png);
   background-size: 15px 15px;
   background-repeat: no-repeat;
   width: 15px;
