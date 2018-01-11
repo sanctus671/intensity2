@@ -1224,7 +1224,7 @@ var TimerService = (function () {
                         text: 'Continue your session!',
                         ongoing: true
                     });
-                    if (_this.countdownTimerProperties.started && _this.countdownTimerProperties.playSound) {
+                    if (_this.countdownTimerProperties.started && (_this.countdownTimerProperties.playSound || _this.countdownTimerProperties.repeat)) {
                         _this.backgroundMode.enable();
                     }
                     else {
@@ -1235,7 +1235,7 @@ var TimerService = (function () {
             });
             _this.platform.resume.subscribe(function () {
                 _this.localNotifications.clear(1);
-                if (_this.countdownTimerProperties.started && _this.countdownTimerProperties.playSound) {
+                if (_this.countdownTimerProperties.started && (_this.countdownTimerProperties.playSound || _this.countdownTimerProperties.repeat)) {
                     _this.backgroundMode.disable();
                 }
                 else {
@@ -1306,9 +1306,10 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]) === "function" && _e || Object])
     ], TimerService);
     return TimerService;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=timer.js.map
@@ -8807,70 +8808,71 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(474);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_ion_datepicker__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(480);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_diary_diary__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_exercise_diary_exercise__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_friends_friends__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friend_profile_friend_profile__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friend_diary_friend_diary__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_messages_messages__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_message_message__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_leaderboard_leaderboard__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_program_program__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_programs_programs__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_records_records__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_stats_stats__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_tools_tools__ = __webpack_require__(483);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_timer__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_calculator__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_help__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(494);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43_ionic_long_press__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__modals_login_login__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_select_exercise_select_exercise__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_add_program_add_program__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_change_exercise_change_exercise__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_edit_set_edit_set__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_diary_records_diary_records__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_records_records__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_edit_profile_edit_profile__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_add_friends_add_friends__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_search_friends_search_friends__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_import_import__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_goal_settings_goal_settings__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_edit_program__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__ionic_native_status_bar__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__ionic_native_splash_screen__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_social_sharing__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_native_audio__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__providers_program_program__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_authentication_authentication__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_leaderboard_leaderboard__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_friends_friends__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_message_message__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_chart_chart__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_offline_offline__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_exercise_exercise__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_bodyweight_bodyweight__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_message_message__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_program_program__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_records_records__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_tools_help__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ionic_long_press__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_login_login__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_records_records__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_import_import__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_create_program_create_program__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_edit_program__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__ionic_native_status_bar__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_splash_screen__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_social_sharing__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_native_audio__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_program_program__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_authentication_authentication__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_leaderboard_leaderboard__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_friends_friends__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_message_message__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_chart_chart__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_offline_offline__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_timer_timer__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_exercise_exercise__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__providers_bodyweight_bodyweight__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_exercise_search__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_program_search__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pipes_sort__ = __webpack_require__(499);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8960,129 +8962,130 @@ function highchartsModules() {
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_19__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_diary_diary__["a" /* DiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
-                __WEBPACK_IMPORTED_MODULE_44__modals_login_login__["a" /* LoginModal */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_friends_friends__["a" /* FriendsPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_messages_messages__["a" /* MessagesPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_message_message__["a" /* MessagePage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__["a" /* PremiumPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_program_program__["a" /* ProgramPage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_programs_programs__["a" /* ProgramsPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_records_records__["a" /* RecordsPage */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_stats_stats__["a" /* StatsPage */],
-                __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_47__modals_add_program_add_program__["a" /* AddProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_48__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_46__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_51__modals_records_records__["a" /* RecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_36__components_tools_timer__["a" /* TimerModal */],
-                __WEBPACK_IMPORTED_MODULE_37__components_tools_calculator__["a" /* CalculatorModal */],
-                __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__["a" /* BodyweightModal */],
-                __WEBPACK_IMPORTED_MODULE_39__components_tools_help__["a" /* HelpModal */],
-                __WEBPACK_IMPORTED_MODULE_49__modals_edit_set_edit_set__["a" /* EditSetModal */],
-                __WEBPACK_IMPORTED_MODULE_50__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_52__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_54__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_55__modals_import_import__["a" /* ImportModal */],
-                __WEBPACK_IMPORTED_MODULE_56__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
-                __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__["a" /* CreateProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_edit_program__["a" /* EditProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["a" /* ProgramPopover */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
-                __WEBPACK_IMPORTED_MODULE_35__components_tools_tools__["a" /* ToolsDirective */],
-                __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__["a" /* Autosize */],
-                __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__["a" /* PopoverPage */],
-                __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__["a" /* ProgramSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_79__pipes_sort__["a" /* ArraySortPipe */]
+                __WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__["a" /* DiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
+                __WEBPACK_IMPORTED_MODULE_45__modals_login_login__["a" /* LoginModal */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__["a" /* FriendsPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__["a" /* MessagesPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_message_message__["a" /* MessagePage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__["a" /* PremiumPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_program_program__["a" /* ProgramPage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__["a" /* ProgramsPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_records_records__["a" /* RecordsPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__["a" /* StatsPage */],
+                __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__["a" /* AddProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_52__modals_records_records__["a" /* RecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__["a" /* TimerModal */],
+                __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__["a" /* CalculatorModal */],
+                __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__["a" /* BodyweightModal */],
+                __WEBPACK_IMPORTED_MODULE_40__components_tools_help__["a" /* HelpModal */],
+                __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__["a" /* EditSetModal */],
+                __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
+                __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_56__modals_import_import__["a" /* ImportModal */],
+                __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
+                __WEBPACK_IMPORTED_MODULE_58__modals_create_program_create_program__["a" /* CreateProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_edit_program__["a" /* EditProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["a" /* ProgramPopover */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
+                __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__["a" /* ToolsDirective */],
+                __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__["a" /* Autosize */],
+                __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */],
+                __WEBPACK_IMPORTED_MODULE_78__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_79__pipes_program_search__["a" /* ProgramSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_80__pipes_sort__["a" /* ArraySortPipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_19__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
                 __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__["RoundProgressModule"],
-                __WEBPACK_IMPORTED_MODULE_18_ion_datepicker__["b" /* DatePickerModule */],
-                __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__["LongPressModule"],
+                __WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar__["RoundProgressModule"],
+                __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__["b" /* DatePickerModule */],
+                __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__["LongPressModule"],
                 __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["b" /* ChartModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_19__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_diary_diary__["a" /* DiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
-                __WEBPACK_IMPORTED_MODULE_44__modals_login_login__["a" /* LoginModal */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_friends_friends__["a" /* FriendsPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_messages_messages__["a" /* MessagesPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_message_message__["a" /* MessagePage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__["a" /* PremiumPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_program_program__["a" /* ProgramPage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_programs_programs__["a" /* ProgramsPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_records_records__["a" /* RecordsPage */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_stats_stats__["a" /* StatsPage */],
-                __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_47__modals_add_program_add_program__["a" /* AddProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_48__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_46__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["a" /* ProgramPopover */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
-                __WEBPACK_IMPORTED_MODULE_36__components_tools_timer__["a" /* TimerModal */],
-                __WEBPACK_IMPORTED_MODULE_37__components_tools_calculator__["a" /* CalculatorModal */],
-                __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__["a" /* BodyweightModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_39__components_tools_help__["a" /* HelpModal */],
-                __WEBPACK_IMPORTED_MODULE_49__modals_edit_set_edit_set__["a" /* EditSetModal */],
-                __WEBPACK_IMPORTED_MODULE_50__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_51__modals_records_records__["a" /* RecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_52__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
-                __WEBPACK_IMPORTED_MODULE_54__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_55__modals_import_import__["a" /* ImportModal */],
-                __WEBPACK_IMPORTED_MODULE_56__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
-                __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__["a" /* CreateProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_edit_program__["a" /* EditProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__["a" /* PopoverPage */]
+                __WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__["a" /* DiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
+                __WEBPACK_IMPORTED_MODULE_45__modals_login_login__["a" /* LoginModal */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__["a" /* FriendsPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__["a" /* MessagesPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_message_message__["a" /* MessagePage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__["a" /* PremiumPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_program_program__["a" /* ProgramPage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__["a" /* ProgramsPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_records_records__["a" /* RecordsPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__["a" /* StatsPage */],
+                __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__["a" /* AddProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["a" /* ProgramPopover */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
+                __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__["a" /* TimerModal */],
+                __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__["a" /* CalculatorModal */],
+                __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__["a" /* BodyweightModal */],
+                __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_40__components_tools_help__["a" /* HelpModal */],
+                __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__["a" /* EditSetModal */],
+                __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_52__modals_records_records__["a" /* RecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
+                __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_56__modals_import_import__["a" /* ImportModal */],
+                __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
+                __WEBPACK_IMPORTED_MODULE_58__modals_create_program_create_program__["a" /* CreateProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_edit_program__["a" /* EditProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_60__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_61__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_61__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_62__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_64__providers_diary_diary__["a" /* DiaryProvider */],
-                __WEBPACK_IMPORTED_MODULE_66__providers_authentication_authentication__["a" /* AuthenticationProvider */],
-                __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__["a" /* TimerService */],
-                __WEBPACK_IMPORTED_MODULE_67__providers_account_account__["a" /* AccountProvider */],
-                __WEBPACK_IMPORTED_MODULE_76__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
-                __WEBPACK_IMPORTED_MODULE_68__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
-                __WEBPACK_IMPORTED_MODULE_69__providers_friends_friends__["a" /* FriendsProvider */],
-                __WEBPACK_IMPORTED_MODULE_72__providers_offline_offline__["a" /* OfflineProvider */],
+                __WEBPACK_IMPORTED_MODULE_65__providers_diary_diary__["a" /* DiaryProvider */],
+                __WEBPACK_IMPORTED_MODULE_67__providers_authentication_authentication__["a" /* AuthenticationProvider */],
+                __WEBPACK_IMPORTED_MODULE_74__providers_timer_timer__["a" /* TimerService */],
+                __WEBPACK_IMPORTED_MODULE_68__providers_account_account__["a" /* AccountProvider */],
+                __WEBPACK_IMPORTED_MODULE_77__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
+                __WEBPACK_IMPORTED_MODULE_69__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
+                __WEBPACK_IMPORTED_MODULE_70__providers_friends_friends__["a" /* FriendsProvider */],
+                __WEBPACK_IMPORTED_MODULE_73__providers_offline_offline__["a" /* OfflineProvider */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__["a" /* Facebook */],
-                __WEBPACK_IMPORTED_MODULE_63__ionic_native_native_audio__["a" /* NativeAudio */],
+                __WEBPACK_IMPORTED_MODULE_64__ionic_native_native_audio__["a" /* NativeAudio */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_email_composer__["a" /* EmailComposer */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_purchase__["a" /* InAppPurchase */],
                 __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_62__ionic_native_social_sharing__["a" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_63__ionic_native_social_sharing__["a" /* SocialSharing */],
                 __WEBPACK_IMPORTED_MODULE_11__ionic_native_local_notifications__["a" /* LocalNotifications */],
                 __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */],
                 __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__["a" /* Network */],
@@ -9090,10 +9093,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__["a" /* Push */],
                 __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__["a" /* FileTransfer */],
                 __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_75__providers_exercise_exercise__["a" /* ExerciseProvider */],
-                __WEBPACK_IMPORTED_MODULE_65__providers_program_program__["a" /* ProgramProvider */],
-                __WEBPACK_IMPORTED_MODULE_70__providers_message_message__["a" /* MessageProvider */],
-                __WEBPACK_IMPORTED_MODULE_71__providers_chart_chart__["a" /* ChartProvider */],
+                __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__["a" /* BackgroundMode */],
+                __WEBPACK_IMPORTED_MODULE_76__providers_exercise_exercise__["a" /* ExerciseProvider */],
+                __WEBPACK_IMPORTED_MODULE_66__providers_program_program__["a" /* ProgramProvider */],
+                __WEBPACK_IMPORTED_MODULE_71__providers_message_message__["a" /* MessageProvider */],
+                __WEBPACK_IMPORTED_MODULE_72__providers_chart_chart__["a" /* ChartProvider */],
                 { provide: __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["c" /* HIGHCHARTS_MODULES */], useFactory: highchartsModules }
             ]
         })
