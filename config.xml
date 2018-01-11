@@ -124,4 +124,5 @@
     </gap:plugin>
     <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
 </widget>

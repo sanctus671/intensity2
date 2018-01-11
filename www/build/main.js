@@ -1185,6 +1185,7 @@ var EditProgramExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__ = __webpack_require__(492);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1199,13 +1200,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TimerService = (function () {
-    function TimerService(nativeAudio, events, platform, localNotifications) {
+    function TimerService(nativeAudio, events, platform, localNotifications, backgroundMode) {
         var _this = this;
         this.nativeAudio = nativeAudio;
         this.events = events;
         this.platform = platform;
         this.localNotifications = localNotifications;
+        this.backgroundMode = backgroundMode;
         this.stopwatch = 0;
         this.countdownTimer = 60000;
         this.countdownTimerProperties = { playSound: false, repeat: true, time: 60000, started: false };
@@ -1221,19 +1224,29 @@ var TimerService = (function () {
                         text: 'Continue your session!',
                         ongoing: true
                     });
-                    _this.pauseTimestamp = Math.floor(Date.now());
+                    if (_this.countdownTimerProperties.started && _this.countdownTimerProperties.playSound) {
+                        _this.backgroundMode.enable();
+                    }
+                    else {
+                        _this.pauseTimestamp = Math.floor(Date.now());
+                    }
                     console.log(_this.pauseTimestamp);
                 }
             });
             _this.platform.resume.subscribe(function () {
                 _this.localNotifications.clear(1);
-                if (_this.stopwatchProperties.started) {
-                    _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
+                if (_this.countdownTimerProperties.started && _this.countdownTimerProperties.playSound) {
+                    _this.backgroundMode.disable();
                 }
-                if (_this.countdownTimerProperties.started) {
-                    _this.countdownTimer -= (Math.floor(Date.now()) - _this.pauseTimestamp);
-                    if (_this.countdownTimer < 0) {
-                        _this.countdownTimer = 0;
+                else {
+                    if (_this.stopwatchProperties.started) {
+                        _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
+                    }
+                    if (_this.countdownTimerProperties.started) {
+                        _this.countdownTimer -= (Math.floor(Date.now()) - _this.pauseTimestamp);
+                        if (_this.countdownTimer < 0) {
+                            _this.countdownTimer = 0;
+                        }
                     }
                 }
             });
@@ -1293,7 +1306,7 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]])
     ], TimerService);
     return TimerService;
 }());
@@ -8817,9 +8830,9 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_help__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(493);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(494);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43_ionic_long_press__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__modals_login_login__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__ = __webpack_require__(365);
@@ -8851,13 +8864,13 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_chart_chart__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_offline_offline__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(495);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(496);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_bodyweight_bodyweight__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(499);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9721,7 +9734,7 @@ var ToolsDirective = (function () {
 
 /***/ }),
 
-/***/ 492:
+/***/ 493:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9773,7 +9786,7 @@ var Autosize = (function () {
 
 /***/ }),
 
-/***/ 496:
+/***/ 497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9806,7 +9819,7 @@ var ExerciseSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 497:
+/***/ 498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9839,7 +9852,7 @@ var ProgramSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 498:
+/***/ 499:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
