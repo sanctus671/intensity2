@@ -1293,10 +1293,9 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]])
     ], TimerService);
     return TimerService;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=timer.js.map
@@ -8818,9 +8817,9 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_help__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(492);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(493);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43_ionic_long_press__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__modals_login_login__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__ = __webpack_require__(365);
@@ -8852,13 +8851,13 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_chart_chart__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_offline_offline__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_bodyweight_bodyweight__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(498);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9722,7 +9721,7 @@ var ToolsDirective = (function () {
 
 /***/ }),
 
-/***/ 493:
+/***/ 492:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9774,7 +9773,7 @@ var Autosize = (function () {
 
 /***/ }),
 
-/***/ 497:
+/***/ 496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9807,7 +9806,7 @@ var ExerciseSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 498:
+/***/ 497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9840,7 +9839,7 @@ var ProgramSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 499:
+/***/ 498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
