@@ -1219,7 +1219,8 @@ var TimerService = (function () {
                         id: 1,
                         title: 'Timer is running',
                         text: 'Continue your session!',
-                        ongoing: true
+                        ongoing: true,
+                        at: new Date(new Date().getTime() + 1000)
                     });
                     _this.pauseTimestamp = Math.floor(Date.now());
                     console.log(_this.platform.is("android"));
@@ -1229,16 +1230,18 @@ var TimerService = (function () {
                         _this.localNotifications.schedule({
                             id: 2,
                             title: 'Timer has completed',
+                            text: 'Ran for ' + (_this.countdownTimerProperties.time / 1000) + " seconds",
                             at: new Date(new Date().getTime() + _this.countdownTimer)
                         });
                     }
                     else if (_this.countdownTimerProperties.started && _this.countdownTimerProperties.repeat) {
-                        for (var x = 1; x < 10; x++) {
-                            new Date(new Date().getTime() + (_this.countdownTimer + (_this.countdownTimerProperties.time * x)));
+                        for (var x = 0; x < 10; x++) {
+                            console.log(new Date(new Date().getTime() + (_this.countdownTimer + (_this.countdownTimerProperties.time * x))));
                             console.log(x + 2);
                             _this.localNotifications.schedule({
-                                id: 2,
+                                id: 2 + x,
                                 title: 'Timer has completed (will repeat)',
+                                text: 'Ran for ' + (_this.countdownTimerProperties.time / 1000) + " seconds",
                                 at: new Date(new Date().getTime() + (_this.countdownTimer + (_this.countdownTimerProperties.time * x)))
                             });
                         }
@@ -1252,11 +1255,11 @@ var TimerService = (function () {
                     _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
                 }
                 if (_this.countdownTimerProperties.started) {
-                    _this.countdownTimer -= (Math.floor(Date.now()) - _this.pauseTimestamp);
-                    if (_this.countdownTimer < 0 && _this.countdownTimerProperties.repeat) {
+                    var newTime = _this.countdownTimer - (Math.floor(Date.now()) - _this.pauseTimestamp);
+                    if (newTime < 0 && _this.countdownTimerProperties.repeat) {
                         console.log(_this.countdownTimer);
-                        console.log(_this.countdownTimerProperties);
-                        _this.countdownTimer = (-_this.countdownTimer) % _this.countdownTimerProperties.time;
+                        console.log(newTime);
+                        _this.countdownTimer = (-newTime) % _this.countdownTimerProperties.time;
                         console.log(_this.countdownTimer);
                     }
                     else {
@@ -1285,22 +1288,8 @@ var TimerService = (function () {
     TimerService.prototype.startTimer = function () {
         var _this = this;
         this.countdownTimerProperties.started = true;
-        this.timerSubscription = setInterval(function () {
-            _this.countdownTimer -= 10;
-            if (_this.countdownTimer <= 0) {
-                if (_this.countdownTimerProperties.playSound) {
-                    _this.nativeAudio.play('timerFinished');
-                }
-                if (_this.countdownTimerProperties.repeat) {
-                    _this.resetTimer();
-                }
-                else {
-                    _this.stopTimer();
-                }
-            }
-        }, 10);
         /*
-        this.timerSubscription = this.timer.subscribe(t => {
+        this.timerSubscription = setInterval(() => {
             this.countdownTimer -= 10;
             if (this.countdownTimer <= 0){
                 if (this.countdownTimerProperties.playSound){
@@ -1313,15 +1302,29 @@ var TimerService = (function () {
                     this.stopTimer();
                 }
             }
-        });
+        },10)
         
         */
+        this.timerSubscription = this.timer.subscribe(function (t) {
+            _this.countdownTimer -= 10;
+            if (_this.countdownTimer <= 0) {
+                if (_this.countdownTimerProperties.playSound) {
+                    _this.nativeAudio.play('timerFinished');
+                }
+                if (_this.countdownTimerProperties.repeat) {
+                    _this.resetTimer();
+                }
+                else {
+                    _this.stopTimer();
+                }
+            }
+        });
         this.events.publish("timer:started");
     };
     TimerService.prototype.stopTimer = function () {
         this.countdownTimerProperties.started = false;
-        clearInterval(this.timerSubscription);
-        //this.timerSubscription.unsubscribe();
+        //clearInterval(this.timerSubscription);
+        this.timerSubscription.unsubscribe();
         this.events.publish("timer:stopped");
     };
     TimerService.prototype.resetTimer = function () {
