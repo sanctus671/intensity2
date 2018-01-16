@@ -1222,17 +1222,45 @@ var TimerService = (function () {
                         ongoing: true
                     });
                     _this.pauseTimestamp = Math.floor(Date.now());
+                    console.log(_this.platform.is("android"));
+                    if (_this.countdownTimerProperties.started && !_this.countdownTimerProperties.repeat) {
+                        console.log(new Date(new Date().getTime() + _this.countdownTimer));
+                        console.log("scheduling one");
+                        _this.localNotifications.schedule({
+                            id: 2,
+                            title: 'Timer has completed',
+                            at: new Date(new Date().getTime() + _this.countdownTimer)
+                        });
+                    }
+                    else if (_this.countdownTimerProperties.started && _this.countdownTimerProperties.repeat) {
+                        for (var x = 0; x < 100; x++) {
+                            console.log(new Date(new Date().getTime() + _this.countdownTimer));
+                            console.log(x + 2);
+                            _this.localNotifications.schedule({
+                                id: x + 2,
+                                title: 'Timer has completed (will repeat)',
+                                at: new Date(new Date().getTime() + _this.countdownTimer + (_this.countdownTimerProperties.time * x)),
+                                sound: _this.platform.is("android") ? 'file://assets/audio/timer.mp3' : 'file://assets/audio/timer.caf',
+                            });
+                        }
+                    }
                     console.log(_this.pauseTimestamp);
                 }
             });
             _this.platform.resume.subscribe(function () {
-                _this.localNotifications.clear(1);
+                _this.localNotifications.clearAll();
                 if (_this.stopwatchProperties.started) {
                     _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
                 }
                 if (_this.countdownTimerProperties.started) {
                     _this.countdownTimer -= (Math.floor(Date.now()) - _this.pauseTimestamp);
-                    if (_this.countdownTimer < 0) {
+                    if (_this.countdownTimer < 0 && _this.countdownTimerProperties.repeat) {
+                        console.log(_this.countdownTimer);
+                        console.log(_this.countdownTimerProperties);
+                        _this.countdownTimer = (-_this.countdownTimer) % _this.countdownTimerProperties.time;
+                        console.log(_this.countdownTimer);
+                    }
+                    else {
                         _this.countdownTimer = 0;
                     }
                 }
@@ -1258,7 +1286,7 @@ var TimerService = (function () {
     TimerService.prototype.startTimer = function () {
         var _this = this;
         this.countdownTimerProperties.started = true;
-        this.timerSubscription = this.timer.subscribe(function (t) {
+        this.timerSubscription = setInterval(function () {
             _this.countdownTimer -= 10;
             if (_this.countdownTimer <= 0) {
                 if (_this.countdownTimerProperties.playSound) {
@@ -1271,12 +1299,30 @@ var TimerService = (function () {
                     _this.stopTimer();
                 }
             }
+        }, 10);
+        /*
+        this.timerSubscription = this.timer.subscribe(t => {
+            this.countdownTimer -= 10;
+            if (this.countdownTimer <= 0){
+                if (this.countdownTimerProperties.playSound){
+                    this.nativeAudio.play('timerFinished');
+                }
+                if (this.countdownTimerProperties.repeat){
+                    this.resetTimer();
+                }
+                else{
+                    this.stopTimer();
+                }
+            }
         });
+        
+        */
         this.events.publish("timer:started");
     };
     TimerService.prototype.stopTimer = function () {
         this.countdownTimerProperties.started = false;
-        this.timerSubscription.unsubscribe();
+        clearInterval(this.timerSubscription);
+        //this.timerSubscription.unsubscribe();
         this.events.publish("timer:stopped");
     };
     TimerService.prototype.resetTimer = function () {
