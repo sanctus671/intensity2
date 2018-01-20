@@ -27768,6 +27768,10 @@ h3.leaderboard-exercise ion-icon:active {
   margin-bottom: -15px;
 }
 
+.platform-android .extended-segments {
+  margin-bottom: 0px;
+}
+
 .extended-segments ion-segment {
   width: 170%;
 }

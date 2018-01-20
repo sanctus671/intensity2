@@ -1258,15 +1258,23 @@ var TimerService = (function () {
                     _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
                 }
                 if (_this.countdownTimerProperties.started) {
-                    var newTime_1 = _this.countdownTimer - (Math.floor(Date.now()) - _this.pauseTimestamp);
-                    if (newTime_1 < 0 && _this.countdownTimerProperties.repeat) {
-                        console.log(_this.countdownTimer);
-                        console.log(newTime_1);
-                        setTimeout(function () { _this.countdownTimer = (-newTime_1) % _this.countdownTimerProperties.time; }, 500);
-                        console.log(_this.countdownTimer);
+                    var newTime = _this.countdownTimer - (Math.floor(Date.now()) - _this.pauseTimestamp);
+                    console.log(newTime);
+                    if (newTime < 0 && _this.countdownTimerProperties.repeat) {
+                        _this.stopTimer();
+                        var remainder = Math.abs(newTime) % _this.countdownTimerProperties.time;
+                        console.log(remainder);
+                        _this.setTimer(remainder);
+                        _this.startTimer();
                     }
-                    else if (newTime_1 < 0) {
-                        setTimeout(function () { _this.countdownTimer = 0; }, 500);
+                    else if (newTime < 0) {
+                        _this.stopTimer();
+                        _this.setTimer(0);
+                    }
+                    else {
+                        _this.stopTimer();
+                        _this.setTimer(newTime);
+                        _this.startTimer();
                     }
                 }
             });
@@ -1346,9 +1354,10 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]) === "function" && _e || Object])
     ], TimerService);
     return TimerService;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=timer.js.map
