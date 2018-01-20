@@ -1300,6 +1300,9 @@ var TimerService = (function () {
         var _this = this;
         this.countdownTimerProperties.started = true;
         this.backgroundMode.enable();
+        if (this.countdownTimer <= 0) {
+            this.resetTimer();
+        }
         /*
         this.timerSubscription = setInterval(() => {
             this.countdownTimer -= 10;
