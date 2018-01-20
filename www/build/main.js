@@ -13,8 +13,8 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_email_composer__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_import_import__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_goal_settings_goal_settings__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_import_import__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_goal_settings_goal_settings__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -663,7 +663,7 @@ var CreateProgramModal = (function () {
                 _this.previousProgram = data;
             }
         });
-        this.program = { name: "", description: "", public: false, duration: 7, workouts: [{ day: 1, name: "Day 1", exercises: [] }] };
+        this.program = { name: "", description: "", public: false, duration: 7, workouts: [{ day: 1, name: "Day 1", added: true, exercises: [] }] };
         if (this.params.data.program) {
             this.program = this.params.data.program;
         }
@@ -1180,11 +1180,12 @@ var EditProgramExerciseModal = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimerService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__ = __webpack_require__(236);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1199,13 +1200,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TimerService = (function () {
-    function TimerService(nativeAudio, events, platform, localNotifications) {
+    function TimerService(nativeAudio, events, platform, localNotifications, backgroundMode) {
         var _this = this;
         this.nativeAudio = nativeAudio;
         this.events = events;
         this.platform = platform;
         this.localNotifications = localNotifications;
+        this.backgroundMode = backgroundMode;
         this.stopwatch = 0;
         this.countdownTimer = 60000;
         this.countdownTimerProperties = { playSound: false, repeat: false, time: 60000, started: false, force: false };
@@ -1288,6 +1291,7 @@ var TimerService = (function () {
     TimerService.prototype.startTimer = function () {
         var _this = this;
         this.countdownTimerProperties.started = true;
+        this.backgroundMode.enable();
         /*
         this.timerSubscription = setInterval(() => {
             this.countdownTimer -= 10;
@@ -1323,6 +1327,7 @@ var TimerService = (function () {
     };
     TimerService.prototype.stopTimer = function () {
         this.countdownTimerProperties.started = false;
+        this.backgroundMode.disable();
         //clearInterval(this.timerSubscription);
         this.timerSubscription.unsubscribe();
         this.events.publish("timer:stopped");
@@ -1341,10 +1346,9 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]])
     ], TimerService);
     return TimerService;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=timer.js.map
@@ -2575,7 +2579,7 @@ var ExerciseProvider = (function () {
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2588,9 +2592,9 @@ var ExerciseProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_diary_exercise_diary_exercise__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_exercise_add_exercise__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_exercise_add_exercise__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(43);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3132,7 +3136,7 @@ var DiaryPage = (function () {
 
 /***/ }),
 
-/***/ 360:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3145,8 +3149,8 @@ var DiaryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular_highcharts__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_diary_records_diary_records__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_diary_records_diary_records__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_settings_settings__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3670,7 +3674,7 @@ var DiaryExercisePage = (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3759,7 +3763,7 @@ var EditSetModal = (function () {
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3900,7 +3904,7 @@ var DiaryRecordsModal = (function () {
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4077,7 +4081,7 @@ var ImportModal = (function () {
 
 /***/ }),
 
-/***/ 364:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4190,7 +4194,7 @@ var GoalSettingsModal = (function () {
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4432,7 +4436,7 @@ var AddExerciseModal = (function () {
 
 /***/ }),
 
-/***/ 366:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4447,7 +4451,7 @@ var AddExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_profile_friend_profile__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_friends_add_friends__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_friends_add_friends__ = __webpack_require__(369);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4645,7 +4649,7 @@ var FriendsPage = (function () {
 
 /***/ }),
 
-/***/ 367:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4950,7 +4954,7 @@ var FriendDiaryPage = (function () {
 
 /***/ }),
 
-/***/ 368:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5086,7 +5090,7 @@ var AddFriendsModal = (function () {
 
 /***/ }),
 
-/***/ 369:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5100,7 +5104,7 @@ var AddFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_message_message__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_message_message__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_search_friends_search_friends__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_search_friends_search_friends__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_settings__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5189,7 +5193,7 @@ var MessagesPage = (function () {
 
 /***/ }),
 
-/***/ 370:
+/***/ 371:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5267,7 +5271,7 @@ var SearchFriendsModal = (function () {
 
 /***/ }),
 
-/***/ 371:
+/***/ 372:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5277,7 +5281,7 @@ var SearchFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_leaderboard_leaderboard__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_leaderboard_leaderboard__ = __webpack_require__(373);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(13);
@@ -5468,7 +5472,7 @@ var LeaderboardPage = (function () {
 
 /***/ }),
 
-/***/ 372:
+/***/ 373:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5581,7 +5585,7 @@ var LeaderboardProvider = (function () {
 
 /***/ }),
 
-/***/ 373:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5593,7 +5597,7 @@ var LeaderboardProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_edit_profile_edit_profile__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_edit_profile_edit_profile__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(233);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__ = __webpack_require__(124);
@@ -5813,7 +5817,7 @@ var ProfilePage = (function () {
 
 /***/ }),
 
-/***/ 374:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5863,7 +5867,7 @@ var EditProfileModal = (function () {
 
 /***/ }),
 
-/***/ 375:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5873,9 +5877,9 @@ var EditProfileModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_program_program__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_program_program__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_create_program_create_program__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_program_edit_program__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_program_edit_program__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_premium_premium__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6072,7 +6076,7 @@ var ProgramsPage = (function () {
 
 /***/ }),
 
-/***/ 376:
+/***/ 377:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6082,8 +6086,8 @@ var ProgramsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__program_popover_program_popover__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_add_program_add_program__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__program_popover_program_popover__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_add_program_add_program__ = __webpack_require__(379);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_create_program_create_program__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_premium_premium__ = __webpack_require__(53);
@@ -6286,7 +6290,7 @@ var ProgramPage = (function () {
 
 /***/ }),
 
-/***/ 377:
+/***/ 378:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6423,7 +6427,7 @@ var ProgramWorkoutPopover = (function () {
 
 /***/ }),
 
-/***/ 378:
+/***/ 379:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6562,7 +6566,7 @@ var AddProgramModal = (function () {
 
 /***/ }),
 
-/***/ 379:
+/***/ 380:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7014,7 +7018,7 @@ var EditProgramModal = (function () {
 
 /***/ }),
 
-/***/ 380:
+/***/ 381:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7023,7 +7027,7 @@ var EditProgramModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_records_records__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_records_records__ = __webpack_require__(382);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7089,7 +7093,7 @@ var RecordsPage = (function () {
 
 /***/ }),
 
-/***/ 381:
+/***/ 382:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7188,7 +7192,7 @@ var RecordsModal = (function () {
 
 /***/ }),
 
-/***/ 382:
+/***/ 383:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7202,7 +7206,7 @@ var RecordsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_exercise_exercise__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_change_exercise_change_exercise__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_change_exercise_change_exercise__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular_highcharts__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7513,7 +7517,7 @@ var StatsPage = (function () {
 
 /***/ }),
 
-/***/ 383:
+/***/ 384:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7632,7 +7636,7 @@ var ChangeExerciseModal = (function () {
 
 /***/ }),
 
-/***/ 384:
+/***/ 385:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7746,7 +7750,7 @@ var LoginModal = (function () {
 
 /***/ }),
 
-/***/ 385:
+/***/ 386:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7945,17 +7949,17 @@ var OfflineProvider = (function () {
 
 /***/ }),
 
-/***/ 386:
+/***/ 387:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopoverPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_tools_timer__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_tools_calculator__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tools_bodyweight__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tools_help__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_tools_timer__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_tools_calculator__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tools_bodyweight__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tools_help__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__ = __webpack_require__(133);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8018,7 +8022,7 @@ var PopoverPage = (function () {
 
 /***/ }),
 
-/***/ 387:
+/***/ 388:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8039,9 +8043,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var TimerModal = (function () {
-    function TimerModal(viewCtrl, timerService) {
+    function TimerModal(viewCtrl, timerService, alertCtrl) {
         this.viewCtrl = viewCtrl;
         this.timerService = timerService;
+        this.alertCtrl = alertCtrl;
         this.properties = { activeTab: "stopwatch", stopwatchStarted: false, timerStarted: false, stopwatchInitialStart: true, timerInitialStart: true };
         this.timerOptions = { time: 60000, timeRaw: "1970-01-01T00:01:00.000Z", playSound: false, repeat: false, force: false };
     }
@@ -8105,6 +8110,32 @@ var TimerModal = (function () {
     TimerModal.prototype.resetTimer = function () {
         this.timerService.resetTimer();
     };
+    TimerModal.prototype.updateBackgroundNotifications = function () {
+        var _this = this;
+        if (this.timerOptions.force) {
+            var alert = this.alertCtrl.create({
+                title: 'Warning',
+                subTitle: 'Are you sure you want to enable this?',
+                message: 'Background notifications are experimental. Notifications are not guarenteed to work correctly on all devices. Use at your own risk.',
+                buttons: [
+                    {
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function (data) {
+                            _this.timerOptions.force = false;
+                        }
+                    },
+                    {
+                        text: 'Yes',
+                        handler: function (data) {
+                        }
+                    },
+                ]
+            });
+            alert.present();
+        }
+        this.updateTimerProperties();
+    };
     TimerModal.prototype.updateTimerProperties = function () {
         var date = new Date(this.timerOptions.timeRaw);
         this.timerOptions.time = ((date.getMinutes() * 60) + date.getSeconds()) * 1000;
@@ -8127,18 +8158,19 @@ var TimerModal = (function () {
     };
     TimerModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'timer',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Timer\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n    <ion-segment [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="stopwatch">\n            Stopwatch\n        </ion-segment-button>\n        <ion-segment-button value="timer">\n            Countdown\n        </ion-segment-button>\n    </ion-segment>    \n    \n    <div *ngIf="properties.activeTab === \'stopwatch\'" >\n        <div class="stopwatch timer" (click)="toggleStopwatch()" [ngClass]="{\'timer-stopped\':!properties.stopwatchStarted && !properties.stopwatchInitialStart && stopwatchNotZero()}">\n            <div class="time">{{getStopwatchTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  *ngIf="!properties.stopwatchStarted"></ion-icon>\n                <ion-icon name="pause" *ngIf="properties.stopwatchStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetStopwatch()">Reset </button>\n        </div>\n    </div>\n    \n    \n    <div *ngIf="properties.activeTab === \'timer\'">\n\n        <div class="stopwatch timer" (click)="toggleTimer()" [ngClass]="{\'timer-stopped\':!properties.timerStarted && !properties.timerInitialStart}">\n            <div class="time">{{getTimerTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  [hidden]="properties.timerStarted"></ion-icon>\n                <ion-icon name="pause" [hidden]="!properties.timerStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetTimer()">Reset </button>\n            \n\n        </div>        \n        \n        <ion-list class="timer-options" (click)="showMore = !showMore">\n            <ion-list-header>\n                Timer Options\n                <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n            </ion-list-header>\n            <ion-item-group *ngIf="showMore">\n                <ion-item>\n                    <ion-label>Countdown From</ion-label>\n                    <ion-datetime displayFormat="mm:ss" [(ngModel)]="timerOptions.timeRaw" (ionChange)="updateTimerProperties()"></ion-datetime>\n                </ion-item>            \n                <ion-item>\n                    <ion-label>Play Sound At 0</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.playSound" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>            \n                <ion-item>\n                    <ion-label>Repeat</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.repeat" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>   \n                <ion-item>\n                    <ion-label>Force Background Notifications (Experimental)</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.force" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>                 \n            </ion-item-group>        \n        </ion-list>   \n    </div>\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/
+            selector: 'timer',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Timer\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n    <ion-segment [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="stopwatch">\n            Stopwatch\n        </ion-segment-button>\n        <ion-segment-button value="timer">\n            Countdown\n        </ion-segment-button>\n    </ion-segment>    \n    \n    <div *ngIf="properties.activeTab === \'stopwatch\'" >\n        <div class="stopwatch timer" (click)="toggleStopwatch()" [ngClass]="{\'timer-stopped\':!properties.stopwatchStarted && !properties.stopwatchInitialStart && stopwatchNotZero()}">\n            <div class="time">{{getStopwatchTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  *ngIf="!properties.stopwatchStarted"></ion-icon>\n                <ion-icon name="pause" *ngIf="properties.stopwatchStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetStopwatch()">Reset </button>\n        </div>\n    </div>\n    \n    \n    <div *ngIf="properties.activeTab === \'timer\'">\n\n        <div class="stopwatch timer" (click)="toggleTimer()" [ngClass]="{\'timer-stopped\':!properties.timerStarted && !properties.timerInitialStart}">\n            <div class="time">{{getTimerTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  [hidden]="properties.timerStarted"></ion-icon>\n                <ion-icon name="pause" [hidden]="!properties.timerStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetTimer()">Reset </button>\n            \n\n        </div>        \n        \n        <ion-list class="timer-options" (click)="showMore = !showMore">\n            <ion-list-header>\n                Timer Options\n                <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n            </ion-list-header>\n            <ion-item-group *ngIf="showMore">\n                <ion-item>\n                    <ion-label>Countdown From</ion-label>\n                    <ion-datetime displayFormat="mm:ss" [(ngModel)]="timerOptions.timeRaw" (ionChange)="updateTimerProperties()"></ion-datetime>\n                </ion-item>            \n                <ion-item>\n                    <ion-label>Play Sound At 0</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.playSound" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>            \n                <ion-item>\n                    <ion-label>Repeat</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.repeat" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>   \n                <ion-item>\n                    <ion-label>Force Background Notifications (Experimental)</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.force" (ionChange)="updateBackgroundNotifications()"></ion-checkbox>   \n                </ion-item>                 \n            </ion-item-group>        \n        </ion-list>   \n    </div>\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
     ], TimerModal);
     return TimerModal;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=timer.js.map
 
 /***/ }),
 
-/***/ 389:
+/***/ 390:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8234,7 +8266,7 @@ var CalculatorModal = (function () {
 
 /***/ }),
 
-/***/ 390:
+/***/ 391:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8245,7 +8277,7 @@ var CalculatorModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_chart_chart__ = __webpack_require__(67);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8369,7 +8401,7 @@ var BodyweightModal = (function () {
 
 /***/ }),
 
-/***/ 391:
+/***/ 392:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8547,7 +8579,7 @@ var BodyweightProvider = (function () {
 
 /***/ }),
 
-/***/ 392:
+/***/ 393:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8606,13 +8638,13 @@ var HelpModal = (function () {
 
 /***/ }),
 
-/***/ 395:
+/***/ 396:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(416);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(417);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -8819,7 +8851,7 @@ var FriendsProvider = (function () {
 
 /***/ }),
 
-/***/ 416:
+/***/ 417:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8830,7 +8862,7 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__ = __webpack_require__(462);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__ = __webpack_require__(463);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__ = __webpack_require__(120);
@@ -8841,73 +8873,74 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(475);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_ion_datepicker__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(480);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_diary_diary__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_exercise_diary_exercise__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_friends_friends__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friend_profile_friend_profile__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friend_diary_friend_diary__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_messages_messages__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_message_message__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_leaderboard_leaderboard__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_program_program__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_programs_programs__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_records_records__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_stats_stats__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_tools_tools__ = __webpack_require__(483);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_timer__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_calculator__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_help__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__ = __webpack_require__(492);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43_ionic_long_press__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__modals_login_login__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_select_exercise_select_exercise__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_add_program_add_program__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_change_exercise_change_exercise__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_edit_set_edit_set__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_diary_records_diary_records__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_records_records__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_edit_profile_edit_profile__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_add_friends_add_friends__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_search_friends_search_friends__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_import_import__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_goal_settings_goal_settings__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_edit_program__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__ionic_native_status_bar__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__ionic_native_splash_screen__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_social_sharing__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_native_audio__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__providers_program_program__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_authentication_authentication__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_leaderboard_leaderboard__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_friends_friends__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_message_message__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_chart_chart__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_offline_offline__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__ = __webpack_require__(495);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_exercise_exercise__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_bodyweight_bodyweight__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_sort__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_message_message__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_program_program__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_records_records__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_tools_help__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ionic_long_press__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_login_login__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_records_records__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_import_import__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_create_program_create_program__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_edit_program__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__ionic_native_status_bar__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_splash_screen__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_social_sharing__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_native_audio__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_program_program__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_authentication_authentication__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_leaderboard_leaderboard__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_friends_friends__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_message_message__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_chart_chart__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_offline_offline__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_timer_timer__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_exercise_exercise__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__providers_bodyweight_bodyweight__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pipes_exercise_search__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_program_search__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pipes_sort__ = __webpack_require__(499);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8997,129 +9030,130 @@ function highchartsModules() {
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_19__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_diary_diary__["a" /* DiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
-                __WEBPACK_IMPORTED_MODULE_44__modals_login_login__["a" /* LoginModal */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_friends_friends__["a" /* FriendsPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_messages_messages__["a" /* MessagesPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_message_message__["a" /* MessagePage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__["a" /* PremiumPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_program_program__["a" /* ProgramPage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_programs_programs__["a" /* ProgramsPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_records_records__["a" /* RecordsPage */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_stats_stats__["a" /* StatsPage */],
-                __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_47__modals_add_program_add_program__["a" /* AddProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_48__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_46__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_51__modals_records_records__["a" /* RecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_36__components_tools_timer__["a" /* TimerModal */],
-                __WEBPACK_IMPORTED_MODULE_37__components_tools_calculator__["a" /* CalculatorModal */],
-                __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__["a" /* BodyweightModal */],
-                __WEBPACK_IMPORTED_MODULE_39__components_tools_help__["a" /* HelpModal */],
-                __WEBPACK_IMPORTED_MODULE_49__modals_edit_set_edit_set__["a" /* EditSetModal */],
-                __WEBPACK_IMPORTED_MODULE_50__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_52__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_54__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_55__modals_import_import__["a" /* ImportModal */],
-                __WEBPACK_IMPORTED_MODULE_56__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
-                __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__["a" /* CreateProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_edit_program__["a" /* EditProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["a" /* ProgramPopover */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
-                __WEBPACK_IMPORTED_MODULE_35__components_tools_tools__["a" /* ToolsDirective */],
-                __WEBPACK_IMPORTED_MODULE_41__components_autosize_autosize__["a" /* Autosize */],
-                __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__["a" /* PopoverPage */],
-                __WEBPACK_IMPORTED_MODULE_77__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_78__pipes_program_search__["a" /* ProgramSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_79__pipes_sort__["a" /* ArraySortPipe */]
+                __WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__["a" /* DiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
+                __WEBPACK_IMPORTED_MODULE_45__modals_login_login__["a" /* LoginModal */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__["a" /* FriendsPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__["a" /* MessagesPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_message_message__["a" /* MessagePage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__["a" /* PremiumPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_program_program__["a" /* ProgramPage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__["a" /* ProgramsPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_records_records__["a" /* RecordsPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__["a" /* StatsPage */],
+                __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__["a" /* AddProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_52__modals_records_records__["a" /* RecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__["a" /* TimerModal */],
+                __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__["a" /* CalculatorModal */],
+                __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__["a" /* BodyweightModal */],
+                __WEBPACK_IMPORTED_MODULE_40__components_tools_help__["a" /* HelpModal */],
+                __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__["a" /* EditSetModal */],
+                __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
+                __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_56__modals_import_import__["a" /* ImportModal */],
+                __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
+                __WEBPACK_IMPORTED_MODULE_58__modals_create_program_create_program__["a" /* CreateProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_edit_program__["a" /* EditProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["a" /* ProgramPopover */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
+                __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__["a" /* ToolsDirective */],
+                __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__["a" /* Autosize */],
+                __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */],
+                __WEBPACK_IMPORTED_MODULE_78__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_79__pipes_program_search__["a" /* ProgramSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_80__pipes_sort__["a" /* ArraySortPipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_19__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
                 __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_74_angular_svg_round_progressbar__["RoundProgressModule"],
-                __WEBPACK_IMPORTED_MODULE_18_ion_datepicker__["b" /* DatePickerModule */],
-                __WEBPACK_IMPORTED_MODULE_43_ionic_long_press__["LongPressModule"],
+                __WEBPACK_IMPORTED_MODULE_75_angular_svg_round_progressbar__["RoundProgressModule"],
+                __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__["b" /* DatePickerModule */],
+                __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__["LongPressModule"],
                 __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["b" /* ChartModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_19__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_diary_diary__["a" /* DiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
-                __WEBPACK_IMPORTED_MODULE_44__modals_login_login__["a" /* LoginModal */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_friends_friends__["a" /* FriendsPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_messages_messages__["a" /* MessagesPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_message_message__["a" /* MessagePage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_premium_premium__["a" /* PremiumPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_program_program__["a" /* ProgramPage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_programs_programs__["a" /* ProgramsPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_records_records__["a" /* RecordsPage */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_stats_stats__["a" /* StatsPage */],
-                __WEBPACK_IMPORTED_MODULE_45__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_47__modals_add_program_add_program__["a" /* AddProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_48__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_46__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["a" /* ProgramPopover */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
-                __WEBPACK_IMPORTED_MODULE_36__components_tools_timer__["a" /* TimerModal */],
-                __WEBPACK_IMPORTED_MODULE_37__components_tools_calculator__["a" /* CalculatorModal */],
-                __WEBPACK_IMPORTED_MODULE_38__components_tools_bodyweight__["a" /* BodyweightModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_39__components_tools_help__["a" /* HelpModal */],
-                __WEBPACK_IMPORTED_MODULE_49__modals_edit_set_edit_set__["a" /* EditSetModal */],
-                __WEBPACK_IMPORTED_MODULE_50__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_51__modals_records_records__["a" /* RecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_52__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
-                __WEBPACK_IMPORTED_MODULE_54__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_55__modals_import_import__["a" /* ImportModal */],
-                __WEBPACK_IMPORTED_MODULE_56__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
-                __WEBPACK_IMPORTED_MODULE_57__modals_create_program_create_program__["a" /* CreateProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_edit_program__["a" /* EditProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_58__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_42__components_tools_popover__["a" /* PopoverPage */]
+                __WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__["a" /* DiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
+                __WEBPACK_IMPORTED_MODULE_45__modals_login_login__["a" /* LoginModal */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__["a" /* FriendsPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__["a" /* MessagesPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_message_message__["a" /* MessagePage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__["a" /* PremiumPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_program_program__["a" /* ProgramPage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__["a" /* ProgramsPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_records_records__["a" /* RecordsPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__["a" /* StatsPage */],
+                __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__["a" /* AddProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["a" /* ProgramPopover */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
+                __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__["a" /* TimerModal */],
+                __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__["a" /* CalculatorModal */],
+                __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__["a" /* BodyweightModal */],
+                __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_40__components_tools_help__["a" /* HelpModal */],
+                __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__["a" /* EditSetModal */],
+                __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_52__modals_records_records__["a" /* RecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
+                __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_56__modals_import_import__["a" /* ImportModal */],
+                __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
+                __WEBPACK_IMPORTED_MODULE_58__modals_create_program_create_program__["a" /* CreateProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_edit_program__["a" /* EditProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_59__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_60__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_61__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_61__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_62__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_64__providers_diary_diary__["a" /* DiaryProvider */],
-                __WEBPACK_IMPORTED_MODULE_66__providers_authentication_authentication__["a" /* AuthenticationProvider */],
-                __WEBPACK_IMPORTED_MODULE_73__providers_timer_timer__["a" /* TimerService */],
-                __WEBPACK_IMPORTED_MODULE_67__providers_account_account__["a" /* AccountProvider */],
-                __WEBPACK_IMPORTED_MODULE_76__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
-                __WEBPACK_IMPORTED_MODULE_68__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
-                __WEBPACK_IMPORTED_MODULE_69__providers_friends_friends__["a" /* FriendsProvider */],
-                __WEBPACK_IMPORTED_MODULE_72__providers_offline_offline__["a" /* OfflineProvider */],
+                __WEBPACK_IMPORTED_MODULE_65__providers_diary_diary__["a" /* DiaryProvider */],
+                __WEBPACK_IMPORTED_MODULE_67__providers_authentication_authentication__["a" /* AuthenticationProvider */],
+                __WEBPACK_IMPORTED_MODULE_74__providers_timer_timer__["a" /* TimerService */],
+                __WEBPACK_IMPORTED_MODULE_68__providers_account_account__["a" /* AccountProvider */],
+                __WEBPACK_IMPORTED_MODULE_77__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
+                __WEBPACK_IMPORTED_MODULE_69__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
+                __WEBPACK_IMPORTED_MODULE_70__providers_friends_friends__["a" /* FriendsProvider */],
+                __WEBPACK_IMPORTED_MODULE_73__providers_offline_offline__["a" /* OfflineProvider */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__["a" /* Facebook */],
-                __WEBPACK_IMPORTED_MODULE_63__ionic_native_native_audio__["a" /* NativeAudio */],
+                __WEBPACK_IMPORTED_MODULE_64__ionic_native_native_audio__["a" /* NativeAudio */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_email_composer__["a" /* EmailComposer */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_purchase__["a" /* InAppPurchase */],
                 __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_62__ionic_native_social_sharing__["a" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_63__ionic_native_social_sharing__["a" /* SocialSharing */],
                 __WEBPACK_IMPORTED_MODULE_11__ionic_native_local_notifications__["a" /* LocalNotifications */],
                 __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */],
                 __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__["a" /* Network */],
@@ -9127,10 +9161,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__["a" /* Push */],
                 __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__["a" /* FileTransfer */],
                 __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_75__providers_exercise_exercise__["a" /* ExerciseProvider */],
-                __WEBPACK_IMPORTED_MODULE_65__providers_program_program__["a" /* ProgramProvider */],
-                __WEBPACK_IMPORTED_MODULE_70__providers_message_message__["a" /* MessageProvider */],
-                __WEBPACK_IMPORTED_MODULE_71__providers_chart_chart__["a" /* ChartProvider */],
+                __WEBPACK_IMPORTED_MODULE_76__providers_exercise_exercise__["a" /* ExerciseProvider */],
+                __WEBPACK_IMPORTED_MODULE_66__providers_program_program__["a" /* ProgramProvider */],
+                __WEBPACK_IMPORTED_MODULE_71__providers_message_message__["a" /* MessageProvider */],
+                __WEBPACK_IMPORTED_MODULE_72__providers_chart_chart__["a" /* ChartProvider */],
+                __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__["a" /* BackgroundMode */],
                 { provide: __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["c" /* HIGHCHARTS_MODULES */], useFactory: highchartsModules }
             ]
         })
@@ -9142,32 +9177,32 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 480:
+/***/ 481:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__ = __webpack_require__(372);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_programs_programs__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_records_records__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stats_stats__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_programs_programs__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_records_records__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stats_stats__ = __webpack_require__(383);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modals_login_login__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modals_login_login__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__ = __webpack_require__(386);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__ = __webpack_require__(123);
@@ -9464,246 +9499,246 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 482:
+/***/ 483:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 242,
-	"./af.js": 242,
-	"./ar": 243,
-	"./ar-dz": 244,
-	"./ar-dz.js": 244,
-	"./ar-kw": 245,
-	"./ar-kw.js": 245,
-	"./ar-ly": 246,
-	"./ar-ly.js": 246,
-	"./ar-ma": 247,
-	"./ar-ma.js": 247,
-	"./ar-sa": 248,
-	"./ar-sa.js": 248,
-	"./ar-tn": 249,
-	"./ar-tn.js": 249,
-	"./ar.js": 243,
-	"./az": 250,
-	"./az.js": 250,
-	"./be": 251,
-	"./be.js": 251,
-	"./bg": 252,
-	"./bg.js": 252,
-	"./bm": 253,
-	"./bm.js": 253,
-	"./bn": 254,
-	"./bn.js": 254,
-	"./bo": 255,
-	"./bo.js": 255,
-	"./br": 256,
-	"./br.js": 256,
-	"./bs": 257,
-	"./bs.js": 257,
-	"./ca": 258,
-	"./ca.js": 258,
-	"./cs": 259,
-	"./cs.js": 259,
-	"./cv": 260,
-	"./cv.js": 260,
-	"./cy": 261,
-	"./cy.js": 261,
-	"./da": 262,
-	"./da.js": 262,
-	"./de": 263,
-	"./de-at": 264,
-	"./de-at.js": 264,
-	"./de-ch": 265,
-	"./de-ch.js": 265,
-	"./de.js": 263,
-	"./dv": 266,
-	"./dv.js": 266,
-	"./el": 267,
-	"./el.js": 267,
-	"./en-au": 268,
-	"./en-au.js": 268,
-	"./en-ca": 269,
-	"./en-ca.js": 269,
-	"./en-gb": 270,
-	"./en-gb.js": 270,
-	"./en-ie": 271,
-	"./en-ie.js": 271,
-	"./en-nz": 272,
-	"./en-nz.js": 272,
-	"./eo": 273,
-	"./eo.js": 273,
-	"./es": 274,
-	"./es-do": 275,
-	"./es-do.js": 275,
-	"./es-us": 276,
-	"./es-us.js": 276,
-	"./es.js": 274,
-	"./et": 277,
-	"./et.js": 277,
-	"./eu": 278,
-	"./eu.js": 278,
-	"./fa": 279,
-	"./fa.js": 279,
-	"./fi": 280,
-	"./fi.js": 280,
-	"./fo": 281,
-	"./fo.js": 281,
-	"./fr": 282,
-	"./fr-ca": 283,
-	"./fr-ca.js": 283,
-	"./fr-ch": 284,
-	"./fr-ch.js": 284,
-	"./fr.js": 282,
-	"./fy": 285,
-	"./fy.js": 285,
-	"./gd": 286,
-	"./gd.js": 286,
-	"./gl": 287,
-	"./gl.js": 287,
-	"./gom-latn": 288,
-	"./gom-latn.js": 288,
-	"./gu": 289,
-	"./gu.js": 289,
-	"./he": 290,
-	"./he.js": 290,
-	"./hi": 291,
-	"./hi.js": 291,
-	"./hr": 292,
-	"./hr.js": 292,
-	"./hu": 293,
-	"./hu.js": 293,
-	"./hy-am": 294,
-	"./hy-am.js": 294,
-	"./id": 295,
-	"./id.js": 295,
-	"./is": 296,
-	"./is.js": 296,
-	"./it": 297,
-	"./it.js": 297,
-	"./ja": 298,
-	"./ja.js": 298,
-	"./jv": 299,
-	"./jv.js": 299,
-	"./ka": 300,
-	"./ka.js": 300,
-	"./kk": 301,
-	"./kk.js": 301,
-	"./km": 302,
-	"./km.js": 302,
-	"./kn": 303,
-	"./kn.js": 303,
-	"./ko": 304,
-	"./ko.js": 304,
-	"./ky": 305,
-	"./ky.js": 305,
-	"./lb": 306,
-	"./lb.js": 306,
-	"./lo": 307,
-	"./lo.js": 307,
-	"./lt": 308,
-	"./lt.js": 308,
-	"./lv": 309,
-	"./lv.js": 309,
-	"./me": 310,
-	"./me.js": 310,
-	"./mi": 311,
-	"./mi.js": 311,
-	"./mk": 312,
-	"./mk.js": 312,
-	"./ml": 313,
-	"./ml.js": 313,
-	"./mr": 314,
-	"./mr.js": 314,
-	"./ms": 315,
-	"./ms-my": 316,
-	"./ms-my.js": 316,
-	"./ms.js": 315,
-	"./my": 317,
-	"./my.js": 317,
-	"./nb": 318,
-	"./nb.js": 318,
-	"./ne": 319,
-	"./ne.js": 319,
-	"./nl": 320,
-	"./nl-be": 321,
-	"./nl-be.js": 321,
-	"./nl.js": 320,
-	"./nn": 322,
-	"./nn.js": 322,
-	"./pa-in": 323,
-	"./pa-in.js": 323,
-	"./pl": 324,
-	"./pl.js": 324,
-	"./pt": 325,
-	"./pt-br": 326,
-	"./pt-br.js": 326,
-	"./pt.js": 325,
-	"./ro": 327,
-	"./ro.js": 327,
-	"./ru": 328,
-	"./ru.js": 328,
-	"./sd": 329,
-	"./sd.js": 329,
-	"./se": 330,
-	"./se.js": 330,
-	"./si": 331,
-	"./si.js": 331,
-	"./sk": 332,
-	"./sk.js": 332,
-	"./sl": 333,
-	"./sl.js": 333,
-	"./sq": 334,
-	"./sq.js": 334,
-	"./sr": 335,
-	"./sr-cyrl": 336,
-	"./sr-cyrl.js": 336,
-	"./sr.js": 335,
-	"./ss": 337,
-	"./ss.js": 337,
-	"./sv": 338,
-	"./sv.js": 338,
-	"./sw": 339,
-	"./sw.js": 339,
-	"./ta": 340,
-	"./ta.js": 340,
-	"./te": 341,
-	"./te.js": 341,
-	"./tet": 342,
-	"./tet.js": 342,
-	"./th": 343,
-	"./th.js": 343,
-	"./tl-ph": 344,
-	"./tl-ph.js": 344,
-	"./tlh": 345,
-	"./tlh.js": 345,
-	"./tr": 346,
-	"./tr.js": 346,
-	"./tzl": 347,
-	"./tzl.js": 347,
-	"./tzm": 348,
-	"./tzm-latn": 349,
-	"./tzm-latn.js": 349,
-	"./tzm.js": 348,
-	"./uk": 350,
-	"./uk.js": 350,
-	"./ur": 351,
-	"./ur.js": 351,
-	"./uz": 352,
-	"./uz-latn": 353,
-	"./uz-latn.js": 353,
-	"./uz.js": 352,
-	"./vi": 354,
-	"./vi.js": 354,
-	"./x-pseudo": 355,
-	"./x-pseudo.js": 355,
-	"./yo": 356,
-	"./yo.js": 356,
-	"./zh-cn": 357,
-	"./zh-cn.js": 357,
-	"./zh-hk": 358,
-	"./zh-hk.js": 358,
-	"./zh-tw": 359,
-	"./zh-tw.js": 359
+	"./af": 243,
+	"./af.js": 243,
+	"./ar": 244,
+	"./ar-dz": 245,
+	"./ar-dz.js": 245,
+	"./ar-kw": 246,
+	"./ar-kw.js": 246,
+	"./ar-ly": 247,
+	"./ar-ly.js": 247,
+	"./ar-ma": 248,
+	"./ar-ma.js": 248,
+	"./ar-sa": 249,
+	"./ar-sa.js": 249,
+	"./ar-tn": 250,
+	"./ar-tn.js": 250,
+	"./ar.js": 244,
+	"./az": 251,
+	"./az.js": 251,
+	"./be": 252,
+	"./be.js": 252,
+	"./bg": 253,
+	"./bg.js": 253,
+	"./bm": 254,
+	"./bm.js": 254,
+	"./bn": 255,
+	"./bn.js": 255,
+	"./bo": 256,
+	"./bo.js": 256,
+	"./br": 257,
+	"./br.js": 257,
+	"./bs": 258,
+	"./bs.js": 258,
+	"./ca": 259,
+	"./ca.js": 259,
+	"./cs": 260,
+	"./cs.js": 260,
+	"./cv": 261,
+	"./cv.js": 261,
+	"./cy": 262,
+	"./cy.js": 262,
+	"./da": 263,
+	"./da.js": 263,
+	"./de": 264,
+	"./de-at": 265,
+	"./de-at.js": 265,
+	"./de-ch": 266,
+	"./de-ch.js": 266,
+	"./de.js": 264,
+	"./dv": 267,
+	"./dv.js": 267,
+	"./el": 268,
+	"./el.js": 268,
+	"./en-au": 269,
+	"./en-au.js": 269,
+	"./en-ca": 270,
+	"./en-ca.js": 270,
+	"./en-gb": 271,
+	"./en-gb.js": 271,
+	"./en-ie": 272,
+	"./en-ie.js": 272,
+	"./en-nz": 273,
+	"./en-nz.js": 273,
+	"./eo": 274,
+	"./eo.js": 274,
+	"./es": 275,
+	"./es-do": 276,
+	"./es-do.js": 276,
+	"./es-us": 277,
+	"./es-us.js": 277,
+	"./es.js": 275,
+	"./et": 278,
+	"./et.js": 278,
+	"./eu": 279,
+	"./eu.js": 279,
+	"./fa": 280,
+	"./fa.js": 280,
+	"./fi": 281,
+	"./fi.js": 281,
+	"./fo": 282,
+	"./fo.js": 282,
+	"./fr": 283,
+	"./fr-ca": 284,
+	"./fr-ca.js": 284,
+	"./fr-ch": 285,
+	"./fr-ch.js": 285,
+	"./fr.js": 283,
+	"./fy": 286,
+	"./fy.js": 286,
+	"./gd": 287,
+	"./gd.js": 287,
+	"./gl": 288,
+	"./gl.js": 288,
+	"./gom-latn": 289,
+	"./gom-latn.js": 289,
+	"./gu": 290,
+	"./gu.js": 290,
+	"./he": 291,
+	"./he.js": 291,
+	"./hi": 292,
+	"./hi.js": 292,
+	"./hr": 293,
+	"./hr.js": 293,
+	"./hu": 294,
+	"./hu.js": 294,
+	"./hy-am": 295,
+	"./hy-am.js": 295,
+	"./id": 296,
+	"./id.js": 296,
+	"./is": 297,
+	"./is.js": 297,
+	"./it": 298,
+	"./it.js": 298,
+	"./ja": 299,
+	"./ja.js": 299,
+	"./jv": 300,
+	"./jv.js": 300,
+	"./ka": 301,
+	"./ka.js": 301,
+	"./kk": 302,
+	"./kk.js": 302,
+	"./km": 303,
+	"./km.js": 303,
+	"./kn": 304,
+	"./kn.js": 304,
+	"./ko": 305,
+	"./ko.js": 305,
+	"./ky": 306,
+	"./ky.js": 306,
+	"./lb": 307,
+	"./lb.js": 307,
+	"./lo": 308,
+	"./lo.js": 308,
+	"./lt": 309,
+	"./lt.js": 309,
+	"./lv": 310,
+	"./lv.js": 310,
+	"./me": 311,
+	"./me.js": 311,
+	"./mi": 312,
+	"./mi.js": 312,
+	"./mk": 313,
+	"./mk.js": 313,
+	"./ml": 314,
+	"./ml.js": 314,
+	"./mr": 315,
+	"./mr.js": 315,
+	"./ms": 316,
+	"./ms-my": 317,
+	"./ms-my.js": 317,
+	"./ms.js": 316,
+	"./my": 318,
+	"./my.js": 318,
+	"./nb": 319,
+	"./nb.js": 319,
+	"./ne": 320,
+	"./ne.js": 320,
+	"./nl": 321,
+	"./nl-be": 322,
+	"./nl-be.js": 322,
+	"./nl.js": 321,
+	"./nn": 323,
+	"./nn.js": 323,
+	"./pa-in": 324,
+	"./pa-in.js": 324,
+	"./pl": 325,
+	"./pl.js": 325,
+	"./pt": 326,
+	"./pt-br": 327,
+	"./pt-br.js": 327,
+	"./pt.js": 326,
+	"./ro": 328,
+	"./ro.js": 328,
+	"./ru": 329,
+	"./ru.js": 329,
+	"./sd": 330,
+	"./sd.js": 330,
+	"./se": 331,
+	"./se.js": 331,
+	"./si": 332,
+	"./si.js": 332,
+	"./sk": 333,
+	"./sk.js": 333,
+	"./sl": 334,
+	"./sl.js": 334,
+	"./sq": 335,
+	"./sq.js": 335,
+	"./sr": 336,
+	"./sr-cyrl": 337,
+	"./sr-cyrl.js": 337,
+	"./sr.js": 336,
+	"./ss": 338,
+	"./ss.js": 338,
+	"./sv": 339,
+	"./sv.js": 339,
+	"./sw": 340,
+	"./sw.js": 340,
+	"./ta": 341,
+	"./ta.js": 341,
+	"./te": 342,
+	"./te.js": 342,
+	"./tet": 343,
+	"./tet.js": 343,
+	"./th": 344,
+	"./th.js": 344,
+	"./tl-ph": 345,
+	"./tl-ph.js": 345,
+	"./tlh": 346,
+	"./tlh.js": 346,
+	"./tr": 347,
+	"./tr.js": 347,
+	"./tzl": 348,
+	"./tzl.js": 348,
+	"./tzm": 349,
+	"./tzm-latn": 350,
+	"./tzm-latn.js": 350,
+	"./tzm.js": 349,
+	"./uk": 351,
+	"./uk.js": 351,
+	"./ur": 352,
+	"./ur.js": 352,
+	"./uz": 353,
+	"./uz-latn": 354,
+	"./uz-latn.js": 354,
+	"./uz.js": 353,
+	"./vi": 355,
+	"./vi.js": 355,
+	"./x-pseudo": 356,
+	"./x-pseudo.js": 356,
+	"./yo": 357,
+	"./yo.js": 357,
+	"./zh-cn": 358,
+	"./zh-cn.js": 358,
+	"./zh-hk": 359,
+	"./zh-hk.js": 359,
+	"./zh-tw": 360,
+	"./zh-tw.js": 360
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -9719,18 +9754,18 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 482;
+webpackContext.id = 483;
 
 /***/ }),
 
-/***/ 483:
+/***/ 484:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToolsDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tools_popover__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tools_popover__ = __webpack_require__(387);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9775,7 +9810,7 @@ var ToolsDirective = (function () {
 
 /***/ }),
 
-/***/ 492:
+/***/ 493:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9827,7 +9862,7 @@ var Autosize = (function () {
 
 /***/ }),
 
-/***/ 496:
+/***/ 497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9860,7 +9895,7 @@ var ExerciseSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 497:
+/***/ 498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9893,7 +9928,7 @@ var ProgramSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 498:
+/***/ 499:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10892,7 +10927,7 @@ var AuthenticationProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_diary_friend_diary__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_diary_friend_diary__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_message_message__ = __webpack_require__(129);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11088,5 +11123,5 @@ var FriendProfilePage = (function () {
 
 /***/ })
 
-},[395]);
+},[396]);
 //# sourceMappingURL=main.js.map
