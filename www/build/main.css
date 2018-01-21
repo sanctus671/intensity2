@@ -27107,18 +27107,21 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 .diary-sets ion-icon {
   color: #666;
   position: absolute;
-  top: 7px;
+  top: 0px;
+  height: 40px;
+  vertical-align: middle;
+  line-height: 40px;
   left: 10px;
   font-size: 1.4em;
   opacity: 0.4;
 }
 
 .diary-sets ion-icon[item-end] {
-  font-size: 1.8em;
-  top: 0px;
+  font-size: 1.4em;
   left: initial;
   right: 10px;
-  margin-top: 7px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .diary-sets ion-icon.completed {
