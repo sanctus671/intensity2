@@ -61,7 +61,6 @@ var SettingsPage = (function () {
         this.units = {};
         this.properties = { exportLoading: false };
         this.storage.get("account").then(function (data) {
-            console.log(data);
             _this.account = data;
             _this.units = { units: _this.account.units, distanceunits: _this.account.distanceunits };
         });
@@ -115,7 +114,6 @@ var SettingsPage = (function () {
                 {
                     text: 'Change',
                     handler: function (data) {
-                        console.log(data);
                         _this.account.units = _this.units.units;
                         _this.storage.set("account", _this.account);
                         _this.accountProvider.updateSettings({ units: _this.account.units, applytoall: data.applytoall, applyconvert: data.applyconvert }, _this.account.id).then(function () {
@@ -147,13 +145,11 @@ var SettingsPage = (function () {
                     text: 'Cancel',
                     role: 'cancel',
                     handler: function (data) {
-                        console.log('Cancel clicked');
                     }
                 },
                 {
                     text: 'Change',
                     handler: function (data) {
-                        console.log(data);
                         _this.account.distanceunits = _this.units.distanceunits;
                         _this.storage.set("account", _this.account);
                         _this.accountProvider.updateSettings({ distanceunits: _this.account.distanceunits, applytoall: data.applytoall }, _this.account.id).then(function () {
@@ -189,7 +185,6 @@ var SettingsPage = (function () {
         var _this = this;
         this.properties.exportLoading = true;
         this.diaryProvider.getExport(this.account.id).then(function (data) {
-            console.log(data);
             _this.properties.exportLoading = false;
             window.open("http://api.intensityapp.com/" + data, '_system');
         }).catch(function () {
@@ -248,14 +243,12 @@ var SettingsPage = (function () {
                     text: 'Cancel',
                     role: 'cancel',
                     handler: function (data) {
-                        console.log('Cancel clicked');
                     }
                 },
                 {
                     text: 'Change',
                     handler: function (data) {
                         if (data.currentPassword && data.password && (data.password === data.confirmPassword)) {
-                            console.log(data);
                             _this.authProvider.changePassword(data.currentPassword, data.password, _this.account.id).then(function () {
                                 var alert = _this.alertCtrl.create({
                                     title: 'Success',
@@ -407,7 +400,6 @@ var MessagePage = (function () {
         }
         this.profile = this.params.data.profile;
         this.profile.dpFull = __WEBPACK_IMPORTED_MODULE_8__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + this.profile.dp;
-        console.log(this.profile);
         this.account = {};
         this.storage.get("account").then(function (data) {
             _this.account = data;
@@ -420,7 +412,6 @@ var MessagePage = (function () {
         }, 5000);
     }
     MessagePage.prototype.ionViewWillLeave = function () {
-        console.log("deleting interval");
         clearInterval(this.pingInterval);
     };
     MessagePage.prototype.getMessages = function () {
@@ -430,7 +421,6 @@ var MessagePage = (function () {
             _this.properties.loading = false;
             _this.messages = data;
             _this.calculateMessages();
-            console.log(_this.messages);
             setTimeout(function () { _this.content.scrollToBottom(); }, 200);
         }).catch(function () {
             _this.properties.loading = false;
@@ -483,13 +473,11 @@ var MessagePage = (function () {
             return;
         }
         var message = { id: null, message: this.message, created: new Date(), userid: this.account.id, friendid: this.profile.userid };
-        console.log(message);
         this.messages.push(message);
         this.message = "";
         this.calculateMessages();
         setTimeout(function () { _this.content.scrollToBottom(); }, 200);
         this.messageProvider.createMessages(message.message, this.profile.userid).then(function (data) {
-            console.log(data);
             message.id = data["id"];
         }).catch(function () { });
     };
@@ -672,12 +660,10 @@ var CreateProgramModal = (function () {
     }
     CreateProgramModal.prototype.calculateTabs = function () {
         var tabsCount = Math.ceil(parseInt(this.program.duration) / 7);
-        console.log(tabsCount);
         this.tabs = [];
         for (var x = 1; x <= tabsCount; x++) {
             this.tabs.push("Week " + x);
         }
-        console.log(this.tabs);
     };
     CreateProgramModal.prototype.isInTab = function (workout) {
         var index = (this.tabs.indexOf(this.properties.activeTab)) + 1;
@@ -733,7 +719,6 @@ var CreateProgramModal = (function () {
                     handler: function (data) {
                         _this.addWeek();
                         var newWeekStartDay = (_this.tabs.length * 7) - 7;
-                        console.log(newWeekStartDay);
                         var copyWeekStartDay = (parseInt(index) * 7) + 1;
                         var copyWeekEndDay = copyWeekStartDay + 6;
                         for (var _i = 0, _a = _this.program.workouts; _i < _a.length; _i++) {
@@ -770,7 +755,6 @@ var CreateProgramModal = (function () {
                                         if (moveToWeek > (_this.tabs.length)) {
                                             while (moveToWeek > (_this.tabs.length)) {
                                                 _this.addWeek();
-                                                console.log(_this.tabs);
                                             }
                                         }
                                         var daysChange = (moveToWeek - week) * 7;
@@ -805,7 +789,6 @@ var CreateProgramModal = (function () {
                 {
                     text: 'Remove',
                     handler: function (data) {
-                        console.log(week);
                         var alert = _this.alertCtrl.create({
                             title: "Remove " + week,
                             message: "Are you sure you want to remove this week? This will delete all workouts that belong to this week.",
@@ -837,7 +820,6 @@ var CreateProgramModal = (function () {
                                             _this.program.workouts = [{ day: 1, name: "Day 1", exercises: [] }];
                                         }
                                         _this.calculateTabs();
-                                        console.log(_this.program);
                                     }
                                 }
                             ]
@@ -909,7 +891,6 @@ var CreateProgramModal = (function () {
     };
     CreateProgramModal.prototype.moveWorkout = function (workout) {
         var _this = this;
-        console.log("move");
         //TODO: kind of words but there is a bug
         var alertObj = {
             title: "Move " + workout.name,
@@ -923,7 +904,6 @@ var CreateProgramModal = (function () {
                     text: 'Move',
                     handler: function (data) {
                         if (data.day && data.name) {
-                            console.log(data);
                             workout.day = data.day;
                             workout.name = data.name;
                             if (workout.day > _this.program.duration) {
@@ -941,7 +921,6 @@ var CreateProgramModal = (function () {
         alert.present();
     };
     CreateProgramModal.prototype.editWorkout = function (workout) {
-        console.log("edit");
         var alertObj = {
             title: "Edit Workout Name",
             buttons: [
@@ -965,7 +944,6 @@ var CreateProgramModal = (function () {
     };
     CreateProgramModal.prototype.deleteWorkout = function (index, workout) {
         var _this = this;
-        console.log("remove workout");
         var alert = this.alertCtrl.create({
             title: "Remove " + workout.name,
             message: "Are you sure you want to remove this workout? This will delete all exercises that belong to this workout.",
@@ -997,7 +975,6 @@ var CreateProgramModal = (function () {
         var _this = this;
         ev.stopPropagation();
         ev.preventDefault();
-        console.log("copy");
         var alertObj = {
             title: "Copy " + exercise.name,
             message: "Select the workouts you want to copy to.",
@@ -1038,12 +1015,10 @@ var CreateProgramModal = (function () {
             }
         });
         modal.present();
-        console.log("edit");
     };
     CreateProgramModal.prototype.deleteExercise = function (ev, index, workout) {
         ev.stopPropagation();
         ev.preventDefault();
-        console.log("delete");
         workout.exercises.splice(index, 1);
     };
     CreateProgramModal.prototype.reorderItems = function (indexes, workout) {
@@ -1062,7 +1037,6 @@ var CreateProgramModal = (function () {
                 workout.exercise[index].ordering = index;
             }
         }
-        console.log(this.program);
         this.viewCtrl.dismiss(this.program);
     };
     CreateProgramModal.prototype.dismiss = function () {
@@ -1229,8 +1203,6 @@ var TimerService = (function () {
                     if (_this.countdownTimerProperties.started && _this.countdownTimerProperties.force) {
                         if (_this.countdownTimerProperties.repeat) {
                             for (var x = 0; x < 10; x++) {
-                                console.log(new Date(new Date().getTime() + (_this.countdownTimer + (_this.countdownTimerProperties.time * x))));
-                                console.log(x + 2);
                                 _this.localNotifications.schedule({
                                     id: 2 + x,
                                     title: 'Timer has completed (will repeat)',
@@ -1240,8 +1212,6 @@ var TimerService = (function () {
                             }
                         }
                         else {
-                            console.log(new Date(new Date().getTime() + _this.countdownTimer));
-                            console.log("scheduling one");
                             _this.localNotifications.schedule({
                                 id: 2,
                                 title: 'Timer has completed',
@@ -1250,7 +1220,6 @@ var TimerService = (function () {
                             });
                         }
                     }
-                    console.log(_this.pauseTimestamp);
                 }
             });
             _this.platform.resume.subscribe(function () {
@@ -1260,11 +1229,9 @@ var TimerService = (function () {
                 }
                 if (_this.countdownTimerProperties.started) {
                     var newTime = _this.countdownTimer - (Math.floor(Date.now()) - _this.pauseTimestamp);
-                    console.log(newTime);
                     if (newTime < 0 && _this.countdownTimerProperties.repeat) {
                         _this.stopTimer();
                         var remainder = Math.abs(newTime) % _this.countdownTimerProperties.time;
-                        console.log(remainder);
                         _this.setTimer(remainder);
                         _this.startTimer();
                     }
@@ -1345,7 +1312,6 @@ var TimerService = (function () {
         this.events.publish("timer:stopped");
     };
     TimerService.prototype.resetTimer = function () {
-        console.log(this.countdownTimerProperties);
         this.countdownTimer = this.countdownTimerProperties.time;
     };
     TimerService.prototype.setTimer = function (seconds) {
@@ -1353,7 +1319,6 @@ var TimerService = (function () {
     };
     TimerService.prototype.updateTimerOptions = function (options) {
         Object.assign(this.countdownTimerProperties, options);
-        console.log(this.countdownTimerProperties);
         this.resetTimer();
     };
     TimerService = __decorate([
@@ -1405,21 +1370,17 @@ var AccountProvider = (function () {
         this.fb = fb;
         this.storage = storage;
         this.events = events;
-        console.log('Hello AuthenticationProvider Provider');
     }
     AccountProvider.prototype.getAccount = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            console.log("dads");
             _this.storage.get("session").then(function (session) {
                 if (session) {
                     var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getuser", sessionid: session };
                     _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        console.log(res);
                         if (res["success"] === true) {
                             var user = res["data"];
                             user["dp"] = __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + user["dp"];
-                            console.log(user);
                             _this.storage.set("account", user);
                             _this.storage.set("userid", parseInt(user.id));
                             resolve(user);
@@ -1431,7 +1392,6 @@ var AccountProvider = (function () {
                         _this.events.publish("app:heartbeat");
                         _this.storage.get("account").then(function (account) {
                             if (account) {
-                                console.log(account);
                                 resolve(account);
                                 return;
                             }
@@ -1440,7 +1400,6 @@ var AccountProvider = (function () {
                     });
                 }
                 else {
-                    console.log("here");
                     reject();
                 }
             });
@@ -1449,12 +1408,10 @@ var AccountProvider = (function () {
     AccountProvider.prototype.getProfile = function (userId) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            console.log("dads");
             _this.storage.get("session").then(function (session) {
                 if (session) {
                     var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getusers", id: userId };
                     _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        console.log(res);
                         if (res["success"] === true) {
                             var user = res["data"];
                             user["dp"] = __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + user["dp"];
@@ -1476,7 +1433,6 @@ var AccountProvider = (function () {
                     });
                 }
                 else {
-                    console.log("here");
                     reject();
                 }
             });
@@ -1485,7 +1441,6 @@ var AccountProvider = (function () {
     AccountProvider.prototype.updateProfile = function (profile) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            console.log("dads");
             _this.storage.get("session").then(function (session) {
                 if (session) {
                     _this.storage.set("profile" + profile.userid, profile);
@@ -1511,7 +1466,6 @@ var AccountProvider = (function () {
                     });
                 }
                 else {
-                    console.log("here");
                     reject();
                 }
             });
@@ -1520,7 +1474,6 @@ var AccountProvider = (function () {
     AccountProvider.prototype.getUserActivity = function (userId, page) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            console.log("dads");
             _this.storage.get("session").then(function (session) {
                 if (session) {
                     var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getactivity", userid: userId, page: page, limit: 10 };
@@ -1537,7 +1490,6 @@ var AccountProvider = (function () {
                     });
                 }
                 else {
-                    console.log("here");
                     reject();
                 }
             });
@@ -1859,12 +1811,10 @@ var DiaryProvider = (function () {
     };
     DiaryProvider.prototype.addSet = function (date, exerciseId, exercise, set) {
         var _this = this;
-        console.log("here");
         return new Promise(function (resolve, reject) {
             _this.storage.get("session").then(function (session) {
                 var requestData = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addresults", assigneddate: date, exerciseid: exerciseId, reps: set.reps, weight: set.weight, sets: set.sets, rpe: set.rpe, percentage: set.percentage };
                 _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, requestData).subscribe(function (res) {
-                    console.log(res);
                     if (res["success"] === true) {
                         _this.storage.get("workouts").then(function (data) {
                             var workouts = data ? data : {};
@@ -1928,7 +1878,6 @@ var DiaryProvider = (function () {
                             else {
                                 workouts[date] = workout;
                             }
-                            console.log(workouts);
                             _this.storage.set("workouts", workouts);
                         });
                         reject(e);
@@ -1979,7 +1928,6 @@ var DiaryProvider = (function () {
                 var requestData = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "changeresults" };
                 Object.assign(requestData, set);
                 _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, requestData).subscribe(function (res) {
-                    console.log(res);
                     if (res["success"] === true) {
                         _this.storage.get("workouts").then(function (data) {
                             var workouts = data;
@@ -2075,7 +2023,6 @@ var DiaryProvider = (function () {
                 }
                 var requestData = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "removeresults", id: set.id };
                 _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, requestData).subscribe(function (res) {
-                    console.log(res);
                     if (res["success"] === true) {
                         _this.storage.get("workouts").then(function (data) {
                             var workouts = data;
@@ -2134,7 +2081,6 @@ var DiaryProvider = (function () {
             _this.storage.get("session").then(function (session) {
                 var requestData = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "removeresults", exerciseid: exerciseId, assigneddate: date };
                 _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, requestData).subscribe(function (res) {
-                    console.log(res);
                     if (res["success"] === true) {
                         _this.storage.get("workouts").then(function (data) {
                             var workouts = data;
@@ -2183,7 +2129,6 @@ var DiaryProvider = (function () {
             _this.storage.get("session").then(function (session) {
                 var requestData = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "removeresults", addid: addId };
                 _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, requestData).subscribe(function (res) {
-                    console.log(res);
                     if (res["success"] === true) {
                         resolve(res["data"]);
                     }
@@ -2415,13 +2360,11 @@ var ExerciseProvider = (function () {
         this.http = http;
         this.storage = storage;
         this.events = events;
-        console.log('Hello ExerciseProvider Provider');
     }
     ExerciseProvider.prototype.getExercises = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.storage.get("exercises").then(function (exercises) {
-                console.log(exercises);
                 if (exercises) {
                     resolve(exercises);
                 }
@@ -2461,7 +2404,6 @@ var ExerciseProvider = (function () {
                 }, function (e) {
                     _this.events.publish("app:heartbeat");
                     _this.storage.get("recentexercises").then(function (exercises) {
-                        console.log(exercises);
                         if (exercises) {
                             resolve(exercises);
                             return;
@@ -2686,7 +2628,6 @@ var DiaryExercisePage = (function () {
         this.events.unsubscribe('settings:updated', this._updateSettingsHandler);
     };
     DiaryExercisePage.prototype.tabChanged = function (ev) {
-        console.log(this.properties.activeTab);
         if (this.properties.activeTab === "stats") {
             this.getStats();
         }
@@ -2698,14 +2639,12 @@ var DiaryExercisePage = (function () {
         set.completed = !set.completed;
         if (set.completed) {
             this.exercise.goals.progress = this.exercise.goals.progress + this.getProgressAmount(set);
-            console.log(this.exercise.goals);
         }
         else {
             this.exercise.goals.progress = this.exercise.goals.progress - this.getProgressAmount(set);
         }
         this.diaryProvider.editSet(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), this.exercise.exerciseid, set).then(function (data) {
             _this.exercise.goals = data["goals"];
-            console.log(_this.exercise.goals);
             _this.exercise.records = data["records"];
             _this.exercise.cailbrating = data["calibrating"];
             _this.exercise.history = data["history"];
@@ -2732,9 +2671,7 @@ var DiaryExercisePage = (function () {
             this.exercise.goals.progress = this.exercise.goals.progress + this.getProgressAmount(set);
         }
         this.events.publish("workout:added", { date: this.selectedDate });
-        console.log(this.exercise);
         this.diaryProvider.addSet(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), this.exercise.exerciseid, this.exercise, set).then(function (data) {
-            console.log(data);
             set.id = data["id"];
             _this.exercise.goals = data["goals"];
             _this.exercise.records = data["records"];
@@ -2789,7 +2726,6 @@ var DiaryExercisePage = (function () {
     };
     DiaryExercisePage.prototype.openSet = function (set, index) {
         var _this = this;
-        console.log(set);
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__["a" /* EditSetModal */], { set: set, exercise: this.exercise });
         modal.onDidDismiss(function (updatedSet) {
             if (updatedSet && updatedSet.deleted) {
@@ -2830,14 +2766,12 @@ var DiaryExercisePage = (function () {
                     _this.exercise.cailbrating = data["calibrating"];
                     _this.exercise.history = data["history"];
                 });
-                console.log(set);
             }
         });
         modal.present();
     };
     DiaryExercisePage.prototype.openGoalDetails = function () {
         var _this = this;
-        console.log(this.account);
         if (this.exercise.calibrating) {
             var alert_1 = this.alertCtrl.create({
                 title: "Calibrating",
@@ -2912,7 +2846,6 @@ var DiaryExercisePage = (function () {
     };
     DiaryExercisePage.prototype.loadMoreHistory = function (infiniteScroll) {
         var _this = this;
-        console.log("here");
         if (!this.exercise.historyPage) {
             this.exercise.historyPage = 1;
         }
@@ -2922,14 +2855,12 @@ var DiaryExercisePage = (function () {
         }
         this.exercise.historyPage = this.exercise.historyPage + 1;
         this.diaryProvider.getHistory(this.exercise.historyPage, __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), this.exercise.exerciseid).then(function (data) {
-            console.log(data);
             for (var _i = 0, _a = data["history"]; _i < _a.length; _i++) {
                 var item = _a[_i];
                 _this.exercise.history.push(item);
             }
             _this.exercise.canGetMoreHistory = data["canloadmore"];
             infiniteScroll.complete();
-            console.log(_this.exercise);
         })
             .catch(function (e) {
             infiniteScroll.complete();
@@ -2937,8 +2868,6 @@ var DiaryExercisePage = (function () {
     };
     DiaryExercisePage.prototype.copyToDate = function (date, workout) {
         var _this = this;
-        console.log(date);
-        console.log(workout);
         if (this.selectedWorkout) {
             //for when alert box is opened instead of clicking on icon
             Object.assign(workout, this.selectedWorkout);
@@ -2975,7 +2904,6 @@ var DiaryExercisePage = (function () {
             });
             alert.present();
         });
-        console.log(copy);
     };
     DiaryExercisePage.prototype.openWorkout = function (workout, index) {
         var _this = this;
@@ -3011,7 +2939,6 @@ var DiaryExercisePage = (function () {
         }
         this.diaryProvider.getStats({ accumulation: "Weekly", timeframe: this.stats.timeframe, metric: this.stats.metric, name: this.exercise.name }).then(function (data) {
             _this.setStatsUnits();
-            console.log(_this.stats.units);
             _this.stats.chart.removeSerie(0);
             _this.stats.chart.addSerie({
                 data: _this.formatStats(data),
@@ -3093,7 +3020,6 @@ var DiaryExercisePage = (function () {
                 {
                     text: 'OK',
                     handler: function (data) {
-                        console.log(data);
                         _this.stats.metric = data;
                         _this.getStats();
                     }
@@ -3261,7 +3187,6 @@ var DiaryRecordsModal = (function () {
         this.calculateRecords();
     }
     DiaryRecordsModal.prototype.calculateRecords = function () {
-        console.log(this.exercise);
         this.localRecords = {
             maxReps: 0,
             maxWeight: 0,
@@ -3310,7 +3235,6 @@ var DiaryRecordsModal = (function () {
             this.properties.loading = true;
             this.properties.loaded = true;
             this.diaryProvider.getRecords(this.exercise.exerciseid).then(function (data) {
-                console.log(data);
                 _this.fullRecords.amrap = data["amrap"];
                 _this.fullRecords.overall = data["overall"];
                 _this.fullRecords.backoffs = data["backoffs"];
@@ -3585,7 +3509,6 @@ var GoalSettingsModal = (function () {
         this.events = events;
         this.account = { goals: {} };
         this.storage.get("account").then(function (data) {
-            console.log(data);
             _this.account = data;
             if (_this.account.goals.custom_date_timeframe) {
                 _this.account.goals.day = __WEBPACK_IMPORTED_MODULE_4_moment__(_this.account.goals.custom_date_timeframe).format("dddd").toLowerCase();
@@ -3710,7 +3633,6 @@ var AddExerciseModal = (function () {
         this.exerciseProvider.getExercises().then(function (data) {
             _this.exercises = data;
             _this.loading.all = false;
-            console.log(_this.exercises);
         });
     };
     AddExerciseModal.prototype.checkOwnership = function (userid) {
@@ -3966,7 +3888,6 @@ var FriendsPage = (function () {
         var _this = this;
         this.storage.get("profile" + this.account.id).then(function (data) {
             if (data) {
-                console.log(data);
                 var friends = data["acceptedfriends"];
                 _this.friends = _this.sortByAlpha(friends);
                 _this.friendActivity = data["friendactivity"];
@@ -4001,7 +3922,6 @@ var FriendsPage = (function () {
             }
         }
         this.alphabet.sort();
-        console.log(alphaArray);
         return alphaArray;
     };
     FriendsPage.prototype.getDp = function (dp) {
@@ -4038,8 +3958,6 @@ var FriendsPage = (function () {
     };
     FriendsPage.prototype.copyToDate = function (date, workout) {
         var _this = this;
-        console.log(date);
-        console.log(workout);
         var copy = {
             exerciseid: workout.exerciseid,
             userid: workout.userid,
@@ -4060,7 +3978,6 @@ var FriendsPage = (function () {
             });
             alert.present();
         });
-        console.log(copy);
     };
     FriendsPage.prototype.viewDetails = function (activity) {
         var alert = this.alertCtrl.create({
@@ -4178,7 +4095,6 @@ var FriendDiaryPage = (function () {
                 _this.workoutSlides.unshift(newDate);
                 _this.workouts.unshift({ loading: true, retreived: false, workouts: [] });
                 var newDate2 = _this.calculateDate(_this.selectedDate, i);
-                console.log(newDate2);
                 _this.workoutSlides.push(newDate2);
                 _this.workouts.push({ loading: true, retreived: false, workouts: [] });
             }
@@ -4193,7 +4109,6 @@ var FriendDiaryPage = (function () {
             workout.loading = true;
             var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
             this.friendsProvider.getWorkout(formattedDate, this.friend.friendid).then(function (data) {
-                console.log(data);
                 workout.workouts = data;
                 workout.loading = false;
                 workout.retreived = true;
@@ -4232,12 +4147,10 @@ var FriendDiaryPage = (function () {
     };
     FriendDiaryPage.prototype.changeDate = function (date) {
         var _this = this;
-        console.log(date);
         this.selectedDate = date;
         this.setupSlides().then(function () {
             _this.slides.slideTo(7, 0, false);
             _this.getWorkout(_this.workouts[7]);
-            console.log(_this.workouts[7]);
         });
     };
     FriendDiaryPage.prototype.workoutChanged = function () {
@@ -4261,7 +4174,6 @@ var FriendDiaryPage = (function () {
     };
     FriendDiaryPage.prototype.selectExercise = function (exercise) {
         var _this = this;
-        console.log(exercise);
         var setString = "";
         for (var _i = 0, _a = exercise.sets; _i < _a.length; _i++) {
             var set = _a[_i];
@@ -4296,7 +4208,6 @@ var FriendDiaryPage = (function () {
                 {
                     text: 'Share',
                     handler: function (data) {
-                        console.log('remove clicked');
                         var name = _this.friend.display ? _this.friend.display : _this.friend.username;
                         var setText = name + " tracked " + exercise.name + " on Intensity. This is their sets: ";
                         for (var _i = 0, _a = exercise.sets; _i < _a.length; _i++) {
@@ -4317,7 +4228,6 @@ var FriendDiaryPage = (function () {
                 {
                     text: 'Copy',
                     handler: function (data) {
-                        console.log('remove clicked');
                         _this.selectedExercise = exercise;
                         _this.datepicker.open();
                     },
@@ -4495,7 +4405,6 @@ var AddFriendsModal = (function () {
     AddFriendsModal.prototype.searchFriends = function (search) {
         var _this = this;
         this.friendsProvider.searchUsers(search).then(function (data) {
-            console.log(data);
             _this.friends = data;
             for (var _i = 0, _a = _this.friends; _i < _a.length; _i++) {
                 var friend = _a[_i];
@@ -4509,7 +4418,6 @@ var AddFriendsModal = (function () {
                         break;
                     }
                 }
-                console.log(friend);
             }
         });
     };
@@ -4521,7 +4429,6 @@ var AddFriendsModal = (function () {
     };
     AddFriendsModal.prototype.addFriend = function (ev, friend) {
         var _this = this;
-        console.log(ev);
         ev.stopPropagation();
         friend.adding = true;
         this.friendsProvider.addFriend(friend.userid).then(function () {
@@ -4615,7 +4522,6 @@ var MessagesPage = (function () {
         this.properties.loading = showLoading && true;
         this.messageProvider.getConversations().then(function (data) {
             _this.properties.loading = false;
-            console.log(data);
             _this.messages = data;
         }).catch(function () { _this.properties.loading = false; });
     };
@@ -4629,7 +4535,6 @@ var MessagesPage = (function () {
         var _this = this;
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_8__modals_search_friends_search_friends__["a" /* SearchFriendsModal */]);
         modal.onDidDismiss(function (friend) {
-            console.log(friend);
             if (friend) {
                 friend.userid = friend.friendid;
                 _this.goToMessage(friend);
@@ -4698,7 +4603,6 @@ var SearchFriendsModal = (function () {
         var _this = this;
         this.storage.get("profile" + this.account.id).then(function (data) {
             if (data) {
-                console.log(data);
                 _this.friends = data["acceptedfriends"];
             }
         });
@@ -4808,7 +4712,6 @@ var LeaderboardPage = (function () {
     };
     LeaderboardPage.prototype.getLeaderboard = function () {
         var _this = this;
-        console.log(this.properties);
         this.properties.exerciseid = this.exercise.exerciseid;
         var key = this.properties.exerciseid + "-" + this.properties.reps;
         if (key in this.leaderboards) {
@@ -4839,12 +4742,10 @@ var LeaderboardPage = (function () {
             return;
         }
         this.leaderboardProperties[key].page = this.leaderboardProperties[key].page + 1;
-        console.log(this.properties.page);
         var options = {};
         Object.assign(options, this.properties);
         Object.assign(options, this.leaderboardProperties[key]);
         this.leaderboardProvider.getLeaderboard(options).then(function (data) {
-            console.log(data);
             for (var _i = 0, _a = data["data"]; _i < _a.length; _i++) {
                 var item = _a[_i];
                 _this.leaderboards[key].push(item);
@@ -4898,7 +4799,6 @@ var LeaderboardPage = (function () {
         modal.onDidDismiss(function (exercise) {
             if (exercise) {
                 _this.exercise = exercise;
-                console.log(exercise);
                 _this.getLeaderboard();
             }
         });
@@ -5106,7 +5006,6 @@ var ProfilePage = (function () {
             _this.account = data;
             _this.getProfile();
             _this.accountProvider.getUserActivity(_this.account.id, _this.properties.activityPage).then(function (data) {
-                console.log(data);
                 _this.activity = data;
             });
         });
@@ -5123,7 +5022,6 @@ var ProfilePage = (function () {
         });
         this.accountProvider.getProfile(this.account.id).then(function (data) {
             _this.profile = data;
-            console.log(data);
         });
     };
     ProfilePage.prototype.getMoreActivity = function (infiniteScroll) {
@@ -5163,8 +5061,6 @@ var ProfilePage = (function () {
     };
     ProfilePage.prototype.copyToDate = function (date, workout) {
         var _this = this;
-        console.log(date);
-        console.log(workout);
         var copy = {
             exerciseid: workout.exerciseid,
             userid: this.account.id,
@@ -5185,7 +5081,6 @@ var ProfilePage = (function () {
             });
             alert.present();
         });
-        console.log(copy);
     };
     ProfilePage.prototype.viewDetails = function (activity) {
         var alert = this.alertCtrl.create({
@@ -5258,7 +5153,9 @@ var ProfilePage = (function () {
                 });
                 alert.present();
             });
-        }, function (err) { return console.log(err); });
+        }, function (err) {
+            //console.log(err)
+        });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */]),
@@ -5457,7 +5354,6 @@ var ProgramsPage = (function () {
                     });
                     alert.present();
                 });
-                console.log(program);
             }
         });
         modal.present();
@@ -5591,7 +5487,6 @@ var ProgramPage = (function () {
             _this.account = data;
         });
         this.programProvider.getProgram(this.program.id).then(function (data) {
-            console.log(data);
             _this.properties.loading = false;
             _this.program = data;
             _this.program.workouts.sort(function (a, b) {
@@ -5608,14 +5503,12 @@ var ProgramPage = (function () {
     }
     ProgramPage.prototype.calculateTabs = function () {
         var tabsCount = Math.ceil(parseInt(this.program.duration) / 7);
-        console.log(tabsCount);
         if (tabsCount > 1) {
             this.tabs = [];
             for (var x = 1; x <= tabsCount; x++) {
                 this.tabs.push("Week " + x);
             }
         }
-        console.log(this.tabs);
     };
     ProgramPage.prototype.isInTab = function (workout) {
         var index = (this.tabs.indexOf(this.properties.activeTab)) + 1;
@@ -5632,7 +5525,6 @@ var ProgramPage = (function () {
         var notes = exercise.notes ? "Notes: " + exercise.notes : "";
         message = reps + sets + weight + percentage + rpe + notes;
         message = message.replace(/^\s*<br\s*\/?>|<br\s*\/?>\s*$/g, '');
-        console.log(exercise);
         var alert = this.alertCtrl.create({
             title: exercise.name,
             subTitle: workout.name,
@@ -5667,7 +5559,6 @@ var ProgramPage = (function () {
                 var details_1 = data.options;
                 _this.diaryProvider.updateMaxes(maxes).then(function () {
                     _this.programProvider.addProgram(details_1).then(function () {
-                        console.log("gere");
                         var alert = _this.alertCtrl.create({
                             title: "Program added",
                             subTitle: _this.program.name + " has been added to your diary",
@@ -5679,7 +5570,6 @@ var ProgramPage = (function () {
                                 {
                                     text: 'Go To Diary',
                                     handler: function (data) {
-                                        console.log('clicked');
                                     },
                                 }
                             ]
@@ -5687,7 +5577,6 @@ var ProgramPage = (function () {
                         alert.present();
                     });
                 });
-                console.log(data);
             }
         });
         modal.present();
@@ -5716,13 +5605,11 @@ var ProgramPage = (function () {
                     ]
                 });
                 alert_1.present();
-                console.log("here");
                 _this.storage.set("previousProgram", program);
                 _this.programProvider.createProgram(program).then(function () {
                     _this.events.publish('programs:modified');
                 });
                 _this.navCtrl.pop();
-                console.log(program);
             }
         });
         modal.present();
@@ -5851,8 +5738,6 @@ var ProgramWorkoutPopover = (function () {
     ProgramWorkoutPopover.prototype.addWorkout = function (date) {
         var _this = this;
         var startDate = __WEBPACK_IMPORTED_MODULE_4_moment__(date).format('YYYY-MM-DD');
-        console.log(startDate);
-        console.log(this.workout.workoutid);
         this.programProvider.addWorkout(this.workout.workoutid, startDate).then(function () {
             var alert = _this.alertCtrl.create({
                 title: "Workout added",
@@ -5865,7 +5750,6 @@ var ProgramWorkoutPopover = (function () {
                     {
                         text: 'Go To Diary',
                         handler: function (data) {
-                            console.log('clicked');
                         },
                     }
                 ]
@@ -5958,20 +5842,16 @@ var AddProgramModal = (function () {
                     _this.maxCount = _this.maxCount + 1;
                 }
             }
-            console.log(_this.maxes);
         });
     };
     AddProgramModal.prototype.calculateMaxes = function () {
         this.maxCount = 0;
-        console.log(this.maxes);
         for (var index in this.maxes) {
             var exercise = this.maxes[index];
-            console.log(exercise);
             if (exercise["max"] && exercise["max"] > 0) {
                 this.maxCount = this.maxCount + 1;
             }
         }
-        console.log(this.maxCount);
     };
     AddProgramModal.prototype.selectDate = function (date) {
         this.startDate = date;
@@ -6072,16 +5952,13 @@ var EditProgramModal = (function () {
         });
         this.program = this.params.data.program;
         this.program.public = parseInt(this.program.public);
-        console.log(this.program);
         this.programProvider.getProgram(this.program.id).then(function (data) {
-            console.log(data);
             _this.properties.loading = false;
             _this.program = data;
             _this.program.public = parseInt(_this.program.public);
             _this.program.workouts.sort(function (a, b) {
                 return a.day - b.day;
             });
-            console.log(_this.program);
             _this.calculateTabs();
         })
             .catch(function () {
@@ -6092,12 +5969,10 @@ var EditProgramModal = (function () {
     }
     EditProgramModal.prototype.calculateTabs = function () {
         var tabsCount = Math.ceil(parseInt(this.program.duration) / 7);
-        console.log(tabsCount);
         this.tabs = [];
         for (var x = 1; x <= tabsCount; x++) {
             this.tabs.push("Week " + x);
         }
-        console.log(this.tabs);
     };
     EditProgramModal.prototype.isInTab = function (workout) {
         var index = (this.tabs.indexOf(this.properties.activeTab)) + 1;
@@ -6119,7 +5994,6 @@ var EditProgramModal = (function () {
                     handler: function (data) {
                         _this.addWeek();
                         var newWeekStartDay = (_this.tabs.length * 7) - 7;
-                        console.log(newWeekStartDay);
                         var copyWeekStartDay = (parseInt(index) * 7) + 1;
                         var copyWeekEndDay = copyWeekStartDay + 6;
                         for (var _i = 0, _a = _this.program.workouts; _i < _a.length; _i++) {
@@ -6156,7 +6030,6 @@ var EditProgramModal = (function () {
                                         if (moveToWeek > (_this.tabs.length)) {
                                             while (moveToWeek > (_this.tabs.length)) {
                                                 _this.addWeek();
-                                                console.log(_this.tabs);
                                             }
                                         }
                                         var daysChange = (moveToWeek - week) * 7;
@@ -6191,7 +6064,6 @@ var EditProgramModal = (function () {
                 {
                     text: 'Remove',
                     handler: function (data) {
-                        console.log(week);
                         var alert = _this.alertCtrl.create({
                             title: "Remove " + week,
                             message: "Are you sure you want to remove this week? This will delete all workouts that belong to this week.",
@@ -6223,7 +6095,6 @@ var EditProgramModal = (function () {
                                             _this.program.workouts = [{ day: 1, name: "Day 1", exercises: [] }];
                                         }
                                         _this.calculateTabs();
-                                        console.log(_this.program);
                                     }
                                 }
                             ]
@@ -6295,8 +6166,6 @@ var EditProgramModal = (function () {
     };
     EditProgramModal.prototype.moveWorkout = function (workout) {
         var _this = this;
-        console.log("move");
-        //TODO: kind of words but there is a bug
         var alertObj = {
             title: "Move " + workout.name,
             message: "Enter what day you want to move this workout to.",
@@ -6309,7 +6178,6 @@ var EditProgramModal = (function () {
                     text: 'Move',
                     handler: function (data) {
                         if (data.day && data.name) {
-                            console.log(data);
                             workout.day = data.day;
                             workout.name = data.name;
                             if (workout.day > _this.program.duration) {
@@ -6327,7 +6195,6 @@ var EditProgramModal = (function () {
         alert.present();
     };
     EditProgramModal.prototype.editWorkout = function (workout) {
-        console.log("edit");
         var alertObj = {
             title: "Edit Workout Name",
             buttons: [
@@ -6351,7 +6218,6 @@ var EditProgramModal = (function () {
     };
     EditProgramModal.prototype.deleteWorkout = function (index, workout) {
         var _this = this;
-        console.log("remove workout");
         var alert = this.alertCtrl.create({
             title: "Remove " + workout.name,
             message: "Are you sure you want to remove this workout? This will delete all exercises that belong to this workout.",
@@ -6383,7 +6249,6 @@ var EditProgramModal = (function () {
         var _this = this;
         ev.stopPropagation();
         ev.preventDefault();
-        console.log("copy");
         var alertObj = {
             title: "Copy " + exercise.name,
             message: "Select the workouts you want to copy to.",
@@ -6424,12 +6289,10 @@ var EditProgramModal = (function () {
             }
         });
         modal.present();
-        console.log("edit");
     };
     EditProgramModal.prototype.deleteExercise = function (ev, index, workout) {
         ev.stopPropagation();
         ev.preventDefault();
-        console.log("delete");
         workout.exercises.splice(index, 1);
     };
     EditProgramModal.prototype.reorderItems = function (indexes, workout) {
@@ -6604,7 +6467,6 @@ var RecordsModal = (function () {
         var _this = this;
         this.properties.loading = true;
         this.diaryProvider.getRecords(this.exercise.exerciseid).then(function (data) {
-            console.log(data);
             _this.fullRecords.amrap = data["amrap"];
             _this.fullRecords.overall = data["overall"];
             _this.fullRecords.backoffs = data["backoffs"];
@@ -6735,9 +6597,7 @@ var StatsPage = (function () {
     StatsPage.prototype.getGeneralStats = function () {
         var _this = this;
         this.diaryProvider.getStats({ type: "generaluserdata" }).then(function (data) {
-            console.log(data);
             _this.stats.general = data;
-            console.log(_this.stats);
             if (_this.stats.general.heatmap.length < 1) {
                 return;
             }
@@ -6865,7 +6725,6 @@ var StatsPage = (function () {
         }
         this.diaryProvider.getStats(requestData).then(function (data) {
             _this.setStatsUnits();
-            console.log(_this.stats.units);
             _this.stats.chart.removeSerie(0);
             _this.stats.chart.addSerie({
                 data: _this.formatStats(data),
@@ -6947,7 +6806,6 @@ var StatsPage = (function () {
                 {
                     text: 'OK',
                     handler: function (data) {
-                        console.log(data);
                         _this.stats.metric = data;
                         _this.getStats();
                     }
@@ -6963,7 +6821,6 @@ var StatsPage = (function () {
         alert.present();
     };
     StatsPage.prototype.formatDate = function (date) {
-        console.log(date);
         if (!date) {
             date = new Date();
         }
@@ -7144,7 +7001,6 @@ var LoginModal = (function () {
             _this.viewCtrl.dismiss(true);
         })
             .catch(function (e) {
-            alert(JSON.stringify(e));
             _this.errors.facebookLogin = e.errorMessage ? e.errorMessage : e;
         });
     };
@@ -7155,7 +7011,6 @@ var LoginModal = (function () {
         this.auth.login(this.user.email, this.user.password).then(function () {
             _this.user = {};
             _this.properties.loading = false;
-            console.log("here)");
             _this.viewCtrl.dismiss(true);
         })
             .catch(function (e) {
@@ -7257,26 +7112,25 @@ var OfflineProvider = (function () {
         this.platform = platform;
         this.network = network;
         this.properties = { inProgress: false, heartbeatStarted: false, requestCount: 0 };
-        console.log('Hello OfflineProvider Provider');
         this.completedRequests = [];
         this.network.onConnect().subscribe(function (data) {
             _this.events.publish("app:online");
             setTimeout(function () { _this.doRequests(); }, 2000);
-        }, function (error) { return console.error(error); });
+        }, function (error) {
+            //console.error(error)
+        });
         this.network.onDisconnect().subscribe(function (data) {
             _this.events.publish("app:offline");
             //this.startHeartbeat();
-        }, function (error) { return console.error(error); });
+        }, function (error) {
+            //console.error(error)
+        });
         this.platform.ready().then(function () {
             if ((!_this.network.type || _this.network.type === "none") && _this.platform.is("cordova")) {
-                console.log("here");
                 _this.events.publish("app:offline");
             }
             _this.storage.get("failedRequests").then(function (requests) {
-                console.log("checking");
                 if (requests) {
-                    console.log(_this.network.type);
-                    console.log(requests);
                     if (requests.length > 0 && _this.network.type && _this.network.type !== "none") {
                         _this.doRequests();
                     }
@@ -7297,12 +7151,10 @@ var OfflineProvider = (function () {
             if (session) {
                 _this.storage.get("failedRequests").then(function (requests) {
                     if (requests && requests.length > 0) {
-                        console.log(requests);
                         _this.properties.requestCount = requests.length;
                         _this.completedRequests = [];
                         var _loop_1 = function () {
                             var request = requests[index];
-                            console.log(request);
                             _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, request).subscribe(function (res) {
                                 _this.updateRequestCount();
                                 if (res["success"] === true) {
@@ -7360,7 +7212,6 @@ var OfflineProvider = (function () {
         this.events.publish("app:offline");
         this.properties.heartbeatStarted = true;
         this.heartbeat = setInterval(function () {
-            console.log("heartbeating");
             _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey }).subscribe(function (res) {
                 _this.events.publish("app:online");
                 clearInterval(_this.heartbeat);
@@ -8738,7 +8589,6 @@ var MyApp = (function () {
         ];
         this.account = { username: "John Doe", dp: "http://api.intensityapp.com/uploads/default.png" };
         this.storage.get('session').then(function (session) {
-            console.log(session);
             if (!session) {
                 _this.openLogin();
             }
@@ -8749,11 +8599,9 @@ var MyApp = (function () {
         });
         this.connectionStatus = true;
         this.events.subscribe('app:online', function () {
-            console.log("here");
             _this.connectionStatus = true;
         });
         this.events.subscribe('app:offline', function () {
-            console.log("here");
             _this.connectionStatus = false;
         });
         this.premiumPage = { title: 'Premium', component: __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__["a" /* PremiumPage */] };
@@ -8905,10 +8753,9 @@ var MyApp = (function () {
             if (data.userId) {
                 //save
                 _this.auth.savePushId(data.userId);
-                console.log(data.userId);
             }
         }).catch(function (e) {
-            console.log(e);
+            //console.log(e);
         });
     };
     MyApp.prototype.initializeApp = function () {
@@ -8928,7 +8775,6 @@ var MyApp = (function () {
             if (_this.platform.is('cordova')) {
                 _this.oneSignal.startInit("f500d613-213a-4a7b-9be0-a101ecbc36ed", "654916760436");
                 _this.oneSignal.handleNotificationOpened().subscribe(function (data) {
-                    console.log(data);
                     if (!data.notification.isAppInFocus) {
                         var pushData = data.notification.payload.additionalData;
                         if (pushData.type === "friends") {
@@ -9495,7 +9341,6 @@ var SelectExerciseModal = (function () {
         this.exerciseProvider.getExercises().then(function (data) {
             _this.exercises = data;
             _this.loading.all = false;
-            console.log(_this.exercises);
         });
     };
     SelectExerciseModal.prototype.getRecentExercises = function () {
@@ -9617,7 +9462,7 @@ var PremiumPage = (function () {
             }
         })
             .catch(function (err) {
-            console.log(err);
+            //console.log(err);
         });
     }
     PremiumPage.prototype.buyPremium = function () {
@@ -9634,7 +9479,7 @@ var PremiumPage = (function () {
         })
             .catch(function (err) {
             alert(JSON.stringify(err));
-            console.log(err);
+            //console.log(err);
         });
     };
     PremiumPage.prototype.restorePremium = function () {
@@ -10044,7 +9889,6 @@ var DiaryPage = (function () {
     };
     DiaryPage.prototype.sendPush = function () {
         this.diaryProvider.sendPush().then(function (data) {
-            console.log(data);
         });
     };
     DiaryPage.prototype.setupSlides = function () {
@@ -10057,7 +9901,6 @@ var DiaryPage = (function () {
                 _this.workoutSlides.unshift(newDate);
                 _this.workouts.unshift({ loading: true, retreived: false, workouts: [] });
                 var newDate2 = _this.calculateDate(_this.selectedDate, i);
-                console.log(newDate2);
                 _this.workoutSlides.push(newDate2);
                 _this.workouts.push({ loading: true, retreived: false, workouts: [] });
             }
@@ -10103,7 +9946,6 @@ var DiaryPage = (function () {
                 var workoutDate = new Date(date["assigneddate"]);
                 _this.markedWorkoutDates.push(workoutDate);
             }
-            console.log(_this.markedWorkoutDates);
         });
     };
     DiaryPage.prototype.calculateDate = function (date, change) {
@@ -10135,12 +9977,10 @@ var DiaryPage = (function () {
     };
     DiaryPage.prototype.changeDate = function (date) {
         var _this = this;
-        console.log(date);
         this.selectedDate = date;
         this.setupSlides().then(function () {
             _this.slides.slideTo(7, 0, false);
             _this.getWorkout(_this.workouts[7]);
-            console.log(_this.workouts[7]);
         });
     };
     DiaryPage.prototype.workoutChanged = function () {
@@ -10168,7 +10008,6 @@ var DiaryPage = (function () {
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_9__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */], { recentExercises: this.recentExercises });
         modal.onDidDismiss(function (exercise) {
             if (exercise) {
-                console.log(exercise);
                 var workout = _this.workouts[_this.slides.getActiveIndex()];
                 for (var _i = 0, _a = workout.workouts; _i < _a.length; _i++) {
                     var workoutExercise_1 = _a[_i];
@@ -10183,7 +10022,6 @@ var DiaryPage = (function () {
                 _this.events.publish("workout:added", { date: _this.selectedDate });
                 var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD');
                 _this.exerciseProvider.getExerciseData(exercise.id, formattedDate).then(function (data) {
-                    console.log(data);
                     workoutExercise_2.calibrating = data["history"] && data["history"].length < 1 ? true : false;
                     workoutExercise_2.goals = data["goals"];
                     workoutExercise_2.history = data["history"];
@@ -10195,7 +10033,6 @@ var DiaryPage = (function () {
                     workoutExercise_2.unit = data["unit"] ? data["unit"] : _this.account.units;
                 });
                 _this.selectExercise(workoutExercise_2);
-                console.log(workout);
             }
         });
         modal.present();
@@ -10226,13 +10063,11 @@ var DiaryPage = (function () {
                 {
                     text: 'Cancel',
                     handler: function (data) {
-                        console.log('Cancel clicked');
                     }
                 },
                 {
                     text: 'Add',
                     handler: function (data) {
-                        console.log('Saved clicked');
                         var set = {
                             id: 0,
                             reps: data.reps ? data.reps : 0,
@@ -10249,7 +10084,6 @@ var DiaryPage = (function () {
                             exercise.goals.progress = exercise.goals.progress + _this.getProgressAmount(set);
                         }
                         _this.diaryProvider.addSet(__WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid, exercise, set).then(function (res) {
-                            console.log(res);
                             set.id = res["id"];
                             exercise.goals = res["goals"];
                             exercise.records = res["records"];
@@ -10261,7 +10095,6 @@ var DiaryPage = (function () {
             ]
         });
         prompt.present();
-        console.log(exercise);
     };
     DiaryPage.prototype.determinePercentage = function (reps) {
         var percentages = { 0: 0, 1: 100, 2: 95, 3: 90, 4: 88, 5: 86, 6: 83, 7: 80, 8: 78, 9: 76, 10: 75, 11: 72, 12: 70, 13: 66, 14: 63, 15: 60 };
@@ -10311,7 +10144,6 @@ var DiaryPage = (function () {
                 {
                     text: 'Share',
                     handler: function (data) {
-                        console.log('remove clicked');
                         var setText = "I tracked " + exercise.name + " on Intensity. These are my sets: ";
                         for (var _i = 0, _a = exercise.sets; _i < _a.length; _i++) {
                             var set = _a[_i];
@@ -10331,7 +10163,6 @@ var DiaryPage = (function () {
                 {
                     text: 'Copy',
                     handler: function (data) {
-                        console.log('remove clicked');
                         _this.selectedExercise = exercise;
                         _this.datepicker.open();
                     },
@@ -10340,7 +10171,6 @@ var DiaryPage = (function () {
                 {
                     text: 'Reorder',
                     handler: function (data) {
-                        console.log('remove clicked');
                         _this.reorderActive = true;
                     },
                     cssClass: "reorder-button"
@@ -10348,7 +10178,6 @@ var DiaryPage = (function () {
                 {
                     text: 'Remove',
                     handler: function (data) {
-                        console.log(exercise);
                         var alert = _this.alertCtrl.create({
                             title: "Remove Exercise",
                             message: "Are you sure you want to remove this exercise? This will delete all sets from the current workout for this exercise.",
@@ -10417,7 +10246,6 @@ var DiaryPage = (function () {
     };
     DiaryPage.prototype.copyWorkout = function (date) {
         var _this = this;
-        console.log(date);
         var data = {
             title: "What sets do you want to copy?",
             buttons: [
@@ -10488,7 +10316,6 @@ var DiaryPage = (function () {
             }
             order = order + 1;
         }
-        console.log(sets);
         this.diaryProvider.reorderExercises(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), sets);
     };
     __decorate([
@@ -10749,7 +10576,6 @@ var AuthenticationProvider = (function () {
         this.http = http;
         this.fb = fb;
         this.storage = storage;
-        console.log('Hello AuthenticationProvider Provider');
     }
     AuthenticationProvider.prototype.loginFb = function () {
         var _this = this;
@@ -10778,7 +10604,7 @@ var AuthenticationProvider = (function () {
                 });
             })
                 .catch(function (e) {
-                console.log('Error logging into Facebook', e);
+                //console.log('Error logging into Facebook', e);
                 reject(e);
             });
         });
@@ -10898,7 +10724,6 @@ var AuthenticationProvider = (function () {
                     });
                 }
                 else {
-                    console.log("here");
                     resolve();
                 }
                 _this.storage.clear();
@@ -10991,16 +10816,13 @@ var FriendProfilePage = (function () {
         this.friendProfile.friendid = this.friendProfile.friendid ? this.friendProfile.friendid : this.friendProfile.userid;
         this.properties.fromMessage = this.params.data.fromMessage;
         this.friendProfile.userid = this.friendProfile.friendid;
-        console.log(this.friendProfile);
         this.friendProfile.dpFull = __WEBPACK_IMPORTED_MODULE_7__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + this.friendProfile.dp;
-        console.log(this.friendProfile);
         this.added = this.params.data.added;
         this.account = {};
         this.profile = {};
         this.activity = {};
         this.getProfile();
         this.accountProvider.getUserActivity(this.friendProfile.friendid, this.properties.activityPage).then(function (data) {
-            console.log(data);
             _this.activity = data;
         });
         this.storage.get("account").then(function (data) {
@@ -11016,7 +10838,6 @@ var FriendProfilePage = (function () {
         });
         this.accountProvider.getProfile(this.friendProfile.friendid).then(function (data) {
             _this.profile = data;
-            console.log(data);
         });
     };
     FriendProfilePage.prototype.getMoreActivity = function (infiniteScroll) {
@@ -11043,8 +10864,6 @@ var FriendProfilePage = (function () {
     };
     FriendProfilePage.prototype.copyToDate = function (date, workout) {
         var _this = this;
-        console.log(date);
-        console.log(workout);
         var copy = {
             exerciseid: workout.exerciseid,
             userid: this.friendProfile.friendid,
@@ -11065,7 +10884,6 @@ var FriendProfilePage = (function () {
             });
             alert.present();
         });
-        console.log(copy);
     };
     FriendProfilePage.prototype.viewDetails = function (activity) {
         var alert = this.alertCtrl.create({
@@ -11096,7 +10914,6 @@ var FriendProfilePage = (function () {
                     handler: function (data) {
                         _this.added = true;
                         _this.friendsProvider.addFriend(_this.friendProfile.userid);
-                        console.log('Cancel clicked');
                     }
                 }
             ]
@@ -11118,7 +10935,6 @@ var FriendProfilePage = (function () {
                     handler: function (data) {
                         _this.added = false;
                         _this.friendsProvider.removeFriend(_this.friendProfile.userid);
-                        console.log('Cancel clicked');
                     }
                 }
             ]
