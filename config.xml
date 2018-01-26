@@ -96,6 +96,7 @@
     <platform name="windows">
         <preference name="windows-appx-target" value="8.1-phone" />
         <preference name="WindowsToastCapable" value="true" />
+        <Preference name = "phonegap-version" value = "cli-5.4.1" />
     </platform>
     <icon src="resources/icon.png" />
     <gap:splash src="resources/splash.png" />
@@ -123,7 +124,7 @@
         <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera to take pictures for an avatar" />
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library to get pictures for an avatar" />
     </gap:plugin>
-    <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.1.0" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
 </widget>
