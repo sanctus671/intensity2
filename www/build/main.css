@@ -26804,6 +26804,10 @@ ion-slides {
   left: 0px;
 }
 
+.list-ios.diary-exercise-list .item-block .item-inner {
+  border-bottom: none;
+}
+
 .diary-exercise-list .item-md ion-icon[item-end], ion-list .item-md ion-icon.ion-ios-arrow-forward {
   color: #c2c2c2;
 }
