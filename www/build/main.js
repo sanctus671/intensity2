@@ -8793,7 +8793,7 @@ var MyApp = (function () {
                 _this.statusBar.styleLightContent();
             }
             else {
-                //this.statusBar.styleDefault();
+                _this.statusBar.styleLightContent();
             }
             _this.splashScreen.hide();
             _this.localNotifications.clearAll();
