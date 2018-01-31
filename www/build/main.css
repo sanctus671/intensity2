@@ -25953,7 +25953,7 @@ ion-segment.segment-ios {
   width: 100%;
   lefT: 0;
   font-size: 50px;
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .timer .timer-actions {
@@ -25962,7 +25962,7 @@ ion-segment.segment-ios {
   left: 0;
   bottom: 10px;
   font-size: 20px;
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .timer .timer-actions ion-icon {
@@ -26762,6 +26762,12 @@ ion-slides {
   float: left;
   line-height: 47px;
   width: 47px;
+}
+
+.date-changer span[ion-datepicker] {
+  line-height: 47px;
+  display: inline-block;
+  min-width: 200px;
 }
 
 .date-changer .ion-ios-arrow-forward {
