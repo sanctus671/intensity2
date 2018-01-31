@@ -98,7 +98,6 @@
     <icon src="resources/icon.png" />
     <gap:splash src="resources/splash.png" />
     <engine name="android" spec="~6.3.0" />
-    <gap:plugin spec="https://github.com/brodybits/cordova-sqlite-legacy-build-support" />
     <gap:plugin name="cordova-plugin-facebook4" source="npm" version="1.7.4">
         <param name="APP_ID" value="414561158706027" />
         <param name="APP_NAME" value="Intensity" />
