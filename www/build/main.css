@@ -26890,6 +26890,10 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
   color: black;
 }
 
+.ios .modal-wrapper ionic2-datepicker .datepicker-wrapper .datepicker-header {
+  padding-top: 20px;
+}
+
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .calendar-cell {
   padding-top: 15px;
   padding-bottom: 15px;
