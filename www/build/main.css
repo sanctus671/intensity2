@@ -25950,16 +25950,16 @@ ion-segment.segment-ios {
   position: absolute;
   position: absolute;
   top: 90px;
-  width: 100%;
-  lefT: 0;
+  width: 95%;
+  lefT: 2.5%;
   font-size: 50px;
   background-color: transparent !important;
 }
 
 .timer .timer-actions {
   position: absolute;
-  width: 100%;
-  left: 0;
+  width: 95%;
+  lefT: 2.5%;
   bottom: 10px;
   font-size: 20px;
   background-color: transparent !important;
