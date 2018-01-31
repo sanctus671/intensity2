@@ -25953,6 +25953,7 @@ ion-segment.segment-ios {
   width: 100%;
   lefT: 0;
   font-size: 50px;
+  background-color: transparent;
 }
 
 .timer .timer-actions {
@@ -25961,6 +25962,7 @@ ion-segment.segment-ios {
   left: 0;
   bottom: 10px;
   font-size: 20px;
+  background-color: transparent;
 }
 
 .timer .timer-actions ion-icon {
