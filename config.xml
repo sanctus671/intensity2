@@ -101,10 +101,12 @@
     <icon src="resources/icon.png" />
     <gap:splash src="resources/splash.png" />
     <engine name="android" spec="~6.3.0" />
-
-
+    <gap:plugin spec="https://github.com/brodybits/cordova-sqlite-legacy-build-support" />
+    <gap:plugin name="cordova-plugin-facebook4" source="npm" version="1.7.4">
+        <param name="APP_ID" value="414561158706027" />
+        <param name="APP_NAME" value="Intensity" />
+    </gap:plugin>
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
-
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -121,7 +123,7 @@
         <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera to take pictures for an avatar" />
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library to get pictures for an avatar" />
     </gap:plugin>
-
+    <plugin name="onesignal-cordova-plugin" spec="^2.1.0" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
 </widget>
