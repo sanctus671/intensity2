@@ -25699,6 +25699,16 @@ ion-navbar.toolbar {
   height: 15px;
 }
 
+.ios ion-menu[role='navigation'] .menu-inner:after {
+  content: " ";
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  background-color: #d44735;
+}
+
 .menu-header p {
   padding: 0px;
   margin: 0px;
