@@ -116,5 +116,7 @@
     <gap:plugin spec="https://github.com/hypery2k/cordova-email-plugin#master" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="npm" />
+    <gap:plugin name="cordova-plugin-file" source="npm" version="^4.3.3" />
+    <gap:plugin name="cordova-plugin-statusbar" source="npm" version="^2.3.0" />
 
 </widget>
