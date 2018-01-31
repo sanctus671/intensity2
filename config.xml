@@ -123,5 +123,5 @@
         <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera to take pictures for an avatar" />
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library to get pictures for an avatar" />
     </gap:plugin>
- 
+    <plugin name="onesignal-cordova-plugin" spec="^2.1.0" />
 </widget>
