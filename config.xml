@@ -118,5 +118,10 @@
     <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="npm" />
     <gap:plugin name="cordova-plugin-file" source="npm" version="^4.3.3" />
     <gap:plugin name="cordova-plugin-statusbar" source="npm" version="^2.3.0" />
-
+    <gap:plugin name="cordova-plugin-file-transfer" source="npm" version="1.5.1" />
+    <gap:plugin name="cordova-plugin-camera" source="npm" version="^2.4.1">
+        <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera to take pictures for an avatar" />
+        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library to get pictures for an avatar" />
+    </gap:plugin>
+ 
 </widget>
