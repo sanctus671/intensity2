@@ -27665,6 +27665,12 @@ h3.leaderboard-exercise ion-icon:active {
   border-bottom: 0px;
 }
 
+.purchase-details {
+  display: block;
+  font-size: 8px;
+  margin-top: 10px;
+}
+
 .profile-nav.header::after {
   background-image: none;
 }
