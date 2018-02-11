@@ -26507,6 +26507,10 @@ ion-card.records-card.darkorange-background {
   padding-bottom: 30px;
 }
 
+.goal-reset-list {
+  text-align: center;
+}
+
 .exercise-target .target-exercise {
   display: inline-block;
   line-height: 50px;
