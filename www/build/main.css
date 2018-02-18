@@ -26345,6 +26345,11 @@ ion-spinner.add-friend-loading {
   margin-top: 10px;
 }
 
+.add-program-footer button img {
+  height: 1.5em;
+  margin-right: 5px;
+}
+
 .records-card {
   padding: 20px;
   margin: 15px;
@@ -27224,6 +27229,11 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 .diary-sets ion-reorder ion-icon {
   position: initial;
   color: Transparent;
+}
+
+ion-list .item-md ion-icon.ion-ios-arrow-forward.has-notes {
+  color: #d44735;
+  opacity: 1;
 }
 
 .list.history-sets .item-block .item-inner {
