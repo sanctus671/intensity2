@@ -26912,12 +26912,17 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .calendar-cell {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 12.5px;
+  padding-bottom: 12.5px;
+  width: 45px;
+  height: 45px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-current {
-  color: #d44735;
+  background-color: #e8e8e8 !important;
+  color: black !important;
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-selected {
@@ -26926,8 +26931,9 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-temp {
-  background-color: #ddd !important;
-  border-radius: 2px;
+  background-color: #000 !important;
+  color: white !important;
+  border-radius: 22.5px;
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-footer button {
@@ -26954,12 +26960,13 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 
 .modal-wrapper ionic2-datepicker .datepicker-rows .row.active {
   background-color: #ddd;
-  border-radius: 2px;
+  border-radius: 22.5px;
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-mark {
-  border-radius: 2px;
-  background-color: #f5d3cf;
+  border-radius: 22.5px;
+  background-color: #d44735;
+  color: white;
 }
 
 .button-only-alert .alert-button .button-inner {
