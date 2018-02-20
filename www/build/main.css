@@ -26977,6 +26977,10 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
   min-height: 46px;
 }
 
+.modal-wrapper ionic2-datepicker .weekdays-row {
+  min-height: 36px;
+}
+
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-current {
   background-color: #e8e8e8 !important;
   color: black !important;
