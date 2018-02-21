@@ -26984,11 +26984,13 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-current {
   background-color: #e8e8e8 !important;
   color: black !important;
+  border-radius: 22.5px;
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-selected {
   border-radius: 2px;
   background-color: #ececec;
+  border-radius: 22.5px;
 }
 
 .modal-wrapper ionic2-datepicker .datepicker-calendar .calendar-wrapper .datepicker-temp {
