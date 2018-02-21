@@ -2747,13 +2747,11 @@ var DiaryExercisePage = (function () {
     };
     DiaryExercisePage.prototype.updateGoals = function (requestCount, goals, delay) {
         var _this = this;
-        if (requestCount >= this.properties.lastLoaded) {
-            setTimeout(function () {
-                if (requestCount >= _this.properties.lastLoaded) {
-                    _this.exercise.goals = goals;
-                }
-            }, delay);
-        }
+        setTimeout(function () {
+            if (requestCount >= _this.properties.lastLoaded) {
+                _this.exercise.goals = goals;
+            }
+        }, delay);
     };
     DiaryExercisePage.prototype.toggleSet = function (ev, set) {
         var _this = this;
@@ -2795,7 +2793,7 @@ var DiaryExercisePage = (function () {
         if (this.account.autocomplete) {
             this.exercise.goals.progress = this.exercise.goals.progress + this.getProgressAmount(set);
         }
-        if (this.exercise.sets.length < 1) {
+        if (this.exercise.sets.length === 1) {
             this.events.publish("workout:added", { date: this.selectedDate });
         }
         var requestCount = this.properties.lastLoaded + 1;
@@ -2809,7 +2807,7 @@ var DiaryExercisePage = (function () {
                 _this.getStats();
             }
             if (requestCount >= _this.properties.lastLoaded) {
-                //this.updateGoals(requestCount, data["goals"], 1000);
+                _this.updateGoals(requestCount, data["goals"], 1000);
             }
         });
     };
