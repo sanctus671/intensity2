@@ -2802,12 +2802,14 @@ var DiaryExercisePage = (function () {
         this.properties.lastLoaded = requestCount;
         this.diaryProvider.addSet(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), this.exercise.exerciseid, this.exercise, set).then(function (data) {
             set.id = data["id"];
-            _this.updateGoals(requestCount, data["goals"], 1000);
             _this.exercise.records = data["records"];
             _this.exercise.cailbrating = data["calibrating"];
             _this.exercise.history = data["history"];
             if (_this.properties.activeTab === 'stats') {
                 _this.getStats();
+            }
+            if (requestCount >= _this.properties.lastLoaded) {
+                //this.updateGoals(requestCount, data["goals"], 1000);
             }
         });
     };
@@ -10102,7 +10104,7 @@ var DiaryPage = (function () {
                 }
                 var workoutExercise_2 = { name: exercise.name, exerciseid: exercise.id, calibrating: false, addid: null, goals: { goal: 1, progress: 0 }, history: [], records: {}, sets: [], reps: "", weight: "", unit: false };
                 workout.workouts.push(workoutExercise_2);
-                //this.events.publish("workout:added", {date:this.selectedDate});
+                _this.events.publish("workout:added", { date: _this.selectedDate });
                 var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD');
                 _this.exerciseProvider.getExerciseData(exercise.id, formattedDate).then(function (data) {
                     workoutExercise_2.calibrating = data["history"] && data["history"].length < 1 ? true : false;
@@ -10162,7 +10164,7 @@ var DiaryPage = (function () {
                             completed: _this.account.autocomplete
                         };
                         exercise.sets.push(set);
-                        //this.events.publish("workout:added", {date:this.selectedDate});    
+                        _this.events.publish("workout:added", { date: _this.selectedDate });
                         if (_this.account.autocomplete) {
                             exercise.goals.progress = exercise.goals.progress + _this.getProgressAmount(set);
                         }
