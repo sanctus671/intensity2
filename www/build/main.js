@@ -2795,7 +2795,9 @@ var DiaryExercisePage = (function () {
         if (this.account.autocomplete) {
             this.exercise.goals.progress = this.exercise.goals.progress + this.getProgressAmount(set);
         }
-        this.events.publish("workout:added", { date: this.selectedDate });
+        if (this.exercise.sets.length < 1) {
+            this.events.publish("workout:added", { date: this.selectedDate });
+        }
         var requestCount = this.properties.lastLoaded + 1;
         this.properties.lastLoaded = requestCount;
         this.diaryProvider.addSet(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), this.exercise.exerciseid, this.exercise, set).then(function (data) {
