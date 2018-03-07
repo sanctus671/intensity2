@@ -26941,6 +26941,10 @@ ion-slides {
   color: #d6d6d6;
 }
 
+.diary-empty.rating-shown {
+  margin-top: 25%;
+}
+
 .diary-empty.empty-state {
   text-align: center;
   font-size: 18px;
@@ -27115,6 +27119,24 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
   min-width: 44px;
   padding: 0 2px;
   text-align: center;
+}
+
+.rate-box {
+  background-color: #d44735;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+}
+
+.rate-box .rate-buttons {
+  margin-top: 10px;
+}
+
+.rate-box .rate-buttons .button {
+  min-width: 40%;
+  text-transform: none;
 }
 
 .diary-content {
