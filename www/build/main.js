@@ -737,7 +737,7 @@ var CreateProgramModal = (function () {
                         for (var _i = 0, _a = _this.program.workouts; _i < _a.length; _i++) {
                             var workout = _a[_i];
                             if (workout.day >= copyWeekStartDay && workout.day <= copyWeekEndDay) {
-                                var copy = Object.assign({}, workout);
+                                var copy = _this.deepCopy(workout);
                                 copy.day += newWeekStartDay;
                                 copy.name = "Day " + copy.day;
                                 _this.program.workouts.push(copy);
@@ -884,7 +884,7 @@ var CreateProgramModal = (function () {
                             var workoutIndex = data_1[_i];
                             for (var x = 0; x < exerciseCount; x++) {
                                 var exercise = workout.exercises[x];
-                                var copy = Object.assign({}, exercise);
+                                var copy = _this.deepCopy(exercise);
                                 _this.program.workouts[workoutIndex].exercises.push(copy);
                             }
                         }
@@ -918,7 +918,7 @@ var CreateProgramModal = (function () {
                     handler: function (data) {
                         if (data.day && data.name) {
                             workout.day = data.day;
-                            workout.name = data.name;
+                            //workout.name = data.name;
                             if (workout.day > _this.program.duration) {
                                 var newDuration = ((workout.day % 7) + 1) * 7;
                                 _this.program.duration = newDuration;
@@ -928,7 +928,7 @@ var CreateProgramModal = (function () {
                     }
                 }
             ],
-            inputs: [{ name: "name", placeholder: "Workout Name", type: "text", value: workout.name }, { name: "day", placeholder: "Day", type: "number", value: workout.day }]
+            inputs: [{ name: "day", placeholder: "Day", type: "number", value: workout.day }]
         };
         var alert = this.alertCtrl.create(alertObj);
         alert.present();
@@ -1001,7 +1001,7 @@ var CreateProgramModal = (function () {
                     handler: function (data) {
                         for (var _i = 0, data_2 = data; _i < data_2.length; _i++) {
                             var workoutIndex = data_2[_i];
-                            var copy = Object.assign({}, exercise);
+                            var copy = _this.deepCopy(exercise);
                             _this.program.workouts[workoutIndex].exercises.push(copy);
                         }
                     }
@@ -1079,15 +1079,16 @@ var CreateProgramModal = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]) === "function" && _a || Object)
     ], CreateProgramModal.prototype, "content", void 0);
     CreateProgramModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'create-program',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\create-program\create-program.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Create Program\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <div class="restore-program" *ngIf="previousProgram" (click)="restoreProgram()">\n        <ion-icon name="refresh"></ion-icon>\n        Restore previously created program ({{previousProgram.workouts.length}} workout<span *ngIf="previousProgram.workouts.length !== 1">s</span>)\n    </div>\n    \n\n    <ion-list class="edit-profile program-info">    \n        <ion-item>\n            <ion-label floating>Program Name</ion-label>\n            <ion-input type="text" [(ngModel)]="program.name"></ion-input>\n        </ion-item>\n        \n       \n\n\n        <ion-item>\n            <ion-label floating>Description</ion-label>\n            <ion-textarea [(ngModel)]="program.description" autosize></ion-textarea>\n        </ion-item>  \n\n        <ion-item>\n            <ion-label>Public</ion-label>\n            <ion-checkbox color="primary" [(ngModel)]="program.public"></ion-checkbox>\n        </ion-item>         \n        \n        \n    </ion-list>\n    \n    \n    <div class="workout-tabs">\n        <button ion-button small (click)="properties.activeTab = tab" (press)="openWeekOptions(tab, i)" [outline]="properties.activeTab !== tab" *ngFor="let tab of tabs;let i = index">{{tab}}</button>\n        <button ion-button small clear icon-start (click)="addWeek()">\n            <ion-icon name="add"></ion-icon>\n            Add Week\n        </button>\n    </div>   \n    \n    \n        <div class="program-workouts">\n\n            <div *ngFor="let workout of program.workouts; let workoutIndex = index" class="workout-list">\n                \n                <ion-list *ngIf="isInTab(workout)">\n                    <ion-list-header>\n                        <span (click)="workout.hide = !workout.hide">{{workout.name}}</span>\n                        <ion-icon name="git-compare" item-end (click)="moveWorkout(workout)"></ion-icon>\n                        <ion-icon name="copy" item-end (click)="copyWorkout(workout)"></ion-icon>\n                        <ion-icon name="create" item-end (click)="editWorkout(workout)"></ion-icon>\n                        <ion-icon name="trash" item-end (click)="deleteWorkout(workoutIndex, workout)"></ion-icon>\n                    </ion-list-header>\n                    \n                    \n                    <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event, workout)" *ngIf="!workout.hide" class="diary-sets">\n                        \n                        \n                        <ion-item *ngFor="let exercise of workout.exercises; let i = index" (click)="editExercise($event, exercise)">\n                            <h2>{{exercise.name}}</h2>\n                            <p>{{exercise.sets ? exercise.sets : 0}} set<span *ngIf="exercise.sets !== \'1\'">s</span> of {{exercise.reps ? exercise.reps : 0}} rep<span *ngIf="exercise.reps !== \'1\'">s</span><span *ngIf="exercise.percentage && exercise.percentage > 0">, {{exercise.percentage}}%</span><span *ngIf="exercise.rpe && exercise.rpe > 0">, @{{exercise.rpe}}RPE</span></p>\n                            <div class="program-exercise-actions">\n                                <ion-icon name="copy" (click)="copyExercise($event, exercise,workout)"></ion-icon>\n                                <ion-icon name="create" (click)="editExercise($event, exercise)"></ion-icon>\n                                <ion-icon name="trash" (click)="deleteExercise($event, i,workout)"></ion-icon>\n                            </div>\n                        </ion-item>\n                        \n                    </ion-item-group>\n                    \n                    <button class="program-add-exercise" ion-button small clear icon-start (click)="addExercise(workout)" *ngIf="!workout.hide">\n                        <ion-icon name="add"></ion-icon>\n                        Add Exercise\n                    </button>  \n                    \n                </ion-list>\n              \n            </div>\n\n        </div>    \n    \n    \n    <div class="add-program-workout" (click)="addWorkout()">\n        <ion-icon name="add"></ion-icon> Add Workout\n    </div>\n    \n</ion-content>\n\n<ion-footer class="add-program-footer premium-footer">\n    <button ion-button (click)="create()"><img src="assets/imgs/crown.png" *ngIf="!account.premium" /> Create Program</button>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\create-program\create-program.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _l || Object])
     ], CreateProgramModal);
     return CreateProgramModal;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 }());
 
 //# sourceMappingURL=create-program.js.map
@@ -1103,6 +1104,7 @@ var CreateProgramModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(43);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1112,6 +1114,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1145,6 +1148,18 @@ var EditProgramExerciseModal = (function () {
         this.exercise.percentage = repRounded > 15 ? 50 : percentages[repRounded];
         ;
     };
+    EditProgramExerciseModal.prototype.switchExercise = function () {
+        var _this = this;
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */]);
+        modal.onDidDismiss(function (exercise) {
+            if (exercise) {
+                console.log(exercise);
+                _this.exercise.name = exercise.name;
+                _this.exercise.exerciseid = exercise.exerciseid;
+            }
+        });
+        modal.present();
+    };
     EditProgramExerciseModal.prototype.save = function () {
         this.exercise.rpe = this.exercise.rpeScaled / 10;
         this.viewCtrl.dismiss(this.exercise);
@@ -1154,11 +1169,12 @@ var EditProgramExerciseModal = (function () {
     };
     EditProgramExerciseModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'edit-program-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-program-exercise\edit-program-exercise.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Edit {{exercise.name}}\n        </ion-title>\n        <ion-buttons start>\n            <button icon-start ion-button (click)="save()" showWhen="android, windows">\n                <ion-icon name="md-checkmark"></ion-icon>\n                Save\n            </button>       \n         \n            \n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n        \n        <ion-buttons showWhen="ios" end>\n            <button ion-button (click)="save()">\n                <span ion-text>Save</span>\n            </button>                  \n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n\n    \n<ion-list class="edit-set edit-program-set">\n\n    <ion-item>\n        <ion-label floating>Reps</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.reps"></ion-input>\n    </ion-item>\n\n    <ion-item>\n        <ion-label floating>Sets</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.sets"></ion-input>\n    </ion-item>    \n    \n\n    \n    <ion-item>\n        <ion-label floating>Weight</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.weight"></ion-input>\n    </ion-item>  \n\n    <p class="weight-explanation" *ngIf="exercise.weight">\n        It is recommended to avoid setting a specific weight, and instead use a percentage (intensity). The users max for that exercise will then be used to set the weights relative to their strength levels.\n    </p>    \n    \n    <ion-list-header class="rpe-header">\n        RPE\n        <ion-badge item-end>{{exercise.rpeScaled / 10}}</ion-badge>\n    </ion-list-header>    \n    <ion-item>\n        <ion-range [(ngModel)]="exercise.rpeScaled" min="60" max="100">\n            <ion-icon range-left name="remove" (click)="changeRpe(-5)"></ion-icon>\n            <ion-icon range-right name="add" (click)="changeRpe(5)"></ion-icon>\n        </ion-range>\n    </ion-item>    \n    \n    <ion-item>\n        <ion-label floating>Intensity (%)</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.percentage"></ion-input>\n        <button ion-button outline item-end (click)="determinePercentage()">Calculate</button>\n    </ion-item>\n    \n\n    <ion-item class="set-notes">\n        <ion-label floating>Notes</ion-label>\n        <ion-textarea [(ngModel)]="exercise.notes" autosize></ion-textarea>\n    </ion-item>    \n\n    \n</ion-list>\n           \n    \n    \n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-program-exercise\edit-program-exercise.html"*/
+            selector: 'edit-program-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-program-exercise\edit-program-exercise.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Edit {{exercise.name}}\n        </ion-title>\n        <ion-buttons start>\n            <button icon-start ion-button (click)="save()" showWhen="android, windows">\n                <ion-icon name="md-checkmark"></ion-icon>\n                Save\n            </button>       \n         \n            \n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n        \n        <ion-buttons showWhen="ios" end>\n            <button ion-button (click)="save()">\n                <span ion-text>Save</span>\n            </button>                  \n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n\n    \n<ion-list class="edit-set edit-program-set">\n    \n    <ion-item class="switch-exercise">\n        {{exercise.name}}\n        <button ion-button outline item-end (click)="switchExercise()">Switch Exercise</button>\n    </ion-item>    \n\n    <ion-item>\n        <ion-label floating>Reps</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.reps"></ion-input>\n    </ion-item>\n\n    <ion-item>\n        <ion-label floating>Sets</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.sets"></ion-input>\n    </ion-item>    \n    \n\n    \n    <ion-item>\n        <ion-label floating>Weight</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.weight"></ion-input>\n    </ion-item>  \n\n    <p class="weight-explanation" *ngIf="exercise.weight">\n        It is recommended to avoid setting a specific weight, and instead use a percentage (intensity). The users max for that exercise will then be used to set the weights relative to their strength levels.\n    </p>    \n    \n    <ion-list-header class="rpe-header">\n        RPE\n        <ion-badge item-end>{{exercise.rpeScaled / 10}}</ion-badge>\n    </ion-list-header>    \n    <ion-item>\n        <ion-range [(ngModel)]="exercise.rpeScaled" min="60" max="100">\n            <ion-icon range-left name="remove" (click)="changeRpe(-5)"></ion-icon>\n            <ion-icon range-right name="add" (click)="changeRpe(5)"></ion-icon>\n        </ion-range>\n    </ion-item>    \n    \n    <ion-item>\n        <ion-label floating>Intensity (%)</ion-label>\n        <ion-input type="number" [(ngModel)]="exercise.percentage"></ion-input>\n        <button ion-button outline item-end (click)="determinePercentage()">Calculate</button>\n    </ion-item>\n    \n\n    <ion-item class="set-notes">\n        <ion-label floating>Notes</ion-label>\n        <ion-textarea [(ngModel)]="exercise.notes" autosize></ion-textarea>\n    </ion-item>    \n\n    \n</ion-list>\n           \n    \n    \n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-program-exercise\edit-program-exercise.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _h || Object])
     ], EditProgramExerciseModal);
     return EditProgramExerciseModal;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=edit-program-exercise.js.map
@@ -3169,20 +3185,19 @@ var DiaryExercisePage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
     ], DiaryExercisePage.prototype, "content", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */]),
-        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */]) === "function" && _b || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */])
     ], DiaryExercisePage.prototype, "datepicker", void 0);
     DiaryExercisePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-diary-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>{{exercise.name}}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more"></ion-icon>\n            </button>\n        </ion-buttons>    \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content class="diary-content">\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab" (ionChange)="tabChanged($event)">\n        <ion-segment-button value="diary">\n            Diary\n        </ion-segment-button>\n      <ion-segment-button value="history">\n            History\n      </ion-segment-button>\n      <ion-segment-button value="stats">\n            Stats\n      </ion-segment-button>        \n    </ion-segment>\n    \n    \n    <div *ngIf="properties.activeTab === \'diary\'">\n    \n        <div class="diary-progress-bar" (click)="openGoalDetails()" [hidden]="account.goals.primary === \'none\'">\n        <round-progress     \n            [current]="exercise.goals.progress"\n            [max]="exercise.goals.goal"\n            [color]="properties.color"\n            [background]="\'#eaeaea\'"\n            [radius]="115"\n            [stroke]="15"></round-progress>\n\n\n            <div class="progress-bar-inner">\n                <span></span>\n                <div class="text">\n                    {{exercise.goals.progress}}<p class="diary-exercise-unit" *ngIf="account.goals.primary !== \'reps\'">{{exercise.unit ? exercise.unit : account.units}}</p>\n                </div>\n            </div>    \n\n\n        </div>\n\n\n        <div class="diary-records">\n            <button ion-button clear icon-start color="primary" small (click)="openRecords()">\n                <ion-icon name="trophy"></ion-icon>\n                View Records\n            </button>\n        </div>\n\n\n\n\n        <ion-list class="diary-sets">\n\n            <ion-list-header class="diary-sets-header">\n\n                <span class="reps set-column">\n                    Reps\n                </span>\n\n                <span class="weight set-column">\n                    Weight\n                </span>        \n\n            </ion-list-header>\n\n\n            <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">\n\n                <ion-item *ngFor="let set of exercise.sets; let i = index"  (click)="openSet(set, i)">\n                    <ion-icon [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set)"></ion-icon>\n                    <span class="reps set-column">{{set.reps}}</span>\n                    <span class="weight set-column">{{set.weight}}{{set.unit}}</span>     \n                    <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end [ngClass]="{\'has-notes\' : set.notes || set.video}"></ion-icon>\n                </ion-item>\n\n            </ion-item-group>\n        </ion-list>\n\n    </div>\n    \n    \n    \n    <div *ngIf="properties.activeTab === \'history\'">\n        <ion-list class="history-sets">\n\n\n            <ion-item *ngFor="let workout of exercise.history;let lst = last;let fst = first"  (click)="openWorkout(workout, i)" [ngClass]="{\'first-item\':fst,\'last-item\':lst, \'light\':workout.sets.length <= 2, \'medium\':workout.sets.length > 2 && workout.sets.length < 6, \'heavy\':workout.sets.length > 5}">\n                <span class="history-date">\n                    <h3>{{getDay(workout.assigneddate)}}</h3>\n                    <p>{{formatDate(workout.assigneddate)}}</p>\n                </span>\n                <span class="history-details">\n                    <h3>{{workout.sets.length}} set<span *ngIf="workout.sets.length !== 1">s</span></h3>\n                    <p>{{getAverageReps(workout.sets) | number: \'1.0-0\'}} reps / {{getAverageWeight(workout.sets) | number: \'1.0-0\'}}{{getUnits(workout.sets)}}</p>\n                </span>                \n                <ion-icon tappable name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, workout)" [okText]="\'Copy To Date\'"></ion-icon>\n            </ion-item>  \n            \n        </ion-list>\n    \n        <ion-infinite-scroll (ionInfinite)="loadMoreHistory($event)">\n            <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>  \n        \n    </div>\n    \n    <div class="stats-section" *ngIf="properties.activeTab === \'stats\'">\n        \n        \n        <div class="stats-timeframes">\n            <button ion-button small (click)="changeStatsTimeframe(\'forever\')" [outline]="stats.timeframe !== \'forever\'">Lifetime</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Year\')" [outline]="stats.timeframe !== \'1 Year\'">1 Year</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'6 Months\')" [outline]="stats.timeframe !== \'6 Months\'">6 Months</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Month\')" [outline]="stats.timeframe !== \'1 Month\'">1 Month</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Week\')" [outline]="stats.timeframe !== \'1 Week\'">1 Week</button>\n        </div>\n        <div [chart]="stats.chart"></div>\n        <h3 class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="extra-stats" *ngIf="stats.extra.best.data">\n        \n            <ion-card class="red-background">\n              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>\n              <div class="card-title">{{stats.extra.best.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Maximum</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>\n              <div class="card-title">{{stats.extra.worst.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Minimum</div>\n            </ion-card>        \n        \n        </div>  \n\n\n        <div class="extra-stats" *ngIf="stats.extra.average.data">\n        \n            <ion-card class="yellow-background">\n              <div class="card-title">{{stats.extra.average.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Average</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n              <div class="card-title">{{stats.extra.growth.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Growth</div>\n            </ion-card>        \n        \n        </div> \n\n        \n    </div>    \n    \n</ion-content>\n\n\n\n\n<ion-footer class="diary-footer">\n        <form name="diary-exercise-form" (ngSubmit)="addSet()">\n            \n            <ion-input name="reps" type="number" placeholder="Reps" [(ngModel)]="exercise.reps"></ion-input>\n            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="exercise.weight"></ion-input>\n            <div class="button-container">\n                <button type="submit" ion-button>Add</button>\n            </div>\n        </form>\n</ion-footer>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */]) === "function" && _k || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */]])
     ], DiaryExercisePage);
     return DiaryExercisePage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 }());
 
 //# sourceMappingURL=diary-exercise.js.map
@@ -3480,7 +3495,7 @@ var DiaryRecordsModal = (function () {
     };
     DiaryRecordsModal.prototype.viewRecord = function (record) {
         var _this = this;
-        var randomDescriptors = ["glorious", "gainful", "powerful", "fantastic", "tremdious", "sickening"];
+        var randomDescriptors = ["glorious", "gainful", "powerful", "fantastic", "tremendous", "sickening"];
         var alert = this.alertCtrl.create({
             title: __WEBPACK_IMPORTED_MODULE_5_moment__(record.assigneddate).format('MMMM Do YYYY'),
             message: "Your acheived this record on this date. It was a " + randomDescriptors[this.generateRandomIndex(5)] + " " + __WEBPACK_IMPORTED_MODULE_5_moment__(record.assigneddate).format('dddd') + ".",
@@ -3506,9 +3521,10 @@ var DiaryRecordsModal = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'diary-records',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\diary-records\diary-records.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Records\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab" (ionChange)="tabChanged($event)"> \n        <ion-segment-button value="today">\n            Today\n        </ion-segment-button>\n      <ion-segment-button value="volume">\n            Volume\n      </ion-segment-button>\n      <ion-segment-button value="weight">\n            Weight\n      </ion-segment-button>   \n      <ion-segment-button value="reps">\n            Reps\n      </ion-segment-button>      \n    </ion-segment>    \n    \n    <div *ngIf="properties.activeTab === \'today\'">\n        <div class="records-estimated-max">\n            <ion-icon name="trophy"></ion-icon>\n            <h2>{{this.localRecords.estimatedMax}}{{this.exercise.unit}}</h2>\n            <p>Estimated session max</p>\n        </div>\n        <ion-card class="orange-background records-card" >\n            <div class="bar-text">{{localRecords.maxReps}} rep<div class="unit" *ngIf="localRecords.maxReps !== 1">s</div><span> with {{exercise.records.amrap.weight}}{{exercise.unit}} / {{exercise.records.amrap.reps}} lifetime best</span></div>\n            <div class="records-bar">\n                <div class="current-bar" \n                     [ngStyle]="{\'width\': (localRecords.maxReps / exercise.records.amrap.reps) * 100 + \'%\'}"\n                     [ngClass]="{\'completed\' : localRecords.maxReps >= exercise.records.amrap.reps}"></div>\n            </div>\n        </ion-card>\n\n        <ion-card class="red-background records-card" >\n            <div class="bar-text">{{localRecords.maxWeight}}kg<span> {{exercise.records.overall.rep}} rep max / {{exercise.records.overall.max}}{{exercise.unit}} lifetime best</span></div>\n            <div class="records-bar">\n                <div class="current-bar" [ngStyle]="{\'width\': (localRecords.maxWeight / exercise.records.overall.max) * 100 + \'%\'}"\n                     [ngClass]="{\'completed\' : localRecords.maxWeight >= exercise.records.overall.max}"></div>\n            </div>\n        </ion-card>\n\n        <ion-card class="yellow-background records-card" >\n            <div class="bar-text">{{localRecords.currentVolume}}{{exercise.unit}} <span>volume / {{exercise.records.backoffs.best}}{{exercise.unit}} ({{exercise.records.overall.rep}} rep) lifetime best</span></div>\n            <div class="records-bar">\n                <div class="current-bar" [ngStyle]="{\'width\': (localRecords.currentVolume / exercise.records.backoffs.best) * 100 + \'%\'}"\n                     [ngClass]="{\'completed\' : localRecords.currentVolume >= exercise.records.backoffs.best}"></div>\n            </div>\n        </ion-card>\n    </div>\n \n    \n    <div *ngIf="properties.activeTab === \'volume\'">\n        <div class="diary-loading" *ngIf="properties.loading">\n            <ion-spinner></ion-spinner>\n        </div>     \n     \n        <div class="records-estimated-max yellow-background" *ngIf="fullRecords.backoffs.length > 0">\n            <ion-icon name="trophy"></ion-icon>\n            <h2>{{fullRecords.backoffs[fullRecords.backoffsIndex].best}}{{exercise.unit}}</h2>\n            <p>Volume for {{fullRecords.backoffs[fullRecords.backoffsIndex].reps}} rep sets</p>\n        </div>        \n        \n        <ion-list class="records-list">\n            <button ion-item *ngFor="let item of fullRecords.backoffs" (click)="viewRecord(item)">\n                Best volume for {{item.reps}} rep sets: {{item.best}}{{exercise.unit}}\n            </button>  \n        </ion-list>        \n        \n        \n        \n        \n    </div>\n    \n    <div *ngIf="properties.activeTab === \'weight\'">\n        <div class="diary-loading" *ngIf="properties.loading">\n            <ion-spinner></ion-spinner>\n        </div>  \n        \n        \n        <div class="records-estimated-max red-background" *ngIf="fullRecords.overall.length > 0">\n            <ion-icon name="trophy"></ion-icon>\n            <h2>{{fullRecords.overall[fullRecords.overallIndex].max}}{{exercise.unit}}</h2>\n            <p>{{fullRecords.overall[fullRecords.overallIndex].rep}} rep max</p>\n        </div>         \n        \n        <ion-list class="records-list">\n            <button ion-item *ngFor="let item of fullRecords.overall" (click)="viewRecord(item)" class="text-center">\n                {{item.rep}}RM: {{item.max}}{{exercise.unit}}\n            </button>  \n        </ion-list>          \n        \n        \n    </div>\n\n    <div *ngIf="properties.activeTab === \'reps\'">\n        <div class="diary-loading" *ngIf="properties.loading">\n            <ion-spinner></ion-spinner>\n        </div> \n        \n        <div class="records-estimated-max orange-background" *ngIf="fullRecords.amrap.length > 0">\n            <ion-icon name="trophy"></ion-icon>\n            <h2>{{fullRecords.amrap[fullRecords.amrapIndex].reps}} rep<span *ngIf="fullRecords.amrap[fullRecords.amrapIndex].reps > 1">s</span></h2>\n            <p>With {{fullRecords.amrap[fullRecords.amrapIndex].weight}}{{exercise.unit}}</p>\n        </div>  \n\n        \n        <ion-list class="records-list">\n            <button ion-item *ngFor="let item of fullRecords.amrap" (click)="viewRecord(item)">\n                Best reps with {{item.weight}}{{exercise.unit}}: {{item.reps}}@RPE{{item.rpe}}\n            </button>  \n        </ion-list>            \n        \n        \n    </div>    \n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\diary-records\diary-records.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _h || Object])
     ], DiaryRecordsModal);
     return DiaryRecordsModal;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=diary-records.js.map
@@ -5713,7 +5729,7 @@ var ProgramsPage = (function () {
                 _this.programProvider.updateProgram(data).then(function () {
                     _this.events.publish('programs:modified');
                     var alert = _this.alertCtrl.create({
-                        title: "Program update",
+                        title: "Program updated",
                         subTitle: "Your program has been successfully modified.",
                         buttons: [
                             {
@@ -5766,11 +5782,12 @@ var ProgramsPage = (function () {
     };
     ProgramsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-programs',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\programs\programs.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Programs</ion-title>\n\n       <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>   \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    \n    <ion-searchbar\n        [(ngModel)]="properties.search"\n        [showCancelButton]="shouldShowCancel"\n        (ionInput)="searchStarted()"\n        placeholder="Search Programs"\n        class="flat-search">\n    </ion-searchbar> \n\n    <div class="extended-segments" id="program-segments" >\n    <ion-segment color="primary" [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="popular">\n            Popular\n        </ion-segment-button>\n      <ion-segment-button value="powerlifting">\n            Powerlifting\n      </ion-segment-button>\n      <ion-segment-button value="bodybuilding">\n            Bodybuilding\n      </ion-segment-button>            \n        \n        <ion-segment-button value="created">\n            My Programs\n        </ion-segment-button>\n      <ion-segment-button value="recent">\n            Recent Adds\n      </ion-segment-button>         \n      <ion-segment-button value="all">\n            All Programs\n      </ion-segment-button>     \n    </ion-segment>\n    </div>\n\n    <div class="card-background-page" *ngIf="properties.activeTab === \'popular\'">\n    \n        <ion-card (click)="openProgram({name:\'5/3/1\', id:12})">\n            <img src="http://api.intensityapp.com/uploads/531.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">5/3/1</div>\n            <div class="card-subtitle">4 Weeks</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'The Juggernaut Method\', id:235})">\n            <img src="http://api.intensityapp.com/uploads/juggernaut.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Juggernaut Method</div>\n            <div class="card-subtitle">16 Weeks</div>\n        </ion-card>          \n        \n\n        <ion-card (click)="openProgram({name:\'Starting Strength\', id:10})">\n            <img src="http://api.intensityapp.com/uploads/startingstrength.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Starting Strength</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'StrongLifts 5x5\', id:50})">\n            <img src="http://api.intensityapp.com/uploads/stronglifts.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">StrongLifts 5x5</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'Smolov\', id:13})">\n            <img src="http://api.intensityapp.com/uploads/smolov.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Smolov</div>\n            <div class="card-subtitle">13 Weeks</div>\n        </ion-card>          \n        \n        \n    </div>\n    \n\n\n    <div class="card-background-page" *ngIf="properties.activeTab === \'powerlifting\'">\n    \n        <ion-card (click)="openProgram({name:\'Sheiko #29\', id:220})">\n            <img src="http://api.intensityapp.com/uploads/sheiko.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Sheiko</div>\n            <div class="card-subtitle">4 Weeks</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'Smolov Jr Bench\', id:54})">\n            <img src="http://api.intensityapp.com/uploads/smolovbench.jpg"/>\n            <div class="card-title">Smolov Jr Bench</div>\n            <div class="card-subtitle">3 Weeks</div>\n        </ion-card>          \n        \n\n        <ion-card (click)="openProgram({name:\'PowerliftingToWin Intermediate Program 1\', id:212})">\n            <img src="http://api.intensityapp.com/uploads/ptw.jpg"/>\n            <div class="card-title">PowerliftingToWin</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'The Cube Method\', id:217})">\n            <img src="http://api.intensityapp.com/uploads/cube.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Cube Method</div>\n            <div class="card-subtitle">10 Weeks</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'Candito 6 Week Strength Program\', id:208})">\n            <img src="http://api.intensityapp.com/uploads/candito.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Candito Strength Program</div>\n            <div class="card-subtitle">6 Weeks</div>\n        </ion-card>          \n        \n        <ion-card (click)="openProgram({name:\'5/3/1\', id:12})">\n            <img src="http://api.intensityapp.com/uploads/531.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">5/3/1</div>\n            <div class="card-subtitle">4 Weeks</div>\n        </ion-card>    \n         \n        \n        <ion-card (click)="openProgram({name:\'Smolov\', id:13})">\n            <img src="http://api.intensityapp.com/uploads/smolov.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Smolov</div>\n            <div class="card-subtitle">13 Weeks</div>\n        </ion-card>    \n\n        <ion-card (click)="openProgram({name:\'The Conjugate Method by Westside Barbell\', id:222})">\n            <img src="http://api.intensityapp.com/uploads/conjugate.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Conjugate Method</div>\n            <div class="card-subtitle">3 Weeks</div>\n        </ion-card>    \n\n        <ion-card (click)="openProgram({name:\'Coan Philippi Deadlift Routine\', id:219})">\n            <img src="http://api.intensityapp.com/uploads/coan.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Deadlift Routine</div>\n            <div class="card-subtitle">10 Weeks</div>\n        </ion-card>            \n\n        <ion-card (click)="openProgram({name:\'Smolov Jr\', id:53})">\n            <img src="http://api.intensityapp.com/uploads/smolovjr.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Smolov Jr</div>\n            <div class="card-subtitle">3 Weeks</div>\n        </ion-card>     \n        \n        <ion-card (click)="openProgram({name:\'The Juggernaut Method\', id:235})">\n            <img src="http://api.intensityapp.com/uploads/juggernaut.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Juggernaut Method</div>\n            <div class="card-subtitle">16 Weeks</div>\n        </ion-card> \n\n        \n    </div>\n    \n    \n    <div class="card-background-page" *ngIf="properties.activeTab === \'bodybuilding\'">\n    \n        <ion-card (click)="openProgram({name:\'Layne Norton PHAT\', id:216})">\n            <img src="http://api.intensityapp.com/uploads/layne.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Layne Norton PHAT</div>\n            <div class="card-subtitle">Weekly Bodypart Split</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'Gorillafinger 5 Day Split\', id:171})">\n            <img src="http://api.intensityapp.com/uploads/gorilla.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Gorillafinger 5 Day Split</div>\n            <div class="card-subtitle">Weekly Bodypart Split</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'Power Hypertrophy UL\', id:114})">\n            <img src="http://api.intensityapp.com/uploads/upperlower.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Power Hypertrophy</div>\n            <div class="card-subtitle">Weekly Upper/Lower Split</div>\n        </ion-card>        \n        \n        <ion-card (click)="openProgram({name:\'German Volume Training\', id:64})">\n            <img src="http://api.intensityapp.com/uploads/german.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">German Volume Training</div>\n            <div class="card-subtitle">Weekly Fullbody Split</div>\n        </ion-card>      \n        \n        <ion-card (click)="openProgram({name:\'StrongLifts 5x5\', id:50})">\n            <img src="http://api.intensityapp.com/uploads/stronglifts.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">StrongLifts 5x5</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>         \n        \n        \n    </div>  \n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'created\'">\n        <button ion-item detail-none *ngFor="let program of createdPrograms; let i = index" (click)="openProgram(program)">\n            {{program.name}}\n            <ion-icon name=\'create\' item-end *ngIf="checkOwnership(program.userid)" (click)="openEditProgram($event, program)"></ion-icon>\n            <ion-icon name=\'trash\' item-end *ngIf="checkOwnership(program.userid)" (click)="openDeleteProgram($event, program, i)"></ion-icon>\n        </button> \n    </ion-list>     \n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'recent\'">\n        <button ion-item detail-none *ngFor="let program of recentPrograms; let i = index" (click)="openProgram(program)">\n            {{program.name}}\n            <ion-icon name=\'create\' item-end *ngIf="checkOwnership(program.userid)" (click)="openEditProgram($event, program)"></ion-icon>\n            <ion-icon name=\'trash\' item-end *ngIf="checkOwnership(program.userid)" (click)="openDeleteProgram($event, program, i)"></ion-icon>\n        </button> \n    </ion-list>    \n    \n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'all\'">\n        <button ion-item detail-none *ngFor="let program of programs | programSearch:properties.search; let i = index" (click)="openProgram(program)">\n            {{program.name}}\n            <ion-icon name=\'create\' item-end *ngIf="checkOwnership(program.userid)" (click)="openEditProgram($event, program)"></ion-icon>\n            <ion-icon name=\'trash\' item-end *ngIf="checkOwnership(program.userid)" (click)="openDeleteProgram($event, program, i)"></ion-icon>\n        </button> \n    </ion-list>     \n    \n\n    \n    <ion-fab bottom right>\n        <button ion-fab color="primary" (click)="openCreateProgram()">\n            <ion-icon name="add"></ion-icon>\n        </button>\n    </ion-fab>    \n \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\programs\programs.html"*/
+            selector: 'page-programs',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\programs\programs.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Programs</ion-title>\n\n       <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>   \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    \n    <ion-searchbar\n        [(ngModel)]="properties.search"\n        [showCancelButton]="shouldShowCancel"\n        (ionInput)="searchStarted()"\n        placeholder="Search Programs"\n        class="flat-search">\n    </ion-searchbar> \n\n    <div class="extended-segments" id="program-segments" >\n    <ion-segment color="primary" [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="popular">\n            Popular\n        </ion-segment-button>\n      <ion-segment-button value="powerlifting">\n            Powerlifting\n      </ion-segment-button>\n      <ion-segment-button value="bodybuilding">\n            Bodybuilding\n      </ion-segment-button>            \n        \n        <ion-segment-button value="created">\n            My Programs\n        </ion-segment-button>\n      <ion-segment-button value="recent">\n            Recent Adds\n      </ion-segment-button>         \n      <ion-segment-button value="all">\n            All Programs\n      </ion-segment-button>     \n    </ion-segment>\n    </div>\n\n    <div class="card-background-page" *ngIf="properties.activeTab === \'popular\'">\n    \n        <ion-card (click)="openProgram({name:\'5/3/1\', id:12})">\n            <img src="http://api.intensityapp.com/uploads/531.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">5/3/1</div>\n            <div class="card-subtitle">4 Weeks</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'The Juggernaut Method\', id:235})">\n            <img src="http://api.intensityapp.com/uploads/juggernaut.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Juggernaut Method</div>\n            <div class="card-subtitle">16 Weeks</div>\n        </ion-card>          \n        \n\n        <ion-card (click)="openProgram({name:\'Starting Strength\', id:10})">\n            <img src="http://api.intensityapp.com/uploads/startingstrength.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Starting Strength</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'StrongLifts 5x5\', id:50})">\n            <img src="http://api.intensityapp.com/uploads/stronglifts.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">StrongLifts 5x5</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'Smolov\', id:13})">\n            <img src="http://api.intensityapp.com/uploads/smolov.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Smolov</div>\n            <div class="card-subtitle">13 Weeks</div>\n        </ion-card>          \n        \n        \n    </div>\n    \n\n\n    <div class="card-background-page" *ngIf="properties.activeTab === \'powerlifting\'">\n    \n        <ion-card (click)="openProgram({name:\'Sheiko #29\', id:220})">\n            <img src="http://api.intensityapp.com/uploads/sheiko.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Sheiko</div>\n            <div class="card-subtitle">4 Weeks</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'Smolov Jr Bench\', id:54})">\n            <img src="http://api.intensityapp.com/uploads/smolovbench.jpg"/>\n            <div class="card-title">Smolov Jr Bench</div>\n            <div class="card-subtitle">3 Weeks</div>\n        </ion-card>          \n        \n\n        <ion-card (click)="openProgram({name:\'PowerliftingToWin Intermediate Program 1\', id:212})">\n            <img src="http://api.intensityapp.com/uploads/ptw.jpg"/>\n            <div class="card-title">PowerliftingToWin</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'The Cube Method\', id:217})">\n            <img src="http://api.intensityapp.com/uploads/cube.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Cube Method</div>\n            <div class="card-subtitle">10 Weeks</div>\n        </ion-card>  \n\n\n        <ion-card (click)="openProgram({name:\'Candito 6 Week Strength Program\', id:208})">\n            <img src="http://api.intensityapp.com/uploads/candito.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Candito Strength Program</div>\n            <div class="card-subtitle">6 Weeks</div>\n        </ion-card>          \n        \n        <ion-card (click)="openProgram({name:\'5/3/1\', id:12})">\n            <img src="http://api.intensityapp.com/uploads/531.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">5/3/1</div>\n            <div class="card-subtitle">4 Weeks</div>\n        </ion-card>    \n         \n        \n        <ion-card (click)="openProgram({name:\'Smolov\', id:13})">\n            <img src="http://api.intensityapp.com/uploads/smolov.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Smolov</div>\n            <div class="card-subtitle">13 Weeks</div>\n        </ion-card>    \n\n        <ion-card (click)="openProgram({name:\'The Conjugate Method by Westside Barbell\', id:222})">\n            <img src="http://api.intensityapp.com/uploads/conjugate.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Conjugate Method</div>\n            <div class="card-subtitle">3 Weeks</div>\n        </ion-card>    \n\n        <ion-card (click)="openProgram({name:\'Coan Philippi Deadlift Routine\', id:219})">\n            <img src="http://api.intensityapp.com/uploads/coan.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Deadlift Routine</div>\n            <div class="card-subtitle">10 Weeks</div>\n        </ion-card>            \n\n        <ion-card (click)="openProgram({name:\'Smolov Jr\', id:53})">\n            <img src="http://api.intensityapp.com/uploads/smolovjr.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Smolov Jr</div>\n            <div class="card-subtitle">3 Weeks</div>\n        </ion-card>     \n        \n        <ion-card (click)="openProgram({name:\'The Juggernaut Method\', id:235})">\n            <img src="http://api.intensityapp.com/uploads/juggernaut.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">The Juggernaut Method</div>\n            <div class="card-subtitle">16 Weeks</div>\n        </ion-card> \n\n        \n    </div>\n    \n    \n    <div class="card-background-page" *ngIf="properties.activeTab === \'bodybuilding\'">\n    \n        <ion-card (click)="openProgram({name:\'Layne Norton PHAT\', id:216})">\n            <img src="http://api.intensityapp.com/uploads/layne.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Layne Norton PHAT</div>\n            <div class="card-subtitle">Weekly Bodypart Split</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'Gorillafinger 5 Day Split\', id:171})">\n            <img src="http://api.intensityapp.com/uploads/gorilla.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Gorillafinger 5 Day Split</div>\n            <div class="card-subtitle">Weekly Bodypart Split</div>\n        </ion-card>    \n        \n        <ion-card (click)="openProgram({name:\'Power Hypertrophy UL\', id:114})">\n            <img src="http://api.intensityapp.com/uploads/upperlower.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">Power Hypertrophy</div>\n            <div class="card-subtitle">Weekly Upper/Lower Split</div>\n        </ion-card>        \n        \n        <ion-card (click)="openProgram({name:\'German Volume Training\', id:64})">\n            <img src="http://api.intensityapp.com/uploads/german.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">German Volume Training</div>\n            <div class="card-subtitle">Weekly Fullbody Split</div>\n        </ion-card>      \n        \n        <ion-card (click)="openProgram({name:\'StrongLifts 5x5\', id:50})">\n            <img src="http://api.intensityapp.com/uploads/stronglifts.jpg" onerror="this.style.display=\'none\'"/>\n            <div class="card-title">StrongLifts 5x5</div>\n            <div class="card-subtitle">Alternating Workouts</div>\n        </ion-card>         \n        \n        \n    </div>  \n    \n    <ion-list class="programs-list add-diary-list" *ngIf="properties.activeTab === \'created\'">\n        <button ion-item detail-none *ngFor="let program of createdPrograms; let i = index" (click)="openProgram(program)">\n            {{program.name}}\n            <ion-icon name=\'create\' item-end *ngIf="checkOwnership(program.userid)" (click)="openEditProgram($event, program)"></ion-icon>\n            <ion-icon name=\'trash\' item-end *ngIf="checkOwnership(program.userid)" (click)="openDeleteProgram($event, program, i)"></ion-icon>\n        </button> \n    </ion-list>     \n    \n    <ion-list class="programs-list add-diary-list" *ngIf="properties.activeTab === \'recent\'">\n        <button ion-item detail-none *ngFor="let program of recentPrograms; let i = index" (click)="openProgram(program)">\n            {{program.name}}\n            <ion-icon name=\'create\' item-end *ngIf="checkOwnership(program.userid)" (click)="openEditProgram($event, program)"></ion-icon>\n            <ion-icon name=\'trash\' item-end *ngIf="checkOwnership(program.userid)" (click)="openDeleteProgram($event, program, i)"></ion-icon>\n        </button> \n    </ion-list>    \n    \n    \n    <ion-list class="programs-list add-diary-list" *ngIf="properties.activeTab === \'all\'">\n        <button ion-item detail-none *ngFor="let program of programs | programSearch:properties.search; let i = index" (click)="openProgram(program)">\n            {{program.name}}\n            <ion-icon name=\'create\' item-end *ngIf="checkOwnership(program.userid)" (click)="openEditProgram($event, program)"></ion-icon>\n            <ion-icon name=\'trash\' item-end *ngIf="checkOwnership(program.userid)" (click)="openDeleteProgram($event, program, i)"></ion-icon>\n        </button> \n    </ion-list>     \n    \n\n    \n    <ion-fab bottom right>\n        <button ion-fab color="primary" (click)="openCreateProgram()">\n            <ion-icon name="add"></ion-icon>\n        </button>\n    </ion-fab>    \n \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\programs\programs.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_3__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_4__providers_program_program__["a" /* ProgramProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_account_account__["a" /* AccountProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_program_program__["a" /* ProgramProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_program_program__["a" /* ProgramProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object])
     ], ProgramsPage);
     return ProgramsPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=programs.js.map
@@ -6297,10 +6314,12 @@ var EditProgramModal = (function () {
         });
         this.program = this.params.data.program;
         this.program.public = parseInt(this.program.public);
+        this.program.duration = parseInt(this.program.duration);
         this.programProvider.getProgram(this.program.id).then(function (data) {
             _this.properties.loading = false;
             _this.program = data;
             _this.program.public = parseInt(_this.program.public);
+            _this.program.duration = parseInt(_this.program.duration);
             _this.program.workouts.sort(function (a, b) {
                 return a.day - b.day;
             });
@@ -6324,6 +6343,16 @@ var EditProgramModal = (function () {
         var tab = Math.ceil(parseInt(workout.day) / 7);
         return index === tab;
     };
+    EditProgramModal.prototype.deepCopy = function (oldObj) {
+        var newObj = oldObj;
+        if (oldObj && typeof oldObj === "object") {
+            newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
+            for (var i in oldObj) {
+                newObj[i] = this.deepCopy(oldObj[i]);
+            }
+        }
+        return newObj;
+    };
     EditProgramModal.prototype.addWeek = function () {
         this.program.duration += 7;
         this.calculateTabs();
@@ -6343,11 +6372,14 @@ var EditProgramModal = (function () {
                         var copyWeekEndDay = copyWeekStartDay + 6;
                         for (var _i = 0, _a = _this.program.workouts; _i < _a.length; _i++) {
                             var workout = _a[_i];
-                            if (workout.day >= copyWeekStartDay && workout.day <= copyWeekEndDay) {
-                                var copy = Object.assign({}, workout);
-                                copy.day += newWeekStartDay;
+                            if (parseInt(workout.day) >= copyWeekStartDay && parseInt(workout.day) <= copyWeekEndDay) {
+                                var copy = _this.deepCopy(workout);
+                                copy.day = parseInt(workout.day) + newWeekStartDay;
                                 copy.name = "Day " + copy.day;
+                                copy.workoutid = null;
+                                copy.added = true;
                                 _this.program.workouts.push(copy);
+                                console.log(_this.program);
                             }
                         }
                     },
@@ -6384,14 +6416,14 @@ var EditProgramModal = (function () {
                                         var newWeekEndDay = moveWeekEndDay + daysChange;
                                         for (var _i = 0, _a = _this.program.workouts; _i < _a.length; _i++) {
                                             var workout = _a[_i];
-                                            if (workout.day >= moveWeekStartDay && workout.day <= moveWeekEndDay) {
-                                                workout.day += daysChange;
+                                            if (parseInt(workout.day) >= moveWeekStartDay && parseInt(workout.day) <= moveWeekEndDay) {
+                                                workout.day = parseInt(workout.day) + daysChange;
                                             }
-                                            else if (daysChange > 0 && (workout.day >= moveWeekStartDay && workout.day <= newWeekEndDay)) {
-                                                workout.day -= 7;
+                                            else if (daysChange > 0 && (parseInt(workout.day) >= moveWeekStartDay && parseInt(workout.day) <= newWeekEndDay)) {
+                                                workout.day = parseInt(workout.day) + 7;
                                             }
-                                            else if (daysChange < 0 && (workout.day >= newWeekStartDay && workout.day <= moveWeekEndDay)) {
-                                                workout.day += 7;
+                                            else if (daysChange < 0 && (parseInt(workout.day) >= newWeekStartDay && parseInt(workout.day) <= moveWeekEndDay)) {
+                                                workout.day = parseInt(workout.day) + 7;
                                             }
                                         }
                                     }
@@ -6427,11 +6459,11 @@ var EditProgramModal = (function () {
                                         var weekEndDay = weekStartDay + 6;
                                         for (var x = _this.program.workouts.length - 1; x >= 0; x--) {
                                             var workout = _this.program.workouts[0];
-                                            if (workout.day >= weekStartDay && workout.day <= weekEndDay) {
+                                            if (parseInt(workout.day) >= weekStartDay && parseInt(workout.day) <= weekEndDay) {
                                                 _this.program.workouts.splice(x, 1);
                                             }
-                                            else if (workout.day > weekEndDay) {
-                                                workout.day -= 7;
+                                            else if (parseInt(workout.day) > weekEndDay) {
+                                                workout.day = parseInt(workout.day) - 7;
                                             }
                                         }
                                         _this.program.duration -= 7;
@@ -6463,14 +6495,14 @@ var EditProgramModal = (function () {
         var newDay = weekStartDay;
         for (var _i = 0, _a = this.program.workouts; _i < _a.length; _i++) {
             var workout = _a[_i];
-            if (workout.day >= weekStartDay && workout.day <= weekEndDay) {
-                newDay = workout.day + 1;
+            if (parseInt(workout.day) >= weekStartDay && parseInt(workout.day) <= weekEndDay) {
+                newDay = parseInt(workout.day) + 1;
             }
         }
         if (newDay > weekEndDay) {
             newDay = weekEndDay;
         }
-        this.program.workouts.push({ name: "Day " + newDay, day: newDay, exercises: [] });
+        this.program.workouts.push({ name: "Day " + newDay, day: newDay, exercises: [], added: true });
         setTimeout(function () { _this.content.scrollToBottom(); }, 200);
     };
     EditProgramModal.prototype.copyWorkout = function (workout) {
@@ -6491,7 +6523,9 @@ var EditProgramModal = (function () {
                             var workoutIndex = data_1[_i];
                             for (var x = 0; x < exerciseCount; x++) {
                                 var exercise = workout.exercises[x];
-                                var copy = Object.assign({}, exercise);
+                                var copy = _this.deepCopy(exercise);
+                                copy.added = true;
+                                copy.workoutid = false;
                                 _this.program.workouts[workoutIndex].exercises.push(copy);
                             }
                         }
@@ -6524,9 +6558,9 @@ var EditProgramModal = (function () {
                     handler: function (data) {
                         if (data.day && data.name) {
                             workout.day = data.day;
-                            workout.name = data.name;
-                            if (workout.day > _this.program.duration) {
-                                var newDuration = ((workout.day % 7) + 1) * 7;
+                            //workout.name = data.name;
+                            if (parseInt(workout.day) > _this.program.duration) {
+                                var newDuration = ((parseInt(workout.day) % 7) + 1) * 7;
                                 _this.program.duration = newDuration;
                                 _this.calculateTabs();
                             }
@@ -6534,7 +6568,7 @@ var EditProgramModal = (function () {
                     }
                 }
             ],
-            inputs: [{ name: "name", placeholder: "Workout Name", type: "text", value: workout.name }, { name: "day", placeholder: "Day", type: "number", value: workout.day }]
+            inputs: [{ name: "day", placeholder: "Day", type: "number", value: workout.day }]
         };
         var alert = this.alertCtrl.create(alertObj);
         alert.present();
@@ -6585,6 +6619,7 @@ var EditProgramModal = (function () {
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */]);
         modal.onDidDismiss(function (exercise) {
             if (exercise) {
+                exercise["id"] = null;
                 workout.exercises.push(exercise);
             }
         });
@@ -6607,7 +6642,8 @@ var EditProgramModal = (function () {
                     handler: function (data) {
                         for (var _i = 0, data_2 = data; _i < data_2.length; _i++) {
                             var workoutIndex = data_2[_i];
-                            var copy = Object.assign({}, exercise);
+                            var copy = _this.deepCopy(exercise);
+                            copy["id"] = null;
                             _this.program.workouts[workoutIndex].exercises.push(copy);
                         }
                     }
@@ -6671,15 +6707,16 @@ var EditProgramModal = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]) === "function" && _a || Object)
     ], EditProgramModal.prototype, "content", void 0);
     EditProgramModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'edit-program',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-program\edit-program.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Edit Program\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n\n    \n\n    <ion-list class="edit-profile program-info">    \n        <ion-item>\n            <ion-label floating>Program Name</ion-label>\n            <ion-input type="text" [(ngModel)]="program.name"></ion-input>\n        </ion-item>\n        \n       \n\n\n        <ion-item>\n            <ion-label floating>Description</ion-label>\n            <ion-textarea [(ngModel)]="program.description" autosize></ion-textarea>\n        </ion-item>  \n\n        <ion-item>\n            <ion-label>Public</ion-label>\n            <ion-checkbox color="primary" [(ngModel)]="program.public"></ion-checkbox>\n        </ion-item>         \n        \n        \n    </ion-list>\n    \n    \n    <div *ngIf="properties.loading" class="diary-loading program-loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n    \n    <div *ngIf="!properties.loading">\n        \n        <div class="workout-tabs">\n            <button ion-button small (click)="properties.activeTab = tab" (press)="openWeekOptions(tab, i)" [outline]="properties.activeTab !== tab" *ngFor="let tab of tabs;let i = index">{{tab}}</button>\n            <button ion-button small clear icon-start (click)="addWeek()">\n                <ion-icon name="add"></ion-icon>\n                Add Week\n            </button>\n        </div>   \n\n\n            <div class="program-workouts">\n\n                <div *ngFor="let workout of program.workouts; let workoutIndex = index" class="workout-list">\n\n                    <ion-list *ngIf="isInTab(workout)">\n                        <ion-list-header>\n                            <span (click)="workout.hide = !workout.hide">{{workout.name}}</span>\n                            <ion-icon name="git-compare" item-end (click)="moveWorkout(workout)"></ion-icon>\n                            <ion-icon name="copy" item-end (click)="copyWorkout(workout)"></ion-icon>\n                            <ion-icon name="create" item-end (click)="editWorkout(workout)"></ion-icon>\n                            <ion-icon name="trash" item-end (click)="deleteWorkout(workoutIndex, workout)"></ion-icon>\n                        </ion-list-header>\n\n\n                        <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event, workout)" *ngIf="!workout.hide" class="diary-sets">\n\n\n                            <ion-item *ngFor="let exercise of workout.exercises; let i = index" (click)="editExercise($event, exercise)">\n                                <h2>{{exercise.name}}</h2>\n                                <p>{{exercise.sets ? exercise.sets : 0}} set<span *ngIf="exercise.sets !== \'1\'">s</span> of {{exercise.reps ? exercise.reps : 0}} rep<span *ngIf="exercise.reps !== \'1\'">s</span><span *ngIf="exercise.percentage && exercise.percentage > 0">, {{exercise.percentage}}%</span><span *ngIf="exercise.rpe && exercise.rpe > 0">, @{{exercise.rpe}}RPE</span></p>\n                                <div class="program-exercise-actions">\n                                    <ion-icon name="copy" (click)="copyExercise($event, exercise,workout)"></ion-icon>\n                                    <ion-icon name="create" (click)="editExercise($event, exercise)"></ion-icon>\n                                    <ion-icon name="trash" (click)="deleteExercise($event, i,workout)"></ion-icon>\n                                </div>\n                            </ion-item>\n\n                        </ion-item-group>\n\n                        <button class="program-add-exercise" ion-button small clear icon-start (click)="addExercise(workout)" *ngIf="!workout.hide">\n                            <ion-icon name="add"></ion-icon>\n                            Add Exercise\n                        </button>  \n\n                    </ion-list>\n\n                </div>\n\n            </div>    \n\n\n        <div class="add-program-workout" (click)="addWorkout()">\n            <ion-icon name="add"></ion-icon> Add Workout\n        </div>\n        \n    </div>\n    \n</ion-content>\n\n<ion-footer class="add-program-footer premium-footer">\n    <button ion-button (click)="update()">Update Program</button>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-program\edit-program.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_6__providers_program_program__["a" /* ProgramProvider */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__providers_program_program__["a" /* ProgramProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_program_program__["a" /* ProgramProvider */]) === "function" && _k || Object])
     ], EditProgramModal);
     return EditProgramModal;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 }());
 
 //# sourceMappingURL=edit-program.js.map
@@ -8656,71 +8693,72 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(482);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_message_message__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_program_program__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_records_records__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__ = __webpack_require__(485);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_tools_help__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__ = __webpack_require__(494);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__ = __webpack_require__(495);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ionic_long_press__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_login_login__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_records_records__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_import_import__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_goal_resets_goal_resets__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_status_bar__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_splash_screen__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_social_sharing__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__ionic_native_native_audio__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_program_program__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_authentication_authentication__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_leaderboard_leaderboard__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_friends_friends__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_message_message__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_chart_chart__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_offline_offline__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_timer_timer__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__providers_exercise_exercise__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__providers_bodyweight_bodyweight__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_exercise_search__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pipes_program_search__ = __webpack_require__(499);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__pipes_sort__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ion_datepicker__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_diary__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_settings_settings__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friends_friends__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_friend_profile_friend_profile__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_friend_diary_friend_diary__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_messages_messages__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_message_message__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_leaderboard_leaderboard__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_premium_premium__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_profile_profile__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_program_program__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_programs_programs__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_records_records__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_stats_stats__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_tools__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_timer__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_calculator__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_tools_bodyweight__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_tools_help__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_program_popover_program_popover__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_autosize_autosize__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__components_tools_popover__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_ionic_long_press__ = __webpack_require__(495);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_45_ionic_long_press__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_login_login__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_add_exercise_add_exercise__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_select_exercise_select_exercise__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_add_program_add_program__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_change_exercise_change_exercise__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_edit_set_edit_set__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_diary_records_diary_records__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_records_records__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_edit_profile_edit_profile__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_add_friends_add_friends__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_search_friends_search_friends__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_import_import__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_goal_settings_goal_settings__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_goal_resets_goal_resets__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__modals_create_program_create_program__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__modals_edit_program_edit_program__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_status_bar__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_splash_screen__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__ionic_native_social_sharing__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__ionic_native_native_audio__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_program_program__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_authentication_authentication__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_leaderboard_leaderboard__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_friends_friends__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_message_message__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_chart_chart__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_offline_offline__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_timer_timer__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__providers_bodyweight_bodyweight__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pipes_exercise_search__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__pipes_program_search__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__pipes_sort__ = __webpack_require__(500);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8812,131 +8850,132 @@ function highchartsModules() {
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__["a" /* DiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
-                __WEBPACK_IMPORTED_MODULE_45__modals_login_login__["a" /* LoginModal */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__["a" /* FriendsPage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__["a" /* MessagesPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_message_message__["a" /* MessagePage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__["a" /* PremiumPage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_program_program__["a" /* ProgramPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__["a" /* ProgramsPage */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_records_records__["a" /* RecordsPage */],
-                __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__["a" /* StatsPage */],
-                __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__["a" /* AddProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_52__modals_records_records__["a" /* RecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__["a" /* TimerModal */],
-                __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__["a" /* CalculatorModal */],
-                __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__["a" /* BodyweightModal */],
-                __WEBPACK_IMPORTED_MODULE_40__components_tools_help__["a" /* HelpModal */],
-                __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__["a" /* EditSetModal */],
-                __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
-                __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_56__modals_import_import__["a" /* ImportModal */],
-                __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
-                __WEBPACK_IMPORTED_MODULE_58__modals_goal_resets_goal_resets__["a" /* GoalResetsModal */],
-                __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__["a" /* CreateProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__["a" /* EditProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["a" /* ProgramPopover */],
-                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
-                __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__["a" /* ToolsDirective */],
-                __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__["a" /* Autosize */],
-                __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */],
-                __WEBPACK_IMPORTED_MODULE_79__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_80__pipes_program_search__["a" /* ProgramSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_81__pipes_sort__["a" /* ArraySortPipe */]
+                __WEBPACK_IMPORTED_MODULE_21__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_diary_diary__["a" /* DiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
+                __WEBPACK_IMPORTED_MODULE_46__modals_login_login__["a" /* LoginModal */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_friends_friends__["a" /* FriendsPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_messages_messages__["a" /* MessagesPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_message_message__["a" /* MessagePage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_premium_premium__["a" /* PremiumPage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_program_program__["a" /* ProgramPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_programs_programs__["a" /* ProgramsPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_records_records__["a" /* RecordsPage */],
+                __WEBPACK_IMPORTED_MODULE_36__pages_stats_stats__["a" /* StatsPage */],
+                __WEBPACK_IMPORTED_MODULE_47__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_49__modals_add_program_add_program__["a" /* AddProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_50__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_48__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_records_records__["a" /* RecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_38__components_tools_timer__["a" /* TimerModal */],
+                __WEBPACK_IMPORTED_MODULE_39__components_tools_calculator__["a" /* CalculatorModal */],
+                __WEBPACK_IMPORTED_MODULE_40__components_tools_bodyweight__["a" /* BodyweightModal */],
+                __WEBPACK_IMPORTED_MODULE_41__components_tools_help__["a" /* HelpModal */],
+                __WEBPACK_IMPORTED_MODULE_51__modals_edit_set_edit_set__["a" /* EditSetModal */],
+                __WEBPACK_IMPORTED_MODULE_52__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_54__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
+                __WEBPACK_IMPORTED_MODULE_55__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_56__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_57__modals_import_import__["a" /* ImportModal */],
+                __WEBPACK_IMPORTED_MODULE_58__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
+                __WEBPACK_IMPORTED_MODULE_59__modals_goal_resets_goal_resets__["a" /* GoalResetsModal */],
+                __WEBPACK_IMPORTED_MODULE_60__modals_create_program_create_program__["a" /* CreateProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_62__modals_edit_program_edit_program__["a" /* EditProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_42__pages_program_popover_program_popover__["a" /* ProgramPopover */],
+                __WEBPACK_IMPORTED_MODULE_42__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
+                __WEBPACK_IMPORTED_MODULE_37__components_tools_tools__["a" /* ToolsDirective */],
+                __WEBPACK_IMPORTED_MODULE_43__components_autosize_autosize__["a" /* Autosize */],
+                __WEBPACK_IMPORTED_MODULE_44__components_tools_popover__["a" /* PopoverPage */],
+                __WEBPACK_IMPORTED_MODULE_80__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_81__pipes_program_search__["a" /* ProgramSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_82__pipes_sort__["a" /* ArraySortPipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_21__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
                 __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar__["RoundProgressModule"],
-                __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__["b" /* DatePickerModule */],
-                __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__["LongPressModule"],
+                __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__["RoundProgressModule"],
+                __WEBPACK_IMPORTED_MODULE_20_ion_datepicker__["b" /* DatePickerModule */],
+                __WEBPACK_IMPORTED_MODULE_45_ionic_long_press__["LongPressModule"],
                 __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["b" /* ChartModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__["a" /* DiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
-                __WEBPACK_IMPORTED_MODULE_45__modals_login_login__["a" /* LoginModal */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__["a" /* FriendsPage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__["a" /* MessagesPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_message_message__["a" /* MessagePage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__["a" /* PremiumPage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_program_program__["a" /* ProgramPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__["a" /* ProgramsPage */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_records_records__["a" /* RecordsPage */],
-                __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__["a" /* StatsPage */],
-                __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__["a" /* AddProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["a" /* ProgramPopover */],
-                __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
-                __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__["a" /* TimerModal */],
-                __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__["a" /* CalculatorModal */],
-                __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__["a" /* BodyweightModal */],
-                __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_40__components_tools_help__["a" /* HelpModal */],
-                __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__["a" /* EditSetModal */],
-                __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_52__modals_records_records__["a" /* RecordsModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
-                __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
-                __WEBPACK_IMPORTED_MODULE_56__modals_import_import__["a" /* ImportModal */],
-                __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
-                __WEBPACK_IMPORTED_MODULE_58__modals_goal_resets_goal_resets__["a" /* GoalResetsModal */],
-                __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__["a" /* CreateProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__["a" /* EditProgramModal */],
-                __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
-                __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */]
+                __WEBPACK_IMPORTED_MODULE_21__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_diary_diary__["a" /* DiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */],
+                __WEBPACK_IMPORTED_MODULE_46__modals_login_login__["a" /* LoginModal */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_friends_friends__["a" /* FriendsPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_friend_profile_friend_profile__["a" /* FriendProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_friend_diary_friend_diary__["a" /* FriendDiaryPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_messages_messages__["a" /* MessagesPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_message_message__["a" /* MessagePage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_leaderboard_leaderboard__["a" /* LeaderboardPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_premium_premium__["a" /* PremiumPage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_program_program__["a" /* ProgramPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_programs_programs__["a" /* ProgramsPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_records_records__["a" /* RecordsPage */],
+                __WEBPACK_IMPORTED_MODULE_36__pages_stats_stats__["a" /* StatsPage */],
+                __WEBPACK_IMPORTED_MODULE_47__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_49__modals_add_program_add_program__["a" /* AddProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_50__modals_change_exercise_change_exercise__["a" /* ChangeExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_48__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_42__pages_program_popover_program_popover__["a" /* ProgramPopover */],
+                __WEBPACK_IMPORTED_MODULE_42__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
+                __WEBPACK_IMPORTED_MODULE_38__components_tools_timer__["a" /* TimerModal */],
+                __WEBPACK_IMPORTED_MODULE_39__components_tools_calculator__["a" /* CalculatorModal */],
+                __WEBPACK_IMPORTED_MODULE_40__components_tools_bodyweight__["a" /* BodyweightModal */],
+                __WEBPACK_IMPORTED_MODULE_55__modals_add_friends_add_friends__["a" /* AddFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_41__components_tools_help__["a" /* HelpModal */],
+                __WEBPACK_IMPORTED_MODULE_51__modals_edit_set_edit_set__["a" /* EditSetModal */],
+                __WEBPACK_IMPORTED_MODULE_52__modals_diary_records_diary_records__["a" /* DiaryRecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_records_records__["a" /* RecordsModal */],
+                __WEBPACK_IMPORTED_MODULE_54__modals_edit_profile_edit_profile__["a" /* EditProfileModal */],
+                __WEBPACK_IMPORTED_MODULE_56__modals_search_friends_search_friends__["a" /* SearchFriendsModal */],
+                __WEBPACK_IMPORTED_MODULE_57__modals_import_import__["a" /* ImportModal */],
+                __WEBPACK_IMPORTED_MODULE_58__modals_goal_settings_goal_settings__["a" /* GoalSettingsModal */],
+                __WEBPACK_IMPORTED_MODULE_59__modals_goal_resets_goal_resets__["a" /* GoalResetsModal */],
+                __WEBPACK_IMPORTED_MODULE_60__modals_create_program_create_program__["a" /* CreateProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_62__modals_edit_program_edit_program__["a" /* EditProgramModal */],
+                __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_44__components_tools_popover__["a" /* PopoverPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_62__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_63__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_63__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_64__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_66__providers_diary_diary__["a" /* DiaryProvider */],
-                __WEBPACK_IMPORTED_MODULE_68__providers_authentication_authentication__["a" /* AuthenticationProvider */],
-                __WEBPACK_IMPORTED_MODULE_75__providers_timer_timer__["a" /* TimerService */],
-                __WEBPACK_IMPORTED_MODULE_69__providers_account_account__["a" /* AccountProvider */],
-                __WEBPACK_IMPORTED_MODULE_78__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
-                __WEBPACK_IMPORTED_MODULE_70__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
-                __WEBPACK_IMPORTED_MODULE_71__providers_friends_friends__["a" /* FriendsProvider */],
-                __WEBPACK_IMPORTED_MODULE_74__providers_offline_offline__["a" /* OfflineProvider */],
+                __WEBPACK_IMPORTED_MODULE_67__providers_diary_diary__["a" /* DiaryProvider */],
+                __WEBPACK_IMPORTED_MODULE_69__providers_authentication_authentication__["a" /* AuthenticationProvider */],
+                __WEBPACK_IMPORTED_MODULE_76__providers_timer_timer__["a" /* TimerService */],
+                __WEBPACK_IMPORTED_MODULE_70__providers_account_account__["a" /* AccountProvider */],
+                __WEBPACK_IMPORTED_MODULE_79__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
+                __WEBPACK_IMPORTED_MODULE_71__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
+                __WEBPACK_IMPORTED_MODULE_72__providers_friends_friends__["a" /* FriendsProvider */],
+                __WEBPACK_IMPORTED_MODULE_75__providers_offline_offline__["a" /* OfflineProvider */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__["a" /* Facebook */],
-                __WEBPACK_IMPORTED_MODULE_65__ionic_native_native_audio__["a" /* NativeAudio */],
+                __WEBPACK_IMPORTED_MODULE_66__ionic_native_native_audio__["a" /* NativeAudio */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_email_composer__["a" /* EmailComposer */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_purchase__["a" /* InAppPurchase */],
                 __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_64__ionic_native_social_sharing__["a" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_65__ionic_native_social_sharing__["a" /* SocialSharing */],
                 __WEBPACK_IMPORTED_MODULE_11__ionic_native_local_notifications__["a" /* LocalNotifications */],
                 __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */],
                 __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__["a" /* Network */],
@@ -8944,10 +8983,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__["a" /* Push */],
                 __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__["a" /* FileTransfer */],
                 __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_77__providers_exercise_exercise__["a" /* ExerciseProvider */],
-                __WEBPACK_IMPORTED_MODULE_67__providers_program_program__["a" /* ProgramProvider */],
-                __WEBPACK_IMPORTED_MODULE_72__providers_message_message__["a" /* MessageProvider */],
-                __WEBPACK_IMPORTED_MODULE_73__providers_chart_chart__["a" /* ChartProvider */],
+                __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__["a" /* AppRate */],
+                __WEBPACK_IMPORTED_MODULE_78__providers_exercise_exercise__["a" /* ExerciseProvider */],
+                __WEBPACK_IMPORTED_MODULE_68__providers_program_program__["a" /* ProgramProvider */],
+                __WEBPACK_IMPORTED_MODULE_73__providers_message_message__["a" /* MessageProvider */],
+                __WEBPACK_IMPORTED_MODULE_74__providers_chart_chart__["a" /* ChartProvider */],
                 __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__["a" /* BackgroundMode */],
                 { provide: __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["c" /* HIGHCHARTS_MODULES */], useFactory: highchartsModules }
             ]
@@ -9110,6 +9150,7 @@ var SelectExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_app_rate__ = __webpack_require__(501);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9142,8 +9183,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, modalCtrl, splashScreen, accountProvider, events, storage, loadingCtrl, auth, alertCtrl, oneSignal, offlineProvider, iap, localNotifications) {
+    function MyApp(platform, statusBar, modalCtrl, splashScreen, accountProvider, events, storage, loadingCtrl, auth, alertCtrl, oneSignal, offlineProvider, iap, localNotifications, appRate) {
         var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
@@ -9159,6 +9201,7 @@ var MyApp = (function () {
         this.offlineProvider = offlineProvider;
         this.iap = iap;
         this.localNotifications = localNotifications;
+        this.appRate = appRate;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__["a" /* DiaryPage */];
         this.initializeApp();
         // used for an example of ngFor and navigation
@@ -9233,6 +9276,14 @@ var MyApp = (function () {
         this.events.subscribe("premium:purchased", function () {
             _this.account.premium = true;
         });
+        this.appRate.preferences = {
+            usesUntilPrompt: 3,
+            storeAppURL: {
+                ios: '1047407323',
+                android: 'market://details?id=com.taylorhamling.intensity'
+            }
+        };
+        this.appRate.promptForRating(false);
     }
     MyApp.prototype.openLogin = function () {
         var _this = this;
@@ -9389,14 +9440,15 @@ var MyApp = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/`<ion-menu [content]="content" [ngClass]="{\'dark-theme\':theme === \'dark\'}">\n\n\n    <ion-content>\n\n        <div class="menu-header" menuClose (click)="openPage(profilePage)" [ngClass]="{\'is-premium\':account.premium}">\n            <div class="user-dp">\n                <img [src]="account.dp" onerror="this.style.display=\'none\'"/>\n            </div>\n            <div class="username">\n                {{account.username}}\n            </div>\n            <p>{{account.streak}} week streak, last workout {{account.last_workout_formatted}}</p>\n        </div>\n        \n        <div class="offline-mode" *ngIf="!connectionStatus">\n            <ion-spinner></ion-spinner>\n            Checking for internet connection...\n        </div>\n\n        <ion-list class=\'menu-list\'>\n            <button menuClose ion-item class=\'menu-premium\' (click)="openPage(premiumPage)" *ngIf="!account.premium">\n                <ion-icon name=\'star\' item-start></ion-icon>\n                Explore Premium\n            </button>            \n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-start></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{\'dark-theme\':theme === \'dark\'}"></ion-nav>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */], __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */]) === "function" && _o || Object, typeof (_p = typeof __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */]) === "function" && _p || Object, typeof (_q = typeof __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _q || Object, typeof (_r = typeof __WEBPACK_IMPORTED_MODULE_23__ionic_native_app_rate__["a" /* AppRate */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_23__ionic_native_app_rate__["a" /* AppRate */]) === "function" && _r || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -10403,20 +10455,19 @@ var DiaryPage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */])
     ], DiaryPage.prototype, "slides", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */]),
-        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */]) === "function" && _b || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */])
     ], DiaryPage.prototype, "datepicker", void 0);
     DiaryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-diary',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle [hidden]="reorderActive">\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Diary</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n        <ion-buttons class="reorder-close" left [hidden]="!reorderActive">\n            <button ion-button icon-only (click)="reorderActive = false">\n                <ion-icon name="close" ></ion-icon>\n            </button>\n        </ion-buttons>         \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <span ion-datepicker [hidden]="true" (ionChanged)="copyWorkout($event)" [okText]="\'Copy To Date\'">Copy</span>\n    <div class="date-changer">\n        <ion-icon tappable ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>\n        <span tappable ion-datepicker [markDates]="markedWorkoutDates" (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>\n        <ion-icon tappable ios="ios-arrow-forward" md="ios-arrow-forward" (click)="changeDay(1)"></ion-icon>\n    </div>\n    \n    <ion-slides initialSlide="7" (ionSlideDidChange)="workoutChanged()">\n\n        <ion-slide style="background-color:#ececec;" *ngFor="let slide of workoutSlides; let i = index" >\n            \n            <div class="diary-loading" *ngIf="workouts[i].loading">\n                <ion-spinner></ion-spinner>\n            </div>\n                   \n            <div class="diary-empty" *ngIf="workouts[i].workouts.length < 1 && !workouts[i].loading">\n                <ion-icon name=\'bookmarks\'></ion-icon>\n                Diary Empty\n            </div>                   \n                   \n            <ion-list reorder="{{reorderActive}}" side="start" (ionItemReorder)="reorderItems($event)" class=\'diary-exercise-list\' *ngIf="!workouts[i].loading">\n              <ion-item *ngFor="let exercise of workouts[i].workouts; let i = index" (click)="selectExercise(exercise)" (press)="showOptions(exercise, i)">\n                  <h2>{{exercise.name}}</h2>\n                  <p *ngIf="exercise.sets.length < 11">\n                      <ion-icon tappable *ngFor="let set of exercise.sets" [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set, exercise)"></ion-icon>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable (click)="addSet($event,exercise)"></ion-icon>\n                  </p>\n                  <p *ngIf="exercise.sets.length > 10">\n                      <span class="set-overflow">{{exercise.sets.length}}</span>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable  (click)="addSet($event,exercise)"></ion-icon>\n                  </p>                  \n                  \n                  <div class="bar-progress" [ngStyle]="{\'width\': (exercise.goals.progress / exercise.goals.goal) * 100 + \'%\'}" [ngClass]="{\'calibrating\' : exercise.calibrating}"></div>\n                  <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n              </ion-item>\n \n                \n                \n            </ion-list>            \n            \n            \n        </ion-slide>\n\n    </ion-slides>\n    \n    <ion-fab bottom right>\n        <button ion-fab color="primary" (click)="openAddDiaryModal()">\n            <ion-icon name="add"></ion-icon>\n        </button>\n    </ion-fab>\n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" && _m || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]])
     ], DiaryPage);
     return DiaryPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
 }());
 
 //# sourceMappingURL=diary.js.map
