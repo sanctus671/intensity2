@@ -7975,7 +7975,6 @@ var BodyweightModal = (function () {
         this.bodyweightChart = new __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["a" /* Chart */](config);
         this.bodyweights = [];
         this.bodyweightProvider.getBodyweights().then(function (data) {
-            console.log(data);
             _this.properties.loading = false;
             _this.bodyweights = data.sort(function (a, b) {
                 var aDate = new Date(a.created);
@@ -8020,7 +8019,6 @@ var BodyweightModal = (function () {
     BodyweightModal.prototype.addBodyweight = function () {
         var bodyweight = { id: false, created: new Date(), weight: this.bodyweight.weight };
         this.bodyweights.unshift(bodyweight);
-        console.log(this.bodyweightChart);
         this.bodyweightChart.addPoint([bodyweight.created.getTime(), parseFloat(bodyweight.weight)]);
         this.bodyweightProvider.addBodyweight(bodyweight.weight).then(function (data) {
             bodyweight.id = data["id"];
@@ -8058,9 +8056,10 @@ var BodyweightModal = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'bodyweight',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\bodyweight.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Bodyweight\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <div class="diary-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n\n    <div class="diary-empty empty-state" *ngIf="!properties.loading && bodyweights.length < 1">\n        <ion-icon name=\'body\'></ion-icon>\n        No Entries\n    </div>     \n    \n    <div *ngIf="!properties.loading && bodyweights.length > 0">\n    \n        <div class="bodyweight-chart" [chart]="bodyweightChart"></div>\n\n        <ion-list class="bodyweight-list">\n\n            <ion-list-header>\n                Entries\n            </ion-list-header>        \n            <ion-item *ngFor="let bodyweight of bodyweights;let i = index">\n                <h2>{{formatDate(bodyweight.created)}}</h2>\n                <p>{{bodyweight.weight}}{{this.account.units}}</p>   \n                <ion-icon name="trash" item-end (click)="removeBodyweight(bodyweight, i)"></ion-icon>\n            </ion-item>\n        </ion-list>\n    </div>\n    \n    \n</ion-content>\n\n\n<ion-footer class="diary-footer bodyweight-footer">\n        <form name="diary-exercise-form" (ngSubmit)="addBodyweight()">\n            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="bodyweight.weight"></ion-input>\n            <div class="button-container">\n                <button type="submit" ion-button>Add</button>\n            </div>\n        </form>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\bodyweight.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_6__providers_chart_chart__["a" /* ChartProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__providers_chart_chart__["a" /* ChartProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_chart_chart__["a" /* ChartProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
     ], BodyweightModal);
     return BodyweightModal;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=bodyweight.js.map
