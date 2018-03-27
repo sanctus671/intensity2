@@ -28,8 +28,8 @@ var AppSettings = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_authentication_authentication__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_email_composer__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_email_composer__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_import_import__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_goal_settings_goal_settings__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(56);
@@ -362,7 +362,7 @@ var SettingsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_message_message__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_settings__ = __webpack_require__(12);
@@ -619,7 +619,7 @@ var MessageProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_premium_premium__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1103,7 +1103,7 @@ var CreateProgramModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2676,7 +2676,8 @@ var ExerciseProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_diary_records_diary_records__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_settings_settings__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_diary_diary__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2686,6 +2687,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3044,8 +3046,17 @@ var DiaryExercisePage = (function () {
                 subTitle: "To " + _this.formatDate(date),
                 buttons: [
                     {
-                        text: 'OK',
+                        text: 'Dismiss',
                         role: 'cancel'
+                    },
+                    {
+                        text: 'Go to date',
+                        handler: function (data) {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_diary_diary__["a" /* DiaryPage */]);
+                            _this.navCtrl.popToRoot().then(function () {
+                                _this.events.publish("diary:changedate", { date: date });
+                            });
+                        }
                     }
                 ]
             });
@@ -3183,19 +3194,20 @@ var DiaryExercisePage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]) === "function" && _a || Object)
     ], DiaryExercisePage.prototype, "content", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */])
+        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__["a" /* DatePickerDirective */]) === "function" && _b || Object)
     ], DiaryExercisePage.prototype, "datepicker", void 0);
     DiaryExercisePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-diary-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>{{exercise.name}}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more"></ion-icon>\n            </button>\n        </ion-buttons>    \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content class="diary-content">\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab" (ionChange)="tabChanged($event)">\n        <ion-segment-button value="diary">\n            Diary\n        </ion-segment-button>\n      <ion-segment-button value="history">\n            History\n      </ion-segment-button>\n      <ion-segment-button value="stats">\n            Stats\n      </ion-segment-button>        \n    </ion-segment>\n    \n    \n    <div *ngIf="properties.activeTab === \'diary\'">\n    \n        <div class="diary-progress-bar" (click)="openGoalDetails()" [hidden]="account.goals.primary === \'none\'">\n        <round-progress     \n            [current]="exercise.goals.progress"\n            [max]="exercise.goals.goal"\n            [color]="properties.color"\n            [background]="\'#eaeaea\'"\n            [radius]="115"\n            [stroke]="15"></round-progress>\n\n\n            <div class="progress-bar-inner">\n                <span></span>\n                <div class="text">\n                    {{exercise.goals.progress}}<p class="diary-exercise-unit" *ngIf="account.goals.primary !== \'reps\'">{{exercise.unit ? exercise.unit : account.units}}</p>\n                </div>\n            </div>    \n\n\n        </div>\n\n\n        <div class="diary-records">\n            <button ion-button clear icon-start color="primary" small (click)="openRecords()">\n                <ion-icon name="trophy"></ion-icon>\n                View Records\n            </button>\n        </div>\n\n\n\n\n        <ion-list class="diary-sets">\n\n            <ion-list-header class="diary-sets-header">\n\n                <span class="reps set-column">\n                    Reps\n                </span>\n\n                <span class="weight set-column">\n                    Weight\n                </span>        \n\n            </ion-list-header>\n\n\n            <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">\n\n                <ion-item *ngFor="let set of exercise.sets; let i = index"  (click)="openSet(set, i)">\n                    <ion-icon [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set)"></ion-icon>\n                    <span class="reps set-column">{{set.reps}}</span>\n                    <span class="weight set-column">{{set.weight}}{{set.unit}}</span>     \n                    <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end [ngClass]="{\'has-notes\' : set.notes || set.video}"></ion-icon>\n                </ion-item>\n\n            </ion-item-group>\n        </ion-list>\n\n    </div>\n    \n    \n    \n    <div *ngIf="properties.activeTab === \'history\'">\n        <ion-list class="history-sets">\n\n\n            <ion-item *ngFor="let workout of exercise.history;let lst = last;let fst = first"  (click)="openWorkout(workout, i)" [ngClass]="{\'first-item\':fst,\'last-item\':lst, \'light\':workout.sets.length <= 2, \'medium\':workout.sets.length > 2 && workout.sets.length < 6, \'heavy\':workout.sets.length > 5}">\n                <span class="history-date">\n                    <h3>{{getDay(workout.assigneddate)}}</h3>\n                    <p>{{formatDate(workout.assigneddate)}}</p>\n                </span>\n                <span class="history-details">\n                    <h3>{{workout.sets.length}} set<span *ngIf="workout.sets.length !== 1">s</span></h3>\n                    <p>{{getAverageReps(workout.sets) | number: \'1.0-0\'}} reps / {{getAverageWeight(workout.sets) | number: \'1.0-0\'}}{{getUnits(workout.sets)}}</p>\n                </span>                \n                <ion-icon tappable name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, workout)" [okText]="\'Copy To Date\'"></ion-icon>\n            </ion-item>  \n            \n        </ion-list>\n    \n        <ion-infinite-scroll (ionInfinite)="loadMoreHistory($event)">\n            <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>  \n        \n    </div>\n    \n    <div class="stats-section" *ngIf="properties.activeTab === \'stats\'">\n        \n        \n        <div class="stats-timeframes">\n            <button ion-button small (click)="changeStatsTimeframe(\'forever\')" [outline]="stats.timeframe !== \'forever\'">Lifetime</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Year\')" [outline]="stats.timeframe !== \'1 Year\'">1 Year</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'6 Months\')" [outline]="stats.timeframe !== \'6 Months\'">6 Months</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Month\')" [outline]="stats.timeframe !== \'1 Month\'">1 Month</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Week\')" [outline]="stats.timeframe !== \'1 Week\'">1 Week</button>\n        </div>\n        <div [chart]="stats.chart"></div>\n        <h3 class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="extra-stats" *ngIf="stats.extra.best.data">\n        \n            <ion-card class="red-background">\n              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>\n              <div class="card-title">{{stats.extra.best.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Maximum</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>\n              <div class="card-title">{{stats.extra.worst.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Minimum</div>\n            </ion-card>        \n        \n        </div>  \n\n\n        <div class="extra-stats" *ngIf="stats.extra.average.data">\n        \n            <ion-card class="yellow-background">\n              <div class="card-title">{{stats.extra.average.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Average</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n              <div class="card-title">{{stats.extra.growth.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Growth</div>\n            </ion-card>        \n        \n        </div> \n\n        \n    </div>    \n    \n</ion-content>\n\n\n\n\n<ion-footer class="diary-footer">\n        <form name="diary-exercise-form" (ngSubmit)="addSet()">\n            \n            <ion-input name="reps" type="number" placeholder="Reps" [(ngModel)]="exercise.reps"></ion-input>\n            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="exercise.weight"></ion-input>\n            <div class="button-container">\n                <button type="submit" ion-button>Add</button>\n            </div>\n        </form>\n</ion-footer>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */]])
+        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */]) === "function" && _k || Object])
     ], DiaryExercisePage);
     return DiaryExercisePage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 }());
 
 //# sourceMappingURL=diary-exercise.js.map
@@ -3210,7 +3222,7 @@ var DiaryExercisePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(70);
@@ -3392,7 +3404,7 @@ var EditSetModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
@@ -3537,7 +3549,7 @@ var DiaryRecordsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_email_composer__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_email_composer__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
@@ -3716,7 +3728,7 @@ var ImportModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_select_exercise_select_exercise__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_select_exercise_select_exercise__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_goal_resets_goal_resets__ = __webpack_require__(366);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3833,7 +3845,7 @@ var GoalSettingsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4172,11 +4184,12 @@ var AddExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_profile_friend_profile__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_friends_add_friends__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4186,6 +4199,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -4314,8 +4328,17 @@ var FriendsPage = (function () {
                 subTitle: "To " + _this.formatDate(date),
                 buttons: [
                     {
-                        text: 'OK',
+                        text: 'Dismiss',
                         role: 'cancel'
+                    },
+                    {
+                        text: 'Go to date',
+                        handler: function (data) {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__["a" /* DiaryPage */]);
+                            _this.navCtrl.popToRoot().then(function () {
+                                _this.events.publish("diary:changedate", { date: date });
+                            });
+                        }
                     }
                 ]
             });
@@ -4360,9 +4383,10 @@ var FriendsPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-friends',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\friends\friends.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Friends</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only (click)="openAddFriends()">\n                <ion-icon name="person-add" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab" (ionChange)="tabChanged($event)">\n        <ion-segment-button value="friends">\n            Friends\n        </ion-segment-button>\n      <ion-segment-button value="activity">\n            Activity\n      </ion-segment-button>\n      <ion-segment-button value="requests">\n            Requests\n            <ion-badge *ngIf="friendRequests.length > 0">{{friendRequests.length}}</ion-badge>\n      </ion-segment-button>        \n    </ion-segment>    \n\n    <div class="diary-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n    \n    \n    <div *ngIf="properties.activeTab === \'friends\'">\n        \n        <div class="diary-empty empty-state" *ngIf="!properties.loading && alphabet.length < 1">\n            <ion-icon name=\'people\'></ion-icon>\n            No Friends\n        </div>         \n        \n        <ion-list class="friends-list">\n            <div *ngFor="let letter of alphabet">\n                <ion-list-header>\n                    {{letter}}\n                </ion-list-header>            \n                <ion-item *ngFor="let friend of friends[letter]" (click)="viewProfile(friend, true)">\n                    <ion-avatar item-start>\n                        <img [src]="getDp(friend.dp)" onerror="this.style.display=\'none\'">\n                    </ion-avatar>\n                    <h2>{{friend.name}}</h2>\n                    <p></p>\n\n                    <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end></ion-icon>\n\n                </ion-item>  \n            </div>\n        </ion-list>\n    </div>\n    \n    \n    <div *ngIf="properties.activeTab === \'activity\'">\n        <ion-list class=\'activity\'>\n            <ion-item *ngFor="let activity of friendActivity;" (click)="viewDetails(activity)">\n                <ion-avatar item-start>\n                    <img [src]="getDp(activity.dp)" onerror="this.style.display=\'none\'">\n                </ion-avatar>                \n                <h2>{{formatDate(activity.assigneddate)}}</h2>\n                <p>{{activity.display ? activity.display : activity.username}} tracked {{activity.name}}</p>             \n                <ion-icon tappable name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, activity)" [okText]="\'Copy To Date\'"></ion-icon>\n            </ion-item>  \n            \n        </ion-list>\n    \n        <ion-infinite-scroll (ionInfinite)="getMoreActivity($event)">\n            <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>         \n    </div>   \n    \n    \n    \n    <div *ngIf="properties.activeTab === \'requests\'">\n        <ion-list class="friends-list">           \n            <ion-item *ngFor="let request of friendRequests; let i = index" (click)="viewProfile(request, false)">\n                <ion-avatar item-start>\n                    <img [src]="getDp(request.dp)" onerror="this.style.display=\'none\'">\n                </ion-avatar>\n                <h2>{{request.display ? request.display : request.username}}</h2>\n                <p></p>\n                <button ion-button clear item-end (click)="declineFriend(request,i)">Decline</button>\n                <button ion-button clear item-end (click)="acceptFriend(request,i)">Accept</button>\n                \n            </ion-item>  \n        </ion-list>\n    </div>    \n    \n \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\friends\friends.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__["a" /* FriendsProvider */], __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__["a" /* FriendsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__["a" /* FriendsProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _h || Object])
     ], FriendsPage);
     return FriendsPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=friends.js.map
@@ -4382,9 +4406,10 @@ var FriendsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4394,6 +4419,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -4653,8 +4679,17 @@ var FriendDiaryPage = (function () {
                 subTitle: "To " + __WEBPACK_IMPORTED_MODULE_3_moment__(date).format('MMMM Do YYYY'),
                 buttons: [
                     {
-                        text: 'OK',
+                        text: 'Dismiss',
                         role: 'cancel'
+                    },
+                    {
+                        text: 'Go to date',
+                        handler: function (data) {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__["a" /* DiaryPage */]);
+                            _this.navCtrl.popToRoot().then(function () {
+                                _this.events.publish("diary:changedate", { date: date });
+                            });
+                        }
                     }
                 ]
             });
@@ -4663,19 +4698,20 @@ var FriendDiaryPage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]) === "function" && _a || Object)
     ], FriendDiaryPage.prototype, "slides", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */])
+        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__["a" /* DatePickerDirective */]) === "function" && _b || Object)
     ], FriendDiaryPage.prototype, "datepicker", void 0);
     FriendDiaryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-friend-diary',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\friend-diary\friend-diary.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Diary</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only ion-datepicker (ionChanged)="copyWorkout($event)" [okText]="\'Copy To Date\'">\n                <ion-icon name="copy" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div class="date-changer">\n        <ion-icon tappable ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>\n        <span tappable ion-datepicker (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>\n        <ion-icon tappable ios="ios-arrow-forward" md="ios-arrow-forward" (click)="changeDay(1)"></ion-icon>\n    </div>\n    \n    <ion-slides initialSlide="7" (ionSlideDidChange)="workoutChanged()">\n\n        <ion-slide style="background-color:#ececec;" *ngFor="let slide of workoutSlides; let i = index" >\n            \n            <div class="diary-loading" *ngIf="workouts[i].loading">\n                <ion-spinner></ion-spinner>\n            </div>\n                   \n            <div class="diary-empty" *ngIf="workouts[i].workouts.length < 1 && !workouts[i].loading">\n                <ion-icon name=\'bookmarks\'></ion-icon>\n                Diary Empty\n            </div>                   \n                   \n            <ion-list class=\'diary-exercise-list\' *ngIf="!workouts[i].loading">\n              <ion-item *ngFor="let exercise of workouts[i].workouts; let i = index" (click)="selectExercise(exercise)" (press)="showOptions(exercise,i)">\n                  <h2>{{exercise.name}}</h2>\n                  <p *ngIf="exercise.sets.length < 11">\n                      <ion-icon *ngFor="let set of exercise.sets" [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\'></ion-icon>\n                  </p>\n                  <p *ngIf="exercise.sets.length > 10">\n                      <span class="set-overflow">{{exercise.sets.length}}</span>\n                  </p>                  \n                  \n                  <div class="bar-progress" [ngStyle]="{\'width\': (exercise.goals.progress / exercise.goals.goal) * 100 + \'%\'}" [ngClass]="{\'calibrating\' : exercise.calibrating}"></div>\n                  <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n              </ion-item>\n \n                \n                \n            </ion-list>            \n            \n            \n        </ion-slide>\n\n    </ion-slides>\n\n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\friend-diary\friend-diary.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__["a" /* FriendsProvider */]])
+        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_account_account__["a" /* AccountProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__["a" /* ExerciseProvider */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__["a" /* FriendsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__["a" /* FriendsProvider */]) === "function" && _o || Object])
     ], FriendDiaryPage);
     return FriendDiaryPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
 }());
 
 //# sourceMappingURL=friend-diary.js.map
@@ -4689,10 +4725,10 @@ var FriendDiaryPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddFriendsModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_friends_friends__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_social_sharing__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_social_sharing__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friend_profile_friend_profile__ = __webpack_require__(73);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4826,7 +4862,7 @@ var AddFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_message_message__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_message_message__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_search_friends_search_friends__ = __webpack_require__(372);
@@ -5007,8 +5043,8 @@ var SearchFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_social_sharing__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_select_exercise_select_exercise__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_social_sharing__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_select_exercise_select_exercise__ = __webpack_require__(41);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5316,11 +5352,12 @@ var LeaderboardProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_edit_profile_edit_profile__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_app_settings__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_diary_diary__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5330,6 +5367,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -5432,8 +5470,17 @@ var ProfilePage = (function () {
                 subTitle: "To " + _this.formatDate(date),
                 buttons: [
                     {
-                        text: 'OK',
+                        text: 'Dismiss',
                         role: 'cancel'
+                    },
+                    {
+                        text: 'Go to date',
+                        handler: function (data) {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_12__pages_diary_diary__["a" /* DiaryPage */]);
+                            _this.navCtrl.popToRoot().then(function () {
+                                _this.events.publish("diary:changedate", { date: date });
+                            });
+                        }
                     }
                 ]
             });
@@ -5484,7 +5531,7 @@ var ProfilePage = (function () {
                     _this.account.dp = __WEBPACK_IMPORTED_MODULE_11__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + _this.profile.dp;
                 }
                 else {
-                    var alert_1 = _this.alertCtrl.create({
+                    var alert = _this.alertCtrl.create({
                         title: "Error",
                         subTitle: "There was a problem uploading your image",
                         message: JSON.stringify(response),
@@ -5495,7 +5542,7 @@ var ProfilePage = (function () {
                             }
                         ]
                     });
-                    alert_1.present();
+                    alert.present();
                 }
             }, function (err) {
                 var alert = _this.alertCtrl.create({
@@ -5517,15 +5564,16 @@ var ProfilePage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */]) === "function" && _a || Object)
     ], ProfilePage.prototype, "datepicker", void 0);
     ProfilePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-profile',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\profile\profile.html"*/`<ion-header class="profile-nav">\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Profile</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only (click)="openEditProfile()">\n                <ion-icon name="create" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n    \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    \n    <div class="profile-header">\n        \n        <div class="profile-dp" (click)="changeAvatar()">\n            <img [src]="account.dp"/>\n        </div>\n        \n\n        <h2>{{account.username}}</h2>\n        <p>{{profile.display}}</p>\n\n\n        <ion-segment [(ngModel)]="properties.activeTab" color="light">\n            <ion-segment-button value="profile">\n                Profile\n            </ion-segment-button>\n            <ion-segment-button value="activity">\n                Activity\n            </ion-segment-button>\n       </ion-segment>     \n\n\n    </div>\n\n\n    <div *ngIf="properties.activeTab === \'profile\'">\n        <ion-list class="profile-content">\n            <ion-item>\n                <ion-icon name="person" item-start></ion-icon>\n                <h2>Display Name</h2>\n                <p>{{profile.display}}</p>\n            </ion-item>\n            <ion-item>\n                <ion-icon name="mail" item-start></ion-icon>\n                <h2>Email</h2>\n                <p>{{profile.email}}</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="heart" item-start></ion-icon>\n                <h2>Age</h2>\n                <p>{{profile.age}}</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="body" item-start></ion-icon>\n                <h2>Gender</h2>\n                <p>{{profile.gender}}</p>\n            </ion-item> \n            <ion-item >\n                <ion-icon name="help" item-start></ion-icon>\n                <h2>About Me</h2>\n                <p class="extended">{{profile.about}}</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="locate" item-start></ion-icon>\n                <h2>Purpose</h2>\n                <p class="extended">{{profile.why}}</p>\n            </ion-item>\n            <ion-item>\n                <ion-icon name="trending-up" item-start></ion-icon>\n                <h2>Goals</h2>\n                <p class="extended">{{profile.goals}}</p>\n            </ion-item>              \n        </ion-list>    \n        \n    </div>\n    \n    \n    <div *ngIf="properties.activeTab === \'activity\'">\n        <ion-list class=\'activity\'>\n            <ion-item *ngFor="let activity of activity.activity;" (click)="viewDetails(activity)">\n                <h2>{{formatDate(activity.assigneddate)}}</h2>\n                <p>You tracked {{activity.name}}</p>             \n                <ion-icon tappable name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, activity)" [okText]="\'Copy To Date\'"></ion-icon>\n            </ion-item>  \n            \n        </ion-list>\n    \n        <ion-infinite-scroll (ionInfinite)="getMoreActivity($event)">\n            <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>         \n    </div>\n\n\n \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\profile\profile.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__["a" /* Camera */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__["a" /* FileTransfer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__["a" /* FileTransfer */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__["a" /* File */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__["a" /* File */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]) === "function" && _m || Object])
     ], ProfilePage);
     return ProfilePage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
 }());
 
 //# sourceMappingURL=profile.js.map
@@ -5804,6 +5852,7 @@ var ProgramsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_add_program_add_program__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_create_program_create_program__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_diary_diary__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5813,6 +5862,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -5926,6 +5976,8 @@ var ProgramPage = (function () {
                                 {
                                     text: 'Go To Diary',
                                     handler: function (data) {
+                                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_9__pages_diary_diary__["a" /* DiaryPage */]);
+                                        _this.navCtrl.popToRoot();
                                     },
                                 }
                             ]
@@ -5988,7 +6040,7 @@ var ProgramPage = (function () {
     };
     ProgramPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-program',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\program\program.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>{{program.name}}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only (click)="openProgramPopover($event)">\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>   \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content class=\'program-content\'>\n    \n    <div *ngIf="properties.loading" class="diary-loading">\n        <ion-spinner></ion-spinner>\n    </div>\n    \n    <div *ngIf="!properties.loading">\n        <div class="workout-description" *ngIf="program.description" (click)="viewFull = !viewFull" [ngClass]="{\'show-all\': viewFull}">\n            {{program.description}}\n        </div>\n\n        <div class="workout-tabs"  *ngIf="tabs.length > 1">\n            <button ion-button small (click)="properties.activeTab = tab" [outline]="properties.activeTab !== tab" *ngFor="let tab of tabs">{{tab}}</button>\n\n        </div>\n\n        <div class="program-workouts">\n\n            <div *ngFor="let workout of program.workouts" class="workout-list">\n                <ion-list *ngIf="isInTab(workout)" >\n                    <ion-list-header>\n                        {{workout.name}}\n                        <ion-icon name="more" item-end (click)="openWorkoutPopover($event, workout)"></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngFor="let exercise of workout.exercises" (click)="openExercise(exercise,workout)">\n                        <h2>{{exercise.name}}</h2>\n                        <p>{{exercise.sets}} set<span *ngIf="exercise.sets !== \'1\'">s</span> of {{exercise.reps}} rep<span *ngIf="exercise.reps !== \'1\'">s</span><span *ngIf="exercise.percentage && exercise.percentage > 0">, {{exercise.percentage}}%</span><span *ngIf="exercise.rpe && exercise.rpe > 0">, @{{exercise.rpe}}RPE</span></p>\n                        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n                    </ion-item>\n                </ion-list>\n            </div>\n\n        </div>\n    \n    </div>\n</ion-content>\n\n\n<ion-footer class="program-footer">\n    <button ion-button (click)="openAddProgram()">Add To Diary</button>\n    <button ion-button color="light" (click)="customizeProgram()">Cutsomize Program</button>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\program\program.html"*/
+            selector: 'page-program',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\program\program.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>{{program.name}}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only (click)="openProgramPopover($event)">\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>   \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content class=\'program-content\'>\n    \n    <div *ngIf="properties.loading" class="diary-loading">\n        <ion-spinner></ion-spinner>\n    </div>\n    \n    <div *ngIf="!properties.loading">\n        <div class="workout-description" *ngIf="program.description" (click)="viewFull = !viewFull" [ngClass]="{\'show-all\': viewFull}">\n            {{program.description}}\n        </div>\n\n        <div class="workout-tabs"  *ngIf="tabs.length > 1">\n            <button ion-button small (click)="properties.activeTab = tab" [outline]="properties.activeTab !== tab" *ngFor="let tab of tabs">{{tab}}</button>\n\n        </div>\n\n        <div class="program-workouts">\n\n            <div *ngFor="let workout of program.workouts" class="workout-list">\n                <ion-list *ngIf="isInTab(workout)" >\n                    <ion-list-header>\n                        {{workout.name}}\n                        <ion-icon name="more" item-end (click)="openWorkoutPopover($event, workout)"></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngFor="let exercise of workout.exercises" (click)="openExercise(exercise,workout)">\n                        <h2>{{exercise.name}}</h2>\n                        <p>{{exercise.sets}} set<span *ngIf="exercise.sets !== \'1\'">s</span> of {{exercise.reps}} rep<span *ngIf="exercise.reps !== \'1\'">s</span><span *ngIf="exercise.percentage && exercise.percentage > 0">, {{exercise.percentage}}%</span><span *ngIf="exercise.rpe && exercise.rpe > 0">, @{{exercise.rpe}}RPE</span></p>\n                        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n                    </ion-item>\n                </ion-list>\n            </div>\n\n        </div>\n    \n    </div>\n</ion-content>\n\n\n<ion-footer class="program-footer">\n    <button ion-button (click)="openAddProgram()">Add To Diary</button>\n    <button ion-button color="light" (click)="customizeProgram()">Customize Program</button>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\program\program.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_3__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__providers_program_program__["a" /* ProgramProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_8__providers_diary_diary__["a" /* DiaryProvider */]])
     ], ProgramPage);
@@ -6007,7 +6059,7 @@ var ProgramPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ProgramWorkoutPopover; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_program_program__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
@@ -6277,7 +6329,7 @@ var AddProgramModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_program_program__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6805,7 +6857,7 @@ var RecordsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
@@ -8201,8 +8253,8 @@ var BodyweightProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_email_composer__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_email_composer__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8273,6 +8325,602 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /***/ }),
 
 /***/ 40:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiaryPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_add_exercise_add_exercise__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__ = __webpack_require__(53);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+var DiaryPage = (function () {
+    function DiaryPage(navCtrl, params, modalCtrl, storage, diaryProvider, events, exerciseProvider, alertCtrl, socialSharing, plt, emailComposer) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.params = params;
+        this.modalCtrl = modalCtrl;
+        this.storage = storage;
+        this.diaryProvider = diaryProvider;
+        this.events = events;
+        this.exerciseProvider = exerciseProvider;
+        this.alertCtrl = alertCtrl;
+        this.socialSharing = socialSharing;
+        this.plt = plt;
+        this.emailComposer = emailComposer;
+        this.selectedDate = this.params.data.date ? this.params.data.date : new Date();
+        this.reorderActive = false;
+        this.markedWorkoutDates = [];
+        this.setupSlides();
+        this.events.subscribe('session:retreived', function () {
+            if (_this.workouts.length > 1 && !_this.workouts[7].retreived) {
+                _this.getWorkout(_this.workouts[7]);
+            }
+        });
+        this.events.subscribe('workout:copied', function (data) {
+            _this.refreshWorkouts();
+        });
+        this.events.subscribe('diary:changedate', function (data) {
+            _this.changeDate(data.date);
+        });
+        this.events.subscribe('requests:completed', function (data) {
+            _this.refreshWorkouts();
+        });
+        this.events.subscribe('settings:updated', function (data) {
+            _this.account = data;
+        });
+        this.events.subscribe('goals:updated', function (data) {
+            _this.account = data;
+            _this.navCtrl.popToRoot();
+            _this.refreshWorkouts();
+        });
+        this.events.subscribe('recentexercises:retreived', function (data) {
+            _this.recentExercises = data;
+        });
+        this.storage.get("account").then(function (data) {
+            _this.account = data;
+        });
+        this.setMarkedDates();
+        this.rating = { show: false, count: 0, step: 1 };
+        this.storage.get("rating").then(function (data) {
+            if (!data) {
+                _this.rating = { show: false, count: 1, step: 1, completed: false };
+                _this.storage.set("rating", _this.rating);
+            }
+            else if (!data.completed) {
+                _this.rating = data;
+                _this.rating.count += 1;
+                if (_this.rating.count > 5) {
+                    _this.rating.show = true;
+                }
+                _this.storage.set("rating", _this.rating);
+            }
+        });
+    }
+    DiaryPage.prototype.refreshWorkouts = function () {
+        for (var _i = 0, _a = this.workouts; _i < _a.length; _i++) {
+            var workout = _a[_i];
+            workout.retreived = false;
+        }
+        this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
+    };
+    DiaryPage.prototype.sendPush = function () {
+        this.diaryProvider.sendPush().then(function (data) {
+        });
+    };
+    DiaryPage.prototype.setRatingStep = function (step) {
+        this.rating.step = step;
+        if (step > 3) {
+            this.rating.completed = true;
+            this.rating.show = false;
+        }
+        this.storage.set("rating", this.rating);
+    };
+    DiaryPage.prototype.rateAppStore = function () {
+        this.setRatingStep(4);
+        if (this.plt.is("ios")) {
+            window.open("https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1047407323&mt=8", '_system');
+        }
+        else if (this.plt.is("windows")) {
+            window.open("https://www.microsoft.com/en-gb/store/apps/intensity/9nblggh5ffjc", '_system');
+        }
+        else {
+            window.open("https://play.google.com/store/apps/details?id=com.taylorhamling.intensity", '_system');
+        }
+    };
+    DiaryPage.prototype.rateFeedback = function () {
+        this.setRatingStep(4);
+        var email = {
+            to: ["support@intensityapp.com"],
+            subject: 'Feedback for Intensity',
+            body: 'We appreciate you giving us your feedback! Let us know how we can improve...',
+            isHtml: true
+        };
+        this.emailComposer.open(email);
+    };
+    DiaryPage.prototype.setupSlides = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.workoutSlides = [_this.selectedDate];
+            _this.workouts = [{ loading: true, retreived: false, workouts: [] }];
+            for (var i = 1; i < 8; i++) {
+                var newDate = _this.calculateDate(_this.selectedDate, -i);
+                _this.workoutSlides.unshift(newDate);
+                _this.workouts.unshift({ loading: true, retreived: false, workouts: [] });
+                var newDate2 = _this.calculateDate(_this.selectedDate, i);
+                _this.workoutSlides.push(newDate2);
+                _this.workouts.push({ loading: true, retreived: false, workouts: [] });
+            }
+            resolve();
+        });
+    };
+    DiaryPage.prototype.getWorkout = function (workout) {
+        if (workout.retreived) {
+            return;
+        }
+        else {
+            workout.loading = true;
+            var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
+            this.diaryProvider.getWorkout(formattedDate).then(function (data) {
+                workout.workouts = data;
+                workout.loading = false;
+                workout.retreived = true;
+            })
+                .catch(function () {
+                workout.loading = false;
+                workout.retreived = false;
+            });
+        }
+    };
+    DiaryPage.prototype.updateExercise = function (exercise) {
+        var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
+        this.diaryProvider.getWorkout(formattedDate).then(function (data) {
+            for (var _i = 0, _a = data; _i < _a.length; _i++) {
+                var workoutExercise = _a[_i];
+                if (exercise["exerciseid"] === workoutExercise["exerciseid"]) {
+                    exercise["sets"] = workoutExercise["sets"];
+                }
+            }
+        });
+    };
+    DiaryPage.prototype.setMarkedDates = function () {
+        var _this = this;
+        this.markedWorkoutDates = [];
+        this.diaryProvider.getWorkoutDates().then(function (dates) {
+            var workoutDates = dates["data"];
+            for (var _i = 0, workoutDates_1 = workoutDates; _i < workoutDates_1.length; _i++) {
+                var date = workoutDates_1[_i];
+                var workoutDate = new Date(date["assigneddate"]);
+                _this.markedWorkoutDates.push(workoutDate);
+            }
+        });
+    };
+    DiaryPage.prototype.calculateDate = function (date, change) {
+        return (function (d) { return new Date(d.setDate(d.getDate() + change)); })(new Date(date));
+    };
+    DiaryPage.prototype.getSelectedDate = function () {
+        return __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).calendar(null, {
+            sameDay: '[Today]',
+            nextDay: '[Tomorrow]',
+            nextWeek: 'dddd',
+            lastDay: '[Yesterday]',
+            lastWeek: '[Last] dddd',
+            sameElse: 'dddd, MMMM Do YYYY'
+        });
+    };
+    DiaryPage.prototype.getSelectedDateKey = function () {
+        return __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
+    };
+    DiaryPage.prototype.changeDay = function (direction) {
+        this.reorderActive = false;
+        this.selectedDate = this.calculateDate(this.selectedDate, direction);
+        this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
+        if (direction > 0) {
+            this.slides.slideNext();
+        }
+        else {
+            this.slides.slidePrev();
+        }
+    };
+    DiaryPage.prototype.changeDate = function (date) {
+        var _this = this;
+        this.selectedDate = date;
+        this.setupSlides().then(function () {
+            _this.slides.slideTo(7, 0, false);
+            _this.getWorkout(_this.workouts[7]);
+        });
+    };
+    DiaryPage.prototype.workoutChanged = function () {
+        this.reorderActive = false;
+        this.selectedDate = this.workoutSlides[this.slides.getActiveIndex()];
+        this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
+        if (this.slides.isBeginning()) {
+            for (var i = 1; i < 8; i++) {
+                var newDate = this.calculateDate(this.selectedDate, -i);
+                this.workoutSlides.unshift(newDate);
+                this.workouts.unshift({ loading: true, retreived: false, workouts: [] });
+            }
+            this.slides.slideTo(7, 0, false);
+        }
+        else if (this.slides.isEnd()) {
+            for (var i = 1; i < 8; i++) {
+                var newDate = this.calculateDate(this.selectedDate, i);
+                this.workoutSlides.push(newDate);
+                this.workouts.push({ loading: true, retreived: false, workouts: [] });
+            }
+        }
+    };
+    DiaryPage.prototype.openAddDiaryModal = function () {
+        var _this = this;
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_8__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */], { recentExercises: this.recentExercises });
+        modal.onDidDismiss(function (exercise) {
+            if (exercise) {
+                var workout = _this.workouts[_this.slides.getActiveIndex()];
+                for (var _i = 0, _a = workout.workouts; _i < _a.length; _i++) {
+                    var workoutExercise_1 = _a[_i];
+                    if (workoutExercise_1.name === exercise.name) {
+                        //already added, just open it
+                        _this.selectExercise(workoutExercise_1);
+                        return;
+                    }
+                }
+                var workoutExercise_2 = { name: exercise.name, exerciseid: exercise.id, calibrating: false, addid: null, goals: { goal: 1, progress: 0 }, history: [], records: {}, sets: [], reps: "", weight: "", unit: false };
+                workout.workouts.push(workoutExercise_2);
+                _this.events.publish("workout:added", { date: _this.selectedDate });
+                var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD');
+                _this.exerciseProvider.getExerciseData(exercise.id, formattedDate).then(function (data) {
+                    workoutExercise_2.calibrating = data["history"] && data["history"].length < 1 ? true : false;
+                    workoutExercise_2.goals = data["goals"];
+                    workoutExercise_2.history = data["history"];
+                    workoutExercise_2.records = data["records"];
+                    if (data["reps"] > 0)
+                        workoutExercise_2.reps = data["reps"];
+                    if (data["weight"] > 0)
+                        workoutExercise_2.weight = data["weight"];
+                    workoutExercise_2.unit = data["unit"] ? data["unit"] : _this.account.units;
+                });
+                _this.selectExercise(workoutExercise_2);
+            }
+        });
+        modal.present();
+    };
+    DiaryPage.prototype.addSet = function (ev, exercise) {
+        var _this = this;
+        ev.stopPropagation();
+        ev.preventDefault();
+        var reps = exercise.sets.length > 0 ? exercise.sets[exercise.sets.length - 1]["reps"] : (exercise.reps > 0 ? exercise.reps : "");
+        var weight = exercise.sets.length > 0 ? exercise.sets[exercise.sets.length - 1]["weight"] : (exercise.weight > 0 ? exercise.weight : "");
+        var prompt = this.alertCtrl.create({
+            title: 'Add Set',
+            inputs: [
+                {
+                    name: 'reps',
+                    placeholder: 'Reps',
+                    type: "number",
+                    value: reps
+                },
+                {
+                    name: 'weight',
+                    placeholder: 'Weight',
+                    type: "number",
+                    value: weight
+                }
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                    handler: function (data) {
+                    }
+                },
+                {
+                    text: 'Add',
+                    handler: function (data) {
+                        var set = {
+                            id: 0,
+                            reps: data.reps ? data.reps : 0,
+                            weight: data.weight ? data.weight : 0,
+                            percentage: _this.determinePercentage(data.reps),
+                            rpe: 8,
+                            unit: exercise.unit ? exercise.unit : _this.account.units,
+                            sets: exercise.sets.length > 0 ? parseInt(exercise.sets[exercise.sets.length - 1].sets) + 1 : 1,
+                            completed: _this.account.autocomplete
+                        };
+                        exercise.sets.push(set);
+                        _this.events.publish("workout:added", { date: _this.selectedDate });
+                        if (_this.account.autocomplete) {
+                            exercise.goals.progress = exercise.goals.progress + _this.getProgressAmount(set);
+                        }
+                        _this.diaryProvider.addSet(__WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid, exercise, set).then(function (res) {
+                            set.id = res["id"];
+                            exercise.goals = res["goals"];
+                            exercise.records = res["records"];
+                            exercise.cailbrating = res["calibrating"];
+                            exercise.history = res["history"];
+                        });
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    };
+    DiaryPage.prototype.determinePercentage = function (reps) {
+        var percentages = { 0: 0, 1: 100, 2: 95, 3: 90, 4: 88, 5: 86, 6: 83, 7: 80, 8: 78, 9: 76, 10: 75, 11: 72, 12: 70, 13: 66, 14: 63, 15: 60 };
+        var repRounded = Math.floor(reps);
+        return repRounded > 15 ? 50 : percentages[repRounded];
+        ;
+    };
+    DiaryPage.prototype.getProgressAmount = function (set) {
+        if (this.account.goals.primary === "volume") {
+            return set.reps * set.weight;
+        }
+        else if (this.account.goals.primary === "reps") {
+            return parseFloat(set.reps);
+        }
+        else if (this.account.goals.primary === "weight") {
+            return parseFloat(set.weight);
+        }
+        return 0;
+    };
+    DiaryPage.prototype.toggleSet = function (ev, set, exercise) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        set.completed = !set.completed || set.completed === "0" ? false : true;
+        set.completed = !set.completed;
+        if (set.completed) {
+            exercise.goals.progress = exercise.goals.progress + this.getProgressAmount(set);
+        }
+        else {
+            exercise.goals.progress = exercise.goals.progress - this.getProgressAmount(set);
+        }
+        this.diaryProvider.editSet(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid, set).then(function (data) {
+            exercise.goals = data["goals"];
+            exercise.records = data["records"];
+            exercise.cailbrating = data["calibrating"];
+            exercise.history = data["history"];
+        });
+    };
+    DiaryPage.prototype.selectExercise = function (exercise) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */], { exercise: exercise, date: this.selectedDate });
+    };
+    DiaryPage.prototype.showOptions = function (exercise, index) {
+        var _this = this;
+        var alertObj = {
+            title: exercise.name,
+            cssClass: "button-only-alert",
+            buttons: [
+                {
+                    text: 'Share',
+                    handler: function (data) {
+                        var setText = "I tracked " + exercise.name + " on Intensity. These are my sets: ";
+                        for (var _i = 0, _a = exercise.sets; _i < _a.length; _i++) {
+                            var set = _a[_i];
+                            setText = setText + set.reps + " reps with " + set.weight + set.unit + " (" + set.percentage + "%, " + set.rpe + "rpe), ";
+                        }
+                        setText = setText.replace(/^[,\s]+|[,\s]+$/g, '');
+                        _this.socialSharing
+                            .share(setText, "My workout on Intensity", null, "http://www.intensityapp.com/") // Share via native share sheet
+                            .then(function (result) {
+                            // Success!
+                        }, function (err) {
+                            // An error occured. Show a message to the user
+                        });
+                    },
+                    cssClass: "share-button"
+                },
+                {
+                    text: 'Copy',
+                    handler: function (data) {
+                        _this.selectedExercise = exercise;
+                        _this.datepicker.open();
+                    },
+                    cssClass: "copy-button"
+                },
+                {
+                    text: 'Reorder',
+                    handler: function (data) {
+                        _this.reorderActive = true;
+                    },
+                    cssClass: "reorder-button"
+                },
+                {
+                    text: 'Remove',
+                    handler: function (data) {
+                        var alert = _this.alertCtrl.create({
+                            title: "Remove Exercise",
+                            message: "Are you sure you want to remove this exercise? This will delete all sets from the current workout for this exercise.",
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel'
+                                },
+                                {
+                                    text: 'Yes',
+                                    handler: function (data) {
+                                        var workout = _this.workouts[_this.slides.getActiveIndex()];
+                                        workout.workouts.splice(index, 1);
+                                        _this.diaryProvider.removeExercise(__WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid);
+                                    }
+                                }
+                            ]
+                        });
+                        setTimeout(function () {
+                            alert.present();
+                        }, 200);
+                    },
+                    cssClass: "remove-button"
+                }
+            ]
+        };
+        if (exercise.addid) {
+            alertObj.buttons.push({
+                text: 'Remove Program',
+                handler: function (data) {
+                    var alert = _this.alertCtrl.create({
+                        title: "Remove Program",
+                        message: "Are you sure you want to remove this program? This will delete all workouts from this added program.",
+                        buttons: [
+                            {
+                                text: 'Cancel',
+                                role: 'cancel'
+                            },
+                            {
+                                text: 'Yes',
+                                handler: function (data) {
+                                    var workout = _this.workouts[_this.slides.getActiveIndex()];
+                                    for (var i = workout.workouts.length - 1; i >= 0; i--) {
+                                        if (workout.workouts[i].addid === exercise.addid) {
+                                            workout.workouts.splice(i, 1);
+                                        }
+                                    }
+                                    for (var _i = 0, _a = _this.workouts; _i < _a.length; _i++) {
+                                        var workout_1 = _a[_i];
+                                        workout_1.retreived = false;
+                                    }
+                                    _this.diaryProvider.removeProgram(exercise.addid);
+                                }
+                            }
+                        ]
+                    });
+                    setTimeout(function () {
+                        alert.present();
+                    }, 200);
+                },
+                cssClass: "remove-program-button"
+            });
+        }
+        var alert = this.alertCtrl.create(alertObj);
+        alert.present();
+    };
+    DiaryPage.prototype.copyWorkout = function (date) {
+        var _this = this;
+        var data = {
+            title: "What sets do you want to copy?",
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Copy',
+                    handler: function (data) {
+                        var copy = {
+                            exerciseid: data === "sets" ? _this.selectedExercise.exerciseid : null,
+                            userid: _this.account.id,
+                            type: data,
+                            date: __WEBPACK_IMPORTED_MODULE_3_moment__(date).format('YYYY-MM-DD'),
+                            assigneddate: __WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD')
+                        };
+                        _this.diaryProvider.copyWorkout(copy).then(function () {
+                            _this.events.publish('workout:copied', { date: copy.date });
+                            var sets = 0;
+                            if (data === "sets") {
+                                sets = _this.selectedExercise.sets.length;
+                            }
+                            else {
+                                var workout = _this.workouts[_this.slides.getActiveIndex()];
+                                for (var _i = 0, _a = workout.workouts; _i < _a.length; _i++) {
+                                    var exercise = _a[_i];
+                                    sets = sets + exercise.sets.length;
+                                }
+                            }
+                            var alert = _this.alertCtrl.create({
+                                title: sets + " sets copied",
+                                subTitle: "To " + __WEBPACK_IMPORTED_MODULE_3_moment__(date).format('MMMM Do YYYY'),
+                                buttons: [
+                                    {
+                                        text: 'Dismiss',
+                                        role: 'cancel'
+                                    },
+                                    {
+                                        text: 'Go to date',
+                                        handler: function (data) {
+                                            _this.changeDate(date);
+                                        }
+                                    }
+                                ]
+                            });
+                            alert.present();
+                        });
+                    }
+                }
+            ],
+            inputs: [
+                { type: 'radio', label: "Selected Exercise", value: "sets", checked: true },
+                { type: 'radio', label: "Entire Workout", value: "workout", checked: false }
+            ]
+        };
+        var alert = this.alertCtrl.create(data);
+        setTimeout(function () {
+            alert.present();
+        }, 200);
+    };
+    DiaryPage.prototype.reorderItems = function (indexes) {
+        var workout = this.workouts[this.slides.getActiveIndex()];
+        var element = workout.workouts[indexes.from];
+        workout.workouts.splice(indexes.from, 1);
+        workout.workouts.splice(indexes.to, 0, element);
+        var sets = [];
+        var order = 1;
+        for (var _i = 0, _a = workout.workouts; _i < _a.length; _i++) {
+            var exercise = _a[_i];
+            for (var index in exercise.sets) {
+                exercise.sets[index]["exerciseorder"] = order;
+                sets.push({ id: exercise.sets[index].id, exerciseorder: order });
+            }
+            order = order + 1;
+        }
+        this.diaryProvider.reorderExercises(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), sets);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]) === "function" && _a || Object)
+    ], DiaryPage.prototype, "slides", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */]),
+        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */]) === "function" && _b || Object)
+    ], DiaryPage.prototype, "datepicker", void 0);
+    DiaryPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-diary',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle [hidden]="reorderActive">\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Diary</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n        <ion-buttons class="reorder-close" left [hidden]="!reorderActive">\n            <button ion-button icon-only (click)="reorderActive = false">\n                <ion-icon name="close" ></ion-icon>\n            </button>\n        </ion-buttons>         \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <span ion-datepicker [hidden]="true" (ionChanged)="copyWorkout($event)" [okText]="\'Copy To Date\'">Copy</span>\n    <div class="date-changer">\n        <ion-icon tappable ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>\n        <span tappable ion-datepicker [markDates]="markedWorkoutDates" (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>\n        <ion-icon tappable ios="ios-arrow-forward" md="ios-arrow-forward" (click)="changeDay(1)"></ion-icon>\n    </div>\n\n    <div class="rating-steps" *ngIf="rating.show">\n        <div class="rate-box" *ngIf="rating.step === 1">\n            Finding Intensity useful?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(3)">Not really</button>   \n                <button ion-button color="light" (click)="setRatingStep(2)">Yes!</button>             \n            </div> \n        </div>\n       \n        \n        <div class="rate-box" *ngIf="rating.step === 2">\n            How about a rating on the App Store, then?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(4)">No, thanks</button>   \n                <button ion-button color="light" (click)="rateAppStore()">Ok, sure</button>             \n            </div> \n        </div>   \n        \n        \n        <div class="rate-box" *ngIf="rating.step === 3">\n            Would you mind giving us some feedback?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(4)">No, thanks</button>   \n                <button ion-button color="light" (click)="rateFeedback()">Ok, sure</button>             \n            </div> \n        </div>          \n    </div>\n    \n    <ion-slides initialSlide="7" (ionSlideDidChange)="workoutChanged()">\n\n        <ion-slide style="background-color:#ececec;" *ngFor="let slide of workoutSlides; let i = index" >\n            \n            <div class="diary-loading" *ngIf="workouts[i].loading">\n                <ion-spinner></ion-spinner>\n            </div>\n                   \n            <div class="diary-empty" *ngIf="workouts[i].workouts.length < 1 && !workouts[i].loading" [ngClass]="{\'rating-shown\' : rating.show}">\n                <ion-icon name=\'bookmarks\'></ion-icon>\n                Diary Empty\n            </div>                   \n                   \n            <ion-list reorder="{{reorderActive}}" side="start" (ionItemReorder)="reorderItems($event)" class=\'diary-exercise-list\' *ngIf="!workouts[i].loading">\n              <ion-item *ngFor="let exercise of workouts[i].workouts; let i = index" (click)="selectExercise(exercise)" (press)="showOptions(exercise, i)">\n                  <h2>{{exercise.name}}</h2>\n                  <p *ngIf="exercise.sets.length < 11">\n                      <ion-icon tappable *ngFor="let set of exercise.sets" [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set, exercise)"></ion-icon>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable (click)="addSet($event,exercise)"></ion-icon>\n                  </p>\n                  <p *ngIf="exercise.sets.length > 10">\n                      <span class="set-overflow">{{exercise.sets.length}}</span>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable  (click)="addSet($event,exercise)"></ion-icon>\n                  </p>                  \n                  \n                  <div class="bar-progress" [ngStyle]="{\'width\': (exercise.goals.progress / exercise.goals.goal) * 100 + \'%\'}" [ngClass]="{\'calibrating\' : exercise.calibrating}"></div>\n                  <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n              </ion-item>\n \n                \n                \n            </ion-list>            \n            \n            \n        </ion-slide>\n\n    </ion-slides>\n    \n    <ion-fab bottom right>\n        <button ion-fab color="primary" (click)="openAddDiaryModal()">\n            <ion-icon name="add"></ion-icon>\n        </button>\n    </ion-fab>\n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/
+        }),
+        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__["a" /* ExerciseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__["a" /* ExerciseProvider */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__["a" /* EmailComposer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__["a" /* EmailComposer */]) === "function" && _o || Object])
+    ], DiaryPage);
+    return DiaryPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
+}());
+
+//# sourceMappingURL=diary.js.map
+
+/***/ }),
+
+/***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8393,205 +9041,6 @@ var SelectExerciseModal = (function () {
 
 /***/ }),
 
-/***/ 41:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FriendsProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/*
-  Generated class for the DiaryProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var FriendsProvider = (function () {
-    function FriendsProvider(http, storage, events) {
-        this.http = http;
-        this.storage = storage;
-        this.events = events;
-    }
-    FriendsProvider.prototype.searchUsers = function (search) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getusers", username: search };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getSuggestedFriends = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getsuggestedfriends", userid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.addFriend = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addfriend", friendid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.removeFriend = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "removefriend", friendid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getFriendDiary = function (userId, date) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, userid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getMessages = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getmessages", friendid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.createMessages = function (message, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "savemessage", friendid: userId, message: message };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider.prototype.getWorkout = function (date, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, v2: true, userid: userId };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    FriendsProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]])
-    ], FriendsProvider);
-    return FriendsProvider;
-}());
-
-//# sourceMappingURL=friends.js.map
-
-/***/ }),
-
 /***/ 417:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8608,8 +9057,8 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_purchase__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_email_composer__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_email_composer__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_local_notifications__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__ = __webpack_require__(70);
@@ -8618,9 +9067,9 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(481);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__ = __webpack_require__(368);
@@ -8647,7 +9096,7 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ionic_long_press__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_login_login__ = __webpack_require__(386);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__ = __webpack_require__(362);
@@ -8664,14 +9113,14 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__ = __webpack_require__(381);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_status_bar__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_splash_screen__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_social_sharing__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_social_sharing__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__ionic_native_native_audio__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_program_program__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_authentication_authentication__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_leaderboard_leaderboard__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_friends_friends__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_message_message__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_chart_chart__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_offline_offline__ = __webpack_require__(496);
@@ -8922,6 +9371,205 @@ var AppModule = (function () {
 
 /***/ }),
 
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FriendsProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/*
+  Generated class for the DiaryProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var FriendsProvider = (function () {
+    function FriendsProvider(http, storage, events) {
+        this.http = http;
+        this.storage = storage;
+        this.events = events;
+    }
+    FriendsProvider.prototype.searchUsers = function (search) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getusers", username: search };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getSuggestedFriends = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getsuggestedfriends", userid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.addFriend = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addfriend", friendid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.removeFriend = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "removefriend", friendid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getFriendDiary = function (userId, date) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, userid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getMessages = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getmessages", friendid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.createMessages = function (message, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "savemessage", friendid: userId, message: message };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider.prototype.getWorkout = function (date, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", assigneddate: date, v2: true, userid: userId };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    FriendsProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]])
+    ], FriendsProvider);
+    return FriendsProvider;
+}());
+
+//# sourceMappingURL=friends.js.map
+
+/***/ }),
+
 /***/ 481:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8933,7 +9581,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__ = __webpack_require__(373);
@@ -9915,592 +10563,6 @@ var ArraySortPipe = (function () {
 
 /***/ }),
 
-/***/ 55:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiaryPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_add_exercise_add_exercise__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__ = __webpack_require__(52);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-
-
-var DiaryPage = (function () {
-    function DiaryPage(navCtrl, params, modalCtrl, storage, diaryProvider, events, exerciseProvider, alertCtrl, socialSharing, plt, emailComposer) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.params = params;
-        this.modalCtrl = modalCtrl;
-        this.storage = storage;
-        this.diaryProvider = diaryProvider;
-        this.events = events;
-        this.exerciseProvider = exerciseProvider;
-        this.alertCtrl = alertCtrl;
-        this.socialSharing = socialSharing;
-        this.plt = plt;
-        this.emailComposer = emailComposer;
-        this.selectedDate = this.params.data.date ? this.params.data.date : new Date();
-        this.reorderActive = false;
-        this.markedWorkoutDates = [];
-        this.setupSlides();
-        this.events.subscribe('session:retreived', function () {
-            if (_this.workouts.length > 1 && !_this.workouts[7].retreived) {
-                _this.getWorkout(_this.workouts[7]);
-            }
-        });
-        this.events.subscribe('workout:copied', function (data) {
-            _this.refreshWorkouts();
-        });
-        this.events.subscribe('requests:completed', function (data) {
-            _this.refreshWorkouts();
-        });
-        this.events.subscribe('settings:updated', function (data) {
-            _this.account = data;
-        });
-        this.events.subscribe('goals:updated', function (data) {
-            _this.account = data;
-            _this.navCtrl.popToRoot();
-            _this.refreshWorkouts();
-        });
-        this.events.subscribe('recentexercises:retreived', function (data) {
-            _this.recentExercises = data;
-        });
-        this.storage.get("account").then(function (data) {
-            _this.account = data;
-        });
-        this.setMarkedDates();
-        this.rating = { show: false, count: 0, step: 1 };
-        this.storage.get("rating").then(function (data) {
-            if (!data) {
-                _this.rating = { show: false, count: 1, step: 1, completed: false };
-                _this.storage.set("rating", _this.rating);
-            }
-            else if (!data.completed) {
-                _this.rating = data;
-                _this.rating.count += 1;
-                if (_this.rating.count > 5) {
-                    _this.rating.show = true;
-                }
-                _this.storage.set("rating", _this.rating);
-            }
-        });
-    }
-    DiaryPage.prototype.refreshWorkouts = function () {
-        for (var _i = 0, _a = this.workouts; _i < _a.length; _i++) {
-            var workout = _a[_i];
-            workout.retreived = false;
-        }
-        this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
-    };
-    DiaryPage.prototype.sendPush = function () {
-        this.diaryProvider.sendPush().then(function (data) {
-        });
-    };
-    DiaryPage.prototype.setRatingStep = function (step) {
-        this.rating.step = step;
-        if (step > 3) {
-            this.rating.completed = true;
-            this.rating.show = false;
-        }
-        this.storage.set("rating", this.rating);
-    };
-    DiaryPage.prototype.rateAppStore = function () {
-        this.setRatingStep(4);
-        if (this.plt.is("ios")) {
-            window.open("https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1047407323&mt=8", '_system');
-        }
-        else if (this.plt.is("windows")) {
-            window.open("https://www.microsoft.com/en-gb/store/apps/intensity/9nblggh5ffjc", '_system');
-        }
-        else {
-            window.open("https://play.google.com/store/apps/details?id=com.taylorhamling.intensity", '_system');
-        }
-    };
-    DiaryPage.prototype.rateFeedback = function () {
-        this.setRatingStep(4);
-        var email = {
-            to: ["support@intensityapp.com"],
-            subject: 'Feedback for Intensity',
-            body: 'We appreciate you giving us your feedback! Let us know how we can improve...',
-            isHtml: true
-        };
-        this.emailComposer.open(email);
-    };
-    DiaryPage.prototype.setupSlides = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.workoutSlides = [_this.selectedDate];
-            _this.workouts = [{ loading: true, retreived: false, workouts: [] }];
-            for (var i = 1; i < 8; i++) {
-                var newDate = _this.calculateDate(_this.selectedDate, -i);
-                _this.workoutSlides.unshift(newDate);
-                _this.workouts.unshift({ loading: true, retreived: false, workouts: [] });
-                var newDate2 = _this.calculateDate(_this.selectedDate, i);
-                _this.workoutSlides.push(newDate2);
-                _this.workouts.push({ loading: true, retreived: false, workouts: [] });
-            }
-            resolve();
-        });
-    };
-    DiaryPage.prototype.getWorkout = function (workout) {
-        if (workout.retreived) {
-            return;
-        }
-        else {
-            workout.loading = true;
-            var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
-            this.diaryProvider.getWorkout(formattedDate).then(function (data) {
-                workout.workouts = data;
-                workout.loading = false;
-                workout.retreived = true;
-            })
-                .catch(function () {
-                workout.loading = false;
-                workout.retreived = false;
-            });
-        }
-    };
-    DiaryPage.prototype.updateExercise = function (exercise) {
-        var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
-        this.diaryProvider.getWorkout(formattedDate).then(function (data) {
-            for (var _i = 0, _a = data; _i < _a.length; _i++) {
-                var workoutExercise = _a[_i];
-                if (exercise["exerciseid"] === workoutExercise["exerciseid"]) {
-                    exercise["sets"] = workoutExercise["sets"];
-                }
-            }
-        });
-    };
-    DiaryPage.prototype.setMarkedDates = function () {
-        var _this = this;
-        this.markedWorkoutDates = [];
-        this.diaryProvider.getWorkoutDates().then(function (dates) {
-            var workoutDates = dates["data"];
-            for (var _i = 0, workoutDates_1 = workoutDates; _i < workoutDates_1.length; _i++) {
-                var date = workoutDates_1[_i];
-                var workoutDate = new Date(date["assigneddate"]);
-                _this.markedWorkoutDates.push(workoutDate);
-            }
-        });
-    };
-    DiaryPage.prototype.calculateDate = function (date, change) {
-        return (function (d) { return new Date(d.setDate(d.getDate() + change)); })(new Date(date));
-    };
-    DiaryPage.prototype.getSelectedDate = function () {
-        return __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).calendar(null, {
-            sameDay: '[Today]',
-            nextDay: '[Tomorrow]',
-            nextWeek: 'dddd',
-            lastDay: '[Yesterday]',
-            lastWeek: '[Last] dddd',
-            sameElse: 'dddd, MMMM Do YYYY'
-        });
-    };
-    DiaryPage.prototype.getSelectedDateKey = function () {
-        return __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
-    };
-    DiaryPage.prototype.changeDay = function (direction) {
-        this.reorderActive = false;
-        this.selectedDate = this.calculateDate(this.selectedDate, direction);
-        this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
-        if (direction > 0) {
-            this.slides.slideNext();
-        }
-        else {
-            this.slides.slidePrev();
-        }
-    };
-    DiaryPage.prototype.changeDate = function (date) {
-        var _this = this;
-        this.selectedDate = date;
-        this.setupSlides().then(function () {
-            _this.slides.slideTo(7, 0, false);
-            _this.getWorkout(_this.workouts[7]);
-        });
-    };
-    DiaryPage.prototype.workoutChanged = function () {
-        this.reorderActive = false;
-        this.selectedDate = this.workoutSlides[this.slides.getActiveIndex()];
-        this.getWorkout(this.workouts[this.slides.getActiveIndex()]);
-        if (this.slides.isBeginning()) {
-            for (var i = 1; i < 8; i++) {
-                var newDate = this.calculateDate(this.selectedDate, -i);
-                this.workoutSlides.unshift(newDate);
-                this.workouts.unshift({ loading: true, retreived: false, workouts: [] });
-            }
-            this.slides.slideTo(7, 0, false);
-        }
-        else if (this.slides.isEnd()) {
-            for (var i = 1; i < 8; i++) {
-                var newDate = this.calculateDate(this.selectedDate, i);
-                this.workoutSlides.push(newDate);
-                this.workouts.push({ loading: true, retreived: false, workouts: [] });
-            }
-        }
-    };
-    DiaryPage.prototype.openAddDiaryModal = function () {
-        var _this = this;
-        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_8__modals_add_exercise_add_exercise__["a" /* AddExerciseModal */], { recentExercises: this.recentExercises });
-        modal.onDidDismiss(function (exercise) {
-            if (exercise) {
-                var workout = _this.workouts[_this.slides.getActiveIndex()];
-                for (var _i = 0, _a = workout.workouts; _i < _a.length; _i++) {
-                    var workoutExercise_1 = _a[_i];
-                    if (workoutExercise_1.name === exercise.name) {
-                        //already added, just open it
-                        _this.selectExercise(workoutExercise_1);
-                        return;
-                    }
-                }
-                var workoutExercise_2 = { name: exercise.name, exerciseid: exercise.id, calibrating: false, addid: null, goals: { goal: 1, progress: 0 }, history: [], records: {}, sets: [], reps: "", weight: "", unit: false };
-                workout.workouts.push(workoutExercise_2);
-                _this.events.publish("workout:added", { date: _this.selectedDate });
-                var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD');
-                _this.exerciseProvider.getExerciseData(exercise.id, formattedDate).then(function (data) {
-                    workoutExercise_2.calibrating = data["history"] && data["history"].length < 1 ? true : false;
-                    workoutExercise_2.goals = data["goals"];
-                    workoutExercise_2.history = data["history"];
-                    workoutExercise_2.records = data["records"];
-                    if (data["reps"] > 0)
-                        workoutExercise_2.reps = data["reps"];
-                    if (data["weight"] > 0)
-                        workoutExercise_2.weight = data["weight"];
-                    workoutExercise_2.unit = data["unit"] ? data["unit"] : _this.account.units;
-                });
-                _this.selectExercise(workoutExercise_2);
-            }
-        });
-        modal.present();
-    };
-    DiaryPage.prototype.addSet = function (ev, exercise) {
-        var _this = this;
-        ev.stopPropagation();
-        ev.preventDefault();
-        var reps = exercise.sets.length > 0 ? exercise.sets[exercise.sets.length - 1]["reps"] : (exercise.reps > 0 ? exercise.reps : "");
-        var weight = exercise.sets.length > 0 ? exercise.sets[exercise.sets.length - 1]["weight"] : (exercise.weight > 0 ? exercise.weight : "");
-        var prompt = this.alertCtrl.create({
-            title: 'Add Set',
-            inputs: [
-                {
-                    name: 'reps',
-                    placeholder: 'Reps',
-                    type: "number",
-                    value: reps
-                },
-                {
-                    name: 'weight',
-                    placeholder: 'Weight',
-                    type: "number",
-                    value: weight
-                }
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                    handler: function (data) {
-                    }
-                },
-                {
-                    text: 'Add',
-                    handler: function (data) {
-                        var set = {
-                            id: 0,
-                            reps: data.reps ? data.reps : 0,
-                            weight: data.weight ? data.weight : 0,
-                            percentage: _this.determinePercentage(data.reps),
-                            rpe: 8,
-                            unit: exercise.unit ? exercise.unit : _this.account.units,
-                            sets: exercise.sets.length > 0 ? parseInt(exercise.sets[exercise.sets.length - 1].sets) + 1 : 1,
-                            completed: _this.account.autocomplete
-                        };
-                        exercise.sets.push(set);
-                        _this.events.publish("workout:added", { date: _this.selectedDate });
-                        if (_this.account.autocomplete) {
-                            exercise.goals.progress = exercise.goals.progress + _this.getProgressAmount(set);
-                        }
-                        _this.diaryProvider.addSet(__WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid, exercise, set).then(function (res) {
-                            set.id = res["id"];
-                            exercise.goals = res["goals"];
-                            exercise.records = res["records"];
-                            exercise.cailbrating = res["calibrating"];
-                            exercise.history = res["history"];
-                        });
-                    }
-                }
-            ]
-        });
-        prompt.present();
-    };
-    DiaryPage.prototype.determinePercentage = function (reps) {
-        var percentages = { 0: 0, 1: 100, 2: 95, 3: 90, 4: 88, 5: 86, 6: 83, 7: 80, 8: 78, 9: 76, 10: 75, 11: 72, 12: 70, 13: 66, 14: 63, 15: 60 };
-        var repRounded = Math.floor(reps);
-        return repRounded > 15 ? 50 : percentages[repRounded];
-        ;
-    };
-    DiaryPage.prototype.getProgressAmount = function (set) {
-        if (this.account.goals.primary === "volume") {
-            return set.reps * set.weight;
-        }
-        else if (this.account.goals.primary === "reps") {
-            return parseFloat(set.reps);
-        }
-        else if (this.account.goals.primary === "weight") {
-            return parseFloat(set.weight);
-        }
-        return 0;
-    };
-    DiaryPage.prototype.toggleSet = function (ev, set, exercise) {
-        ev.stopPropagation();
-        ev.preventDefault();
-        set.completed = !set.completed || set.completed === "0" ? false : true;
-        set.completed = !set.completed;
-        if (set.completed) {
-            exercise.goals.progress = exercise.goals.progress + this.getProgressAmount(set);
-        }
-        else {
-            exercise.goals.progress = exercise.goals.progress - this.getProgressAmount(set);
-        }
-        this.diaryProvider.editSet(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid, set).then(function (data) {
-            exercise.goals = data["goals"];
-            exercise.records = data["records"];
-            exercise.cailbrating = data["calibrating"];
-            exercise.history = data["history"];
-        });
-    };
-    DiaryPage.prototype.selectExercise = function (exercise) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_diary_exercise_diary_exercise__["a" /* DiaryExercisePage */], { exercise: exercise, date: this.selectedDate });
-    };
-    DiaryPage.prototype.showOptions = function (exercise, index) {
-        var _this = this;
-        var alertObj = {
-            title: exercise.name,
-            cssClass: "button-only-alert",
-            buttons: [
-                {
-                    text: 'Share',
-                    handler: function (data) {
-                        var setText = "I tracked " + exercise.name + " on Intensity. These are my sets: ";
-                        for (var _i = 0, _a = exercise.sets; _i < _a.length; _i++) {
-                            var set = _a[_i];
-                            setText = setText + set.reps + " reps with " + set.weight + set.unit + " (" + set.percentage + "%, " + set.rpe + "rpe), ";
-                        }
-                        setText = setText.replace(/^[,\s]+|[,\s]+$/g, '');
-                        _this.socialSharing
-                            .share(setText, "My workout on Intensity", null, "http://www.intensityapp.com/") // Share via native share sheet
-                            .then(function (result) {
-                            // Success!
-                        }, function (err) {
-                            // An error occured. Show a message to the user
-                        });
-                    },
-                    cssClass: "share-button"
-                },
-                {
-                    text: 'Copy',
-                    handler: function (data) {
-                        _this.selectedExercise = exercise;
-                        _this.datepicker.open();
-                    },
-                    cssClass: "copy-button"
-                },
-                {
-                    text: 'Reorder',
-                    handler: function (data) {
-                        _this.reorderActive = true;
-                    },
-                    cssClass: "reorder-button"
-                },
-                {
-                    text: 'Remove',
-                    handler: function (data) {
-                        var alert = _this.alertCtrl.create({
-                            title: "Remove Exercise",
-                            message: "Are you sure you want to remove this exercise? This will delete all sets from the current workout for this exercise.",
-                            buttons: [
-                                {
-                                    text: 'Cancel',
-                                    role: 'cancel'
-                                },
-                                {
-                                    text: 'Yes',
-                                    handler: function (data) {
-                                        var workout = _this.workouts[_this.slides.getActiveIndex()];
-                                        workout.workouts.splice(index, 1);
-                                        _this.diaryProvider.removeExercise(__WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid);
-                                    }
-                                }
-                            ]
-                        });
-                        setTimeout(function () {
-                            alert.present();
-                        }, 200);
-                    },
-                    cssClass: "remove-button"
-                }
-            ]
-        };
-        if (exercise.addid) {
-            alertObj.buttons.push({
-                text: 'Remove Program',
-                handler: function (data) {
-                    var alert = _this.alertCtrl.create({
-                        title: "Remove Program",
-                        message: "Are you sure you want to remove this program? This will delete all workouts from this added program.",
-                        buttons: [
-                            {
-                                text: 'Cancel',
-                                role: 'cancel'
-                            },
-                            {
-                                text: 'Yes',
-                                handler: function (data) {
-                                    var workout = _this.workouts[_this.slides.getActiveIndex()];
-                                    for (var i = workout.workouts.length - 1; i >= 0; i--) {
-                                        if (workout.workouts[i].addid === exercise.addid) {
-                                            workout.workouts.splice(i, 1);
-                                        }
-                                    }
-                                    for (var _i = 0, _a = _this.workouts; _i < _a.length; _i++) {
-                                        var workout_1 = _a[_i];
-                                        workout_1.retreived = false;
-                                    }
-                                    _this.diaryProvider.removeProgram(exercise.addid);
-                                }
-                            }
-                        ]
-                    });
-                    setTimeout(function () {
-                        alert.present();
-                    }, 200);
-                },
-                cssClass: "remove-program-button"
-            });
-        }
-        var alert = this.alertCtrl.create(alertObj);
-        alert.present();
-    };
-    DiaryPage.prototype.copyWorkout = function (date) {
-        var _this = this;
-        var data = {
-            title: "What sets do you want to copy?",
-            buttons: [
-                {
-                    text: 'Cancel',
-                    role: 'cancel'
-                },
-                {
-                    text: 'Copy',
-                    handler: function (data) {
-                        var copy = {
-                            exerciseid: data === "sets" ? _this.selectedExercise.exerciseid : null,
-                            userid: _this.account.id,
-                            type: data,
-                            date: __WEBPACK_IMPORTED_MODULE_3_moment__(date).format('YYYY-MM-DD'),
-                            assigneddate: __WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD')
-                        };
-                        _this.diaryProvider.copyWorkout(copy).then(function () {
-                            _this.events.publish('workout:copied', { date: copy.date });
-                            var sets = 0;
-                            if (data === "sets") {
-                                sets = _this.selectedExercise.sets.length;
-                            }
-                            else {
-                                var workout = _this.workouts[_this.slides.getActiveIndex()];
-                                for (var _i = 0, _a = workout.workouts; _i < _a.length; _i++) {
-                                    var exercise = _a[_i];
-                                    sets = sets + exercise.sets.length;
-                                }
-                            }
-                            var alert = _this.alertCtrl.create({
-                                title: sets + " sets copied",
-                                subTitle: "To " + __WEBPACK_IMPORTED_MODULE_3_moment__(date).format('MMMM Do YYYY'),
-                                buttons: [
-                                    {
-                                        text: 'OK',
-                                        role: 'cancel'
-                                    }
-                                ]
-                            });
-                            alert.present();
-                        });
-                    }
-                }
-            ],
-            inputs: [
-                { type: 'radio', label: "Selected Exercise", value: "sets", checked: true },
-                { type: 'radio', label: "Entire Workout", value: "workout", checked: false }
-            ]
-        };
-        var alert = this.alertCtrl.create(data);
-        setTimeout(function () {
-            alert.present();
-        }, 200);
-    };
-    DiaryPage.prototype.reorderItems = function (indexes) {
-        var workout = this.workouts[this.slides.getActiveIndex()];
-        var element = workout.workouts[indexes.from];
-        workout.workouts.splice(indexes.from, 1);
-        workout.workouts.splice(indexes.to, 0, element);
-        var sets = [];
-        var order = 1;
-        for (var _i = 0, _a = workout.workouts; _i < _a.length; _i++) {
-            var exercise = _a[_i];
-            for (var index in exercise.sets) {
-                exercise.sets[index]["exerciseorder"] = order;
-                sets.push({ id: exercise.sets[index].id, exerciseorder: order });
-            }
-            order = order + 1;
-        }
-        this.diaryProvider.reorderExercises(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), sets);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Slides */])
-    ], DiaryPage.prototype, "slides", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__["a" /* DatePickerDirective */])
-    ], DiaryPage.prototype, "datepicker", void 0);
-    DiaryPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-diary',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle [hidden]="reorderActive">\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Diary</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n        <ion-buttons class="reorder-close" left [hidden]="!reorderActive">\n            <button ion-button icon-only (click)="reorderActive = false">\n                <ion-icon name="close" ></ion-icon>\n            </button>\n        </ion-buttons>         \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <span ion-datepicker [hidden]="true" (ionChanged)="copyWorkout($event)" [okText]="\'Copy To Date\'">Copy</span>\n    <div class="date-changer">\n        <ion-icon tappable ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>\n        <span tappable ion-datepicker [markDates]="markedWorkoutDates" (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>\n        <ion-icon tappable ios="ios-arrow-forward" md="ios-arrow-forward" (click)="changeDay(1)"></ion-icon>\n    </div>\n\n    <div class="rating-steps" *ngIf="rating.show">\n        <div class="rate-box" *ngIf="rating.step === 1">\n            Finding Intensity useful?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(3)">Not really</button>   \n                <button ion-button color="light" (click)="setRatingStep(2)">Yes!</button>             \n            </div> \n        </div>\n       \n        \n        <div class="rate-box" *ngIf="rating.step === 2">\n            How about a rating on the App Store, then?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(4)">No, thanks</button>   \n                <button ion-button color="light" (click)="rateAppStore()">Ok, sure</button>             \n            </div> \n        </div>   \n        \n        \n        <div class="rate-box" *ngIf="rating.step === 3">\n            Would you mind giving us some feedback?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(4)">No, thanks</button>   \n                <button ion-button color="light" (click)="rateFeedback()">Ok, sure</button>             \n            </div> \n        </div>          \n    </div>\n    \n    <ion-slides initialSlide="7" (ionSlideDidChange)="workoutChanged()">\n\n        <ion-slide style="background-color:#ececec;" *ngFor="let slide of workoutSlides; let i = index" >\n            \n            <div class="diary-loading" *ngIf="workouts[i].loading">\n                <ion-spinner></ion-spinner>\n            </div>\n                   \n            <div class="diary-empty" *ngIf="workouts[i].workouts.length < 1 && !workouts[i].loading" [ngClass]="{\'rating-shown\' : rating.show}">\n                <ion-icon name=\'bookmarks\'></ion-icon>\n                Diary Empty\n            </div>                   \n                   \n            <ion-list reorder="{{reorderActive}}" side="start" (ionItemReorder)="reorderItems($event)" class=\'diary-exercise-list\' *ngIf="!workouts[i].loading">\n              <ion-item *ngFor="let exercise of workouts[i].workouts; let i = index" (click)="selectExercise(exercise)" (press)="showOptions(exercise, i)">\n                  <h2>{{exercise.name}}</h2>\n                  <p *ngIf="exercise.sets.length < 11">\n                      <ion-icon tappable *ngFor="let set of exercise.sets" [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set, exercise)"></ion-icon>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable (click)="addSet($event,exercise)"></ion-icon>\n                  </p>\n                  <p *ngIf="exercise.sets.length > 10">\n                      <span class="set-overflow">{{exercise.sets.length}}</span>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable  (click)="addSet($event,exercise)"></ion-icon>\n                  </p>                  \n                  \n                  <div class="bar-progress" [ngStyle]="{\'width\': (exercise.goals.progress / exercise.goals.goal) * 100 + \'%\'}" [ngClass]="{\'calibrating\' : exercise.calibrating}"></div>\n                  <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n              </ion-item>\n \n                \n                \n            </ion-list>            \n            \n            \n        </ion-slide>\n\n    </ion-slides>\n    \n    <ion-fab bottom right>\n        <button ion-fab color="primary" (click)="openAddDiaryModal()">\n            <ion-icon name="add"></ion-icon>\n        </button>\n    </ion-fab>\n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__["a" /* EmailComposer */]])
-    ], DiaryPage);
-    return DiaryPage;
-}());
-
-//# sourceMappingURL=diary.js.map
-
-/***/ }),
-
 /***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10513,8 +10575,8 @@ var DiaryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_purchase__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_diary_diary__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_diary_diary__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11379,11 +11441,12 @@ var AuthenticationProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_diary_friend_diary__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_message_message__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11393,6 +11456,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -11481,8 +11545,17 @@ var FriendProfilePage = (function () {
                 subTitle: "To " + _this.formatDate(date),
                 buttons: [
                     {
-                        text: 'OK',
+                        text: 'Dismiss',
                         role: 'cancel'
+                    },
+                    {
+                        text: 'Go to date',
+                        handler: function (data) {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__["a" /* DiaryPage */]);
+                            _this.navCtrl.popToRoot().then(function () {
+                                _this.events.publish("diary:changedate", { date: date });
+                            });
+                        }
                     }
                 ]
             });
@@ -11560,9 +11633,10 @@ var FriendProfilePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-friend-profile',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\friend-profile\friend-profile.html"*/`<ion-header class="profile-nav">\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Profile</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only *ngIf="added" (click)="removeFriend()">\n                <ion-icon name="remove-circle"></ion-icon>\n            </button>\n            <button ion-button icon-only *ngIf="!added" (click)="addFriend()">\n                <ion-icon name="ios-add-circle"></ion-icon>\n            </button>            \n        </ion-buttons>    \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div class="profile-header">\n        \n        <div class="profile-dp">\n            <img [src]="friendProfile.dpFull" onerror="this.style.display=\'none\'"/>\n        </div>\n        \n\n        <h2>{{friendProfile.display ? friendProfile.display : friendProfile.username}}</h2>\n        <p>\n            <a (click)="openDiary()">View Diary</a> \n            <a (click)="sendMessage()">Send Message</a>\n        </p>\n\n\n        <ion-segment [(ngModel)]="properties.activeTab" color="light">\n            <ion-segment-button value="profile">\n                Profile\n            </ion-segment-button>\n            <ion-segment-button value="activity">\n                Activity\n            </ion-segment-button>\n       </ion-segment>     \n\n\n    </div>\n\n\n    <div *ngIf="properties.activeTab === \'profile\'">\n        <ion-list class="profile-content">\n            <ion-item *ngIf="profile.display">\n                <ion-icon name="person" item-start></ion-icon>\n                <h2>Display Name</h2>\n                <p>{{profile.display}}</p>\n            </ion-item>\n            <ion-item *ngIf="profile.age">\n                <ion-icon name="heart" item-start></ion-icon>\n                <h2>Age</h2>\n                <p>{{profile.age}}</p>\n            </ion-item> \n            <ion-item *ngIf="profile.gender">\n                <ion-icon name="body" item-start></ion-icon>\n                <h2>Gender</h2>\n                <p>{{profile.gender}}</p>\n            </ion-item> \n            <ion-item *ngIf="profile.about">\n                <ion-icon name="help" item-start></ion-icon>\n                <h2>About Me</h2>\n                <p class="extended">{{profile.about}}</p>\n            </ion-item> \n            <ion-item *ngIf="profile.why">\n                <ion-icon name="locate" item-start></ion-icon>\n                <h2>Purpose</h2>\n                <p class="extended">{{profile.why}}</p>\n            </ion-item>\n            <ion-item *ngIf="profile.goals">\n                <ion-icon name="trending-up" item-start></ion-icon>\n                <h2>Goals</h2>\n                <p class="extended">{{profile.goals}}</p>\n            </ion-item>              \n        </ion-list>    \n        \n    </div>\n    \n    \n    <div *ngIf="properties.activeTab === \'activity\'">\n        <ion-list class=\'activity\'>\n            <ion-item *ngFor="let activity of activity.activity;" (click)="viewDetails(activity)">\n                <h2>{{formatDate(activity.assigneddate)}}</h2>\n                <p>Tracked {{activity.name}}</p>             \n                <ion-icon tappable name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, activity)" [okText]="\'Copy To Date\'"></ion-icon>\n            </ion-item>  \n            \n        </ion-list>\n    \n        <ion-infinite-scroll (ionInfinite)="getMoreActivity($event)">\n            <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>         \n    </div>\n \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\friend-profile\friend-profile.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__["a" /* FriendsProvider */], __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__["a" /* DiaryProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__["a" /* FriendsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__["a" /* FriendsProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__["a" /* DiaryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__["a" /* DiaryProvider */]) === "function" && _j || Object])
     ], FriendProfilePage);
     return FriendProfilePage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 //# sourceMappingURL=friend-profile.js.map
