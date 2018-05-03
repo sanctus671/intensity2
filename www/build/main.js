@@ -8457,12 +8457,12 @@ var CalculatorModal = (function () {
             var set = warmupSets_1[_i];
             var calculatedSet = { reps: set.reps, weight: 0, percentage: set.percentage, plates: "" };
             if (set.weight === "bar") {
-                calculatedSet.weight = this.fields.barweight;
+                calculatedSet.weight = parseFloat(this.fields.barweight);
                 calculatedSet.plates = "Just the bar";
             }
             else {
                 var result = this.calculateWarmupWeight(this.fields.workweight * (set.percentage / 100));
-                calculatedSet.weight = result.weight;
+                calculatedSet.weight = parseFloat(result.weight);
                 calculatedSet.plates = result.plates;
             }
             calculatedSets.push(calculatedSet);
@@ -8496,7 +8496,7 @@ var CalculatorModal = (function () {
             }
         }
         returnString = returnString.replace(/(^[,\s]+)|([,\s]+$)/g, '');
-        roundedWeight = (roundedWeight * 2) + this.fields.barweight;
+        roundedWeight = (roundedWeight * 2) + parseFloat(this.fields.barweight);
         return { weight: roundedWeight, plates: returnString };
     };
     CalculatorModal.prototype.openWarmupPlates = function (set) {
