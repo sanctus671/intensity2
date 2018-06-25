@@ -25,9 +25,9 @@ var AppSettings = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_authentication_authentication__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_email_composer__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_import_import__ = __webpack_require__(364);
@@ -366,9 +366,9 @@ var SettingsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_message_message__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_profile_friend_profile__ = __webpack_require__(73);
@@ -622,9 +622,9 @@ var MessageProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateProgramModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_premium_premium__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1106,9 +1106,9 @@ var CreateProgramModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditProgramExerciseModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1190,9 +1190,9 @@ var EditProgramExerciseModal = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimerService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__ = __webpack_require__(486);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_TimerObservable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__ = __webpack_require__(237);
@@ -1372,373 +1372,6 @@ var TimerService = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_settings__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(4);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-/*
-  Generated class for the AuthenticationProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var AccountProvider = (function () {
-    function AccountProvider(http, fb, storage, events) {
-        this.http = http;
-        this.fb = fb;
-        this.storage = storage;
-        this.events = events;
-    }
-    AccountProvider.prototype.getAccount = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getuser", sessionid: session };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            var user = res["data"];
-                            user["dp"] = __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + user["dp"];
-                            _this.storage.set("account", user);
-                            _this.storage.set("userid", parseInt(user.id));
-                            resolve(user);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        _this.storage.get("account").then(function (account) {
-                            if (account) {
-                                resolve(account);
-                                return;
-                            }
-                            reject(e);
-                        });
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.getProfile = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getusers", id: userId };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            var user = res["data"];
-                            user["dp"] = __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + user["dp"];
-                            _this.storage.set("profile" + userId, user);
-                            resolve(user);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        _this.storage.get("profile" + userId).then(function (profile) {
-                            if (profile) {
-                                resolve(profile);
-                                return;
-                            }
-                            reject(e);
-                        });
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.updateProfile = function (profile) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    _this.storage.set("profile" + profile.userid, profile);
-                    var requestData_1 = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updateprofile" };
-                    Object.assign(requestData_1, profile);
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, requestData_1).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        _this.storage.get("failedRequests").then(function (data) {
-                            var requests = data ? data : [];
-                            var requestId = requests.length > 0 ? requests[requests.length - 1].id + 1 : 1;
-                            requestData_1["id"] = requestId;
-                            requests.push(requestData_1);
-                            _this.storage.set("failedRequests", requests);
-                        });
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.getUserActivity = function (userId, page) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getactivity", userid: userId, page: page, limit: 10 };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.updateSettings = function (settings, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updatesettings", userid: userId };
-                    Object.assign(data, settings);
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.addTarget = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addtarget", userid: userId };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.updateTarget = function (target, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updatetarget", userid: userId, id: target.id, exerciseid: target.exerciseid, target: target.target };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.removeTarget = function (target, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "deletetarget", userid: userId, id: target.id };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.getResets = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getresets" };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.addReset = function (userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addreset", userid: userId };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.updateReset = function (reset, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updatereset", userid: userId, id: reset.id, exerciseid: reset.exerciseid, resetdate: reset.resetdate };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider.prototype.removeReset = function (reset, userId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                if (session) {
-                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "deletereset", userid: userId, id: reset.id };
-                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                        if (res["success"] === true) {
-                            resolve(res["data"]);
-                        }
-                        else {
-                            reject(res);
-                        }
-                    }, function (e) {
-                        _this.events.publish("app:heartbeat");
-                        reject(e);
-                    });
-                }
-                else {
-                    reject();
-                }
-            });
-        });
-    };
-    AccountProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["d" /* Events */]])
-    ], AccountProvider);
-    return AccountProvider;
-}());
-
-//# sourceMappingURL=account.js.map
-
-/***/ }),
-
-/***/ 15:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiaryProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -1837,6 +1470,24 @@ var DiaryProvider = (function () {
                         }
                         reject(e);
                     });
+                });
+            });
+        });
+    };
+    DiaryProvider.prototype.getNotes = function (page, exerciseId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getnotes", exerciseid: exerciseId, page: page, limit: 50 };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
                 });
             });
         });
@@ -2423,6 +2074,373 @@ var DiaryProvider = (function () {
 
 /***/ }),
 
+/***/ 15:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_settings__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(4);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/*
+  Generated class for the AuthenticationProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var AccountProvider = (function () {
+    function AccountProvider(http, fb, storage, events) {
+        this.http = http;
+        this.fb = fb;
+        this.storage = storage;
+        this.events = events;
+    }
+    AccountProvider.prototype.getAccount = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getuser", sessionid: session };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            var user = res["data"];
+                            user["dp"] = __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + user["dp"];
+                            _this.storage.set("account", user);
+                            _this.storage.set("userid", parseInt(user.id));
+                            resolve(user);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        _this.storage.get("account").then(function (account) {
+                            if (account) {
+                                resolve(account);
+                                return;
+                            }
+                            reject(e);
+                        });
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.getProfile = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getusers", id: userId };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            var user = res["data"];
+                            user["dp"] = __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl.replace("index.php", "") + user["dp"];
+                            _this.storage.set("profile" + userId, user);
+                            resolve(user);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        _this.storage.get("profile" + userId).then(function (profile) {
+                            if (profile) {
+                                resolve(profile);
+                                return;
+                            }
+                            reject(e);
+                        });
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.updateProfile = function (profile) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    _this.storage.set("profile" + profile.userid, profile);
+                    var requestData_1 = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updateprofile" };
+                    Object.assign(requestData_1, profile);
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, requestData_1).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        _this.storage.get("failedRequests").then(function (data) {
+                            var requests = data ? data : [];
+                            var requestId = requests.length > 0 ? requests[requests.length - 1].id + 1 : 1;
+                            requestData_1["id"] = requestId;
+                            requests.push(requestData_1);
+                            _this.storage.set("failedRequests", requests);
+                        });
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.getUserActivity = function (userId, page) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getactivity", userid: userId, page: page, limit: 10 };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.updateSettings = function (settings, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updatesettings", userid: userId };
+                    Object.assign(data, settings);
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.addTarget = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addtarget", userid: userId };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.updateTarget = function (target, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updatetarget", userid: userId, id: target.id, exerciseid: target.exerciseid, target: target.target };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.removeTarget = function (target, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "deletetarget", userid: userId, id: target.id };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.getResets = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getresets" };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.addReset = function (userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addreset", userid: userId };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.updateReset = function (reset, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updatereset", userid: userId, id: reset.id, exerciseid: reset.exerciseid, resetdate: reset.resetdate };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider.prototype.removeReset = function (reset, userId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                if (session) {
+                    var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "deletereset", userid: userId, id: reset.id };
+                    _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                        if (res["success"] === true) {
+                            resolve(res["data"]);
+                        }
+                        else {
+                            reject(res);
+                        }
+                    }, function (e) {
+                        _this.events.publish("app:heartbeat");
+                        reject(e);
+                    });
+                }
+                else {
+                    reject();
+                }
+            });
+        });
+    };
+    AccountProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["d" /* Events */]])
+    ], AccountProvider);
+    return AccountProvider;
+}());
+
+//# sourceMappingURL=account.js.map
+
+/***/ }),
+
 /***/ 150:
 /***/ (function(module, exports) {
 
@@ -2461,222 +2479,14 @@ webpackEmptyAsyncContext.id = 192;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExerciseProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/*
-  Generated class for the ExerciseProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var ExerciseProvider = (function () {
-    function ExerciseProvider(http, storage, events) {
-        this.http = http;
-        this.storage = storage;
-        this.events = events;
-    }
-    ExerciseProvider.prototype.getExercises = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("exercises").then(function (exercises) {
-                if (exercises) {
-                    resolve(exercises);
-                }
-                else {
-                    _this.storage.get("session").then(function (session) {
-                        var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getexercises" };
-                        _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                            if (res["success"] === true) {
-                                _this.storage.set("exercises", res["data"]);
-                                resolve(res["data"]);
-                            }
-                            else {
-                                reject(res);
-                            }
-                        }, function (e) {
-                            _this.events.publish("app:heartbeat");
-                            reject(e);
-                        });
-                    });
-                }
-            });
-        });
-    };
-    ExerciseProvider.prototype.getRecentExercises = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", type: "exercises", limit: 99 };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        _this.storage.set("recentexercises", res["data"]);
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    _this.storage.get("recentexercises").then(function (exercises) {
-                        if (exercises) {
-                            resolve(exercises);
-                            return;
-                        }
-                        reject(e);
-                    });
-                });
-            });
-        });
-    };
-    ExerciseProvider.prototype.getRecommendedExercises = function () {
-        return [
-            { name: "Squats", id: "2", type: "Squat", musclegroup: "Erector Spinae, Gluteus, Hamstrings, Quadriceps", userid: "5" },
-            { name: "Front squats", id: "104", musclegroup: "Gluteus, Quadriceps", type: "Squat", userid: "5" },
-            { name: "Bench press", id: "1", type: "Press", musclegroup: "Deltoids, Pectoralis, Triceps", userid: "5" },
-            { name: "Incline bench press", id: "105", musclegroup: "Deltoids, Pectoralis, Triceps", type: "Press", userid: "5" },
-            { name: "Overhead press", id: "10", type: "Press", musclegroup: "Deltoids, Pectoralis, Triceps", userid: "5" },
-            { name: "Deadlifts", id: "6", type: "Deadlift", musclegroup: "Erector Spinae, Gluteus, Hamstrings", userid: "5" },
-            { name: "Sumo Deadlift", id: "11", musclegroup: "Erector Spinae, Gluteus, Hamstrings", type: "Deadlift", userid: "5" },
-            { name: "Glute ham raise", id: "90", musclegroup: "Gluteus, Hamstrings", type: "", userid: "5" },
-            { name: "Pullups", id: "5", type: "Pull", musclegroup: "Latissimus Dorsi, Rhomboids, Biceps", userid: "5" },
-            { id: "73", name: "Pulldowns", musclegroup: "Latissimus Dorsi, Rhomboids", type: "Pull", userid: "5" },
-            { name: "Bent over rows", id: "111", type: "Pull", musclegroup: "Latissimus Dorsi, Rhomboids", userid: "5" },
-            { name: "Dumbell Rows", id: "4", musclegroup: "Latissimus Dorsi, Rhomboids", type: "Pull", userid: "5" },
-            { name: "Facepulls", id: "7", musclegroup: "Deltoids, Rhomboids, Trapezius", type: "Pull", userid: "5" },
-            { name: "Barbells Curls", id: "3", musclegroup: "Biceps", type: "Isolation", userid: "6" },
-            { name: "Weighted Planks", id: "8", musclegroup: "Rectus Abdominis", type: "", userid: "5" },
-        ];
-    };
-    ExerciseProvider.prototype.getExerciseData = function (exerciseId, date) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getexercisedata", exerciseid: exerciseId, assigneddate: date };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        _this.storage.set("exercisedata" + exerciseId + date, res["data"]);
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    _this.storage.get("exercisedata" + exerciseId + date).then(function (data) {
-                        if (data) {
-                            resolve(data);
-                            return;
-                        }
-                        reject(e);
-                    });
-                });
-            });
-        });
-    };
-    ExerciseProvider.prototype.createExercise = function (exerciseName) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "createexercise", name: exerciseName };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        var exercise_1 = res["data"][0];
-                        exercise_1.exerciseid = exercise_1.id;
-                        _this.storage.get("exercises").then(function (exercises) {
-                            exercises.push(exercise_1);
-                            _this.storage.set("exercises", exercises);
-                        });
-                        resolve(exercise_1);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    ExerciseProvider.prototype.editExercise = function (exercise) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updateexercise", id: exercise.exerciseid ? exercise.exerciseid : exercise.id, name: exercise.name, type: exercise.type, musclegroup: exercise.musclegroup };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    ExerciseProvider.prototype.deleteExercise = function (exercise) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.storage.get("session").then(function (session) {
-                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "deleteexercise", id: exercise.exerciseid ? exercise.exerciseid : exercise.id };
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
-                    if (res["success"] === true) {
-                        resolve(res["data"]);
-                    }
-                    else {
-                        reject(res);
-                    }
-                }, function (e) {
-                    _this.events.publish("app:heartbeat");
-                    reject(e);
-                });
-            });
-        });
-    };
-    ExerciseProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]])
-    ], ExerciseProvider);
-    return ExerciseProvider;
-}());
-
-//# sourceMappingURL=exercise.js.map
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiaryPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_add_exercise_add_exercise__ = __webpack_require__(367);
@@ -3263,6 +3073,335 @@ var DiaryPage = (function () {
 
 /***/ }),
 
+/***/ 23:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExerciseProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/*
+  Generated class for the ExerciseProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var ExerciseProvider = (function () {
+    function ExerciseProvider(http, storage, events) {
+        this.http = http;
+        this.storage = storage;
+        this.events = events;
+    }
+    ExerciseProvider.prototype.getExercises = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("exercises").then(function (exercises) {
+                if (exercises) {
+                    resolve(exercises);
+                }
+                else {
+                    _this.storage.get("session").then(function (session) {
+                        var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getexercises" };
+                        _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                            if (res["success"] === true) {
+                                _this.storage.set("exercises", res["data"]);
+                                resolve(res["data"]);
+                            }
+                            else {
+                                reject(res);
+                            }
+                        }, function (e) {
+                            _this.events.publish("app:heartbeat");
+                            reject(e);
+                        });
+                    });
+                }
+            });
+        });
+    };
+    ExerciseProvider.prototype.getRecentExercises = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "selectresults", type: "exercises", limit: 99 };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        _this.storage.set("recentexercises", res["data"]);
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    _this.storage.get("recentexercises").then(function (exercises) {
+                        if (exercises) {
+                            resolve(exercises);
+                            return;
+                        }
+                        reject(e);
+                    });
+                });
+            });
+        });
+    };
+    ExerciseProvider.prototype.getRecommendedExercises = function () {
+        return [
+            { name: "Squats", id: "2", type: "Squat", musclegroup: "Erector Spinae, Gluteus, Hamstrings, Quadriceps", userid: "5" },
+            { name: "Front squats", id: "104", musclegroup: "Gluteus, Quadriceps", type: "Squat", userid: "5" },
+            { name: "Bench press", id: "1", type: "Press", musclegroup: "Deltoids, Pectoralis, Triceps", userid: "5" },
+            { name: "Incline bench press", id: "105", musclegroup: "Deltoids, Pectoralis, Triceps", type: "Press", userid: "5" },
+            { name: "Overhead press", id: "10", type: "Press", musclegroup: "Deltoids, Pectoralis, Triceps", userid: "5" },
+            { name: "Deadlifts", id: "6", type: "Deadlift", musclegroup: "Erector Spinae, Gluteus, Hamstrings", userid: "5" },
+            { name: "Sumo Deadlift", id: "11", musclegroup: "Erector Spinae, Gluteus, Hamstrings", type: "Deadlift", userid: "5" },
+            { name: "Glute ham raise", id: "90", musclegroup: "Gluteus, Hamstrings", type: "", userid: "5" },
+            { name: "Pullups", id: "5", type: "Pull", musclegroup: "Latissimus Dorsi, Rhomboids, Biceps", userid: "5" },
+            { id: "73", name: "Pulldowns", musclegroup: "Latissimus Dorsi, Rhomboids", type: "Pull", userid: "5" },
+            { name: "Bent over rows", id: "111", type: "Pull", musclegroup: "Latissimus Dorsi, Rhomboids", userid: "5" },
+            { name: "Dumbell Rows", id: "4", musclegroup: "Latissimus Dorsi, Rhomboids", type: "Pull", userid: "5" },
+            { name: "Facepulls", id: "7", musclegroup: "Deltoids, Rhomboids, Trapezius", type: "Pull", userid: "5" },
+            { name: "Barbells Curls", id: "3", musclegroup: "Biceps", type: "Isolation", userid: "6" },
+            { name: "Weighted Planks", id: "8", musclegroup: "Rectus Abdominis", type: "", userid: "5" },
+        ];
+    };
+    ExerciseProvider.prototype.getExerciseData = function (exerciseId, date) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getexercisedata", exerciseid: exerciseId, assigneddate: date };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        _this.storage.set("exercisedata" + exerciseId + date, res["data"]);
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    _this.storage.get("exercisedata" + exerciseId + date).then(function (data) {
+                        if (data) {
+                            resolve(data);
+                            return;
+                        }
+                        reject(e);
+                    });
+                });
+            });
+        });
+    };
+    ExerciseProvider.prototype.createExercise = function (exerciseName) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "createexercise", name: exerciseName };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        var exercise_1 = res["data"][0];
+                        exercise_1.exerciseid = exercise_1.id;
+                        _this.storage.get("exercises").then(function (exercises) {
+                            exercises.push(exercise_1);
+                            _this.storage.set("exercises", exercises);
+                        });
+                        resolve(exercise_1);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    ExerciseProvider.prototype.editExercise = function (exercise) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updateexercise", id: exercise.exerciseid ? exercise.exerciseid : exercise.id, name: exercise.name, type: exercise.type, musclegroup: exercise.musclegroup };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    ExerciseProvider.prototype.deleteExercise = function (exercise) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "deleteexercise", id: exercise.exerciseid ? exercise.exerciseid : exercise.id };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
+                });
+            });
+        });
+    };
+    ExerciseProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]])
+    ], ExerciseProvider);
+    return ExerciseProvider;
+}());
+
+//# sourceMappingURL=exercise.js.map
+
+/***/ }),
+
+/***/ 36:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectExerciseModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SelectExerciseModal = (function () {
+    function SelectExerciseModal(platform, params, viewCtrl, toastCtrl, exerciseProvider, storage, alertCtrl) {
+        var _this = this;
+        this.platform = platform;
+        this.params = params;
+        this.viewCtrl = viewCtrl;
+        this.toastCtrl = toastCtrl;
+        this.exerciseProvider = exerciseProvider;
+        this.storage = storage;
+        this.alertCtrl = alertCtrl;
+        this.properties = { activeTab: "recent", userid: 0, search: "", allCount: 100 };
+        this.loading = { all: false, recent: false, search: false };
+        this.exercises = [];
+        this.recentExercises = [];
+        this.searchExercises = [];
+        this.getExercises();
+        this.getRecentExercises();
+        this.storage.get("userid").then(function (data) {
+            _this.properties.userid = data;
+        });
+    }
+    SelectExerciseModal.prototype.getExercises = function () {
+        var _this = this;
+        this.loading.all = true;
+        this.exerciseProvider.getExercises().then(function (data) {
+            _this.exercises = data;
+            _this.loading.all = false;
+        });
+    };
+    SelectExerciseModal.prototype.getRecentExercises = function () {
+        var _this = this;
+        this.loading.recent = true;
+        this.storage.get("recentexercises").then(function (exercises) {
+            if (exercises && _this.loading.recent) {
+                _this.recentExercises = exercises;
+                if (_this.recentExercises.length > 0) {
+                    _this.properties.activeTab = "recent";
+                }
+            }
+        });
+        this.exerciseProvider.getRecentExercises().then(function (data) {
+            _this.loading.recent = false;
+            _this.recentExercises = data;
+            if (_this.recentExercises.length > 0) {
+                _this.properties.activeTab = "recent";
+            }
+        });
+    };
+    SelectExerciseModal.prototype.searchStarted = function () {
+        this.properties.activeTab = 'all';
+    };
+    SelectExerciseModal.prototype.searchCancelled = function () {
+        this.properties.search = '';
+    };
+    SelectExerciseModal.prototype.openViewDetails = function (ev, exercise) {
+        var _this = this;
+        ev.preventDefault();
+        ev.stopPropagation();
+        var alert = this.alertCtrl.create({
+            title: exercise.name,
+            message: "<strong>Musclegroups:</strong> " + exercise.musclegroup + "<br><strong>Exercise Types:</strong> " + exercise.type,
+            buttons: [
+                {
+                    text: 'Dismiss',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Select',
+                    handler: function (data) {
+                        _this.addExercise(exercise);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    SelectExerciseModal.prototype.addExercise = function (exercise) {
+        if (exercise.exerciseid) {
+            exercise.id = exercise.exerciseid;
+        } //for recent exercises
+        exercise.exerciseid = exercise.id;
+        this.viewCtrl.dismiss(exercise);
+    };
+    SelectExerciseModal.prototype.dismiss = function () {
+        this.viewCtrl.dismiss();
+    };
+    SelectExerciseModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'select-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\select-exercise\select-exercise.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Select Exercise\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n    <ion-searchbar\n        [(ngModel)]="properties.search"\n        [showCancelButton]="shouldShowCancel"\n        (ionInput)="searchStarted()"\n        (ionCancel)="searchCancelled()"\n        placeholder="Search Exercises"\n        class="flat-search">\n    </ion-searchbar>   \n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab">      \n        <ion-segment-button value="recent">\n            Recent\n        </ion-segment-button>\n        <ion-segment-button value="all">\n            All Exercises\n        </ion-segment-button> \n    </ion-segment>    \n    \n\n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'recent\'">\n        <button ion-item detail-none *ngFor="let exercise of recentExercises | exerciseSearch:properties.search; let i = index" (click)="addExercise(exercise)">\n            {{exercise.name}}\n            <ion-icon name=\'more\' item-end (click)="openViewDetails($event, exercise)"></ion-icon>\n        </button> \n    </ion-list>\n    \n\n    \n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'all\' && properties.search">\n        <button ion-item detail-none *ngFor="let exercise of exercises | exerciseSearch:properties.search | slice:0:30; let l = count; let i = index" (click)="addExercise(exercise)">\n            {{exercise.name}}\n            <ion-icon name=\'more\' item-end (click)="openViewDetails($event, exercise)"></ion-icon>\n        </button> \n        <ion-item class="create-exercise" detail-none>\n            Can\'t find {{properties.search}}?<br> \n            <button type="submit" ion-button (click)="createExercise(properties.search)">Create It</button>\n        </ion-item>                \n    </ion-list>  \n    \n    \n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'all\' && !properties.search">\n        <button ion-item detail-none *ngFor="let exercise of exercises | slice:0:properties.allCount; let i = index" (click)="addExercise(exercise)">\n            {{exercise.name}}\n            <ion-icon name=\'more\' item-end (click)="openViewDetails($event, exercise)"></ion-icon>\n        </button> \n        <button class="more-exercises" ion-item detail-none (click)="properties.allCount = properties.allCount + 100">\n                + {{exercises.length - properties.allCount}} more\n        </button>         \n    </ion-list>     \n    \n\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\select-exercise\select-exercise.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    ], SelectExerciseModal);
+    return SelectExerciseModal;
+}());
+
+//# sourceMappingURL=select-exercise.js.map
+
+/***/ }),
+
 /***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3273,14 +3412,14 @@ var DiaryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular_highcharts__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_diary_records_diary_records__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_settings_settings__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3317,6 +3456,7 @@ var DiaryExercisePage = (function () {
         this.selectedDate = this.params.data.date;
         this.exercise = this.params.data.exercise;
         this.account = { goals: {}, units: "kg" };
+        console.log(this.exercise);
         this.selectedWorkout = false;
         if (this.exercise.calibrating) {
             this.properties.color = "#d47835";
@@ -3704,6 +3844,7 @@ var DiaryExercisePage = (function () {
             this.stats.firstLoad = false;
         }
         this.diaryProvider.getStats({ accumulation: "Weekly", timeframe: this.stats.timeframe, metric: this.stats.metric, name: this.exercise.name }).then(function (data) {
+            console.log(data);
             _this.setStatsUnits();
             _this.stats.chart.removeSerie(0);
             _this.stats.chart.addSerie({
@@ -3810,7 +3951,7 @@ var DiaryExercisePage = (function () {
     ], DiaryExercisePage.prototype, "datepicker", void 0);
     DiaryExercisePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-diary-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>{{exercise.name}}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more"></ion-icon>\n            </button>\n        </ion-buttons>    \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content class="diary-content">\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab" (ionChange)="tabChanged($event)">\n        <ion-segment-button value="diary">\n            Diary\n        </ion-segment-button>\n      <ion-segment-button value="history">\n            History\n      </ion-segment-button>\n      <ion-segment-button value="stats">\n            Stats\n      </ion-segment-button>        \n    </ion-segment>\n    \n    \n    <div *ngIf="properties.activeTab === \'diary\'">\n    \n        <div class="diary-progress-bar" (click)="openGoalDetails()" [hidden]="account.goals.primary === \'none\'">\n        <round-progress     \n            [current]="exercise.goals.progress"\n            [max]="exercise.goals.goal"\n            [color]="properties.color"\n            [background]="\'#eaeaea\'"\n            [radius]="115"\n            [stroke]="15"></round-progress>\n\n\n            <div class="progress-bar-inner">\n                <span></span>\n                <div class="text">\n                    {{exercise.goals.progress}}<p class="diary-exercise-unit" *ngIf="account.goals.primary !== \'reps\'">{{exercise.unit ? exercise.unit : account.units}}</p>\n                </div>\n            </div>    \n\n\n        </div>\n\n\n        <div class="diary-records">\n            <button ion-button clear icon-start color="primary" small (click)="openRecords()">\n                <ion-icon name="trophy"></ion-icon>\n                View Records\n            </button>\n        </div>\n\n\n\n\n        <ion-list class="diary-sets">\n\n            <ion-list-header class="diary-sets-header">\n\n                <span class="reps set-column">\n                    Reps\n                </span>\n\n                <span class="weight set-column">\n                    Weight\n                </span>        \n\n            </ion-list-header>\n\n\n            <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">\n\n                <ion-item *ngFor="let set of exercise.sets; let i = index"  (click)="openSet(set, i)">\n                    <ion-icon [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set)"></ion-icon>\n                    <span class="reps set-column">{{set.reps}}</span>\n                    <span class="weight set-column">{{set.weight}}{{set.unit}}</span>     \n                    <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end [ngClass]="{\'has-notes\' : set.notes || set.video}"></ion-icon>\n                </ion-item>\n\n            </ion-item-group>\n        </ion-list>\n\n    </div>\n    \n    \n    \n    <div *ngIf="properties.activeTab === \'history\'">\n        <ion-list class="history-sets">\n\n\n            <ion-item *ngFor="let workout of exercise.history;let lst = last;let fst = first"  (click)="openWorkout(workout, i)" [ngClass]="{\'first-item\':fst,\'last-item\':lst, \'light\':workout.sets.length <= 2, \'medium\':workout.sets.length > 2 && workout.sets.length < 6, \'heavy\':workout.sets.length > 5}">\n                <span class="history-date">\n                    <h3>{{getDay(workout.assigneddate)}}</h3>\n                    <p>{{formatDate(workout.assigneddate)}}</p>\n                </span>\n                <span class="history-details">\n                    <h3>{{workout.sets.length}} set<span *ngIf="workout.sets.length !== 1">s</span></h3>\n                    <p>{{getAverageReps(workout.sets) | number: \'1.0-0\'}} reps / {{getAverageWeight(workout.sets) | number: \'1.0-0\'}}{{getUnits(workout.sets)}}</p>\n                </span>                \n                <ion-icon tappable name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, workout)" [okText]="\'Copy To Date\'"></ion-icon>\n            </ion-item>  \n            \n        </ion-list>\n    \n        <ion-infinite-scroll (ionInfinite)="loadMoreHistory($event)">\n            <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>  \n        \n    </div>\n    \n    <div class="stats-section" *ngIf="properties.activeTab === \'stats\'">\n        \n        \n        <div class="stats-timeframes">\n            <button ion-button small (click)="changeStatsTimeframe(\'forever\')" [outline]="stats.timeframe !== \'forever\'">Lifetime</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Year\')" [outline]="stats.timeframe !== \'1 Year\'">1 Year</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'6 Months\')" [outline]="stats.timeframe !== \'6 Months\'">6 Months</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Month\')" [outline]="stats.timeframe !== \'1 Month\'">1 Month</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Week\')" [outline]="stats.timeframe !== \'1 Week\'">1 Week</button>\n        </div>\n        <div [chart]="stats.chart"></div>\n        <h3 class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="extra-stats" *ngIf="stats.extra.best.data">\n        \n            <ion-card class="red-background">\n              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>\n              <div class="card-title">{{stats.extra.best.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Maximum</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>\n              <div class="card-title">{{stats.extra.worst.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Minimum</div>\n            </ion-card>        \n        \n        </div>  \n\n\n        <div class="extra-stats" *ngIf="stats.extra.average.data">\n        \n            <ion-card class="yellow-background">\n              <div class="card-title">{{stats.extra.average.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Average</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n              <div class="card-title">{{stats.extra.growth.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Growth</div>\n            </ion-card>        \n        \n        </div> \n\n        \n    </div>    \n    \n</ion-content>\n\n\n\n\n<ion-footer class="diary-footer">\n        <form name="diary-exercise-form" (ngSubmit)="addSet()">\n            \n            <ion-input name="reps" type="number" placeholder="Reps" [(ngModel)]="exercise.reps"></ion-input>\n            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="exercise.weight"></ion-input>\n            <div class="button-container">\n                <button type="submit" ion-button>Add</button>\n            </div>\n        </form>\n</ion-footer>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/,
+            selector: 'page-diary-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>{{exercise.name}}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more"></ion-icon>\n            </button>\n        </ion-buttons>    \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content class="diary-content">\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab" (ionChange)="tabChanged($event)">\n        <ion-segment-button value="diary">\n            Diary\n        </ion-segment-button>\n      <ion-segment-button value="history">\n            History\n      </ion-segment-button>\n      <ion-segment-button value="stats">\n            Stats\n      </ion-segment-button>        \n    </ion-segment>\n    \n    \n    <div *ngIf="properties.activeTab === \'diary\'">\n    \n        <div class="diary-progress-bar" (click)="openGoalDetails()" [hidden]="account.goals.primary === \'none\'">\n        <round-progress     \n            [current]="exercise.goals.progress"\n            [max]="exercise.goals.goal"\n            [color]="properties.color"\n            [background]="\'#eaeaea\'"\n            [radius]="115"\n            [stroke]="15"></round-progress>\n\n\n            <div class="progress-bar-inner">\n                <span></span>\n                <div class="text">\n                    {{exercise.goals.progress}}<p class="diary-exercise-unit" *ngIf="account.goals.primary !== \'reps\'">{{exercise.unit ? exercise.unit : account.units}}</p>\n                </div>\n            </div>    \n\n\n        </div>\n\n\n        <div class="diary-records">\n            <button ion-button clear icon-start color="primary" small (click)="openRecords()">\n                <ion-icon name="trophy"></ion-icon>\n                View Records\n            </button>\n        </div>\n\n\n\n\n        <ion-list class="diary-sets">\n\n            <ion-list-header class="diary-sets-header">\n\n                <span class="reps set-column">\n                    Reps\n                </span>\n\n                <span class="weight set-column">\n                    Weight\n                </span>        \n\n            </ion-list-header>\n\n\n            <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">\n\n                <ion-item *ngFor="let set of exercise.sets; let i = index"  (click)="openSet(set, i)">\n                    <ion-icon [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set)"></ion-icon>\n                    <span class="reps set-column">{{set.reps}}</span>\n                    <span class="weight set-column">{{set.weight}}{{set.unit}}</span>     \n                    <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end [ngClass]="{\'has-notes\' : set.notes || set.video}"></ion-icon>\n                </ion-item>\n\n            </ion-item-group>\n        </ion-list>\n\n    </div>\n    \n    \n    \n    <div *ngIf="properties.activeTab === \'history\'">\n        <ion-list class="history-sets">\n\n\n            <ion-item *ngFor="let workout of exercise.history;let lst = last;let fst = first"  (click)="openWorkout(workout, i)" [ngClass]="{\'first-item\':fst,\'last-item\':lst, \'light\':workout.sets.length <= 2, \'medium\':workout.sets.length > 2 && workout.sets.length < 6, \'heavy\':workout.sets.length > 5}">\n                <span class="history-date">\n                    <h3>{{getDay(workout.assigneddate)}}</h3>\n                    <p>{{formatDate(workout.assigneddate)}}</p>\n                </span>\n                <span class="history-details">\n                    <h3>{{workout.sets.length}} set<span *ngIf="workout.sets.length !== 1">s</span></h3>\n                    <p>{{getAverageReps(workout.sets) | number: \'1.0-0\'}} reps / {{getAverageWeight(workout.sets) | number: \'1.0-0\'}}{{getUnits(workout.sets)}}</p>\n                </span>                \n                <ion-icon tappable name="copy" item-end ion-datepicker (ionChanged)="copyToDate($event, workout)" [okText]="\'Copy To Date\'"></ion-icon>\n            </ion-item>  \n            \n        </ion-list>\n    \n        <ion-infinite-scroll (ionInfinite)="loadMoreHistory($event)">\n            <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>  \n        \n    </div>\n    \n    <div class="stats-section" *ngIf="properties.activeTab === \'stats\'">\n        \n        \n        <div class="stats-timeframes">\n            <button ion-button small (click)="changeStatsTimeframe(\'forever\')" [outline]="stats.timeframe !== \'forever\'">Lifetime</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Year\')" [outline]="stats.timeframe !== \'1 Year\'">1 Year</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'6 Months\')" [outline]="stats.timeframe !== \'6 Months\'">6 Months</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Month\')" [outline]="stats.timeframe !== \'1 Month\'">1 Month</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Week\')" [outline]="stats.timeframe !== \'1 Week\'">1 Week</button>\n        </div>\n        <div [chart]="stats.chart"></div>\n        <h3 class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="extra-stats" *ngIf="stats.extra.best.data">\n        \n            <ion-card class="red-background">\n              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>\n              <div class="card-title">{{stats.extra.best.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Maximum</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>\n              <div class="card-title">{{stats.extra.worst.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Minimum</div>\n            </ion-card>        \n        \n        </div>  \n\n\n        <div class="extra-stats" *ngIf="stats.extra.average.data">\n        \n            <ion-card class="yellow-background">\n              <div class="card-title">{{stats.extra.average.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Average</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n              <div class="card-title">{{stats.extra.growth.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Growth</div>\n            </ion-card>        \n        \n        </div> \n        \n        <ion-item class="notes-stats" (click)="openNotes()">\n            <ion-icon name="bookmarks" item-start></ion-icon>\n            <h2>{{stats.notes}} notes & {{stats.videos}} videos</h2>\n            <p>Tracked against sets in your diary</p>\n            <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n        </ion-item>             \n\n        \n    </div>    \n    \n</ion-content>\n\n\n\n\n<ion-footer class="diary-footer">\n        <form name="diary-exercise-form" (ngSubmit)="addSet()">\n            \n            <ion-input name="reps" type="number" placeholder="Reps" [(ngModel)]="exercise.reps"></ion-input>\n            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="exercise.weight"></ion-input>\n            <div class="button-container">\n                <button type="submit" ion-button>Add</button>\n            </div>\n        </form>\n</ion-footer>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary-exercise\diary-exercise.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */]])
     ], DiaryExercisePage);
@@ -4010,8 +4151,8 @@ var EditSetModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiaryRecordsModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
@@ -4154,7 +4295,7 @@ var DiaryRecordsModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImportModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_email_composer__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__ = __webpack_require__(69);
@@ -4331,12 +4472,12 @@ var ImportModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoalSettingsModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_select_exercise_select_exercise__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_select_exercise_select_exercise__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_goal_resets_goal_resets__ = __webpack_require__(366);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4450,10 +4591,10 @@ var GoalSettingsModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoalResetsModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4546,7 +4687,7 @@ var GoalResetsModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddExerciseModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4790,13 +4931,13 @@ var AddExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_profile_friend_profile__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_friends_add_friends__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5009,13 +5150,13 @@ var FriendsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_account_account__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5331,7 +5472,7 @@ var FriendDiaryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_friends_friends__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_social_sharing__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_settings__ = __webpack_require__(12);
@@ -5466,7 +5607,7 @@ var AddFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_message_message__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_message_message__ = __webpack_require__(132);
@@ -5565,7 +5706,7 @@ var MessagesPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_app_settings__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5645,11 +5786,11 @@ var SearchFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_leaderboard_leaderboard__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_social_sharing__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_select_exercise_select_exercise__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_select_exercise_select_exercise__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5954,15 +6095,15 @@ var LeaderboardProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_edit_profile_edit_profile__ = __webpack_require__(376);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_app_settings__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6242,7 +6383,7 @@ var EditProfileModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_program_program__ = __webpack_require__(378);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_create_program_create_program__ = __webpack_require__(134);
@@ -6450,13 +6591,13 @@ var ProgramsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__program_popover_program_popover__ = __webpack_require__(379);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_add_program_add_program__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_create_program_create_program__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6796,7 +6937,7 @@ var ProgramWorkoutPopover = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddProgramModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
@@ -6830,7 +6971,7 @@ var AddProgramModal = (function () {
         this.calculator = { reps: "", weight: "" };
         this.program = params.data.program;
         this.startDate = new Date();
-        this.options = { progressiontype: "", progressionamount: "", progressiontimeframe: "", progressioncycles: "", progressionexercises: {} };
+        this.options = { progressiontype: "", progressionamount: "", progressiontimeframe: "", progressioncycles: "", progressionexercises: {}, frequencySelect: "" };
         this.getMaxes();
     }
     AddProgramModal.prototype.getMaxes = function () {
@@ -6913,7 +7054,7 @@ var AddProgramModal = (function () {
     };
     AddProgramModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'add-program',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\add-program\add-program.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Confirm Details\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n\n    <p class="program-start">\n        Program will start on <strong>{{formatDate(startDate)}}</strong> \n       \n        \n    </p>\n    \n    <p class="program-end">\n        Program will end on {{getEndDate()}}\n    </p>\n    \n    <p class="program-change-date">\n     <button color="light" small ion-button ion-datepicker (ionChanged)="selectDate($event)" [okText]="\'Select Date\'">Change Start Date</button>\n    </p>\n\n\n    <ion-list class="add-program-maxes">\n        <ion-list-header [ngClass]="{\'maxes-required\': maxCount < exercises.length}" (click)="showMoreMaxes = !showMoreMaxes">\n            {{maxCount}}/{{exercises.length}} Max<span *ngIf="(exercises.length) !== 1">es</span> Entered\n            <ion-icon [name]="showMoreMaxes ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>\n        <div *ngIf="showMoreMaxes">\n            <ion-item *ngFor="let exercise of exercises">\n                <ion-label floating>{{maxes[exercise].name}}</ion-label>\n                <ion-input type="text" [(ngModel)]="maxes[exercise].max" (change)="calculateMaxes()"></ion-input>\n            </ion-item>\n        </div>\n    </ion-list>\n    \n    \n    <ion-list class=\'add-program-options\' >\n        <ion-list-header class="more-header" (click)="showMoreCalc = !showMoreCalc">\n            1RM Calculator\n            <ion-icon [name]="showMoreCalc ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>        \n        <div *ngIf="showMoreCalc">\n            <ion-item>\n                <ion-label floating>Reps</ion-label>\n                <ion-input name="reps" type="number" placeholder="Reps" [(ngModel)]="calculator.reps"></ion-input>\n            </ion-item>            \n            <ion-item>\n                <ion-label floating>Weight</ion-label>\n                <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="calculator.weight"></ion-input>\n            </ion-item> \n            <ion-item *ngIf="calculator.reps && calculator.weight" class="result">\n                Estimated Max: {{getMax() | number:\'1.0-2\'}}{{account.units}}\n            </ion-item>\n        </div>\n    </ion-list>     \n    \n    \n    <ion-list class="add-program-options">\n        <ion-list-header class="more-header" (click)="showMore = !showMore">\n            Repeat Program\n            <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>   \n        \n        <div *ngIf="showMore">\n            \n            <ion-item>\n                <ion-label floating>How many times should this program repeat?</ion-label>\n                <ion-input type="text" [(ngModel)]="options.cycles"></ion-input>\n            </ion-item>    \n\n            \n        </div>\n    </ion-list>\n    \n    <ion-list class="add-program-options">\n        <ion-list-header class="more-header" (click)="showMoreProg = !showMoreProg">\n            Progression Options\n            <ion-icon [name]="showMoreProg ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>   \n        \n        <div *ngIf="showMoreProg">\n\n            <ion-item>\n                <ion-label>Progression Type</ion-label>\n                <ion-select [(ngModel)]="options.progressiontype">\n                  <ion-option value="">None</ion-option>\n                  <ion-option value="weight">Weight</ion-option>\n                  <ion-option value="percentage">Percentage</ion-option>\n                </ion-select>\n            </ion-item>               \n              \n            <div *ngIf="options.progressiontype">\n                <ion-item>\n                    <ion-label floating>Progression Amount (<span *ngIf="options.progressiontype === \'weight\'">{{account.units}}</span><span *ngIf="options.progressiontype === \'percentage\'">%</span>)</ion-label>\n                    <ion-input type="text" [(ngModel)]="options.progressionamount"></ion-input>\n                </ion-item>  \n                \n                <p class="exercise-progression-amounts-toggle" (click)="showMoreProgEx = !showMoreProgEx">\n                    Specify amounts per exercise\n                    <ion-icon [name]="showMoreProgEx ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>  \n                </p>\n                <div class="exercise-progression-amounts" *ngIf="showMoreProgEx">\n                    <ion-item *ngFor="let exercise of exercises">\n                        <ion-label floating>{{maxes[exercise].name}}</ion-label>\n                        <ion-input type="number" [(ngModel)]="options.progressionexercises[exercise.exerciseid]"></ion-input>\n                    </ion-item>                    \n                </div>\n                \n                <ion-item>\n                    <ion-label floating>Progression Frequency</ion-label>\n                    <ion-select [(ngModel)]="options.frequencySelect" (change)="updateFrequency()">\n                      <ion-option value="every">Increase after every workout</ion-option>\n                      <ion-option value="everyother">Increase after every other workout</ion-option>\n                      <ion-option value="custom">Increase after a custom amount of workouts</ion-option>\n                    </ion-select>\n                </ion-item>                  \n\n                <ion-item *ngIf="options.frequencySelect === \'custom\'">\n                    <ion-label floating>Custom Frequency</ion-label>\n                    <ion-input type="number" [(ngModel)]="options.progressiontimeframe"></ion-input>\n                </ion-item>                 \n                \n            </div>\n            \n            \n        </div>\n    </ion-list>    \n\n    \n</ion-content>\n\n<ion-footer class="add-program-footer">\n    <button ion-button (click)="addProgram()">Add To Diary</button>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\add-program\add-program.html"*/
+            selector: 'add-program',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\add-program\add-program.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Confirm Details\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n\n    <p class="program-start">\n        Program will start on <strong>{{formatDate(startDate)}}</strong> \n       \n        \n    </p>\n    \n    <p class="program-end">\n        Program will end on {{getEndDate()}}\n    </p>\n    \n    <p class="program-change-date">\n     <button color="light" small ion-button ion-datepicker (ionChanged)="selectDate($event)" [okText]="\'Select Date\'">Change Start Date</button>\n    </p>\n\n\n    <ion-list class="add-program-maxes">\n        <ion-list-header [ngClass]="{\'maxes-required\': maxCount < exercises.length}" (click)="showMoreMaxes = !showMoreMaxes">\n            {{maxCount}}/{{exercises.length}} Max<span *ngIf="(exercises.length) !== 1">es</span> Entered\n            <ion-icon [name]="showMoreMaxes ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>\n        <div *ngIf="showMoreMaxes">\n            <ion-item *ngFor="let exercise of exercises">\n                <ion-label floating>{{maxes[exercise].name}}</ion-label>\n                <ion-input type="text" [(ngModel)]="maxes[exercise].max" (change)="calculateMaxes()"></ion-input>\n            </ion-item>\n        </div>\n    </ion-list>\n    \n    \n    <ion-list class=\'add-program-options\' >\n        <ion-list-header class="more-header" (click)="showMoreCalc = !showMoreCalc">\n            1RM Calculator\n            <ion-icon [name]="showMoreCalc ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>        \n        <div *ngIf="showMoreCalc">\n            <ion-item>\n                <ion-label floating>Reps</ion-label>\n                <ion-input name="reps" type="number" placeholder="Reps" [(ngModel)]="calculator.reps"></ion-input>\n            </ion-item>            \n            <ion-item>\n                <ion-label floating>Weight</ion-label>\n                <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="calculator.weight"></ion-input>\n            </ion-item> \n            <ion-item *ngIf="calculator.reps && calculator.weight" class="result">\n                Estimated Max: {{getMax() | number:\'1.0-2\'}}{{account.units}}\n            </ion-item>\n        </div>\n    </ion-list>     \n    \n    \n    <ion-list class="add-program-options">\n        <ion-list-header class="more-header" (click)="showMore = !showMore">\n            Repeat Program\n            <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>   \n        \n        <div *ngIf="showMore">\n            \n            <ion-item>\n                <ion-label floating>How many times should this program repeat?</ion-label>\n                <ion-input type="text" [(ngModel)]="options.cycles"></ion-input>\n            </ion-item>    \n\n            \n        </div>\n    </ion-list>\n    \n    <ion-list class="add-program-options">\n        <ion-list-header class="more-header" (click)="showMoreProg = !showMoreProg">\n            Progression Options\n            <ion-icon [name]="showMoreProg ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n        </ion-list-header>   \n        \n        <div *ngIf="showMoreProg">\n\n            <ion-item>\n                <ion-label>Progression Type</ion-label>\n                <ion-select [(ngModel)]="options.progressiontype">\n                  <ion-option value="">None</ion-option>\n                  <ion-option value="weight">Weight</ion-option>\n                  <ion-option value="percentage">Percentage</ion-option>\n                </ion-select>\n            </ion-item>               \n              \n            <div *ngIf="options.progressiontype">\n                <ion-item>\n                    <ion-label floating>Progression Amount (<span *ngIf="options.progressiontype === \'weight\'">{{account.units}}</span><span *ngIf="options.progressiontype === \'percentage\'">%</span>)</ion-label>\n                    <ion-input type="number" [(ngModel)]="options.progressionamount"></ion-input>\n                </ion-item>  \n                \n                <p class="exercise-progression-amounts-toggle" (click)="showMoreProgEx = !showMoreProgEx">\n                    Specify amounts per exercise\n                    <ion-icon [name]="showMoreProgEx ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>  \n                </p>\n                <div class="exercise-progression-amounts" *ngIf="showMoreProgEx">\n                    <ion-item *ngFor="let exercise of exercises">\n                        <ion-label floating>{{maxes[exercise].name}}</ion-label>\n                        <ion-input type="number" [(ngModel)]="options.progressionexercises[exercise.exerciseid]"></ion-input>\n                    </ion-item>                    \n                </div>\n                \n                <ion-item>\n                    <ion-label floating>Progression Frequency</ion-label>\n                    <ion-select [(ngModel)]="options.frequencySelect" (ionChange)="updateFrequency()">\n                      <ion-option value="every">Increase after every workout</ion-option>\n                      <ion-option value="everyother">Increase after every other workout</ion-option>\n                      <ion-option value="custom">Increase after a custom amount of workouts</ion-option>\n                    </ion-select>\n                </ion-item>                  \n\n                <ion-item *ngIf="options.frequencySelect === \'custom\'">\n                    <ion-label floating>Custom Frequency</ion-label>\n                    <ion-input type="number" [(ngModel)]="options.progressiontimeframe"></ion-input>\n                </ion-item>                 \n                \n            </div>\n            \n            \n        </div>\n    </ion-list>    \n\n    \n</ion-content>\n\n<ion-footer class="add-program-footer">\n    <button ion-button (click)="addProgram()">Add To Diary</button>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\add-program\add-program.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], AddProgramModal);
@@ -6931,9 +7072,9 @@ var AddProgramModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditProgramModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_program_program__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -7385,7 +7526,7 @@ var EditProgramModal = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecordsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_records_records__ = __webpack_require__(383);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -7460,8 +7601,8 @@ var RecordsPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecordsModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_diary_diary__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
@@ -7566,12 +7707,13 @@ var RecordsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_change_exercise_change_exercise__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular_highcharts__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_notes_notes__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angular_highcharts__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7581,6 +7723,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -7610,11 +7753,11 @@ var StatsPage = (function () {
         });
         this.exercise = { name: "", isMusclegroup: false, isType: false };
         this.stats = {
-            chart: new __WEBPACK_IMPORTED_MODULE_9_angular_highcharts__["a" /* Chart */](this.chartProvider.getLineConfig()),
-            heatmap: new __WEBPACK_IMPORTED_MODULE_9_angular_highcharts__["a" /* Chart */](this.chartProvider.getHeatmapConfig()),
-            piechart1: new __WEBPACK_IMPORTED_MODULE_9_angular_highcharts__["a" /* Chart */](this.chartProvider.getPieConfig()),
-            piechart2: new __WEBPACK_IMPORTED_MODULE_9_angular_highcharts__["a" /* Chart */](this.chartProvider.getPieConfig()),
-            general: { heatmap: [], heatmap_date: "", current_streak: 0, current_streak_date: "", best_streak: { start: null, end: null, streak: 0 }, musclegroup: { breakdown: [], most_tracked: {}, least_tracked: {} }, exercise_type: { breakdown: [], most_tracked: {}, least_tracked: {} } },
+            chart: new __WEBPACK_IMPORTED_MODULE_10_angular_highcharts__["a" /* Chart */](this.chartProvider.getLineConfig()),
+            heatmap: new __WEBPACK_IMPORTED_MODULE_10_angular_highcharts__["a" /* Chart */](this.chartProvider.getHeatmapConfig()),
+            piechart1: new __WEBPACK_IMPORTED_MODULE_10_angular_highcharts__["a" /* Chart */](this.chartProvider.getPieConfig()),
+            piechart2: new __WEBPACK_IMPORTED_MODULE_10_angular_highcharts__["a" /* Chart */](this.chartProvider.getPieConfig()),
+            general: { heatmap: [], heatmap_date: "", current_streak: 0, current_streak_date: "", best_streak: { start: null, end: null, streak: 0 }, musclegroup: { breakdown: [], most_tracked: {}, least_tracked: {} }, exercise_type: { breakdown: [], most_tracked: {}, least_tracked: {} }, notes: 0, videos: 0 },
             metric: "volume",
             timeframe: "forever",
             units: "",
@@ -7634,6 +7777,7 @@ var StatsPage = (function () {
     StatsPage.prototype.getGeneralStats = function () {
         var _this = this;
         this.diaryProvider.getStats({ type: "generaluserdata" }).then(function (data) {
+            console.log(data);
             _this.stats.general = data;
             if (_this.stats.general.heatmap.length < 1) {
                 return;
@@ -7863,9 +8007,13 @@ var StatsPage = (function () {
         }
         return __WEBPACK_IMPORTED_MODULE_3_moment__(date).format("MMMM Do YYYY");
     };
+    StatsPage.prototype.openNotes = function () {
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_9__modals_notes_notes__["a" /* NotesModal */], {});
+        modal.present();
+    };
     StatsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-stats',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\stats\stats.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Stats</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content  [ngClass]="{\'display-borders\':properties.activeTab === \'all\'}">\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="all">\n            All\n        </ion-segment-button>        \n        <ion-segment-button value="general">\n            General\n        </ion-segment-button>\n      <ion-segment-button value="exercise">\n            Exercise\n      </ion-segment-button>\n      <ion-segment-button value="breakdown">\n            Breakdown\n      </ion-segment-button>        \n    </ion-segment>    \n    \n    \n    \n    <div class="stats-page-section general-stats" [hidden]="properties.activeTab !== \'general\' && properties.activeTab !== \'all\'">\n        <div [chart]="stats.heatmap" style="height:300px;"></div>\n        \n        \n        <div class="extra-stats primary-stats" *ngIf="stats.general.best_streak">\n        \n            <ion-card class="red-background">\n                <div class="card-subsubtitle">From {{stats.general.heatmap_date}}</div>\n                <div class="card-title">{{stats.general.heatmap.length}} Workout<span *ngIf="stats.general.heatmap.length !== 1">s</span></div>\n                <div class="card-subtitle">In the last year</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n                <div class="card-subsubtitle">From {{formatDate(stats.general.best_streak.start)}}</div>\n              <div class="card-title">{{stats.general.best_streak.streak}} Week<span *ngIf="stats.general.best_streak.streak !== 1">s</span></div>\n              <div class="card-subtitle">Longest Weekly Streak</div>\n            </ion-card>        \n        \n            <ion-card class="yellow-background">\n                <div class="card-subsubtitle">From {{stats.general.current_streak_date}}</div>\n                <div class="card-title">{{stats.general.current_streak}} Week<span *ngIf="stats.general.current_streak !== 1">s</span></div>\n              <div class="card-subtitle">Current Weekly Streak</div>\n            </ion-card>       \n            \n            <ion-card class="darkorange-background">\n                <div class="card-subsubtitle">{{formatDate(account.last_workout)}}</div>\n              <div class="card-title">{{account.last_workout_formatted}}</div>\n              <div class="card-subtitle">Last Workout</div>\n            </ion-card>              \n            \n        </div>        \n        \n    </div>\n    \n    \n    \n    <div class="stats-page-section exercise-stats" [hidden]="properties.activeTab !== \'exercise\' && properties.activeTab !== \'all\'">\n        \n        <h3 tappable class="stats-metric stats-exercise" (click)="openChangeExercise()">{{exercise.name}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="stats-timeframes">\n            <button ion-button small (click)="changeStatsTimeframe(\'forever\')" [outline]="stats.timeframe !== \'forever\'">Lifetime</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Year\')" [outline]="stats.timeframe !== \'1 Year\'">1 Year</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'6 Months\')" [outline]="stats.timeframe !== \'6 Months\'">6 Months</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Month\')" [outline]="stats.timeframe !== \'1 Month\'">1 Month</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Week\')" [outline]="stats.timeframe !== \'1 Week\'">1 Week</button>\n        </div>\n        <div [chart]="stats.chart"></div>\n        <h3 tappable class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="extra-stats" *ngIf="stats.extra.best.date">\n        \n            <ion-card class="red-background">\n              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>\n              <div class="card-title">{{stats.extra.best.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Maximum</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>\n              <div class="card-title">{{stats.extra.worst.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Minimum</div>\n            </ion-card>        \n        \n        </div>  \n\n\n        <div class="extra-stats" *ngIf="stats.extra.average.data">\n        \n            <ion-card class="yellow-background">\n              <div class="card-title">{{stats.extra.average.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Average</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n              <div class="card-title">{{stats.extra.growth.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Growth</div>\n            </ion-card>        \n        \n        </div> \n\n        \n    </div> \n    \n    \n    <div class="stats-page-section pie-stats" [hidden]="properties.activeTab !== \'breakdown\' && properties.activeTab !== \'all\'">\n        <h2>Musclegroup Breakdown</h2>\n        <div [chart]="stats.piechart1"></div>\n        \n        <div class="extra-stats" *ngIf="stats.general.musclegroup.most_tracked.name">\n        \n            <ion-card class="red-background">\n                <div class="card-subsubtitle">{{stats.general.musclegroup.most_tracked.data}}{{account.units}}</div>  \n                <div class="card-title">{{stats.general.musclegroup.most_tracked.name}}</div>\n                <div class="card-subtitle">Most Volume</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n                <div class="card-subsubtitle">{{stats.general.musclegroup.least_tracked.data}}{{account.units}}</div>\n                <div class="card-title">{{stats.general.musclegroup.least_tracked.name}}</div>\n                <div class="card-subtitle">Least Volume</div>\n            </ion-card>          \n        \n        </div>          \n        \n        \n        \n        <h2>Exercise Type Breakdown</h2>\n        <div [chart]="stats.piechart2"></div>    \n        \n        \n        <div class="extra-stats"  *ngIf="stats.general.exercise_type.least_tracked.name">\n        \n            <ion-card class="yellow-background">\n                <div class="card-subsubtitle">{{stats.general.exercise_type.most_tracked.data}}{{account.units}}</div>  \n                <div class="card-title">{{stats.general.exercise_type.most_tracked.name}}</div>\n                <div class="card-subtitle">Most Volume</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n                <div class="card-subsubtitle">{{stats.general.exercise_type.least_tracked.data}}{{account.units}}</div>\n                <div class="card-title">{{stats.general.exercise_type.least_tracked.name}}</div>\n                <div class="card-subtitle">Least Volume</div>\n            </ion-card>        \n        \n        </div>         \n        \n        \n    </div>\n    \n    \n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\stats\stats.html"*/
+            selector: 'page-stats',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\stats\stats.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Stats</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content  [ngClass]="{\'display-borders\':properties.activeTab === \'all\'}">\n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="all">\n            All\n        </ion-segment-button>        \n        <ion-segment-button value="general">\n            General\n        </ion-segment-button>\n      <ion-segment-button value="exercise">\n            Exercise\n      </ion-segment-button>\n      <ion-segment-button value="breakdown">\n            Breakdown\n      </ion-segment-button>        \n    </ion-segment>    \n    \n    \n    \n    <div class="stats-page-section general-stats" [hidden]="properties.activeTab !== \'general\' && properties.activeTab !== \'all\'">\n        <div [chart]="stats.heatmap" style="height:300px;"></div>\n        \n        \n        <div class="extra-stats primary-stats" *ngIf="stats.general.best_streak">\n        \n            <ion-card class="red-background">\n                <div class="card-subsubtitle">From {{stats.general.heatmap_date}}</div>\n                <div class="card-title">{{stats.general.heatmap.length}} Workout<span *ngIf="stats.general.heatmap.length !== 1">s</span></div>\n                <div class="card-subtitle">In the last year</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n                <div class="card-subsubtitle">From {{formatDate(stats.general.best_streak.start)}}</div>\n              <div class="card-title">{{stats.general.best_streak.streak}} Week<span *ngIf="stats.general.best_streak.streak !== 1">s</span></div>\n              <div class="card-subtitle">Longest Weekly Streak</div>\n            </ion-card>        \n        \n            <ion-card class="yellow-background">\n                <div class="card-subsubtitle">From {{stats.general.current_streak_date}}</div>\n                <div class="card-title">{{stats.general.current_streak}} Week<span *ngIf="stats.general.current_streak !== 1">s</span></div>\n              <div class="card-subtitle">Current Weekly Streak</div>\n            </ion-card>       \n            \n            <ion-card class="darkorange-background">\n                <div class="card-subsubtitle">{{formatDate(account.last_workout)}}</div>\n              <div class="card-title">{{account.last_workout_formatted}}</div>\n              <div class="card-subtitle">Last Workout</div>\n            </ion-card>              \n            \n        </div>  \n        \n    <ion-item class="notes-stats" (click)="openNotes()">\n        <ion-icon name="bookmarks" item-start></ion-icon>\n        <h2>{{stats.general.notes}} notes & {{stats.general.videos}} videos</h2>\n        <p>Tracked against sets in your diary</p>\n        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n    </ion-item>        \n        \n    </div>\n    \n\n    \n    <div class="stats-page-section exercise-stats" [hidden]="properties.activeTab !== \'exercise\' && properties.activeTab !== \'all\'">\n        \n        <h3 tappable class="stats-metric stats-exercise" (click)="openChangeExercise()">{{exercise.name}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="stats-timeframes">\n            <button ion-button small (click)="changeStatsTimeframe(\'forever\')" [outline]="stats.timeframe !== \'forever\'">Lifetime</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Year\')" [outline]="stats.timeframe !== \'1 Year\'">1 Year</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'6 Months\')" [outline]="stats.timeframe !== \'6 Months\'">6 Months</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Month\')" [outline]="stats.timeframe !== \'1 Month\'">1 Month</button>\n            <button ion-button small (click)="changeStatsTimeframe(\'1 Week\')" [outline]="stats.timeframe !== \'1 Week\'">1 Week</button>\n        </div>\n        <div [chart]="stats.chart"></div>\n        <h3 tappable class="stats-metric" (click)="openChangeMetric()">{{stats.metric}} <ion-icon name="create"></ion-icon></h3>\n        \n        <div class="extra-stats" *ngIf="stats.extra.best.date">\n        \n            <ion-card class="red-background">\n              <div class="card-subsubtitle">{{stats.extra.best.date}}</div>\n              <div class="card-title">{{stats.extra.best.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Maximum</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n              <div class="card-subsubtitle">{{stats.extra.worst.date}}</div>\n              <div class="card-title">{{stats.extra.worst.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Minimum</div>\n            </ion-card>        \n        \n        </div>  \n\n\n        <div class="extra-stats" *ngIf="stats.extra.average.data">\n        \n            <ion-card class="yellow-background">\n              <div class="card-title">{{stats.extra.average.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Average</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n              <div class="card-title">{{stats.extra.growth.data | number: \'1.0-0\'}}{{stats.units}}</div>\n              <div class="card-subtitle">Growth</div>\n            </ion-card>        \n        \n        </div> \n\n        \n    </div> \n    \n    \n    <div class="stats-page-section pie-stats" [hidden]="properties.activeTab !== \'breakdown\' && properties.activeTab !== \'all\'">\n        <h2>Musclegroup Breakdown</h2>\n        <div [chart]="stats.piechart1"></div>\n        \n        <div class="extra-stats" *ngIf="stats.general.musclegroup.most_tracked.name">\n        \n            <ion-card class="red-background">\n                <div class="card-subsubtitle">{{stats.general.musclegroup.most_tracked.data}}{{account.units}}</div>  \n                <div class="card-title">{{stats.general.musclegroup.most_tracked.name}}</div>\n                <div class="card-subtitle">Most Volume</div>\n            </ion-card>  \n            \n            \n            <ion-card class="orange-background">\n                <div class="card-subsubtitle">{{stats.general.musclegroup.least_tracked.data}}{{account.units}}</div>\n                <div class="card-title">{{stats.general.musclegroup.least_tracked.name}}</div>\n                <div class="card-subtitle">Least Volume</div>\n            </ion-card>          \n        \n        </div>          \n        \n        \n        \n        <h2>Exercise Type Breakdown</h2>\n        <div [chart]="stats.piechart2"></div>    \n        \n        \n        <div class="extra-stats"  *ngIf="stats.general.exercise_type.least_tracked.name">\n        \n            <ion-card class="yellow-background">\n                <div class="card-subsubtitle">{{stats.general.exercise_type.most_tracked.data}}{{account.units}}</div>  \n                <div class="card-title">{{stats.general.exercise_type.most_tracked.name}}</div>\n                <div class="card-subtitle">Most Volume</div>\n            </ion-card>  \n            \n            \n            <ion-card class="darkorange-background">\n                <div class="card-subsubtitle">{{stats.general.exercise_type.least_tracked.data}}{{account.units}}</div>\n                <div class="card-title">{{stats.general.exercise_type.least_tracked.name}}</div>\n                <div class="card-subtitle">Least Volume</div>\n            </ion-card>        \n        \n        </div>         \n        \n        \n    </div>\n    \n    \n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\stats\stats.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__["a" /* ChartProvider */], __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_7__providers_exercise_exercise__["a" /* ExerciseProvider */]])
     ], StatsPage);
@@ -7883,7 +8031,7 @@ var StatsPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangeExerciseModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7999,6 +8147,145 @@ var ChangeExerciseModal = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotesModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(22);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var NotesModal = (function () {
+    function NotesModal(platform, navCtrl, modalCtrl, params, viewCtrl, diaryProvider, toastCtrl, storage, alertCtrl, events) {
+        this.platform = platform;
+        this.navCtrl = navCtrl;
+        this.modalCtrl = modalCtrl;
+        this.params = params;
+        this.viewCtrl = viewCtrl;
+        this.diaryProvider = diaryProvider;
+        this.toastCtrl = toastCtrl;
+        this.storage = storage;
+        this.alertCtrl = alertCtrl;
+        this.events = events;
+        this.properties = { loading: false, page: 1, exerciseid: null, exercise: "All" };
+        this.notes = { notes: [], count: 0 };
+        this.properties.exerciseid = this.params.data.exerciseid;
+        this.properties.exercise = this.params.data.exercise ? this.params.data.exercise : "All";
+        this.getNotes();
+    }
+    NotesModal.prototype.getNotes = function () {
+        var _this = this;
+        this.properties.loading = true;
+        this.notes = { notes: [], count: 0 };
+        this.diaryProvider.getNotes(this.properties.page, this.properties.exerciseid).then(function (data) {
+            _this.properties.loading = false;
+            console.log(data);
+            _this.notes = data;
+        }).catch(function () {
+            _this.properties.loading = false;
+        });
+    };
+    NotesModal.prototype.loadMoreNotes = function (infiniteScroll) {
+        var _this = this;
+        if (!this.properties.page) {
+            this.properties.page = 1;
+        }
+        else if (!this.notes.canloadmore) {
+            infiniteScroll.complete();
+            return;
+        }
+        this.properties.page = this.properties.page + 1;
+        this.diaryProvider.getNotes(this.properties.page, this.properties.exerciseid).then(function (data) {
+            for (var _i = 0, _a = data["notes"]; _i < _a.length; _i++) {
+                var item = _a[_i];
+                _this.notes.notes.push(item);
+            }
+            _this.notes.canloadmore = data["canloadmore"];
+            infiniteScroll.complete();
+        })
+            .catch(function (e) {
+            infiniteScroll.complete();
+        });
+    };
+    NotesModal.prototype.openChangeExercise = function () {
+        var _this = this;
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */]);
+        modal.onDidDismiss(function (exercise) {
+            if (exercise) {
+                console.log(exercise);
+                _this.properties.exercise = exercise.name;
+                _this.properties.exerciseid = exercise.exerciseid;
+                _this.getNotes();
+            }
+        });
+        modal.present();
+    };
+    NotesModal.prototype.formatDate = function (date) {
+        return __WEBPACK_IMPORTED_MODULE_5_moment__(date).format('dddd, MMMM Do YYYY');
+    };
+    NotesModal.prototype.openVideo = function (video, ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        window.open(video, '_system');
+    };
+    NotesModal.prototype.openNote = function (set, note) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: set.name,
+            subTitle: __WEBPACK_IMPORTED_MODULE_5_moment__(set.assigneddate).format('dddd, MMMM Do YYYY'),
+            message: note,
+            buttons: [
+                {
+                    text: 'Dismiss',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Go to date',
+                    handler: function (data) {
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__["a" /* DiaryPage */], { date: __WEBPACK_IMPORTED_MODULE_5_moment__(set.assigneddate).toDate() });
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    NotesModal.prototype.dismiss = function () {
+        this.viewCtrl.dismiss();
+    };
+    NotesModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'notes',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\notes\notes.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Notes & Videos\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n   <h3 tappable class="stats-metric stats-exercise notes-exercise" (click)="openChangeExercise()">{{properties.exercise}} <ion-icon name="create"></ion-icon></h3>\n\n   \n    <div class="diary-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n   \n   \n    <div class="diary-empty empty-state" *ngIf="notes.notes.length < 1 && !properties.loading">\n        <ion-icon name=\'bookmarks\'></ion-icon>\n        No Notes Or Videos\n    </div>     \n   \n   \n    <ion-list class="add-diary-list notes-list">\n        <div *ngFor="let diary of notes.notes">\n            \n            <ion-list-header>\n                {{formatDate(diary.assigneddate)}}\n            </ion-list-header>           \n            <span *ngFor="let set of diary.sets">\n                <ion-item detail-none (click)="openNote(set, set.notes)" *ngIf="set.notes">\n                    <h2>{{set.name}}</h2>\n                    <h3>{{set.weight ? set.weight : 0}}{{set.unit}}, {{set.reps}} rep<span *ngIf="set.reps !== \'1\'">s</span><span *ngIf="set.percentage && set.percentage > 0">, {{set.percentage}}%</span><span *ngIf="set.rpe && set.rpe > 0">, @{{set.rpe}}RPE</span></h3>\n                    <p>{{set.notes}}</p>\n                </ion-item> \n                <ion-item detail-none (click)="openNote(set, set.video)" *ngIf="set.video">\n                    <h2>{{set.name}}</h2>\n                    <h3>{{set.weight ? set.weight : 0}}{{set.unit}}, {{set.reps}} rep<span *ngIf="set.reps !== \'1\'">s</span><span *ngIf="set.percentage && set.percentage > 0">, {{set.percentage}}%</span><span *ngIf="set.rpe && set.rpe > 0">, @{{set.rpe}}RPE</span></h3>\n                    <p>{{set.video}}</p>\n                    <button ion-button outline item-end (click)="openVideo(set.video, $event)">View Video</button>\n                </ion-item>                 \n            </span>\n            \n            \n        </div>\n    </ion-list>\n\n    <ion-infinite-scroll (ionInfinite)="loadMoreNotes($event)">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>     \n    \n\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\notes\notes.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
+    ], NotesModal);
+    return NotesModal;
+}());
+
+//# sourceMappingURL=notes.js.map
+
+/***/ }),
+
+/***/ 387:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
@@ -8108,17 +8395,17 @@ var LoginModal = (function () {
 
 /***/ }),
 
-/***/ 387:
+/***/ 388:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopoverPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_tools_timer__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_tools_calculator__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tools_bodyweight__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tools_help__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_tools_timer__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_tools_calculator__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tools_bodyweight__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tools_help__ = __webpack_require__(394);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__ = __webpack_require__(136);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8181,7 +8468,7 @@ var PopoverPage = (function () {
 
 /***/ }),
 
-/***/ 388:
+/***/ 389:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8331,7 +8618,7 @@ var TimerModal = (function () {
 
 /***/ }),
 
-/***/ 390:
+/***/ 391:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8536,7 +8823,7 @@ var CalculatorModal = (function () {
 
 /***/ }),
 
-/***/ 391:
+/***/ 392:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8547,7 +8834,7 @@ var CalculatorModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_chart_chart__ = __webpack_require__(71);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8669,7 +8956,7 @@ var BodyweightModal = (function () {
 
 /***/ }),
 
-/***/ 392:
+/***/ 393:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8847,7 +9134,7 @@ var BodyweightProvider = (function () {
 
 /***/ }),
 
-/***/ 393:
+/***/ 394:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8901,7 +9188,7 @@ var HelpModal = (function () {
     };
     HelpModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'help',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Help\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <div class="program-workouts">\n\n        <div class="workout-list">\n            <ion-list>\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem = !openItem">\n                        Getting started\n                        <ion-icon [name]="openItem ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem">\n                        \n                        \n                        <p>There are 2 steps to getting starting with tracking your workout.</p>\n                            <ol>\n                                <li><strong>Add an exercise</strong>. You can do this by tapping the red + circle in the bottom right corner</li>\n                                <li>Once you have added an exercise, you can now start <strong>adding sets</strong>. To do this, enter the weight and number of reps you did in the bar at the bottom of the screen, then tap the Add button.</li>\n                            </ol>\n                            <p>Some other points to note:</p>\n                            <ul>\n                                <li>To <strong>edit a set</strong> or add more information such as RPE, percentage, videos, or notes, tap on the set.</li>\n                                <li>You can <strong>mark sets as complete or incomplete</strong> by tapping the checkmark circle on the left of the set. Grey means not completed, red means completed.</li>\n                            </ul>                        \n                        \n                        \n                    </ion-item>\n                </div>\n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem2 = !openItem2">\n                        What does the progress circle mean?\n                        <ion-icon [name]="openItem2 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem2">\n                        <p>The progress circle indicates how far towards your goal you are. By default, the goal is to achieve more volume every workout. You can change this by either tapping the progress circle, or going to your settings. Learn more about goals by viewing our blog post <a (click)="openLink(\'https://www.intensityapp.com/programming/intensity-workout-app-3-ways-to-make-faster-progress-with-custom-goals/\')">here</a>.</p>\n                    </ion-item>\n                </div>       \n                \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem3 = !openItem3">\n                        What is volume?\n                        <ion-icon [name]="openItem3 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem3">\n                        <p>Volume is a measure of work done. It is calculated by multiplying reps, weight, and sets together (i.e. reps x weight x sets).</p>\n                    </ion-item>\n                </div>       \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem4 = !openItem4">\n                        How can I change my units?\n                        <ion-icon [name]="openItem4 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem4">\n                        <p>You can change your units to lbs or kg by going to your settings. To access your settings, open the side menu by tapping the icon in the top left corner, then tap on Settings.</p>\n                    </ion-item>\n                </div>     \n\n\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem5 = !openItem5">\n                        How do I edit my password?\n                        <ion-icon [name]="openItem5 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem5">\n                        <p>You can change your password by going to your settings. To access your settings, open the side menu by tapping the icon in the top left corner, then tap on Settings. The change password option is towards the bottom of the list.</p>\n                    </ion-item>\n                </div>                    \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem6 = !openItem6">\n                        How do I edit my profile and email address?\n                        <ion-icon [name]="openItem6 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem6">\n                        <p>You can change your profile information and email address by going to your profile. To access your profile, open the side menu by tapping the icon in the top left corner, then tap on the circular avatar image at the top. To edit your profile on this page, tap on the pencil in the top right corner. You can edit your avatar by tapping on the main circular image in your profile page.</p>\n                    </ion-item>\n                </div> \n\n\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem7 = !openItem7">\n                        How do I start a program?\n                        <ion-icon [name]="openItem7 ? \'remove-circle\' : \'add-circle\'" item-end ></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem7">\n                        <p>To start a program such as 5/3/1, Starting Strength, or any other number of programs in the database, navigate to the programs page. To do this, open the side menu by tapping the icon in the top left corner, then tap on Programs. Select a program you want to do by tapping on it. E.g. tap on 5/3/1 to open it. This will show you the details of the program. Confirm you are happy to add this program, and then tap on Add To Diary. You will be presented with some options such as setting the start date and entering your maxes. For more information on these settings, visit our blog post <a (click)="openLink(\'https://www.intensityapp.com/programming/intensity-programs-explained/\')">here</a>. Once you are happy with these settings, tap on Add To Diary.</p>\n                    </ion-item>\n                </div> \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem9 = !openItem9">\n                        How can I export my data?\n                        <ion-icon [name]="openItem9 ? \'remove-circle\' : \'add-circle\'" item-end ></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem9">\n                        <p>You can export all your workout data by going to your settings. To access your settings, open the side menu by tapping the icon in the top left corner, then tap on Settings. From here, find Export Data and tap the Download button.</p>\n                    </ion-item>\n                </div>                 \n\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem8 = !openItem8">\n                        Have another question?\n                        <ion-icon [name]="openItem8 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    \n                    <div *ngIf="openItem8">\n                    \n                        <p class="help-message">\n                            If you require assistance with anything to do with the app, or just need to get in touch, fill out the below form.\n                        </p>\n                        <ion-list class="help-form">\n                            <ion-item>\n                                <ion-label>Subject</ion-label>\n                                <ion-select [(ngModel)]="contact.subject">\n                                    <ion-option value="Genereal Help">Genereal Help</ion-option>\n                                  <ion-option value="Report Bug">Report Bug</ion-option>\n                                  <ion-option value="Connection Issue">Connection Issue</ion-option>\n                                  <ion-option value="Data Import Error">Data Import Error</ion-option>\n                                  <ion-option value="Feature Request">Feature Request</ion-option>\n                                  <ion-option value="Other">Other</ion-option>\n                                </ion-select>\n                            </ion-item>     \n\n\n                            <ion-item class="set-notes">\n                                <ion-label floating>Message</ion-label>\n                                <ion-textarea [(ngModel)]="contact.message" autosize></ion-textarea>\n                            </ion-item>   \n                        </ion-list>   \n\n                        <div class="send-button">\n                            <button ion-button (click)="sendMessage()">\n                                <span ion-text>Send</span>\n                            </button>     \n                        </div>\n                    \n                    \n                    </div>\n                    \n                </div> \n\n\n                \n            </ion-list>\n        </div>\n\n    </div>\n    \n    \n    \n\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/
+            selector: 'help',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Help\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <div class="program-workouts">\n\n        <div class="workout-list">\n            <ion-list>\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem = !openItem">\n                        Getting started\n                        <ion-icon [name]="openItem ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem">\n                        \n                        \n                        <p>There are 2 steps to getting starting with tracking your workout.</p>\n                            <ol>\n                                <li><strong>Add an exercise</strong>. You can do this by tapping the red + circle in the bottom right corner</li>\n                                <li>Once you have added an exercise, you can now start <strong>adding sets</strong>. To do this, enter the weight and number of reps you did in the bar at the bottom of the screen, then tap the Add button.</li>\n                            </ol>\n                            <p>Some other points to note:</p>\n                            <ul>\n                                <li>To <strong>edit a set</strong> or add more information such as RPE, percentage, videos, or notes, tap on the set.</li>\n                                <li>You can <strong>mark sets as complete or incomplete</strong> by tapping the checkmark circle on the left of the set. Grey means not completed, red means completed.</li>\n                            </ul>                        \n                        \n                        \n                    </ion-item>\n                </div>\n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem2 = !openItem2">\n                        What does the progress circle mean?\n                        <ion-icon [name]="openItem2 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem2">\n                        <p>The progress circle indicates how far towards your goal you are. By default, the goal is to achieve more volume every workout. You can change this by either tapping the progress circle, or going to your settings. Learn more about goals by viewing our blog post <a (click)="openLink(\'https://www.intensityapp.com/programming/intensity-workout-app-3-ways-to-make-faster-progress-with-custom-goals/\')">here</a>.</p>\n                    </ion-item>\n                </div>       \n                \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem3 = !openItem3">\n                        What is volume?\n                        <ion-icon [name]="openItem3 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem3">\n                        <p>Volume is a measure of work done. It is calculated by multiplying reps, weight, and sets together (i.e. reps x weight x sets).</p>\n                    </ion-item>\n                </div>       \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem4 = !openItem4">\n                        How can I change my units?\n                        <ion-icon [name]="openItem4 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem4">\n                        <p>You can change your units to lbs or kg by going to your settings. To access your settings, open the side menu by tapping the icon in the top left corner, then tap on Settings.</p>\n                    </ion-item>\n                </div>     \n\n\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem5 = !openItem5">\n                        How do I edit my password?\n                        <ion-icon [name]="openItem5 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem5">\n                        <p>You can change your password by going to your settings. To access your settings, open the side menu by tapping the icon in the top left corner, then tap on Settings. The change password option is towards the bottom of the list.</p>\n                    </ion-item>\n                </div>                    \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem6 = !openItem6">\n                        How do I edit my profile and email address?\n                        <ion-icon [name]="openItem6 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem6">\n                        <p>You can change your profile information and email address by going to your profile. To access your profile, open the side menu by tapping the icon in the top left corner, then tap on the circular avatar image at the top. To edit your profile on this page, tap on the pencil in the top right corner. You can edit your avatar by tapping on the main circular image in your profile page.</p>\n                    </ion-item>\n                </div> \n\n\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem7 = !openItem7">\n                        How do I start a program?\n                        <ion-icon [name]="openItem7 ? \'remove-circle\' : \'add-circle\'" item-end ></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem7">\n                        <p>To start a program such as 5/3/1, Starting Strength, or any other number of programs in the database, navigate to the programs page. To do this, open the side menu by tapping the icon in the top left corner, then tap on Programs. Select a program you want to do by tapping on it. E.g. tap on 5/3/1 to open it. This will show you the details of the program. Confirm you are happy to add this program, and then tap on Add To Diary. You will be presented with some options such as setting the start date and entering your maxes. For more information on these settings, visit our blog post <a (click)="openLink(\'https://www.intensityapp.com/programming/intensity-programs-explained/\')">here</a>. Once you are happy with these settings, tap on Add To Diary.</p>\n                    </ion-item>\n                </div> \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem7 = !openItem7">\n                        How do I remove a program from my diary?\n                        <ion-icon [name]="openItem7 ? \'remove-circle\' : \'add-circle\'" item-end ></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem7">\n                        <p>To remove a program, go to your diary, then press and hold on an exercise that is part of the program to bring up more options, then tap on Remove Program.</p>\n                    </ion-item>\n                </div>                 \n                \n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem9 = !openItem9">\n                        How can I export my data?\n                        <ion-icon [name]="openItem9 ? \'remove-circle\' : \'add-circle\'" item-end ></ion-icon>\n                    </ion-list-header>\n                    <ion-item *ngIf="openItem9">\n                        <p>You can export all your workout data by going to your settings. To access your settings, open the side menu by tapping the icon in the top left corner, then tap on Settings. From here, find Export Data and tap the Download button.</p>\n                    </ion-item>\n                </div>                 \n\n                <div class="accordion-item">\n                    <ion-list-header (click)="openItem8 = !openItem8">\n                        Have another question?\n                        <ion-icon [name]="openItem8 ? \'remove-circle\' : \'add-circle\'" item-end></ion-icon>\n                    </ion-list-header>\n                    \n                    <div *ngIf="openItem8">\n                    \n                        <p class="help-message">\n                            If you require assistance with anything to do with the app, or just need to get in touch, fill out the below form.\n                        </p>\n                        <ion-list class="help-form">\n                            <ion-item>\n                                <ion-label>Subject</ion-label>\n                                <ion-select [(ngModel)]="contact.subject">\n                                    <ion-option value="Genereal Help">General Help</ion-option>\n                                  <ion-option value="Report Bug">Report Bug</ion-option>\n                                  <ion-option value="Connection Issue">Connection Issue</ion-option>\n                                  <ion-option value="Data Import Error">Data Import Error</ion-option>\n                                  <ion-option value="Feature Request">Feature Request</ion-option>\n                                  <ion-option value="Other">Other</ion-option>\n                                </ion-select>\n                            </ion-item>     \n\n\n                            <ion-item class="set-notes">\n                                <ion-label floating>Message</ion-label>\n                                <ion-textarea [(ngModel)]="contact.message" autosize></ion-textarea>\n                            </ion-item>   \n                        </ion-list>   \n\n                        <div class="send-button">\n                            <button ion-button (click)="sendMessage()">\n                                <span ion-text>Send</span>\n                            </button>     \n                        </div>\n                    \n                    \n                    </div>\n                    \n                </div> \n\n\n                \n            </ion-list>\n        </div>\n\n    </div>\n    \n    \n    \n\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\help.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_email_composer__["a" /* EmailComposer */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
     ], HelpModal);
@@ -8912,13 +9199,13 @@ var HelpModal = (function () {
 
 /***/ }),
 
-/***/ 396:
+/***/ 397:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(397);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(417);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(418);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -8926,139 +9213,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 41:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectExerciseModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var SelectExerciseModal = (function () {
-    function SelectExerciseModal(platform, params, viewCtrl, toastCtrl, exerciseProvider, storage, alertCtrl) {
-        var _this = this;
-        this.platform = platform;
-        this.params = params;
-        this.viewCtrl = viewCtrl;
-        this.toastCtrl = toastCtrl;
-        this.exerciseProvider = exerciseProvider;
-        this.storage = storage;
-        this.alertCtrl = alertCtrl;
-        this.properties = { activeTab: "recent", userid: 0, search: "", allCount: 100 };
-        this.loading = { all: false, recent: false, search: false };
-        this.exercises = [];
-        this.recentExercises = [];
-        this.searchExercises = [];
-        this.getExercises();
-        this.getRecentExercises();
-        this.storage.get("userid").then(function (data) {
-            _this.properties.userid = data;
-        });
-    }
-    SelectExerciseModal.prototype.getExercises = function () {
-        var _this = this;
-        this.loading.all = true;
-        this.exerciseProvider.getExercises().then(function (data) {
-            _this.exercises = data;
-            _this.loading.all = false;
-        });
-    };
-    SelectExerciseModal.prototype.getRecentExercises = function () {
-        var _this = this;
-        this.loading.recent = true;
-        this.storage.get("recentexercises").then(function (exercises) {
-            if (exercises && _this.loading.recent) {
-                _this.recentExercises = exercises;
-                if (_this.recentExercises.length > 0) {
-                    _this.properties.activeTab = "recent";
-                }
-            }
-        });
-        this.exerciseProvider.getRecentExercises().then(function (data) {
-            _this.loading.recent = false;
-            _this.recentExercises = data;
-            if (_this.recentExercises.length > 0) {
-                _this.properties.activeTab = "recent";
-            }
-        });
-    };
-    SelectExerciseModal.prototype.searchStarted = function () {
-        this.properties.activeTab = 'all';
-    };
-    SelectExerciseModal.prototype.searchCancelled = function () {
-        this.properties.search = '';
-    };
-    SelectExerciseModal.prototype.openViewDetails = function (ev, exercise) {
-        var _this = this;
-        ev.preventDefault();
-        ev.stopPropagation();
-        var alert = this.alertCtrl.create({
-            title: exercise.name,
-            message: "<strong>Musclegroups:</strong> " + exercise.musclegroup + "<br><strong>Exercise Types:</strong> " + exercise.type,
-            buttons: [
-                {
-                    text: 'Dismiss',
-                    role: 'cancel'
-                },
-                {
-                    text: 'Select',
-                    handler: function (data) {
-                        _this.addExercise(exercise);
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    SelectExerciseModal.prototype.addExercise = function (exercise) {
-        if (exercise.exerciseid) {
-            exercise.id = exercise.exerciseid;
-        } //for recent exercises
-        exercise.exerciseid = exercise.id;
-        this.viewCtrl.dismiss(exercise);
-    };
-    SelectExerciseModal.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
-    };
-    SelectExerciseModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'select-exercise',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\select-exercise\select-exercise.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Select Exercise\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n    <ion-searchbar\n        [(ngModel)]="properties.search"\n        [showCancelButton]="shouldShowCancel"\n        (ionInput)="searchStarted()"\n        (ionCancel)="searchCancelled()"\n        placeholder="Search Exercises"\n        class="flat-search">\n    </ion-searchbar>   \n    \n    <ion-segment color="primary" [(ngModel)]="properties.activeTab">      \n        <ion-segment-button value="recent">\n            Recent\n        </ion-segment-button>\n        <ion-segment-button value="all">\n            All Exercises\n        </ion-segment-button> \n    </ion-segment>    \n    \n\n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'recent\'">\n        <button ion-item detail-none *ngFor="let exercise of recentExercises | exerciseSearch:properties.search; let i = index" (click)="addExercise(exercise)">\n            {{exercise.name}}\n            <ion-icon name=\'more\' item-end (click)="openViewDetails($event, exercise)"></ion-icon>\n        </button> \n    </ion-list>\n    \n\n    \n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'all\' && properties.search">\n        <button ion-item detail-none *ngFor="let exercise of exercises | exerciseSearch:properties.search | slice:0:30; let l = count; let i = index" (click)="addExercise(exercise)">\n            {{exercise.name}}\n            <ion-icon name=\'more\' item-end (click)="openViewDetails($event, exercise)"></ion-icon>\n        </button> \n        <ion-item class="create-exercise" detail-none>\n            Can\'t find {{properties.search}}?<br> \n            <button type="submit" ion-button (click)="createExercise(properties.search)">Create It</button>\n        </ion-item>                \n    </ion-list>  \n    \n    \n    \n    <ion-list class="add-diary-list" *ngIf="properties.activeTab === \'all\' && !properties.search">\n        <button ion-item detail-none *ngFor="let exercise of exercises | slice:0:properties.allCount; let i = index" (click)="addExercise(exercise)">\n            {{exercise.name}}\n            <ion-icon name=\'more\' item-end (click)="openViewDetails($event, exercise)"></ion-icon>\n        </button> \n        <button class="more-exercises" ion-item detail-none (click)="properties.allCount = properties.allCount + 100">\n                + {{exercises.length - properties.allCount}} more\n        </button>         \n    </ion-list>     \n    \n\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\select-exercise\select-exercise.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
-    ], SelectExerciseModal);
-    return SelectExerciseModal;
-}());
-
-//# sourceMappingURL=select-exercise.js.map
-
-/***/ }),
-
-/***/ 417:
+/***/ 418:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export highchartsModules */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__ = __webpack_require__(463);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__ = __webpack_require__(464);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__ = __webpack_require__(124);
@@ -9069,13 +9235,13 @@ var SelectExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(481);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__ = __webpack_require__(368);
@@ -9090,19 +9256,19 @@ var SelectExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_records_records__ = __webpack_require__(382);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__ = __webpack_require__(484);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_tools_help__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_tools_help__ = __webpack_require__(394);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ionic_long_press__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_login_login__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_login_login__ = __webpack_require__(387);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__ = __webpack_require__(362);
@@ -9117,27 +9283,28 @@ var SelectExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_status_bar__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_splash_screen__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_social_sharing__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__ionic_native_native_audio__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__providers_diary_diary__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_program_program__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_authentication_authentication__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_account_account__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_leaderboard_leaderboard__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_friends_friends__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_message_message__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_chart_chart__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_offline_offline__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_timer_timer__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__providers_exercise_exercise__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__providers_bodyweight_bodyweight__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pipes_exercise_search__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pipes_program_search__ = __webpack_require__(499);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__pipes_sort__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__modals_notes_notes__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_status_bar__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_splash_screen__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__ionic_native_social_sharing__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__ionic_native_native_audio__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_program_program__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_authentication_authentication__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_account_account__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_leaderboard_leaderboard__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_friends_friends__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_message_message__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_chart_chart__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_offline_offline__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_timer_timer__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__providers_exercise_exercise__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__providers_bodyweight_bodyweight__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pipes_exercise_search__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__pipes_program_search__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__pipes_sort__ = __webpack_require__(501);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9153,6 +9320,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 function highchartsModules() {
     return [__WEBPACK_IMPORTED_MODULE_5_highcharts_modules_heatmap_src__];
 }
+
 
 
 
@@ -9272,14 +9440,15 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__["a" /* CreateProgramModal */],
                 __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__["a" /* EditProgramModal */],
                 __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_62__modals_notes_notes__["a" /* NotesModal */],
                 __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["a" /* ProgramPopover */],
                 __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__["b" /* ProgramWorkoutPopover */],
                 __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__["a" /* ToolsDirective */],
                 __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__["a" /* Autosize */],
                 __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */],
-                __WEBPACK_IMPORTED_MODULE_79__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_80__pipes_program_search__["a" /* ProgramSearchPipe */],
-                __WEBPACK_IMPORTED_MODULE_81__pipes_sort__["a" /* ArraySortPipe */]
+                __WEBPACK_IMPORTED_MODULE_80__pipes_exercise_search__["a" /* ExerciseSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_81__pipes_program_search__["a" /* ProgramSearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_82__pipes_sort__["a" /* ArraySortPipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
@@ -9288,7 +9457,7 @@ var AppModule = (function () {
                 }),
                 __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_76_angular_svg_round_progressbar__["RoundProgressModule"],
+                __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__["RoundProgressModule"],
                 __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__["b" /* DatePickerModule */],
                 __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__["LongPressModule"],
                 __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["b" /* ChartModule */]
@@ -9334,26 +9503,27 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__["a" /* CreateProgramModal */],
                 __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__["a" /* EditProgramModal */],
                 __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__["a" /* EditProgramExerciseModal */],
+                __WEBPACK_IMPORTED_MODULE_62__modals_notes_notes__["a" /* NotesModal */],
                 __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__["a" /* PopoverPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_62__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_63__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_63__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_64__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_66__providers_diary_diary__["a" /* DiaryProvider */],
-                __WEBPACK_IMPORTED_MODULE_68__providers_authentication_authentication__["a" /* AuthenticationProvider */],
-                __WEBPACK_IMPORTED_MODULE_75__providers_timer_timer__["a" /* TimerService */],
-                __WEBPACK_IMPORTED_MODULE_69__providers_account_account__["a" /* AccountProvider */],
-                __WEBPACK_IMPORTED_MODULE_78__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
-                __WEBPACK_IMPORTED_MODULE_70__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
-                __WEBPACK_IMPORTED_MODULE_71__providers_friends_friends__["a" /* FriendsProvider */],
-                __WEBPACK_IMPORTED_MODULE_74__providers_offline_offline__["a" /* OfflineProvider */],
+                __WEBPACK_IMPORTED_MODULE_67__providers_diary_diary__["a" /* DiaryProvider */],
+                __WEBPACK_IMPORTED_MODULE_69__providers_authentication_authentication__["a" /* AuthenticationProvider */],
+                __WEBPACK_IMPORTED_MODULE_76__providers_timer_timer__["a" /* TimerService */],
+                __WEBPACK_IMPORTED_MODULE_70__providers_account_account__["a" /* AccountProvider */],
+                __WEBPACK_IMPORTED_MODULE_79__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */],
+                __WEBPACK_IMPORTED_MODULE_71__providers_leaderboard_leaderboard__["a" /* LeaderboardProvider */],
+                __WEBPACK_IMPORTED_MODULE_72__providers_friends_friends__["a" /* FriendsProvider */],
+                __WEBPACK_IMPORTED_MODULE_75__providers_offline_offline__["a" /* OfflineProvider */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__["a" /* Facebook */],
-                __WEBPACK_IMPORTED_MODULE_65__ionic_native_native_audio__["a" /* NativeAudio */],
+                __WEBPACK_IMPORTED_MODULE_66__ionic_native_native_audio__["a" /* NativeAudio */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_email_composer__["a" /* EmailComposer */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_purchase__["a" /* InAppPurchase */],
                 __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_64__ionic_native_social_sharing__["a" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_65__ionic_native_social_sharing__["a" /* SocialSharing */],
                 __WEBPACK_IMPORTED_MODULE_11__ionic_native_local_notifications__["a" /* LocalNotifications */],
                 __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */],
                 __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__["a" /* Network */],
@@ -9361,10 +9531,10 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__["a" /* Push */],
                 __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__["a" /* FileTransfer */],
                 __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_77__providers_exercise_exercise__["a" /* ExerciseProvider */],
-                __WEBPACK_IMPORTED_MODULE_67__providers_program_program__["a" /* ProgramProvider */],
-                __WEBPACK_IMPORTED_MODULE_72__providers_message_message__["a" /* MessageProvider */],
-                __WEBPACK_IMPORTED_MODULE_73__providers_chart_chart__["a" /* ChartProvider */],
+                __WEBPACK_IMPORTED_MODULE_78__providers_exercise_exercise__["a" /* ExerciseProvider */],
+                __WEBPACK_IMPORTED_MODULE_68__providers_program_program__["a" /* ProgramProvider */],
+                __WEBPACK_IMPORTED_MODULE_73__providers_message_message__["a" /* MessageProvider */],
+                __WEBPACK_IMPORTED_MODULE_74__providers_chart_chart__["a" /* ChartProvider */],
                 __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__["a" /* BackgroundMode */],
                 { provide: __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["c" /* HIGHCHARTS_MODULES */], useFactory: highchartsModules }
             ]
@@ -9576,7 +9746,7 @@ var FriendsProvider = (function () {
 
 /***/ }),
 
-/***/ 481:
+/***/ 482:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9587,7 +9757,7 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__ = __webpack_require__(373);
@@ -9597,10 +9767,10 @@ var FriendsProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_records_records__ = __webpack_require__(382);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stats_stats__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modals_login_login__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modals_login_login__ = __webpack_require__(387);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_authentication_authentication__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_in_app_purchase__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_local_notifications__ = __webpack_require__(127);
@@ -9884,7 +10054,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/`<ion-menu [content]="content" [ngClass]="{\'dark-theme\':theme === \'dark\'}">\n\n\n    <ion-content>\n\n        <div class="menu-header" menuClose (click)="openPage(profilePage)" [ngClass]="{\'is-premium\':account.premium}">\n            <div class="user-dp">\n                <img [src]="account.dp" onerror="this.style.display=\'none\'"/>\n            </div>\n            <div class="username">\n                {{account.username}}\n            </div>\n            <p>{{account.streak}} week streak, last workout {{account.last_workout_formatted}}</p>\n        </div>\n        \n        <div class="offline-mode" *ngIf="!connectionStatus">\n            <ion-spinner></ion-spinner>\n            Checking for internet connection...\n        </div>\n\n        <ion-list class=\'menu-list\'>\n            <button menuClose ion-item class=\'menu-premium\' (click)="openPage(premiumPage)" *ngIf="!account.premium">\n                <ion-icon name=\'star\' item-start></ion-icon>\n                Explore Premium\n            </button>            \n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-start></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{\'dark-theme\':theme === \'dark\'}"></ion-nav>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/`<ion-menu [content]="content" [ngClass]="{\'dark-theme\':theme === \'dark\'}">\n\n\n    <ion-content>\n\n        <div class="menu-header" menuClose (click)="openPage(profilePage)" [ngClass]="{\'is-premium\':account.premium}">\n            <div class="user-dp">\n                <img [src]="account.dp" onerror="this.style.display=\'none\'"/>\n            </div>\n            <div class="username">\n                {{account.username}}\n            </div>\n            <p>{{account.streak}} week streak, last workout {{account.last_workout_formatted}}</p>\n        </div>\n        \n        <div class="offline-mode" *ngIf="!connectionStatus">\n            <ion-spinner></ion-spinner>\n            Checking for internet connection...\n        </div>\n\n        <ion-list class=\'menu-list\'>\n            <button menuClose ion-item class=\'menu-premium\' (click)="openPage(premiumPage)">\n                <ion-icon name=\'star\' item-start></ion-icon>\n                Explore Premium\n            </button>            \n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-start></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{\'dark-theme\':theme === \'dark\'}"></ion-nav>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_19__providers_authentication_authentication__["a" /* AuthenticationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_20__ionic_native_in_app_purchase__["a" /* InAppPurchase */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_local_notifications__["a" /* LocalNotifications */]])
     ], MyApp);
@@ -9895,7 +10065,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 483:
+/***/ 484:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -10150,18 +10320,18 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 483;
+webpackContext.id = 484;
 
 /***/ }),
 
-/***/ 484:
+/***/ 485:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToolsDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tools_popover__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tools_popover__ = __webpack_require__(388);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10206,7 +10376,7 @@ var ToolsDirective = (function () {
 
 /***/ }),
 
-/***/ 493:
+/***/ 494:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10258,7 +10428,7 @@ var Autosize = (function () {
 
 /***/ }),
 
-/***/ 496:
+/***/ 497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10453,7 +10623,7 @@ var OfflineProvider = (function () {
 
 /***/ }),
 
-/***/ 498:
+/***/ 499:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10486,7 +10656,7 @@ var ExerciseSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 499:
+/***/ 500:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10519,7 +10689,7 @@ var ProgramSearchPipe = (function () {
 
 /***/ }),
 
-/***/ 500:
+/***/ 501:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10579,10 +10749,10 @@ var ArraySortPipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_purchase__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10617,13 +10787,25 @@ var PremiumPage = (function () {
         });
         this.productId = this.platform.is("android") ? "com.taylorhamling.intensity.premium2" : "com.taylorhamling.intensity.premium";
         this.product = { price: 4.99, title: "Premium", productId: this.productId };
+        this.product2Id = this.platform.is("android") ? "com.taylorhamling.intensity.lifetimepremium" : "com.taylorhamling.intensity.lifetimepremium";
+        this.product2 = { price: 24.99, title: "Lifetime Premium", productId: this.product2Id };
         this.iap
             .getProducts([this.productId])
             .then(function (products) {
             if (products.length > 0) {
-                _this.product = products[0];
-                if (_this.product.price) {
-                    document.getElementById("product-price").innerText = _this.product.price;
+                for (var index in products) {
+                    if (products[index].productId === _this.product2Id) {
+                        _this.product2 = products[index];
+                        if (_this.product2.price) {
+                            document.getElementById("product2-price").innerText = _this.product2.price;
+                        }
+                    }
+                    else {
+                        _this.product = products[index];
+                        if (_this.product.price) {
+                            document.getElementById("product-price").innerText = _this.product.price;
+                        }
+                    }
                 }
             }
         })
@@ -10689,6 +10871,30 @@ var PremiumPage = (function () {
             }
         });
     };
+    PremiumPage.prototype.buyLifetimePremium = function () {
+        var _this = this;
+        this.iap.buy(this.product2Id)
+            .then(function (data) {
+            _this.account.premium = true;
+            _this.account.premium_date = __WEBPACK_IMPORTED_MODULE_3_moment__().add(12, 'months').format("YYYY-MM-DD");
+            _this.events.publish("premium:purchased");
+            _this.accountProvider.updateSettings({ premium: _this.account.premium, premiumdate: _this.account.premium_date }, _this.account.id);
+            _this.storage.set("account", _this.account);
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_7__pages_diary_diary__["a" /* DiaryPage */]);
+            _this.navCtrl.popToRoot();
+        })
+            .catch(function (err) {
+            if (err && err.message && err.message.toLowerCase().indexOf("cancelled") > -1) {
+                return;
+            }
+            else if (err && err.message) {
+                alert(JSON.stringify(err.message));
+            }
+            else {
+                alert(JSON.stringify(err));
+            }
+        });
+    };
     PremiumPage.prototype.restorePremium = function () {
         var _this = this;
         this.iap.restorePurchases().then(function (products) {
@@ -10701,6 +10907,16 @@ var PremiumPage = (function () {
                 if (__WEBPACK_IMPORTED_MODULE_3_moment__(product.date).add(1, 'months').isAfter(__WEBPACK_IMPORTED_MODULE_3_moment__()) && product.productId === _this.product.productId) {
                     _this.account.premium = true;
                     _this.account.premium_date = __WEBPACK_IMPORTED_MODULE_3_moment__().format("YYYY-MM-DD");
+                    _this.events.publish("premium:purchased");
+                    _this.accountProvider.updateSettings({ premium: _this.account.premium, premiumdate: _this.account.premium_date }, _this.account.id);
+                    _this.storage.set("account", _this.account);
+                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_7__pages_diary_diary__["a" /* DiaryPage */]);
+                    _this.navCtrl.popToRoot();
+                    return;
+                }
+                else if (product.productId === _this.product2.productId) {
+                    _this.account.premium = true;
+                    _this.account.premium_date = __WEBPACK_IMPORTED_MODULE_3_moment__().add(12, 'months').format("YYYY-MM-DD");
                     _this.events.publish("premium:purchased");
                     _this.accountProvider.updateSettings({ premium: _this.account.premium, premiumdate: _this.account.premium_date }, _this.account.id);
                     _this.storage.set("account", _this.account);
@@ -10727,7 +10943,7 @@ var PremiumPage = (function () {
     };
     PremiumPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-premium',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\premium\premium.html"*/`<ion-header class="profile-nav">\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Premium</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    \n    <div class="premium-header">\n        \n        <img src="assets/imgs/crown.png" />\n        \n        <h2>Improve your tracking</h2>\n        \n    </div>\n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Personalized Programs</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="calendar" item-start></ion-icon>\n                <h2>Your own custom program</h2>\n                <p>Create programs with your own workouts and exercises.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="body" item-start></ion-icon>\n                <h2>Strength specific</h2>\n                <p>Add details such as reps, weight, percentages, RPE, and custom notes.</p>\n            </ion-item>   \n            <ion-item>\n                <ion-icon name="megaphone" item-start></ion-icon>\n                <h2>Public promotion</h2>\n                <p>Make your program visible to all users of Intensity to use for themselves.</p>\n            </ion-item>    \n            <ion-item>\n                <ion-icon name="md-globe" item-start></ion-icon>\n                <h2>Unique URL</h2>\n                <p>Your program has a unique URL so you can share it with people outside of Intensity.</p>\n            </ion-item>    \n            <ion-item>\n                <ion-icon name="infinite" item-start></ion-icon>\n                <h2>Unlimited</h2>\n                <p>Create as many simple or complex programs as you require.</p>\n            </ion-item>            \n        </ion-list>\n    </ion-card>  \n    \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Program Customizations</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="create" item-start></ion-icon>\n                <h2>Modify existing programs</h2>\n                <p>Create your own versions of existing programs in the Intensity database such as 5/3/1, Texas Method, etc...</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="share-alt" item-start></ion-icon>\n                <h2>Share</h2>\n                <p>Share your customized programs for other users to utilize.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>   \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Diary Improvements</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="videocam" item-start></ion-icon>\n                <h2>Upload videos of your sets</h2>\n                <p>Video provides the ultimate feedback and reference point.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="cloud-upload" item-start></ion-icon>\n                <h2>Unlimited storage</h2>\n                <p>Upload unlimited videos of your sets to our secure, backed up, cloud server.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>      \n    \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Theming</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="contrast" item-start></ion-icon>\n                <h2>Dark theme</h2>\n                <p>The dark theme uses black and grey tonnes instead of light ones which can be easier on the eye.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="flash" item-start></ion-icon>\n                <h2>Energy efficient</h2>\n                <p>Darker colors tend to use less power on most phones.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>      \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Support</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="heart" item-start></ion-icon>\n                <h2>Priority support</h2>\n                <p>Stuck with something? We\'ll help right away.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="git-pull-request" item-start></ion-icon>\n                <h2>Priority feature requests</h2>\n                <p>Have an idea for a new feature? We\'ll listen and add it to future releases.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>  \n\n\n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Ongoing Development</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="code-working" item-start></ion-icon>\n                <h2>Support Us</h2>\n                <p>Help us to continue building and providing the best workout tracking app for strength athletes</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="logo-usd" item-start></ion-icon>\n                <h2>Reinvestment</h2>\n                <p>Subscription revenue always goes directly into supporting development, paying for the servers that host users data, and investing back into the lifting community however we can.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>     \n    \n    <div class="restore">\n        <p>Already purchased premium?</p>\n        <button ion-button outline block (click)="restorePremium()">Restore Premium</button>\n    </div>    \n \n</ion-content>\n\n<ion-footer class="add-program-footer premium-footer">\n    <button ion-button (click)="buyPremium()">Upgrade -&nbsp;<span id="product-price">$4.99</span>/month</button>\n</ion-footer>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\premium\premium.html"*/
+            selector: 'page-premium',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\premium\premium.html"*/`<ion-header class="profile-nav">\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Premium</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n      \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    \n    <div class="premium-header">\n        \n        <img src="assets/imgs/crown.png" />\n        \n        <h2>Improve your tracking</h2>\n        \n    </div>\n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Personalized Programs</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="calendar" item-start></ion-icon>\n                <h2>Your own custom program</h2>\n                <p>Create programs with your own workouts and exercises.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="body" item-start></ion-icon>\n                <h2>Strength specific</h2>\n                <p>Add details such as reps, weight, percentages, RPE, and custom notes.</p>\n            </ion-item>   \n            <ion-item>\n                <ion-icon name="megaphone" item-start></ion-icon>\n                <h2>Public promotion</h2>\n                <p>Make your program visible to all users of Intensity to use for themselves.</p>\n            </ion-item>    \n            <ion-item>\n                <ion-icon name="md-globe" item-start></ion-icon>\n                <h2>Unique URL</h2>\n                <p>Your program has a unique URL so you can share it with people outside of Intensity.</p>\n            </ion-item>    \n            <ion-item>\n                <ion-icon name="infinite" item-start></ion-icon>\n                <h2>Unlimited</h2>\n                <p>Create as many simple or complex programs as you require.</p>\n            </ion-item>            \n        </ion-list>\n    </ion-card>  \n    \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Program Customizations</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="create" item-start></ion-icon>\n                <h2>Modify existing programs</h2>\n                <p>Create your own versions of existing programs in the Intensity database such as 5/3/1, Texas Method, etc...</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="share-alt" item-start></ion-icon>\n                <h2>Share</h2>\n                <p>Share your customized programs for other users to utilize.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>   \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Diary Improvements</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="videocam" item-start></ion-icon>\n                <h2>Upload videos of your sets</h2>\n                <p>Video provides the ultimate feedback and reference point.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="cloud-upload" item-start></ion-icon>\n                <h2>Unlimited storage</h2>\n                <p>Upload unlimited videos of your sets to our secure, backed up, cloud server.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>      \n    \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Theming</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="contrast" item-start></ion-icon>\n                <h2>Dark theme</h2>\n                <p>The dark theme uses black and grey tonnes instead of light ones which can be easier on the eye.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="flash" item-start></ion-icon>\n                <h2>Energy efficient</h2>\n                <p>Darker colors tend to use less power on most phones.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>      \n    \n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Support</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="heart" item-start></ion-icon>\n                <h2>Priority support</h2>\n                <p>Stuck with something? We\'ll help right away.</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="git-pull-request" item-start></ion-icon>\n                <h2>Priority feature requests</h2>\n                <p>Have an idea for a new feature? We\'ll listen and add it to future releases.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>  \n\n\n    <ion-card class="premium-card">\n        <ion-list>\n            <ion-list-header>\n                <h2>Ongoing Development</h2>\n            </ion-list-header>             \n            <ion-item>\n                <ion-icon name="code-working" item-start></ion-icon>\n                <h2>Support Us</h2>\n                <p>Help us to continue building and providing the best workout tracking app for strength athletes</p>\n            </ion-item> \n            <ion-item>\n                <ion-icon name="logo-usd" item-start></ion-icon>\n                <h2>Reinvestment</h2>\n                <p>Revenue always goes directly into supporting development, paying for the servers that host users data, and investing back into the lifting community however we can.</p>\n            </ion-item>          \n        </ion-list>\n    </ion-card>     \n    \n    <div class="restore">\n        <p>Already purchased premium?</p>\n        <button ion-button outline block (click)="restorePremium()">Restore Premium</button>\n    </div>    \n \n</ion-content>\n\n<ion-footer class="add-program-footer premium-footer">\n    <button ion-button (click)="buyLifetimePremium()">Upgrade -&nbsp;<span id="product-price">$24.99</span></button>\n</ion-footer>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\premium\premium.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_purchase__["a" /* InAppPurchase */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
     ], PremiumPage);
@@ -11446,13 +11662,13 @@ var AuthenticationProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_diary_friend_diary__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_message_message__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11648,5 +11864,5 @@ var FriendProfilePage = (function () {
 
 /***/ })
 
-},[396]);
+},[397]);
 //# sourceMappingURL=main.js.map
