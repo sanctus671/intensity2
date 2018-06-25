@@ -28069,3 +28069,13 @@ h3.stats-metric.stats-exercise {
   border-bottom: 0px;
   margin-left: 15px;
 }
+
+.notes-stats-container {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  background-color: white;
+}
+
+.notes-stats-container .notes-stats {
+  margin: 0px;
+}
