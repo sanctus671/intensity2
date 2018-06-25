@@ -30,8 +30,8 @@ var AppSettings = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_email_composer__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_import_import__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_goal_settings_goal_settings__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_import_import__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_goal_settings_goal_settings__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -360,6 +360,145 @@ var SettingsPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotesModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(22);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var NotesModal = (function () {
+    function NotesModal(platform, navCtrl, modalCtrl, params, viewCtrl, diaryProvider, toastCtrl, storage, alertCtrl, events) {
+        this.platform = platform;
+        this.navCtrl = navCtrl;
+        this.modalCtrl = modalCtrl;
+        this.params = params;
+        this.viewCtrl = viewCtrl;
+        this.diaryProvider = diaryProvider;
+        this.toastCtrl = toastCtrl;
+        this.storage = storage;
+        this.alertCtrl = alertCtrl;
+        this.events = events;
+        this.properties = { loading: false, page: 1, exerciseid: null, exercise: "All" };
+        this.notes = { notes: [], count: 0 };
+        this.properties.exerciseid = this.params.data.exerciseid;
+        this.properties.exercise = this.params.data.exercise ? this.params.data.exercise : "All";
+        this.getNotes();
+    }
+    NotesModal.prototype.getNotes = function () {
+        var _this = this;
+        this.properties.loading = true;
+        this.notes = { notes: [], count: 0 };
+        this.diaryProvider.getNotes(this.properties.page, this.properties.exerciseid).then(function (data) {
+            _this.properties.loading = false;
+            console.log(data);
+            _this.notes = data;
+        }).catch(function () {
+            _this.properties.loading = false;
+        });
+    };
+    NotesModal.prototype.loadMoreNotes = function (infiniteScroll) {
+        var _this = this;
+        if (!this.properties.page) {
+            this.properties.page = 1;
+        }
+        else if (!this.notes.canloadmore) {
+            infiniteScroll.complete();
+            return;
+        }
+        this.properties.page = this.properties.page + 1;
+        this.diaryProvider.getNotes(this.properties.page, this.properties.exerciseid).then(function (data) {
+            for (var _i = 0, _a = data["notes"]; _i < _a.length; _i++) {
+                var item = _a[_i];
+                _this.notes.notes.push(item);
+            }
+            _this.notes.canloadmore = data["canloadmore"];
+            infiniteScroll.complete();
+        })
+            .catch(function (e) {
+            infiniteScroll.complete();
+        });
+    };
+    NotesModal.prototype.openChangeExercise = function () {
+        var _this = this;
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */]);
+        modal.onDidDismiss(function (exercise) {
+            if (exercise) {
+                console.log(exercise);
+                _this.properties.exercise = exercise.name;
+                _this.properties.exerciseid = exercise.exerciseid;
+                _this.getNotes();
+            }
+        });
+        modal.present();
+    };
+    NotesModal.prototype.formatDate = function (date) {
+        return __WEBPACK_IMPORTED_MODULE_5_moment__(date).format('dddd, MMMM Do YYYY');
+    };
+    NotesModal.prototype.openVideo = function (video, ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        window.open(video, '_system');
+    };
+    NotesModal.prototype.openNote = function (set, note) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: set.name,
+            subTitle: __WEBPACK_IMPORTED_MODULE_5_moment__(set.assigneddate).format('dddd, MMMM Do YYYY'),
+            message: note,
+            buttons: [
+                {
+                    text: 'Dismiss',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Go to date',
+                    handler: function (data) {
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__["a" /* DiaryPage */], { date: __WEBPACK_IMPORTED_MODULE_5_moment__(set.assigneddate).toDate() });
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    NotesModal.prototype.dismiss = function () {
+        this.viewCtrl.dismiss();
+    };
+    NotesModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'notes',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\notes\notes.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Notes & Videos\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n   <h3 tappable class="stats-metric stats-exercise notes-exercise" (click)="openChangeExercise()">{{properties.exercise}} <ion-icon name="create"></ion-icon></h3>\n\n   \n    <div class="diary-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n   \n   \n    <div class="diary-empty empty-state" *ngIf="notes.notes.length < 1 && !properties.loading">\n        <ion-icon name=\'bookmarks\'></ion-icon>\n        No Notes Or Videos\n    </div>     \n   \n   \n    <ion-list class="add-diary-list notes-list">\n        <div *ngFor="let diary of notes.notes">\n            \n            <ion-list-header>\n                {{formatDate(diary.assigneddate)}}\n            </ion-list-header>           \n            <span *ngFor="let set of diary.sets">\n                <ion-item detail-none (click)="openNote(set, set.notes)" *ngIf="set.notes">\n                    <h2>{{set.name}}</h2>\n                    <h3>{{set.weight ? set.weight : 0}}{{set.unit}}, {{set.reps}} rep<span *ngIf="set.reps !== \'1\'">s</span><span *ngIf="set.percentage && set.percentage > 0">, {{set.percentage}}%</span><span *ngIf="set.rpe && set.rpe > 0">, @{{set.rpe}}RPE</span></h3>\n                    <p>{{set.notes}}</p>\n                </ion-item> \n                <ion-item detail-none (click)="openNote(set, set.video)" *ngIf="set.video">\n                    <h2>{{set.name}}</h2>\n                    <h3>{{set.weight ? set.weight : 0}}{{set.unit}}, {{set.reps}} rep<span *ngIf="set.reps !== \'1\'">s</span><span *ngIf="set.percentage && set.percentage > 0">, {{set.percentage}}%</span><span *ngIf="set.rpe && set.rpe > 0">, @{{set.rpe}}RPE</span></h3>\n                    <p>{{set.video}}</p>\n                    <button ion-button outline item-end (click)="openVideo(set.video, $event)">View Video</button>\n                </ion-item>                 \n            </span>\n            \n            \n        </div>\n    </ion-list>\n\n    <ion-infinite-scroll (ionInfinite)="loadMoreNotes($event)">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>     \n    \n\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\notes\notes.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
+    ], NotesModal);
+    return NotesModal;
+}());
+
+//# sourceMappingURL=notes.js.map
+
+/***/ }),
+
+/***/ 133:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MessagePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
@@ -369,7 +508,7 @@ var SettingsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_message_message__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_message_message__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_profile_friend_profile__ = __webpack_require__(73);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -511,7 +650,7 @@ var MessagePage = (function () {
 
 /***/ }),
 
-/***/ 133:
+/***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -615,7 +754,7 @@ var MessageProvider = (function () {
 
 /***/ }),
 
-/***/ 134:
+/***/ 135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -625,7 +764,7 @@ var MessageProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_premium_premium__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1099,7 +1238,7 @@ var CreateProgramModal = (function () {
 
 /***/ }),
 
-/***/ 135:
+/***/ 136:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1184,7 +1323,7 @@ var EditProgramExerciseModal = (function () {
 
 /***/ }),
 
-/***/ 136:
+/***/ 137:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1195,7 +1334,7 @@ var EditProgramExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__ = __webpack_require__(238);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1526,6 +1665,24 @@ var DiaryProvider = (function () {
                         }
                         reject(e);
                     });
+                });
+            });
+        });
+    };
+    DiaryProvider.prototype.getNotesStats = function (exerciseid) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var data = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "view", action: "getdata", type: "notes", exerciseid: exerciseid };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
                 });
             });
         });
@@ -2441,7 +2598,7 @@ var AccountProvider = (function () {
 
 /***/ }),
 
-/***/ 150:
+/***/ 151:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -2454,11 +2611,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 150;
+webpackEmptyAsyncContext.id = 151;
 
 /***/ }),
 
-/***/ 192:
+/***/ 193:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -2471,7 +2628,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 192;
+webpackEmptyAsyncContext.id = 193;
 
 /***/ }),
 
@@ -2487,9 +2644,9 @@ webpackEmptyAsyncContext.id = 192;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_exercise_diary_exercise__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_add_exercise_add_exercise__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_add_exercise_add_exercise__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3402,7 +3559,7 @@ var SelectExerciseModal = (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3415,11 +3572,12 @@ var SelectExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular_highcharts__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_diary_records_diary_records__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_set_edit_set__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_diary_records_diary_records__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_settings_settings__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_diary_diary__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modals_notes_notes__ = __webpack_require__(132);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3429,6 +3587,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3483,7 +3642,9 @@ var DiaryExercisePage = (function () {
                 growth: {},
                 units: ""
             },
-            availableMetrics: ["volume", "rpe", "intensity", "weight", "volume/wilks", "best weight"]
+            availableMetrics: ["volume", "rpe", "intensity", "weight", "volume/wilks", "best weight"],
+            notes: 0,
+            videos: 0
         };
     }
     DiaryExercisePage.prototype.ionViewDidLoad = function () {
@@ -3842,6 +4003,12 @@ var DiaryExercisePage = (function () {
         var _this = this;
         if (this.stats.firstLoad) {
             this.stats.firstLoad = false;
+            console.log(this.exercise);
+            this.diaryProvider.getNotesStats(this.exercise.exerciseid).then(function (data) {
+                console.log(data);
+                _this.stats.notes = data.notes;
+                _this.stats.videos = data.videos;
+            });
         }
         this.diaryProvider.getStats({ accumulation: "Weekly", timeframe: this.stats.timeframe, metric: this.stats.metric, name: this.exercise.name }).then(function (data) {
             console.log(data);
@@ -3941,6 +4108,10 @@ var DiaryExercisePage = (function () {
         var alert = this.alertCtrl.create(data);
         alert.present();
     };
+    DiaryExercisePage.prototype.openNotes = function () {
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_12__modals_notes_notes__["a" /* NotesModal */], { exerciseid: this.exercise.exerciseid, exercise: this.exercise.name });
+        modal.present();
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
@@ -3962,7 +4133,7 @@ var DiaryExercisePage = (function () {
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4144,7 +4315,7 @@ var EditSetModal = (function () {
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4288,7 +4459,7 @@ var DiaryRecordsModal = (function () {
 
 /***/ }),
 
-/***/ 364:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4465,7 +4636,7 @@ var ImportModal = (function () {
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4478,7 +4649,7 @@ var ImportModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_select_exercise_select_exercise__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_goal_resets_goal_resets__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_goal_resets_goal_resets__ = __webpack_require__(367);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4584,7 +4755,7 @@ var GoalSettingsModal = (function () {
 
 /***/ }),
 
-/***/ 366:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4680,7 +4851,7 @@ var GoalResetsModal = (function () {
 
 /***/ }),
 
-/***/ 367:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4921,7 +5092,7 @@ var AddExerciseModal = (function () {
 
 /***/ }),
 
-/***/ 368:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4936,7 +5107,7 @@ var AddExerciseModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_profile_friend_profile__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_friends_add_friends__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_add_friends_add_friends__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5140,7 +5311,7 @@ var FriendsPage = (function () {
 
 /***/ }),
 
-/***/ 369:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5464,7 +5635,7 @@ var FriendDiaryPage = (function () {
 
 /***/ }),
 
-/***/ 370:
+/***/ 371:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5597,7 +5768,7 @@ var AddFriendsModal = (function () {
 
 /***/ }),
 
-/***/ 371:
+/***/ 372:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5609,9 +5780,9 @@ var AddFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_message_message__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_message_message__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_search_friends_search_friends__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_message_message__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_message_message__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_search_friends_search_friends__ = __webpack_require__(373);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_settings__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5698,7 +5869,7 @@ var MessagesPage = (function () {
 
 /***/ }),
 
-/***/ 372:
+/***/ 373:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5775,7 +5946,7 @@ var SearchFriendsModal = (function () {
 
 /***/ }),
 
-/***/ 373:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5785,7 +5956,7 @@ var SearchFriendsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_leaderboard_leaderboard__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_leaderboard_leaderboard__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
@@ -5972,7 +6143,7 @@ var LeaderboardPage = (function () {
 
 /***/ }),
 
-/***/ 374:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6085,7 +6256,7 @@ var LeaderboardProvider = (function () {
 
 /***/ }),
 
-/***/ 375:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6097,7 +6268,7 @@ var LeaderboardProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_diary_diary__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_edit_profile_edit_profile__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_edit_profile_edit_profile__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__ = __webpack_require__(69);
@@ -6325,7 +6496,7 @@ var ProfilePage = (function () {
 
 /***/ }),
 
-/***/ 376:
+/***/ 377:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6375,7 +6546,7 @@ var EditProfileModal = (function () {
 
 /***/ }),
 
-/***/ 377:
+/***/ 378:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6385,9 +6556,9 @@ var EditProfileModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_program_program__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_create_program_create_program__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_program_edit_program__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_program_program__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_create_program_create_program__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_edit_program_edit_program__ = __webpack_require__(382);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6583,7 +6754,7 @@ var ProgramsPage = (function () {
 
 /***/ }),
 
-/***/ 378:
+/***/ 379:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6593,9 +6764,9 @@ var ProgramsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_account_account__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_program_program__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__program_popover_program_popover__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_add_program_add_program__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_create_program_create_program__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__program_popover_program_popover__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_add_program_add_program__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_create_program_create_program__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6796,7 +6967,7 @@ var ProgramPage = (function () {
 
 /***/ }),
 
-/***/ 379:
+/***/ 380:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6930,7 +7101,7 @@ var ProgramWorkoutPopover = (function () {
 
 /***/ }),
 
-/***/ 380:
+/***/ 381:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7065,7 +7236,7 @@ var AddProgramModal = (function () {
 
 /***/ }),
 
-/***/ 381:
+/***/ 382:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7075,7 +7246,7 @@ var AddProgramModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_program_program__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7519,7 +7690,7 @@ var EditProgramModal = (function () {
 
 /***/ }),
 
-/***/ 382:
+/***/ 383:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7528,7 +7699,7 @@ var EditProgramModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_exercise_exercise__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_records_records__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_records_records__ = __webpack_require__(384);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7594,7 +7765,7 @@ var RecordsPage = (function () {
 
 /***/ }),
 
-/***/ 383:
+/***/ 384:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7697,7 +7868,7 @@ var RecordsModal = (function () {
 
 /***/ }),
 
-/***/ 384:
+/***/ 385:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7711,8 +7882,8 @@ var RecordsModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_chart_chart__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_exercise_exercise__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_change_exercise_change_exercise__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_notes_notes__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_change_exercise_change_exercise__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_notes_notes__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angular_highcharts__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8024,7 +8195,7 @@ var StatsPage = (function () {
 
 /***/ }),
 
-/***/ 385:
+/***/ 386:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8140,145 +8311,6 @@ var ChangeExerciseModal = (function () {
 }());
 
 //# sourceMappingURL=change-exercise.js.map
-
-/***/ }),
-
-/***/ 386:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotesModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(22);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var NotesModal = (function () {
-    function NotesModal(platform, navCtrl, modalCtrl, params, viewCtrl, diaryProvider, toastCtrl, storage, alertCtrl, events) {
-        this.platform = platform;
-        this.navCtrl = navCtrl;
-        this.modalCtrl = modalCtrl;
-        this.params = params;
-        this.viewCtrl = viewCtrl;
-        this.diaryProvider = diaryProvider;
-        this.toastCtrl = toastCtrl;
-        this.storage = storage;
-        this.alertCtrl = alertCtrl;
-        this.events = events;
-        this.properties = { loading: false, page: 1, exerciseid: null, exercise: "All" };
-        this.notes = { notes: [], count: 0 };
-        this.properties.exerciseid = this.params.data.exerciseid;
-        this.properties.exercise = this.params.data.exercise ? this.params.data.exercise : "All";
-        this.getNotes();
-    }
-    NotesModal.prototype.getNotes = function () {
-        var _this = this;
-        this.properties.loading = true;
-        this.notes = { notes: [], count: 0 };
-        this.diaryProvider.getNotes(this.properties.page, this.properties.exerciseid).then(function (data) {
-            _this.properties.loading = false;
-            console.log(data);
-            _this.notes = data;
-        }).catch(function () {
-            _this.properties.loading = false;
-        });
-    };
-    NotesModal.prototype.loadMoreNotes = function (infiniteScroll) {
-        var _this = this;
-        if (!this.properties.page) {
-            this.properties.page = 1;
-        }
-        else if (!this.notes.canloadmore) {
-            infiniteScroll.complete();
-            return;
-        }
-        this.properties.page = this.properties.page + 1;
-        this.diaryProvider.getNotes(this.properties.page, this.properties.exerciseid).then(function (data) {
-            for (var _i = 0, _a = data["notes"]; _i < _a.length; _i++) {
-                var item = _a[_i];
-                _this.notes.notes.push(item);
-            }
-            _this.notes.canloadmore = data["canloadmore"];
-            infiniteScroll.complete();
-        })
-            .catch(function (e) {
-            infiniteScroll.complete();
-        });
-    };
-    NotesModal.prototype.openChangeExercise = function () {
-        var _this = this;
-        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_select_exercise_select_exercise__["a" /* SelectExerciseModal */]);
-        modal.onDidDismiss(function (exercise) {
-            if (exercise) {
-                console.log(exercise);
-                _this.properties.exercise = exercise.name;
-                _this.properties.exerciseid = exercise.exerciseid;
-                _this.getNotes();
-            }
-        });
-        modal.present();
-    };
-    NotesModal.prototype.formatDate = function (date) {
-        return __WEBPACK_IMPORTED_MODULE_5_moment__(date).format('dddd, MMMM Do YYYY');
-    };
-    NotesModal.prototype.openVideo = function (video, ev) {
-        ev.preventDefault();
-        ev.stopPropagation();
-        window.open(video, '_system');
-    };
-    NotesModal.prototype.openNote = function (set, note) {
-        var _this = this;
-        var alert = this.alertCtrl.create({
-            title: set.name,
-            subTitle: __WEBPACK_IMPORTED_MODULE_5_moment__(set.assigneddate).format('dddd, MMMM Do YYYY'),
-            message: note,
-            buttons: [
-                {
-                    text: 'Dismiss',
-                    role: 'cancel'
-                },
-                {
-                    text: 'Go to date',
-                    handler: function (data) {
-                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__["a" /* DiaryPage */], { date: __WEBPACK_IMPORTED_MODULE_5_moment__(set.assigneddate).toDate() });
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    NotesModal.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
-    };
-    NotesModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'notes',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\notes\notes.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Notes & Videos\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n   <h3 tappable class="stats-metric stats-exercise notes-exercise" (click)="openChangeExercise()">{{properties.exercise}} <ion-icon name="create"></ion-icon></h3>\n\n   \n    <div class="diary-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n   \n   \n    <div class="diary-empty empty-state" *ngIf="notes.notes.length < 1 && !properties.loading">\n        <ion-icon name=\'bookmarks\'></ion-icon>\n        No Notes Or Videos\n    </div>     \n   \n   \n    <ion-list class="add-diary-list notes-list">\n        <div *ngFor="let diary of notes.notes">\n            \n            <ion-list-header>\n                {{formatDate(diary.assigneddate)}}\n            </ion-list-header>           \n            <span *ngFor="let set of diary.sets">\n                <ion-item detail-none (click)="openNote(set, set.notes)" *ngIf="set.notes">\n                    <h2>{{set.name}}</h2>\n                    <h3>{{set.weight ? set.weight : 0}}{{set.unit}}, {{set.reps}} rep<span *ngIf="set.reps !== \'1\'">s</span><span *ngIf="set.percentage && set.percentage > 0">, {{set.percentage}}%</span><span *ngIf="set.rpe && set.rpe > 0">, @{{set.rpe}}RPE</span></h3>\n                    <p>{{set.notes}}</p>\n                </ion-item> \n                <ion-item detail-none (click)="openNote(set, set.video)" *ngIf="set.video">\n                    <h2>{{set.name}}</h2>\n                    <h3>{{set.weight ? set.weight : 0}}{{set.unit}}, {{set.reps}} rep<span *ngIf="set.reps !== \'1\'">s</span><span *ngIf="set.percentage && set.percentage > 0">, {{set.percentage}}%</span><span *ngIf="set.rpe && set.rpe > 0">, @{{set.rpe}}RPE</span></h3>\n                    <p>{{set.video}}</p>\n                    <button ion-button outline item-end (click)="openVideo(set.video, $event)">View Video</button>\n                </ion-item>                 \n            </span>\n            \n            \n        </div>\n    </ion-list>\n\n    <ion-infinite-scroll (ionInfinite)="loadMoreNotes($event)">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>     \n    \n\n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\notes\notes.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
-    ], NotesModal);
-    return NotesModal;
-}());
-
-//# sourceMappingURL=notes.js.map
 
 /***/ }),
 
@@ -8406,7 +8438,7 @@ var LoginModal = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_tools_calculator__ = __webpack_require__(391);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tools_bodyweight__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tools_help__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_timer_timer__ = __webpack_require__(137);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8475,7 +8507,7 @@ var PopoverPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimerModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__ = __webpack_require__(137);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9236,68 +9268,68 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(476);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_network__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_background_mode__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ion_datepicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(482);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_diary_diary__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_diary_exercise_diary_exercise__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_settings_settings__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_friends_friends__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_friend_profile_friend_profile__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_message_message__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_friend_diary_friend_diary__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_messages_messages__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_message_message__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_leaderboard_leaderboard__ = __webpack_require__(374);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_premium_premium__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_program_program__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_records_records__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_program_program__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_programs_programs__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_records_records__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_stats_stats__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_tools_tools__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_tools_timer__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_tools_calculator__ = __webpack_require__(391);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_tools_bodyweight__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_tools_help__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_program_popover_program_popover__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_autosize_autosize__ = __webpack_require__(494);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_tools_popover__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ionic_long_press___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ionic_long_press__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__modals_login_login__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__modals_add_exercise_add_exercise__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__modals_select_exercise_select_exercise__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_records_records__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_import_import__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_goal_resets_goal_resets__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__modals_notes_notes__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_status_bar__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_splash_screen__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__modals_add_program_add_program__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__modals_change_exercise_change_exercise__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__modals_edit_set_edit_set__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_diary_records_diary_records__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_records_records__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_edit_profile_edit_profile__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__modals_add_friends_add_friends__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__modals_search_friends_search_friends__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__modals_import_import__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modals_goal_settings_goal_settings__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__modals_goal_resets_goal_resets__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__modals_create_program_create_program__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__modals_edit_program_exercise_edit_program_exercise__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__modals_edit_program_edit_program__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__modals_notes_notes__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_status_bar__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_splash_screen__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__ionic_native_social_sharing__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__ionic_native_native_audio__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__providers_program_program__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__providers_authentication_authentication__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__providers_account_account__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_leaderboard_leaderboard__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__providers_leaderboard_leaderboard__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__providers_friends_friends__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_message_message__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__providers_message_message__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__providers_chart_chart__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__providers_offline_offline__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_timer_timer__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__providers_timer_timer__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__ = __webpack_require__(498);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_77_angular_svg_round_progressbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__providers_exercise_exercise__ = __webpack_require__(23);
@@ -9753,19 +9785,19 @@ var FriendsProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_friends_friends__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_messages_messages__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_leaderboard_leaderboard__ = __webpack_require__(374);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_programs_programs__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_records_records__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stats_stats__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_programs_programs__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_records_records__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stats_stats__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modals_login_login__ = __webpack_require__(387);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment__ = __webpack_require__(1);
@@ -10069,242 +10101,242 @@ var MyApp = (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 243,
-	"./af.js": 243,
-	"./ar": 244,
-	"./ar-dz": 245,
-	"./ar-dz.js": 245,
-	"./ar-kw": 246,
-	"./ar-kw.js": 246,
-	"./ar-ly": 247,
-	"./ar-ly.js": 247,
-	"./ar-ma": 248,
-	"./ar-ma.js": 248,
-	"./ar-sa": 249,
-	"./ar-sa.js": 249,
-	"./ar-tn": 250,
-	"./ar-tn.js": 250,
-	"./ar.js": 244,
-	"./az": 251,
-	"./az.js": 251,
-	"./be": 252,
-	"./be.js": 252,
-	"./bg": 253,
-	"./bg.js": 253,
-	"./bm": 254,
-	"./bm.js": 254,
-	"./bn": 255,
-	"./bn.js": 255,
-	"./bo": 256,
-	"./bo.js": 256,
-	"./br": 257,
-	"./br.js": 257,
-	"./bs": 258,
-	"./bs.js": 258,
-	"./ca": 259,
-	"./ca.js": 259,
-	"./cs": 260,
-	"./cs.js": 260,
-	"./cv": 261,
-	"./cv.js": 261,
-	"./cy": 262,
-	"./cy.js": 262,
-	"./da": 263,
-	"./da.js": 263,
-	"./de": 264,
-	"./de-at": 265,
-	"./de-at.js": 265,
-	"./de-ch": 266,
-	"./de-ch.js": 266,
-	"./de.js": 264,
-	"./dv": 267,
-	"./dv.js": 267,
-	"./el": 268,
-	"./el.js": 268,
-	"./en-au": 269,
-	"./en-au.js": 269,
-	"./en-ca": 270,
-	"./en-ca.js": 270,
-	"./en-gb": 271,
-	"./en-gb.js": 271,
-	"./en-ie": 272,
-	"./en-ie.js": 272,
-	"./en-nz": 273,
-	"./en-nz.js": 273,
-	"./eo": 274,
-	"./eo.js": 274,
-	"./es": 275,
-	"./es-do": 276,
-	"./es-do.js": 276,
-	"./es-us": 277,
-	"./es-us.js": 277,
-	"./es.js": 275,
-	"./et": 278,
-	"./et.js": 278,
-	"./eu": 279,
-	"./eu.js": 279,
-	"./fa": 280,
-	"./fa.js": 280,
-	"./fi": 281,
-	"./fi.js": 281,
-	"./fo": 282,
-	"./fo.js": 282,
-	"./fr": 283,
-	"./fr-ca": 284,
-	"./fr-ca.js": 284,
-	"./fr-ch": 285,
-	"./fr-ch.js": 285,
-	"./fr.js": 283,
-	"./fy": 286,
-	"./fy.js": 286,
-	"./gd": 287,
-	"./gd.js": 287,
-	"./gl": 288,
-	"./gl.js": 288,
-	"./gom-latn": 289,
-	"./gom-latn.js": 289,
-	"./gu": 290,
-	"./gu.js": 290,
-	"./he": 291,
-	"./he.js": 291,
-	"./hi": 292,
-	"./hi.js": 292,
-	"./hr": 293,
-	"./hr.js": 293,
-	"./hu": 294,
-	"./hu.js": 294,
-	"./hy-am": 295,
-	"./hy-am.js": 295,
-	"./id": 296,
-	"./id.js": 296,
-	"./is": 297,
-	"./is.js": 297,
-	"./it": 298,
-	"./it.js": 298,
-	"./ja": 299,
-	"./ja.js": 299,
-	"./jv": 300,
-	"./jv.js": 300,
-	"./ka": 301,
-	"./ka.js": 301,
-	"./kk": 302,
-	"./kk.js": 302,
-	"./km": 303,
-	"./km.js": 303,
-	"./kn": 304,
-	"./kn.js": 304,
-	"./ko": 305,
-	"./ko.js": 305,
-	"./ky": 306,
-	"./ky.js": 306,
-	"./lb": 307,
-	"./lb.js": 307,
-	"./lo": 308,
-	"./lo.js": 308,
-	"./lt": 309,
-	"./lt.js": 309,
-	"./lv": 310,
-	"./lv.js": 310,
-	"./me": 311,
-	"./me.js": 311,
-	"./mi": 312,
-	"./mi.js": 312,
-	"./mk": 313,
-	"./mk.js": 313,
-	"./ml": 314,
-	"./ml.js": 314,
-	"./mr": 315,
-	"./mr.js": 315,
-	"./ms": 316,
-	"./ms-my": 317,
-	"./ms-my.js": 317,
-	"./ms.js": 316,
-	"./my": 318,
-	"./my.js": 318,
-	"./nb": 319,
-	"./nb.js": 319,
-	"./ne": 320,
-	"./ne.js": 320,
-	"./nl": 321,
-	"./nl-be": 322,
-	"./nl-be.js": 322,
-	"./nl.js": 321,
-	"./nn": 323,
-	"./nn.js": 323,
-	"./pa-in": 324,
-	"./pa-in.js": 324,
-	"./pl": 325,
-	"./pl.js": 325,
-	"./pt": 326,
-	"./pt-br": 327,
-	"./pt-br.js": 327,
-	"./pt.js": 326,
-	"./ro": 328,
-	"./ro.js": 328,
-	"./ru": 329,
-	"./ru.js": 329,
-	"./sd": 330,
-	"./sd.js": 330,
-	"./se": 331,
-	"./se.js": 331,
-	"./si": 332,
-	"./si.js": 332,
-	"./sk": 333,
-	"./sk.js": 333,
-	"./sl": 334,
-	"./sl.js": 334,
-	"./sq": 335,
-	"./sq.js": 335,
-	"./sr": 336,
-	"./sr-cyrl": 337,
-	"./sr-cyrl.js": 337,
-	"./sr.js": 336,
-	"./ss": 338,
-	"./ss.js": 338,
-	"./sv": 339,
-	"./sv.js": 339,
-	"./sw": 340,
-	"./sw.js": 340,
-	"./ta": 341,
-	"./ta.js": 341,
-	"./te": 342,
-	"./te.js": 342,
-	"./tet": 343,
-	"./tet.js": 343,
-	"./th": 344,
-	"./th.js": 344,
-	"./tl-ph": 345,
-	"./tl-ph.js": 345,
-	"./tlh": 346,
-	"./tlh.js": 346,
-	"./tr": 347,
-	"./tr.js": 347,
-	"./tzl": 348,
-	"./tzl.js": 348,
-	"./tzm": 349,
-	"./tzm-latn": 350,
-	"./tzm-latn.js": 350,
-	"./tzm.js": 349,
-	"./uk": 351,
-	"./uk.js": 351,
-	"./ur": 352,
-	"./ur.js": 352,
-	"./uz": 353,
-	"./uz-latn": 354,
-	"./uz-latn.js": 354,
-	"./uz.js": 353,
-	"./vi": 355,
-	"./vi.js": 355,
-	"./x-pseudo": 356,
-	"./x-pseudo.js": 356,
-	"./yo": 357,
-	"./yo.js": 357,
-	"./zh-cn": 358,
-	"./zh-cn.js": 358,
-	"./zh-hk": 359,
-	"./zh-hk.js": 359,
-	"./zh-tw": 360,
-	"./zh-tw.js": 360
+	"./af": 244,
+	"./af.js": 244,
+	"./ar": 245,
+	"./ar-dz": 246,
+	"./ar-dz.js": 246,
+	"./ar-kw": 247,
+	"./ar-kw.js": 247,
+	"./ar-ly": 248,
+	"./ar-ly.js": 248,
+	"./ar-ma": 249,
+	"./ar-ma.js": 249,
+	"./ar-sa": 250,
+	"./ar-sa.js": 250,
+	"./ar-tn": 251,
+	"./ar-tn.js": 251,
+	"./ar.js": 245,
+	"./az": 252,
+	"./az.js": 252,
+	"./be": 253,
+	"./be.js": 253,
+	"./bg": 254,
+	"./bg.js": 254,
+	"./bm": 255,
+	"./bm.js": 255,
+	"./bn": 256,
+	"./bn.js": 256,
+	"./bo": 257,
+	"./bo.js": 257,
+	"./br": 258,
+	"./br.js": 258,
+	"./bs": 259,
+	"./bs.js": 259,
+	"./ca": 260,
+	"./ca.js": 260,
+	"./cs": 261,
+	"./cs.js": 261,
+	"./cv": 262,
+	"./cv.js": 262,
+	"./cy": 263,
+	"./cy.js": 263,
+	"./da": 264,
+	"./da.js": 264,
+	"./de": 265,
+	"./de-at": 266,
+	"./de-at.js": 266,
+	"./de-ch": 267,
+	"./de-ch.js": 267,
+	"./de.js": 265,
+	"./dv": 268,
+	"./dv.js": 268,
+	"./el": 269,
+	"./el.js": 269,
+	"./en-au": 270,
+	"./en-au.js": 270,
+	"./en-ca": 271,
+	"./en-ca.js": 271,
+	"./en-gb": 272,
+	"./en-gb.js": 272,
+	"./en-ie": 273,
+	"./en-ie.js": 273,
+	"./en-nz": 274,
+	"./en-nz.js": 274,
+	"./eo": 275,
+	"./eo.js": 275,
+	"./es": 276,
+	"./es-do": 277,
+	"./es-do.js": 277,
+	"./es-us": 278,
+	"./es-us.js": 278,
+	"./es.js": 276,
+	"./et": 279,
+	"./et.js": 279,
+	"./eu": 280,
+	"./eu.js": 280,
+	"./fa": 281,
+	"./fa.js": 281,
+	"./fi": 282,
+	"./fi.js": 282,
+	"./fo": 283,
+	"./fo.js": 283,
+	"./fr": 284,
+	"./fr-ca": 285,
+	"./fr-ca.js": 285,
+	"./fr-ch": 286,
+	"./fr-ch.js": 286,
+	"./fr.js": 284,
+	"./fy": 287,
+	"./fy.js": 287,
+	"./gd": 288,
+	"./gd.js": 288,
+	"./gl": 289,
+	"./gl.js": 289,
+	"./gom-latn": 290,
+	"./gom-latn.js": 290,
+	"./gu": 291,
+	"./gu.js": 291,
+	"./he": 292,
+	"./he.js": 292,
+	"./hi": 293,
+	"./hi.js": 293,
+	"./hr": 294,
+	"./hr.js": 294,
+	"./hu": 295,
+	"./hu.js": 295,
+	"./hy-am": 296,
+	"./hy-am.js": 296,
+	"./id": 297,
+	"./id.js": 297,
+	"./is": 298,
+	"./is.js": 298,
+	"./it": 299,
+	"./it.js": 299,
+	"./ja": 300,
+	"./ja.js": 300,
+	"./jv": 301,
+	"./jv.js": 301,
+	"./ka": 302,
+	"./ka.js": 302,
+	"./kk": 303,
+	"./kk.js": 303,
+	"./km": 304,
+	"./km.js": 304,
+	"./kn": 305,
+	"./kn.js": 305,
+	"./ko": 306,
+	"./ko.js": 306,
+	"./ky": 307,
+	"./ky.js": 307,
+	"./lb": 308,
+	"./lb.js": 308,
+	"./lo": 309,
+	"./lo.js": 309,
+	"./lt": 310,
+	"./lt.js": 310,
+	"./lv": 311,
+	"./lv.js": 311,
+	"./me": 312,
+	"./me.js": 312,
+	"./mi": 313,
+	"./mi.js": 313,
+	"./mk": 314,
+	"./mk.js": 314,
+	"./ml": 315,
+	"./ml.js": 315,
+	"./mr": 316,
+	"./mr.js": 316,
+	"./ms": 317,
+	"./ms-my": 318,
+	"./ms-my.js": 318,
+	"./ms.js": 317,
+	"./my": 319,
+	"./my.js": 319,
+	"./nb": 320,
+	"./nb.js": 320,
+	"./ne": 321,
+	"./ne.js": 321,
+	"./nl": 322,
+	"./nl-be": 323,
+	"./nl-be.js": 323,
+	"./nl.js": 322,
+	"./nn": 324,
+	"./nn.js": 324,
+	"./pa-in": 325,
+	"./pa-in.js": 325,
+	"./pl": 326,
+	"./pl.js": 326,
+	"./pt": 327,
+	"./pt-br": 328,
+	"./pt-br.js": 328,
+	"./pt.js": 327,
+	"./ro": 329,
+	"./ro.js": 329,
+	"./ru": 330,
+	"./ru.js": 330,
+	"./sd": 331,
+	"./sd.js": 331,
+	"./se": 332,
+	"./se.js": 332,
+	"./si": 333,
+	"./si.js": 333,
+	"./sk": 334,
+	"./sk.js": 334,
+	"./sl": 335,
+	"./sl.js": 335,
+	"./sq": 336,
+	"./sq.js": 336,
+	"./sr": 337,
+	"./sr-cyrl": 338,
+	"./sr-cyrl.js": 338,
+	"./sr.js": 337,
+	"./ss": 339,
+	"./ss.js": 339,
+	"./sv": 340,
+	"./sv.js": 340,
+	"./sw": 341,
+	"./sw.js": 341,
+	"./ta": 342,
+	"./ta.js": 342,
+	"./te": 343,
+	"./te.js": 343,
+	"./tet": 344,
+	"./tet.js": 344,
+	"./th": 345,
+	"./th.js": 345,
+	"./tl-ph": 346,
+	"./tl-ph.js": 346,
+	"./tlh": 347,
+	"./tlh.js": 347,
+	"./tr": 348,
+	"./tr.js": 348,
+	"./tzl": 349,
+	"./tzl.js": 349,
+	"./tzm": 350,
+	"./tzm-latn": 351,
+	"./tzm-latn.js": 351,
+	"./tzm.js": 350,
+	"./uk": 352,
+	"./uk.js": 352,
+	"./ur": 353,
+	"./ur.js": 353,
+	"./uz": 354,
+	"./uz-latn": 355,
+	"./uz-latn.js": 355,
+	"./uz.js": 354,
+	"./vi": 356,
+	"./vi.js": 356,
+	"./x-pseudo": 357,
+	"./x-pseudo.js": 357,
+	"./yo": 358,
+	"./yo.js": 358,
+	"./zh-cn": 359,
+	"./zh-cn.js": 359,
+	"./zh-hk": 360,
+	"./zh-hk.js": 360,
+	"./zh-tw": 361,
+	"./zh-tw.js": 361
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -10438,7 +10470,7 @@ var Autosize = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(237);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11666,8 +11698,8 @@ var AuthenticationProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_friends_friends__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_diary_diary__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_settings__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_diary_friend_diary__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_message_message__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_diary_friend_diary__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_message_message__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_diary_diary__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
