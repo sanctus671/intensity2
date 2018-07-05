@@ -27793,6 +27793,12 @@ h3.leaderboard-exercise ion-icon:active {
   margin-top: 10px;
 }
 
+.premium-footer button.button {
+  text-transform: lowercase;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .profile-nav.header::after {
   background-image: none;
 }
