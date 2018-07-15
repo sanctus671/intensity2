@@ -26100,6 +26100,10 @@ ion-segment.segment-ios {
   color: #444;
 }
 
+.bodyweight-list .item ion-icon[name='create'] {
+  margin-right: 20px;
+}
+
 .bodyweight-chart {
   margin-top: 20px;
 }

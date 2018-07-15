@@ -8910,7 +8910,16 @@ var BodyweightModal = (function () {
         var config = this.chartProvider.getLineConfig();
         config.yAxis.min = null;
         this.bodyweightChart = new __WEBPACK_IMPORTED_MODULE_4_angular_highcharts__["a" /* Chart */](config);
+        this.getBodyweights();
+        this.bodyweight = { weight: "" };
+        this.storage.get("account").then(function (data) {
+            _this.account = data;
+        });
+    }
+    BodyweightModal.prototype.getBodyweights = function () {
+        var _this = this;
         this.bodyweights = [];
+        this.properties.loading = true;
         this.bodyweightProvider.getBodyweights().then(function (data) {
             _this.properties.loading = false;
             _this.bodyweights = data.sort(function (a, b) {
@@ -8934,11 +8943,7 @@ var BodyweightModal = (function () {
                 showInLegend: false
             });
         });
-        this.bodyweight = { weight: "" };
-        this.storage.get("account").then(function (data) {
-            _this.account = data;
-        });
-    }
+    };
     BodyweightModal.prototype.formatStats = function (data) {
         var formatted = [];
         for (var index in data) {
@@ -8986,12 +8991,53 @@ var BodyweightModal = (function () {
         });
         alert.present();
     };
+    BodyweightModal.prototype.editBodyweight = function (bodyweight, index) {
+        var _this = this;
+        console.log(bodyweight.created);
+        var created = bodyweight.created.split(" ");
+        var alert = this.alertCtrl.create({
+            title: "Edit Entry",
+            message: "Update this bodyweight entry by changing the details below.",
+            inputs: [
+                {
+                    name: 'weight',
+                    placeholder: 'Weight',
+                    type: 'number',
+                    value: bodyweight.weight
+                },
+                {
+                    name: 'created',
+                    placeholder: 'Date',
+                    type: 'date',
+                    value: created[0]
+                },
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Save',
+                    handler: function (data) {
+                        bodyweight.weight = data.weight;
+                        bodyweight.created = data.created;
+                        _this.bodyweightProvider.updateBodyweight(bodyweight.id, data.weight, data.created).then(function () {
+                            _this.getBodyweights();
+                        });
+                        console.log(data);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
     BodyweightModal.prototype.dismiss = function () {
         this.viewCtrl.dismiss();
     };
     BodyweightModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'bodyweight',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\bodyweight.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Bodyweight\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <div class="diary-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n\n    <div class="diary-empty empty-state" *ngIf="!properties.loading && bodyweights.length < 1">\n        <ion-icon name=\'body\'></ion-icon>\n        No Entries\n    </div>     \n    \n    <div *ngIf="!properties.loading && bodyweights.length > 0">\n    \n        <div class="bodyweight-chart" [chart]="bodyweightChart"></div>\n\n        <ion-list class="bodyweight-list">\n\n            <ion-list-header>\n                Entries\n            </ion-list-header>        \n            <ion-item *ngFor="let bodyweight of bodyweights;let i = index">\n                <h2>{{formatDate(bodyweight.created)}}</h2>\n                <p>{{bodyweight.weight}}{{this.account.units}}</p>   \n                <ion-icon name="trash" item-end (click)="removeBodyweight(bodyweight, i)"></ion-icon>\n            </ion-item>\n        </ion-list>\n    </div>\n    \n    \n</ion-content>\n\n\n<ion-footer class="diary-footer bodyweight-footer">\n        <form name="diary-exercise-form" (ngSubmit)="addBodyweight()">\n            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="bodyweight.weight"></ion-input>\n            <div class="button-container">\n                <button type="submit" ion-button>Add</button>\n            </div>\n        </form>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\bodyweight.html"*/
+            selector: 'bodyweight',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\bodyweight.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Bodyweight\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <div class="diary-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>    \n\n    <div class="diary-empty empty-state" *ngIf="!properties.loading && bodyweights.length < 1">\n        <ion-icon name=\'body\'></ion-icon>\n        No Entries\n    </div>     \n    \n    <div *ngIf="!properties.loading && bodyweights.length > 0">\n    \n        <div class="bodyweight-chart" [chart]="bodyweightChart"></div>\n\n        <ion-list class="bodyweight-list">\n\n            <ion-list-header>\n                Entries\n            </ion-list-header>        \n            <ion-item *ngFor="let bodyweight of bodyweights;let i = index">\n                <h2>{{formatDate(bodyweight.created)}}</h2>\n                <p>{{bodyweight.weight}}{{this.account.units}}</p>   \n                <ion-icon name="create" item-end (click)="editBodyweight(bodyweight, i)"></ion-icon>\n                <ion-icon name="trash" item-end (click)="removeBodyweight(bodyweight, i)"></ion-icon>\n            </ion-item>\n        </ion-list>\n    </div>\n    \n    \n</ion-content>\n\n\n<ion-footer class="diary-footer bodyweight-footer">\n        <form name="diary-exercise-form" (ngSubmit)="addBodyweight()">\n            <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="bodyweight.weight"></ion-input>\n            <div class="button-container">\n                <button type="submit" ion-button>Add</button>\n            </div>\n        </form>\n</ion-footer>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\bodyweight.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_6__providers_chart_chart__["a" /* ChartProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_bodyweight_bodyweight__["a" /* BodyweightProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], BodyweightModal);
@@ -9096,6 +9142,25 @@ var BodyweightProvider = (function () {
                         });
                         reject(e);
                     });
+                });
+            });
+        });
+    };
+    BodyweightProvider.prototype.updateBodyweight = function (id, weight, created) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("session").then(function (session) {
+                var requestData = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "edit", action: "updatebodyweight", weight: weight, created: created, id: id };
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, requestData).subscribe(function (res) {
+                    if (res["success"] === true) {
+                        resolve(res["data"]);
+                    }
+                    else {
+                        reject(res);
+                    }
+                }, function (e) {
+                    _this.events.publish("app:heartbeat");
+                    reject(e);
                 });
             });
         });
