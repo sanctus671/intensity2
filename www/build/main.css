@@ -26019,6 +26019,25 @@ ion-segment.segment-ios {
   }
 }
 
+.timer.interval .time {
+  font-size: 34px;
+  top: 20px;
+}
+
+.timer.interval .interval-sets {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.timer.interval .interval-header {
+  font-size: 20px;
+  color: #b7b7b7;
+}
+
+.timer.interval .time .work-time.active, .timer.interval .time .rest-time.active {
+  color: #d44735;
+}
+
 .calculator {
   padding-left: 20px;
   padding-right: 30px;
@@ -26823,6 +26842,10 @@ ion-card.records-card.darkorange-background {
 
 .list-ios.records-list > .item-block:first-child {
   border-top: none;
+}
+
+.program-start.generate-details {
+  font-size: 12px;
 }
 
 .slide-zoom {
@@ -27975,12 +27998,31 @@ h3.leaderboard-exercise ion-icon:active {
   /* optional: just make scrollbar invisible */
 }
 
+#program-segments ion-segment .segment-button {
+  text-overflow: clip;
+}
+
 .add-diary-list.list-ios > .item-block:first-child {
   border-top: none;
 }
 
 .programs-list {
   margin-bottom: 80px;
+}
+
+.programs-list .notes-stats {
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.add-diary-list .item.notes-stats ion-icon[item-end] {
+  min-height: 2.8rem;
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-left: 0;
+  margin-top: 11px;
+  margin-bottom: 10px;
+  color: white;
 }
 
 .settings-list ion-list-header {
