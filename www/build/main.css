@@ -27988,7 +27988,7 @@ h3.leaderboard-exercise ion-icon:active {
 }
 
 .extended-segments ion-segment {
-  width: 170%;
+  width: 220%;
 }
 
 .extended-segments::-webkit-scrollbar {
@@ -27996,10 +27996,6 @@ h3.leaderboard-exercise ion-icon:active {
   /* remove scrollbar space */
   background: transparent;
   /* optional: just make scrollbar invisible */
-}
-
-#program-segments ion-segment .segment-button {
-  text-overflow: clip;
 }
 
 .add-diary-list.list-ios > .item-block:first-child {
