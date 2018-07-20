@@ -6912,7 +6912,6 @@ var ProgramsPage = (function () {
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_8__modals_select_dates_select_dates__["a" /* SelectDatesModal */]);
         modal.onDidDismiss(function (data) {
             if (data) {
-                console.log(data);
                 if (data.program) {
                     var modal_1 = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_6__modals_create_program_create_program__["a" /* CreateProgramModal */], { program: data.program });
                     modal_1.onDidDismiss(function (program) {
@@ -7976,7 +7975,6 @@ var SelectDatesModal = (function () {
         var start = __WEBPACK_IMPORTED_MODULE_5_moment__(this.startDate).format('YYYY-MM-DD');
         var end = __WEBPACK_IMPORTED_MODULE_5_moment__(this.endDate).format('YYYY-MM-DD');
         this.programProvider.getWorkoutsForProgram(start, end).then(function (data) {
-            console.log(data);
             _this.workouts = data;
             _this.exercises = [];
             _this.exerciseIds = {};
@@ -9103,8 +9101,6 @@ var TimerModal = (function () {
         this.updateIntervalTimerProperties();
     };
     TimerModal.prototype.updateIntervalTimerProperties = function () {
-        console.log(this.intervalOptions.workRaw);
-        console.log(this.intervalOptions.restRaw);
         var date1 = new Date(this.intervalOptions.workRaw);
         var date2 = new Date(this.intervalOptions.restRaw);
         this.intervalOptions.work = ((date1.getMinutes() * 60) + date1.getSeconds()) * 1000;
