@@ -27294,6 +27294,12 @@ ionic2-datepicker .button-ios, ionic2-datepicker .button-ios.activated {
   margin-bottom: 0px;
 }
 
+.diary-sets ion-icon.ion-ios-trophy, .diary-sets ion-icon.ion-md-trophy {
+  font-size: 1.2em;
+  color: #F7D665;
+  opacity: 0.7;
+}
+
 .diary-sets ion-icon.completed {
   color: #D44735;
   opacity: 1;
@@ -28106,6 +28112,11 @@ h3.stats-metric.stats-exercise {
 
 .extra-stats.primary-stats ion-card .card-title {
   text-transform: capitalize;
+}
+
+.stats-timeframes.stats-accumulation {
+  padding-bottom: 30px;
+  margin-top: -20px;
 }
 
 .notes-stats {
