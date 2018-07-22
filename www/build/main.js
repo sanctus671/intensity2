@@ -3173,7 +3173,7 @@ var DiaryPage = (function () {
             var workoutDates = dates["data"];
             for (var _i = 0, workoutDates_1 = workoutDates; _i < workoutDates_1.length; _i++) {
                 var date = workoutDates_1[_i];
-                var workoutDate = new Date(date["assigneddate"]);
+                var workoutDate = new Date(date["assigneddate"].replace(/-/g, '\/'));
                 _this.markedWorkoutDates.push(workoutDate);
             }
         });
@@ -3321,7 +3321,7 @@ var DiaryPage = (function () {
                             set.is_overall_record = data["is_overall_record"] && !data["calibrating"];
                             exercise.goals = res["goals"];
                             exercise.records = res["records"];
-                            exercise.cailbrating = res["calibrating"];
+                            exercise.calibrating = res["calibrating"];
                             exercise.history = res["history"];
                             _this.getRecentExercises();
                         });
@@ -3371,7 +3371,7 @@ var DiaryPage = (function () {
         this.diaryProvider.editSet(__WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD'), exercise.exerciseid, set).then(function (data) {
             exercise.goals = data["goals"];
             exercise.records = data["records"];
-            exercise.cailbrating = data["calibrating"];
+            exercise.calibrating = data["calibrating"];
             exercise.history = data["history"];
             set.is_amrap_record = data["is_amrap_record"] && !data["calibrating"];
             set.is_overall_record = data["is_overall_record"] && !data["calibrating"];
@@ -3852,7 +3852,7 @@ var DiaryExercisePage = (function () {
             set.is_amrap_record = data["is_amrap_record"] && !data["calibrating"];
             set.is_overall_record = data["is_overall_record"] && !data["calibrating"];
             _this.exercise.records = data["records"];
-            _this.exercise.cailbrating = data["calibrating"];
+            _this.exercise.calibrating = data["calibrating"];
             _this.exercise.history = data["history"];
             _this.exercise.historyPage = 1;
             _this.exercise.canGetMoreHistory = true;
@@ -3890,7 +3890,7 @@ var DiaryExercisePage = (function () {
             set.is_amrap_record = data["is_amrap_record"] && !data["calibrating"];
             set.is_overall_record = data["is_overall_record"] && !data["calibrating"];
             _this.exercise.records = data["records"];
-            _this.exercise.cailbrating = data["calibrating"];
+            _this.exercise.calibrating = data["calibrating"];
             _this.exercise.history = data["history"];
             _this.exercise.historyPage = 1;
             _this.exercise.canGetMoreHistory = true;
@@ -3967,7 +3967,7 @@ var DiaryExercisePage = (function () {
                 _this.diaryProvider.removeSet(__WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD'), _this.exercise.exerciseid, set).then(function (data) {
                     _this.updateGoals(requestCount_1, data["goals"], 0);
                     _this.exercise.records = data["records"];
-                    _this.exercise.cailbrating = data["calibrating"];
+                    _this.exercise.calibrating = data["calibrating"];
                     _this.exercise.history = data["history"];
                     _this.exercise.historyPage = 1;
                     _this.exercise.canGetMoreHistory = true;
@@ -3998,7 +3998,7 @@ var DiaryExercisePage = (function () {
                 _this.diaryProvider.editSet(__WEBPACK_IMPORTED_MODULE_3_moment__(_this.selectedDate).format('YYYY-MM-DD'), _this.exercise.exerciseid, updatedSet).then(function (data) {
                     _this.updateGoals(requestCount_2, data["goals"], 0);
                     _this.exercise.records = data["records"];
-                    _this.exercise.cailbrating = data["calibrating"];
+                    _this.exercise.calibrating = data["calibrating"];
                     _this.exercise.history = data["history"];
                     _this.exercise.historyPage = 1;
                     _this.exercise.canGetMoreHistory = true;
@@ -4365,6 +4365,7 @@ var EditSetModal = (function () {
         this.properties = {};
         this.set = {};
         Object.assign(this.set, this.params.data.set);
+        this.recordSet = { reps: this.set.reps, weight: this.set.weight };
         this.set.rpeScaled = parseFloat(this.set.rpe) * 10;
         this.exercise = this.params.data.exercise;
         this.set.updateAll = false;
@@ -4486,7 +4487,7 @@ var EditSetModal = (function () {
     };
     EditSetModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'edit-set',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-set\edit-set.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Edit Set\n        </ion-title>\n        <ion-buttons start>\n            <button icon-start ion-button (click)="saveSet()" showWhen="android, windows">\n                <ion-icon name="md-checkmark"></ion-icon>\n                Save\n            </button>       \n            \n            <button icon-start ion-button (click)="openDelete()" showWhen="android, windows">\n                <ion-icon name="md-trash"></ion-icon>\n                Delete\n            </button>            \n            \n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n        \n        <ion-buttons showWhen="ios" end>\n            <button ion-button (click)="saveSet()">\n                <span ion-text>Save</span>\n            </button>      \n            <button ion-button (click)="openDelete()">\n                <span ion-text>Delete</span>\n            </button>              \n        </ion-buttons>\n        \n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n<ion-list class="edit-set">\n\n    <ion-item>\n        <ion-label floating>Reps</ion-label>\n        <ion-input type="number" [(ngModel)]="set.reps"></ion-input>\n    </ion-item>\n\n    <ion-item>\n        <ion-label floating>Weight</ion-label>\n        <ion-input type="number" [(ngModel)]="set.weight"></ion-input>\n    </ion-item>\n    \n    <ion-item>\n        <ion-label>Update reps & weight for all sets</ion-label>\n        <ion-checkbox color="primary" [(ngModel)]="set.updateAll"></ion-checkbox>\n    </ion-item>    \n    \n    <ion-list-header class="rpe-header">\n        RPE\n        <ion-badge item-end>{{set.rpeScaled / 10}}</ion-badge>\n    </ion-list-header>    \n    <ion-item>\n        <ion-range [(ngModel)]="set.rpeScaled" min="60" max="100">\n            <ion-icon range-left name="remove" (click)="changeRpe(-5)"></ion-icon>\n            <ion-icon range-right name="add" (click)="changeRpe(5)"></ion-icon>\n        </ion-range>\n    </ion-item>    \n    \n    <ion-item>\n        <ion-label floating>Intensity (%)</ion-label>\n        <ion-input type="number" [(ngModel)]="set.percentage"></ion-input>\n        <button ion-button outline item-end (click)="determinePercentage()">Calculate</button>\n    </ion-item>\n    \n\n    <ion-item class="set-notes">\n        <ion-label floating>Notes</ion-label>\n        <ion-textarea [(ngModel)]="set.notes" autosize></ion-textarea>\n    </ion-item>    \n    \n    <ion-item>\n        <ion-label floating>Video</ion-label>\n        <ion-input type="text" [(ngModel)]="set.video"></ion-input>\n        <button ion-button outline item-end (click)="viewVideo()" *ngIf="set.video">View</button>\n        <button ion-button outline item-end (click)="uploadVideo()" [disabled]="properties.uploadingVideo">\n            <ion-spinner class="add-friend-loading" *ngIf="properties.uploadingVideo"></ion-spinner>\n            Upload\n        </button>\n    </ion-item>    \n    \n    <ion-list-header class="more-header" (click)="showMore = !showMore">\n        More Options\n        <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n    </ion-list-header>    \n    \n    \n    <div class="more-set-options" *ngIf="showMore">\n        \n        <ion-item>\n            <ion-label floating>Rest Time (s)</ion-label>\n            <ion-input type="number" [(ngModel)]="set.rest"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label floating>Distance (m)</ion-label>\n            <ion-input type="number" [(ngModel)]="set.distance"></ion-input>\n        </ion-item>\n        \n        <ion-item>\n            <ion-label floating>Set Duration/Time (s)</ion-label>\n            <ion-input type="number" [(ngModel)]="set.time"></ion-input>\n        </ion-item>        \n\n        <ion-item>\n            <ion-label>Unit</ion-label>\n            <ion-select [(ngModel)]="set.unit">\n              <ion-option value="kg">kg</ion-option>\n              <ion-option value="lbs">lbs</ion-option>\n            </ion-select>\n        </ion-item>\n        \n        <ion-item>\n            <ion-label>Distance Unit</ion-label>\n            <ion-select [(ngModel)]="set.distanceunit">\n              <ion-option value="cm">cm</ion-option>\n              <ion-option value="inches">inches</ion-option>\n              <ion-option value="ft">ft</ion-option>\n              <ion-option value="m">m</ion-option>\n              <ion-option value="km">km</ion-option>\n              <ion-option value="miles">miles</ion-option>\n            </ion-select>\n        </ion-item>        \n        \n    </div>\n    \n</ion-list>\n       \n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-set\edit-set.html"*/
+            selector: 'edit-set',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-set\edit-set.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Edit Set\n        </ion-title>\n        <ion-buttons start>\n            <button icon-start ion-button (click)="saveSet()" showWhen="android, windows">\n                <ion-icon name="md-checkmark"></ion-icon>\n                Save\n            </button>       \n            \n            <button icon-start ion-button (click)="openDelete()" showWhen="android, windows">\n                <ion-icon name="md-trash"></ion-icon>\n                Delete\n            </button>            \n            \n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n        \n        <ion-buttons showWhen="ios" end>\n            <button ion-button (click)="saveSet()">\n                <span ion-text>Save</span>\n            </button>      \n            <button ion-button (click)="openDelete()">\n                <span ion-text>Delete</span>\n            </button>              \n        </ion-buttons>\n        \n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n<div class="restore-program set-record" *ngIf="set.is_overall_record && recordSet.reps == set.reps && recordSet.weight == set.weight">\n    <ion-icon name="trophy"></ion-icon>\n    This set is a new {{recordSet.reps}}RM record!\n</div>    \n    \n<ion-list class="edit-set">\n\n    <ion-item>\n        <ion-label floating>Reps</ion-label>\n        <ion-input type="number" [(ngModel)]="set.reps"></ion-input>\n    </ion-item>\n\n    <ion-item>\n        <ion-label floating>Weight</ion-label>\n        <ion-input type="number" [(ngModel)]="set.weight"></ion-input>\n    </ion-item>\n    \n    <ion-item>\n        <ion-label>Update reps & weight for all sets</ion-label>\n        <ion-checkbox color="primary" [(ngModel)]="set.updateAll"></ion-checkbox>\n    </ion-item>    \n    \n    <ion-list-header class="rpe-header">\n        RPE\n        <ion-badge item-end>{{set.rpeScaled / 10}}</ion-badge>\n    </ion-list-header>    \n    <ion-item>\n        <ion-range [(ngModel)]="set.rpeScaled" min="60" max="100">\n            <ion-icon range-left name="remove" (click)="changeRpe(-5)"></ion-icon>\n            <ion-icon range-right name="add" (click)="changeRpe(5)"></ion-icon>\n        </ion-range>\n    </ion-item>    \n    \n    <ion-item>\n        <ion-label floating>Intensity (%)</ion-label>\n        <ion-input type="number" [(ngModel)]="set.percentage"></ion-input>\n        <button ion-button outline item-end (click)="determinePercentage()">Calculate</button>\n    </ion-item>\n    \n\n    <ion-item class="set-notes">\n        <ion-label floating>Notes</ion-label>\n        <ion-textarea [(ngModel)]="set.notes" autosize></ion-textarea>\n    </ion-item>    \n    \n    <ion-item>\n        <ion-label floating>Video</ion-label>\n        <ion-input type="text" [(ngModel)]="set.video"></ion-input>\n        <button ion-button outline item-end (click)="viewVideo()" *ngIf="set.video">View</button>\n        <button ion-button outline item-end (click)="uploadVideo()" [disabled]="properties.uploadingVideo">\n            <ion-spinner class="add-friend-loading" *ngIf="properties.uploadingVideo"></ion-spinner>\n            Upload\n        </button>\n    </ion-item>    \n    \n    <ion-list-header class="more-header" (click)="showMore = !showMore">\n        More Options\n        <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n    </ion-list-header>    \n    \n    \n    <div class="more-set-options" *ngIf="showMore">\n        \n        <ion-item>\n            <ion-label floating>Rest Time (s)</ion-label>\n            <ion-input type="number" [(ngModel)]="set.rest"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label floating>Distance (m)</ion-label>\n            <ion-input type="number" [(ngModel)]="set.distance"></ion-input>\n        </ion-item>\n        \n        <ion-item>\n            <ion-label floating>Set Duration/Time (s)</ion-label>\n            <ion-input type="number" [(ngModel)]="set.time"></ion-input>\n        </ion-item>        \n\n        <ion-item>\n            <ion-label>Unit</ion-label>\n            <ion-select [(ngModel)]="set.unit">\n              <ion-option value="kg">kg</ion-option>\n              <ion-option value="lbs">lbs</ion-option>\n            </ion-select>\n        </ion-item>\n        \n        <ion-item>\n            <ion-label>Distance Unit</ion-label>\n            <ion-select [(ngModel)]="set.distanceunit">\n              <ion-option value="cm">cm</ion-option>\n              <ion-option value="inches">inches</ion-option>\n              <ion-option value="ft">ft</ion-option>\n              <ion-option value="m">m</ion-option>\n              <ion-option value="km">km</ion-option>\n              <ion-option value="miles">miles</ion-option>\n            </ion-select>\n        </ion-item>        \n        \n    </div>\n    \n</ion-list>\n       \n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\edit-set\edit-set.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */]])
     ], EditSetModal);
@@ -8023,7 +8024,7 @@ var SelectDatesModal = (function () {
             var workoutDates = dates["data"];
             for (var _i = 0, workoutDates_1 = workoutDates; _i < workoutDates_1.length; _i++) {
                 var date = workoutDates_1[_i];
-                var workoutDate = new Date(date["assigneddate"]);
+                var workoutDate = new Date(date["assigneddate"].replace(/-/g, '\/'));
                 _this.markedWorkoutDates.push(workoutDate);
             }
         });

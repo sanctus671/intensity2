@@ -28014,7 +28014,7 @@ h3.leaderboard-exercise ion-icon:active {
 
 .programs-list .notes-stats {
   margin-bottom: 10px;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .add-diary-list .item.notes-stats ion-icon[item-end] {
