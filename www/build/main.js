@@ -12099,8 +12099,11 @@ var AuthenticationProvider = (function () {
                     var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: null, controller: "authentication", action: "loginfb", id: profile.id, name: profile.name, email: profile.email };
                     _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
                         if (res["success"] === true) {
-                            _this.storage.set("session", res["data"]["sessionid"]);
-                            resolve();
+                            _this.storage.set("session", res["data"]["sessionid"]).then(function () {
+                                resolve();
+                            }).catch(function () {
+                                reject("There was an error logging in");
+                            });
                         }
                         else {
                             reject(res);
