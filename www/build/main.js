@@ -1913,6 +1913,7 @@ var DiaryProvider = (function () {
                         var requestId = requests.length > 0 ? requests[requests.length - 1].id + 1 : 1;
                         requestData["requestId"] = requestId;
                         requests.push(requestData);
+                        console.log(requests);
                         _this.storage.set("failedRequests", requests);
                         _this.storage.get("workouts").then(function (data) {
                             var workouts = data ? data : {};
@@ -2359,9 +2360,10 @@ var DiaryProvider = (function () {
     };
     DiaryProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]) === "function" && _c || Object])
     ], DiaryProvider);
     return DiaryProvider;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=diary.js.map
@@ -3036,6 +3038,7 @@ var DiaryPage = (function () {
             if (_this.workouts.length > 1 && !_this.workouts[7].retreived) {
                 _this.getWorkout(_this.workouts[7]);
             }
+            _this.setMarkedDates();
         });
         this.events.subscribe('user:retreived', function (data) {
             _this.account = data;
@@ -3179,6 +3182,7 @@ var DiaryPage = (function () {
                 var workoutDate = new Date(date["assigneddate"].replace(/-/g, '\/'));
                 _this.markedWorkoutDates.push(workoutDate);
             }
+        }).catch(function () {
         });
     };
     DiaryPage.prototype.calculateDate = function (date, change) {
@@ -8856,10 +8860,9 @@ var LoginModal = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'login',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\modals\login\login.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Login\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text color="light">Skip</span>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    <div class=\'login-intro\'>\n        <img src="assets/imgs/cloud.png"/>\n        <p>Create an account to keep your data safe.</p>\n    </div>\n    \n    <div class=\'facebook-login\'>        \n        <button ion-button icon-start (click)="facebookLogin()">\n            <ion-icon name="logo-facebook"></ion-icon>\n            Login with Facebook\n        </button>\n        \n        <p class="login-error" *ngIf="errors.facebookLogin">{{errors.facebookLogin}}</p>  \n        \n    </div>\n    \n    <div class="login-loading" *ngIf="properties.loading">\n        <ion-spinner></ion-spinner>\n    </div>\n    \n    <form class="login-form" ion-list (ngSubmit)="login()" *ngIf="properties.activeForm === \'login\' && !properties.loading">\n\n        <ion-item>\n            <ion-label floating>Email</ion-label>\n            <ion-input type="email" name="email" required [(ngModel)]="user.email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label floating>Password</ion-label>\n            <ion-input type="password" name="password" required [(ngModel)]="user.password"></ion-input>\n        </ion-item>\n          \n          \n        <p class="login-error" *ngIf="errors.login">{{errors.login}}</p>\n        \n        <button ion-button type=\'submit\'>\n            Login\n        </button>  \n        \n        <a ion-button color="light" (click)="properties.activeForm = \'register\'">\n            Register\n        </a>\n\n        \n      \n        \n        \n         <a class="forgot-password" (click)="properties.activeForm = \'resetPassword\'">Forgot Password?</a> \n          \n    </form>  \n    \n    \n    \n    <form class="login-form" ion-list (ngSubmit)="register()" *ngIf="properties.activeForm === \'register\' && !properties.loading">\n\n        <ion-item>\n            <ion-label floating>Email</ion-label>\n            <ion-input type="Email" name="email" required [(ngModel)]="user.email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label floating>Password</ion-label>\n            <ion-input type="password" name="password" required [(ngModel)]="user.password"></ion-input>\n        </ion-item>\n          \n        <ion-item>\n            <ion-label floating>Repeat Password</ion-label>\n            <ion-input type="password" name="repeatPassword" required [(ngModel)]="user.repeatPassword"></ion-input>\n        </ion-item>    \n          \n        <p class="login-error" *ngIf="errors.register">{{errors.register}}</p>  \n\n        \n        <a ion-button color="light" (click)="properties.activeForm = \'login\'">\n            Login\n        </a>        \n        \n        <button ion-button  type=\'submit\'>\n            Register\n        </button>           \n          \n\n\n        \n       \n        \n        \n    </form>     \n    \n    \n    \n    \n    <form class="login-form" ion-list (ngSubmit)="resetPassword()" *ngIf="properties.activeForm === \'resetPassword\' && !properties.loading">\n\n        <ion-item>\n            <ion-label floating>Email</ion-label>\n            <ion-input type="Email" name="email" required [(ngModel)]="user.email"></ion-input>\n        </ion-item>\n       \n        <p class="login-error" *ngIf="errors.reset">{{errors.reset}}</p>\n\n        <button ion-button  type=\'submit\'>\n            Reset\n        </button>           \n          \n        <a ion-button color="light" (click)="properties.activeForm = \'login\'">\n            Login\n        </a>\n\n        \n       \n        \n        \n    </form>       \n    \n    \n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\modals\login\login.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_authentication_authentication__["a" /* AuthenticationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_authentication_authentication__["a" /* AuthenticationProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_authentication_authentication__["a" /* AuthenticationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
     ], LoginModal);
     return LoginModal;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=login.js.map
@@ -10679,9 +10682,10 @@ var ProgramProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_account_account__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_authentication_authentication__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_in_app_purchase__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_local_notifications__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__ = __webpack_require__(127);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10713,8 +10717,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, modalCtrl, splashScreen, accountProvider, events, storage, loadingCtrl, auth, alertCtrl, oneSignal, iap, localNotifications) {
+    function MyApp(platform, statusBar, modalCtrl, splashScreen, accountProvider, events, storage, loadingCtrl, auth, alertCtrl, oneSignal, iap, localNotifications, offlineProvider) {
         var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
@@ -10729,6 +10734,7 @@ var MyApp = (function () {
         this.oneSignal = oneSignal;
         this.iap = iap;
         this.localNotifications = localNotifications;
+        this.offlineProvider = offlineProvider;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_diary_diary__["a" /* DiaryPage */];
         this.initializeApp();
         // used for an example of ngFor and navigation
@@ -10751,13 +10757,16 @@ var MyApp = (function () {
                 _this.getAccount();
                 _this.savePushId();
             }
+        }).catch(function () {
+            _this.openLogin();
         });
-        this.connectionStatus = true;
+        this.connectionStatus = this.offlineProvider.getNetworkStatus();
+        console.log(this.connectionStatus);
         this.events.subscribe('app:online', function () {
-            _this.connectionStatus = true;
+            _this.connectionStatus = _this.offlineProvider.getNetworkStatus();
         });
         this.events.subscribe('app:offline', function () {
-            _this.connectionStatus = false;
+            _this.connectionStatus = _this.offlineProvider.getNetworkStatus();
         });
         this.premiumPage = { title: 'Premium', component: __WEBPACK_IMPORTED_MODULE_10__pages_premium_premium__["a" /* PremiumPage */] };
         this.profilePage = { title: 'Profile', component: __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__["a" /* ProfilePage */] };
@@ -10871,12 +10880,12 @@ var MyApp = (function () {
                 _this.account.last_workout_formatted = "never";
             }
             _this.checkPremium();
-            _this.events.publish('user:retreived');
+            _this.events.publish('user:retreived', account);
         });
     };
     MyApp.prototype.checkPremium = function () {
         var _this = this;
-        if (this.platform.is('cordova')) {
+        if (this.platform.is('cordova') && this.account.premium) {
             var premiumDate_1 = __WEBPACK_IMPORTED_MODULE_17_moment__(this.account.premium_date).add(1, 'months');
             if (this.account.premium && __WEBPACK_IMPORTED_MODULE_17_moment__(this.account.premium_date).add(1, 'months').isBefore(__WEBPACK_IMPORTED_MODULE_17_moment__())) {
                 //check purchases
@@ -10959,14 +10968,15 @@ var MyApp = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/`<ion-menu [content]="content" [ngClass]="{\'dark-theme\':theme === \'dark\'}">\n\n\n    <ion-content>\n\n        <div class="menu-header" menuClose (click)="openPage(profilePage)" [ngClass]="{\'is-premium\':account.premium}">\n            <div class="user-dp">\n                <img [src]="account.dp" onerror="this.style.display=\'none\'"/>\n            </div>\n            <div class="username">\n                {{account.username}}\n            </div>\n            <p>{{account.streak}} week streak, last workout {{account.last_workout_formatted}}</p>\n        </div>\n        \n        <div class="offline-mode" *ngIf="!connectionStatus">\n            <ion-spinner></ion-spinner>\n            Checking for internet connection...\n        </div>\n\n        <ion-list class=\'menu-list\'>\n            <button menuClose ion-item class=\'menu-premium\' (click)="openPage(premiumPage)" *ngIf="!account.premium">\n                <ion-icon name=\'star\' item-start></ion-icon>\n                Explore Premium\n            </button>            \n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-start></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{\'dark-theme\':theme === \'dark\'}"></ion-nav>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_19__providers_authentication_authentication__["a" /* AuthenticationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_20__ionic_native_in_app_purchase__["a" /* InAppPurchase */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_local_notifications__["a" /* LocalNotifications */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */]) === "function" && _o || Object, typeof (_p = typeof __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _p || Object, typeof (_q = typeof __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */]) === "function" && _q || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -11378,25 +11388,35 @@ var OfflineProvider = (function () {
         this.network = network;
         this.properties = { inProgress: false, heartbeatStarted: false, requestCount: 0 };
         this.completedRequests = [];
+        this.connectionStatus = (this.network.type && this.network.type !== "none") || !this.platform.is("cordova");
         this.network.onConnect().subscribe(function (data) {
+            console.log("here");
+            console.log(_this.network);
+            _this.connectionStatus = true;
             _this.events.publish("app:online");
             setTimeout(function () { _this.doRequests(); }, 2000);
         }, function (error) {
             //console.error(error)
         });
         this.network.onDisconnect().subscribe(function (data) {
+            console.log("here");
+            _this.connectionStatus = false;
             _this.events.publish("app:offline");
-            //this.startHeartbeat();
+            _this.startHeartbeat();
         }, function (error) {
             //console.error(error)
         });
         this.platform.ready().then(function () {
+            console.log("here");
             if ((!_this.network.type || _this.network.type === "none") && _this.platform.is("cordova")) {
+                _this.connectionStatus = false;
                 _this.events.publish("app:offline");
+                _this.startHeartbeat();
             }
             _this.storage.get("failedRequests").then(function (requests) {
                 if (requests) {
                     if (requests.length > 0 && _this.network.type && _this.network.type !== "none") {
+                        _this.connectionStatus = true;
                         _this.doRequests();
                     }
                 }
@@ -11406,6 +11426,9 @@ var OfflineProvider = (function () {
             _this.startHeartbeat();
         });
     }
+    OfflineProvider.prototype.getNetworkStatus = function () {
+        return this.connectionStatus;
+    };
     OfflineProvider.prototype.doRequests = function () {
         var _this = this;
         if (this.properties.inProgress) {
@@ -11416,6 +11439,7 @@ var OfflineProvider = (function () {
             if (session) {
                 _this.storage.get("failedRequests").then(function (requests) {
                     if (requests && requests.length > 0) {
+                        console.log(requests);
                         _this.properties.requestCount = requests.length;
                         _this.completedRequests = [];
                         var _loop_1 = function () {
@@ -11481,6 +11505,7 @@ var OfflineProvider = (function () {
                 _this.events.publish("app:online");
                 clearInterval(_this.heartbeat);
                 _this.properties.heartbeatStarted = false;
+                console.log("connection found. starting requests");
                 _this.doRequests();
             });
         }, 20000);
@@ -11522,9 +11547,10 @@ var OfflineProvider = (function () {
     };
     OfflineProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */]) === "function" && _e || Object])
     ], OfflineProvider);
     return OfflineProvider;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=offline.js.map
@@ -12110,8 +12136,11 @@ var AuthenticationProvider = (function () {
             var data = { key: __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiKey, session: null, controller: "authentication", action: "login", username: email, password: password };
             _this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */].apiUrl, data).subscribe(function (res) {
                 if (res["success"] === true) {
-                    _this.storage.set("session", res["data"]["sessionid"]);
-                    resolve();
+                    _this.storage.set("session", res["data"]["sessionid"]).then(function () {
+                        resolve();
+                    }).catch(function () {
+                        reject("There was an error logging in");
+                    });
                 }
                 else {
                     reject(res["errormsg"]);
@@ -12250,10 +12279,9 @@ var AuthenticationProvider = (function () {
     };
     AuthenticationProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
     ], AuthenticationProvider);
     return AuthenticationProvider;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=authentication.js.map
