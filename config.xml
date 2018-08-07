@@ -14,7 +14,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preference name="phonegap-version" value="cli-6.5.0" />
+    <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="android-minSdkVersion" value="16" />
@@ -116,7 +116,7 @@
     <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="npm" />
     <gap:plugin name="cordova-plugin-file" source="npm" version="^5.0.0" />
     <gap:plugin name="cordova-plugin-statusbar" source="npm" version="^2.3.0" />
-    <gap:plugin name="cordova-plugin-file-transfer" source="npm" version="1.5.1" />
+    <gap:plugin name="cordova-plugin-file-transfer" source="npm" version="1.7.1" />
     <gap:plugin name="cordova-plugin-camera" source="npm" version="^3.0.0">
         <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera to take pictures for an avatar" />
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library to get pictures for an avatar" />
