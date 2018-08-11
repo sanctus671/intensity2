@@ -8957,27 +8957,23 @@ var OfflineProvider = (function () {
                 _this.storage.get("failedRequests").then(function (requests) {
                     if (requests && requests.length > 0) {
                         _this.properties.requestCount = requests.length;
-                        _this.completedRequests = [];
                         var _loop_1 = function () {
-                            var request = requests[index];
+                            var request = requests[i];
                             _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, request).subscribe(function (res) {
-                                _this.updateRequestCount();
                                 if (res["success"] === true) {
                                     //remove requestid from item and add proper id
                                     var id = res["data"]["id"];
                                     var requestCopy = Object.assign({}, request);
                                     _this.updateStorage(id, requestCopy);
-                                    //remove from storage
-                                    _this.completedRequests.push(index);
                                 }
-                                else {
-                                    _this.completedRequests.push(index); //wasnt an error from the internet, so remove it
-                                }
+                                //remove from storage
+                                requests.splice(i, 1);
+                                _this.updateRequestCount(requests);
                             }, function () {
-                                _this.updateRequestCount();
+                                _this.updateRequestCount(requests);
                             });
                         };
-                        for (var index in requests) {
+                        for (var i = requests.length - 1; i >= 0; i--) {
                             _loop_1();
                         }
                     }
@@ -8991,21 +8987,13 @@ var OfflineProvider = (function () {
             }
         });
     };
-    OfflineProvider.prototype.updateRequestCount = function () {
+    OfflineProvider.prototype.updateRequestCount = function (requests) {
         var _this = this;
         this.properties.requestCount -= 1;
         if (this.properties.requestCount < 1) {
-            this.properties.inProgress = false;
-            this.events.publish("requests:completed");
-            this.storage.get("failedRequests").then(function (requests) {
-                if (requests) {
-                    _this.completedRequests.sort(function (a, b) { return parseInt(b) - parseInt(a); });
-                    for (var _i = 0, _a = _this.completedRequests; _i < _a.length; _i++) {
-                        var requestIndex = _a[_i];
-                        requests.splice(requestIndex, 1);
-                    }
-                    _this.storage.set("failedRequests", requests);
-                }
+            this.storage.set("failedRequests", requests).then(function () {
+                _this.properties.inProgress = false;
+                _this.events.publish("requests:completed");
             });
         }
     };
