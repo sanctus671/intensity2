@@ -3015,7 +3015,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var DiaryPage = (function () {
-    function DiaryPage(navCtrl, params, modalCtrl, storage, diaryProvider, events, exerciseProvider, alertCtrl, socialSharing, plt, emailComposer) {
+    function DiaryPage(navCtrl, params, modalCtrl, storage, diaryProvider, events, exerciseProvider, alertCtrl, socialSharing, plt, emailComposer, ngZone) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.params = params;
@@ -3028,6 +3028,7 @@ var DiaryPage = (function () {
         this.socialSharing = socialSharing;
         this.plt = plt;
         this.emailComposer = emailComposer;
+        this.ngZone = ngZone;
         this.selectedDate = this.params.data.date ? this.params.data.date : new Date();
         this.reorderActive = false;
         this.markedWorkoutDates = [];
@@ -3142,6 +3143,7 @@ var DiaryPage = (function () {
         });
     };
     DiaryPage.prototype.getWorkout = function (workout) {
+        var _this = this;
         if (workout.retreived) {
             return;
         }
@@ -3149,13 +3151,17 @@ var DiaryPage = (function () {
             workout.loading = true;
             var formattedDate = __WEBPACK_IMPORTED_MODULE_3_moment__(this.selectedDate).format('YYYY-MM-DD');
             this.diaryProvider.getWorkout(formattedDate).then(function (data) {
-                workout.workouts = data;
-                workout.loading = false;
-                workout.retreived = true;
+                _this.ngZone.run(function () {
+                    workout.workouts = data;
+                    workout.loading = false;
+                    workout.retreived = true;
+                });
             })
                 .catch(function () {
-                workout.loading = false;
-                workout.retreived = false;
+                _this.ngZone.run(function () {
+                    workout.loading = false;
+                    workout.retreived = true;
+                });
             });
         }
     };
@@ -3586,7 +3592,7 @@ var DiaryPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-diary',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/`<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle [hidden]="reorderActive">\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Diary</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only tools tappable>\n                <ion-icon name="more" ></ion-icon>\n            </button>\n        </ion-buttons>    \n        \n        <ion-buttons class="reorder-close" left [hidden]="!reorderActive">\n            <button ion-button icon-only (click)="reorderActive = false">\n                <ion-icon name="close" ></ion-icon>\n            </button>\n        </ion-buttons>         \n    \n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <span ion-datepicker [hidden]="true" (ionChanged)="copyWorkout($event)" [okText]="\'Copy To Date\'">Copy</span>\n    <div class="date-changer">\n        <ion-icon tappable ios="ios-arrow-back" md="ios-arrow-back" (click)="changeDay(-1)"></ion-icon>\n        <span tappable ion-datepicker [markDates]="markedWorkoutDates" (ionChanged)="changeDate($event)">{{getSelectedDate()}}</span>\n        <ion-icon tappable ios="ios-arrow-forward" md="ios-arrow-forward" (click)="changeDay(1)"></ion-icon>\n    </div>\n\n    <div class="rating-steps" *ngIf="rating.show">\n        <div class="rate-box" *ngIf="rating.step === 1">\n            Finding Intensity useful?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(3)">Not really</button>   \n                <button ion-button color="light" (click)="setRatingStep(2)">Yes!</button>             \n            </div> \n        </div>\n       \n        \n        <div class="rate-box" *ngIf="rating.step === 2">\n            How about a rating on the App Store, then?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(4)">No, thanks</button>   \n                <button ion-button color="light" (click)="rateAppStore()">Ok, sure</button>             \n            </div> \n        </div>   \n        \n        \n        <div class="rate-box" *ngIf="rating.step === 3">\n            Would you mind giving us some feedback?\n            <div class="rate-buttons">\n                <button ion-button color="light" outline (click)="setRatingStep(4)">No, thanks</button>   \n                <button ion-button color="light" (click)="rateFeedback()">Ok, sure</button>             \n            </div> \n        </div>          \n    </div>\n    \n    <ion-slides initialSlide="7" (ionSlideDidChange)="workoutChanged()">\n\n        <ion-slide style="background-color:#ececec;" *ngFor="let slide of workoutSlides; let i = index" >\n            \n            <div class="diary-loading" *ngIf="workouts[i].loading">\n                <ion-spinner></ion-spinner>\n            </div>\n                   \n            <div class="diary-empty" *ngIf="workouts[i].workouts.length < 1 && !workouts[i].loading" [ngClass]="{\'rating-shown\' : rating.show}">\n                <ion-icon name=\'bookmarks\'></ion-icon>\n                Diary Empty\n            </div>                   \n                   \n            <ion-list reorder="{{reorderActive}}" side="start" (ionItemReorder)="reorderItems($event)" class=\'diary-exercise-list\' *ngIf="!workouts[i].loading">\n              <ion-item *ngFor="let exercise of workouts[i].workouts; let i = index" (click)="selectExercise(exercise)" (press)="showOptions(exercise, i)">\n                  <h2>{{exercise.name}}</h2>\n                  <p *ngIf="exercise.sets.length < 11">\n                      <ion-icon tappable *ngFor="let set of exercise.sets" [ngClass]="{\'completed\' : !(!set.completed || set.completed === \'0\')}" name=\'checkmark-circle\' (click)="toggleSet($event,set, exercise)"></ion-icon>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable (click)="addSet($event,exercise)"></ion-icon>\n                  </p>\n                  <p *ngIf="exercise.sets.length > 10">\n                      <span class="set-overflow">{{exercise.sets.length}}</span>\n                      <ion-icon class="add-set" name=\'add-circle\' tappable  (click)="addSet($event,exercise)"></ion-icon>\n                  </p>                  \n                  \n                  <div class="bar-progress" [ngStyle]="{\'width\': (exercise.goals.progress / exercise.goals.goal) * 100 + \'%\'}" [ngClass]="{\'calibrating\' : exercise.calibrating}"></div>\n                  <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-end ></ion-icon>\n              </ion-item>\n \n                \n                \n            </ion-list>            \n            \n            \n        </ion-slide>\n\n    </ion-slides>\n    \n    <ion-fab bottom right>\n        <button ion-fab color="primary" (click)="openAddDiaryModal()">\n            <ion-icon name="add"></ion-icon>\n        </button>\n    </ion-fab>\n    \n</ion-content>\n`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\pages\diary\diary.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__["a" /* EmailComposer */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_diary_diary__["a" /* DiaryProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_5__providers_exercise_exercise__["a" /* ExerciseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_email_composer__["a" /* EmailComposer */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
     ], DiaryPage);
     return DiaryPage;
 }());
@@ -8917,7 +8923,6 @@ var OfflineProvider = (function () {
             //console.error(error)
         });
         this.network.onDisconnect().subscribe(function (data) {
-            console.log("here");
             _this.connectionStatus = false;
             _this.events.publish("app:offline");
             _this.startHeartbeat();
@@ -9054,10 +9059,9 @@ var OfflineProvider = (function () {
     };
     OfflineProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */]])
     ], OfflineProvider);
     return OfflineProvider;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=offline.js.map
@@ -11165,15 +11169,14 @@ var MyApp = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/`<ion-menu [content]="content" [ngClass]="{\'dark-theme\':theme === \'dark\'}">\n\n\n    <ion-content>\n\n        <div class="menu-header" menuClose (click)="openPage(profilePage)" [ngClass]="{\'is-premium\':account.premium}">\n            <div class="user-dp">\n                <img [src]="account.dp" onerror="this.style.display=\'none\'"/>\n            </div>\n            <div class="username">\n                {{account.username}}\n            </div>\n            <p>{{account.streak}} week streak, last workout {{account.last_workout_formatted}}</p>\n        </div>\n        \n        <div class="offline-mode" *ngIf="!connectionStatus">\n            <ion-spinner></ion-spinner>\n            Checking for internet connection...\n        </div>\n\n        <ion-list class=\'menu-list\'>\n            <button menuClose ion-item class=\'menu-premium\' (click)="openPage(premiumPage)" *ngIf="!account.premium">\n                <ion-icon name=\'star\' item-start></ion-icon>\n                Explore Premium\n            </button>            \n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-start></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{\'dark-theme\':theme === \'dark\'}"></ion-nav>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */]) === "function" && _o || Object, typeof (_p = typeof __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _p || Object, typeof (_q = typeof __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */]) === "function" && _q || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_18__providers_account_account__["a" /* AccountProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_20__providers_authentication_authentication__["a" /* AuthenticationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */], __WEBPACK_IMPORTED_MODULE_22__ionic_native_local_notifications__["a" /* LocalNotifications */], __WEBPACK_IMPORTED_MODULE_19__providers_offline_offline__["a" /* OfflineProvider */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
 }());
 
 //# sourceMappingURL=app.component.js.map
