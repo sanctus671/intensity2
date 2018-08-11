@@ -8949,10 +8949,8 @@ var OfflineProvider = (function () {
     OfflineProvider.prototype.doRequests = function () {
         var _this = this;
         if (this.properties.inProgress) {
-            alert("tried to do requests but already in progress");
             return;
         }
-        alert("doing requests");
         this.properties.inProgress = true;
         this.storage.get("session").then(function (session) {
             if (session) {
@@ -8994,11 +8992,12 @@ var OfflineProvider = (function () {
         this.properties.requestCount -= 1;
         if (this.properties.requestCount < 1) {
             this.storage.set("failedRequests", requests).then(function () {
-                alert("requests completed");
-                _this.properties.inProgress = false;
                 _this.events.publish("requests:completed");
+                setTimeout(function () {
+                    _this.properties.inProgress = false;
+                }, 20000);
             }).catch(function () {
-                alert("failed to store requests");
+                //this.updateRequestCount(requests);
             });
         }
     };
