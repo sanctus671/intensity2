@@ -33,7 +33,7 @@
         <preference name="StatusBarBackgroundColor" value="#9c2111" />
         <allow-intent href="market:*" />
         <preference name="loadUrlTimeoutValue" value="700000" />
-
+<resource-file src="locales/android/values/colors.xml" target="res/values" />
     </platform>
     <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="resources/android/splash/splash-port-ldpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="resources/android/splash/splash-port-mdpi.png" />
