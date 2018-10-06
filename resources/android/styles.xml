@@ -4,7 +4,7 @@
     <color name="whiteColor">#FFFFFF</color>
     <color name="grayColor">#EEEEEE</color>
     <color name="transaprentColor">#FFFFFFFF</color>
-    <style name="doneoTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+    <style name="intensityTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
         <!-- on startup the background and app-name is shown, we use the same color to see just background.. -->
         <item name="android:textColorPrimary">@color/primaryColorDark</item>
         
