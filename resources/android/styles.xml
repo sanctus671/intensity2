@@ -1,10 +1,11 @@
 <resources>
-    <color name="primaryColor">#0277BD</color>
-    <color name="primaryColorDark">#004C8C</color>
+    <color name="primaryColor">#D44735</color>
+    <color name="primaryColorDark">#9C2111</color>
+    <color name="whiteColor">#FFFFFF</color>
     <style name="doneoTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
         <!-- on startup the background and app-name is shown, we use the same color to see just background.. -->
         <item name="android:textColorPrimary">@color/primaryColorDark</item>
-        <item name="android:colorBackground">@color/primaryColorDark</item>
+        <item name="android:colorBackground">@color/whiteColor</item>
 
         <!-- native spinners etc are derived from this -->
         <item name="android:colorAccent">@color/primaryColor</item>
