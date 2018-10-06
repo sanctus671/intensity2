@@ -4,6 +4,11 @@
         <application android:theme="@android:style/Theme.Material.Light.NoActionBar" />		
     </gap:config-file>
     
+    
+    <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="merge">
+        
+    </edit-config>
+    
     <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="merge">
         <resources>
             <color name="colorPrimary">#d44735</color>
@@ -14,7 +19,7 @@
             <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         </style>  
 
-        <activity android:theme="@android:IntensityTheme"></activity>
+        <activity android:theme="@style/IntensityTheme"></activity>
     </edit-config>    
     
 
