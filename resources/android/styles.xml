@@ -6,7 +6,8 @@
         <!-- on startup the background and app-name is shown, we use the same color to see just background.. -->
         <item name="android:textColorPrimary">@color/primaryColorDark</item>
         <item name="android:colorBackground">@color/whiteColor</item>
-
+        <item name="android:windowBackground">@color/whiteColor</item>
+        
         <!-- native spinners etc are derived from this -->
         <item name="android:colorAccent">@color/primaryColor</item>
 
@@ -25,6 +26,13 @@
     <style name="MyPickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
         <item name="android:colorAccent">@color/primaryColor</item>
     </style>
+    
+    
+    <style name="SplashScreenStyle">
+        <item name="android:statusBarColor">@color/primaryColorDark</item>
+        <item name="android:navigationBarColor">@color/whiteColor</item>    
+    </style>
+    
 
     <!-- see https://stackoverflow.com/a/29014475 -->
 </resources>
