@@ -10,7 +10,7 @@
         
         <!-- native spinners etc are derived from this -->
         <item name="android:colorAccent">@color/primaryColor</item>
-
+        
         
         <item name="android:statusBarColor">@color/primaryColorDark</item>
 
@@ -24,7 +24,7 @@
     </style>
     
     
-    <style name="SplashScreenStyle">
+    <style name="SplashScreenStyle" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
         <item name="android:statusBarColor">@color/primaryColorDark</item>    
     </style>
     
