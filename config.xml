@@ -3,7 +3,7 @@
 
     
     <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="merge">
-        <activity android:theme="@style/IntensityTheme"></activity>
+        <activity android:theme="@style/doneoTheme"></activity>
     </edit-config>    
     
 
@@ -43,8 +43,7 @@
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" /> 
         
-
-        <resource-file src="resources/android/styles.xml" target="res/values/styles.xml" />  
+        <resource-file src="resources/android/styles.xml" target="app/src/main/res/values/styles.xml" />
 
         <resource-file src="resources/android/icon/mdpi_small_icon.png" target="res/drawable-mdpi-v4/small_icon.png" />
         <resource-file src="resources/android/icon/hdpi_small_icon.png" target="res/drawable-hdpi-v4/small_icon.png" />
