@@ -6,11 +6,13 @@
         <resources>
             <color name="colorPrimary">#d44735</color>
             <color name="colorPrimaryDark">#962f22</color>
-        </resources>        
-        <style name="IntensityTheme" parent="Theme.Material.Light.NoActionBar">
-            <item name="colorPrimary">@color/colorPrimary</item>
-            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        </style>  
+               
+            <style name="IntensityTheme" parent="Theme.Material.Light.NoActionBar">
+                <item name="colorPrimary">@color/colorPrimary</item>
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+            </style>  
+        
+        </resources> 
 
         <activity android:theme="@style/IntensityTheme"></activity>
     </edit-config>    
