@@ -4,11 +4,10 @@
     <color name="whiteColor">#FFFFFF</color>
     <color name="grayColor">#F5F5F5</color>
     <color name="transaprentColor">#FFFFFFFF</color>
-    <style name="doneoTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+    <style name="doneoTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
         <!-- on startup the background and app-name is shown, we use the same color to see just background.. -->
         <item name="android:textColorPrimary">@color/primaryColorDark</item>
-        <item name="android:colorBackground">@color/grayColor</item>
-        <item name="android:windowBackground">@color/primaryColorDark</item>
+        <item name="android:colorBackground">@color/whiteColor</item>
         
         <!-- native spinners etc are derived from this -->
         <item name="android:colorAccent">@color/primaryColor</item>
@@ -16,9 +15,9 @@
         <!-- AppSwitcher and Statusbar backgrounds-->
         <item name="android:colorPrimary">@color/primaryColorDark</item>
         <item name="android:colorPrimaryDark">@color/primaryColorDark</item>
-
-        <!-- the bottom nav-bar -->
+        
         <item name="android:navigationBarColor">@color/grayColor</item>
+        <item name="android:statusBarColor">@color/grayColor</item>
 
         <!-- date- and timepickers need their own themes -->
         <item name="android:datePickerDialogTheme">@style/MyPickerDialogTheme</item>
