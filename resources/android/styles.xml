@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+        <color name="colorPrimary">#d44735</color>
 			
 	<style name="IntensityTheme" parent="@android:Theme.Material.Light.NoActionBar">
-            <item name="colorPrimary">@color/colorPrimary</item>
-            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+            <item name="colorPrimary">@style/colorPrimary</item>
         </style>  
 </resources>
