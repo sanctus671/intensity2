@@ -25,6 +25,8 @@
     
     
     <style name="SplashScreenStyle" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:primaryColor">@color/primaryColorDark</item>
+        <item name="android:primaryColorDark">@color/primaryColorDark</item>
         <item name="android:statusBarColor">@color/primaryColorDark</item>    
     </style>
     
