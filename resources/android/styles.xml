@@ -3,7 +3,7 @@
     <color name="primaryColorDark">#9C2111</color>
     <color name="whiteColor">#FFFFFF</color>
     <color name="grayColor">#EEEEEE</color>
-    <color name="transaprentColor">#FFFFFFFF</color>
+    <color name="transaprentColor">#00000000</color>
     <style name="intensityTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
         <!-- on startup the background and app-name is shown, we use the same color to see just background.. -->
         <item name="android:textColorPrimary">@color/primaryColorDark</item>
@@ -25,8 +25,12 @@
     
     
     <style name="SplashScreenStyle">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transaprentColor</item>
         <item name="android:colorBackground">@color/transaprentColor</item>
-        
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>        
         <item name="android:statusBarColor">@color/primaryColorDark</item>    
     </style>
     
