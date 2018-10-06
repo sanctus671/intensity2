@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <color name="colorPrimary">#d44735</color>
+            <color name="colorPrimary">#d44735</color>
+            <color name="colorPrimaryDark">#962f22</color>
 			
-	<style name="IntensityTheme" parent="@android:Theme.AppCompat.Light.NoActionBar">
-            <item name="colorPrimary">@style/colorPrimary</item>
+	<style name="IntensityTheme" parent="Theme.Material.Light.NoActionBar">
+            <item name="colorPrimary">@color/colorPrimary</item>
+            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         </style>  
 </resources>
