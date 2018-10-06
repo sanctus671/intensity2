@@ -2,7 +2,7 @@
 <widget id="com.taylorhamling.intensity" version="2.1.4" versionCode="20014" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
 
     
-    <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/add_new_theme']" mode="add">
+    <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="add">
         <resources>
             <color name="colorPrimary">#d44735</color>
             <color name="colorPrimaryDark">#962f22</color>
