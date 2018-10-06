@@ -45,18 +45,18 @@
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />        
     </platform>
-    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="resources/android/splash/splash-port-ldpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="resources/android/splash/splash-port-mdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="resources/android/splash/splash-port-hdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="resources/android/splash/splash-port-xhdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-xxhdpi" src="resources/android/splash/splash-port-xxhdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-xxxhdpi" src="resources/android/splash/splash-port-xxxhdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="land-ldpi" src="resources/android/splash/splash-land-ldpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="land-mdpi" src="resources/android/splash/splash-land-mdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="land-hdpi" src="resources/android/splash/splash-land-hdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="land-xhdpi" src="resources/android/splash/splash-land-xhdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="land-xxhdpi" src="resources/android/splash/splash-land-xxhdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="land-xxxhdpi" src="resources/android/splash/splash-land-xxxhdpi.png" />
+    <splash platform="android" qualifier="port-ldpi" src="resources/android/splash/splash-port-ldpi.png" />
+    <splash platform="android" qualifier="port-mdpi" src="resources/android/splash/splash-port-mdpi.png" />
+    <splash platform="android" qualifier="port-hdpi" src="resources/android/splash/splash-port-hdpi.png" />
+    <splash platform="android" qualifier="port-xhdpi" src="resources/android/splash/splash-port-xhdpi.png" />
+    <splash platform="android" qualifier="port-xxhdpi" src="resources/android/splash/splash-port-xxhdpi.png" />
+    <splash platform="android" qualifier="port-xxxhdpi" src="resources/android/splash/splash-port-xxxhdpi.png" />
+    <splash platform="android" qualifier="land-ldpi" src="resources/android/splash/splash-land-ldpi.png" />
+    <splash platform="android" qualifier="land-mdpi" src="resources/android/splash/splash-land-mdpi.png" />
+    <splash platform="android" qualifier="land-hdpi" src="resources/android/splash/splash-land-hdpi.png" />
+    <splash platform="android" qualifier="land-xhdpi" src="resources/android/splash/splash-land-xhdpi.png" />
+    <splash platform="android" qualifier="land-xxhdpi" src="resources/android/splash/splash-land-xxhdpi.png" />
+    <splash platform="android" qualifier="land-xxxhdpi" src="resources/android/splash/splash-land-xxxhdpi.png" />
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
