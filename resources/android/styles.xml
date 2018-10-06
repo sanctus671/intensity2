@@ -2,7 +2,7 @@
 <resources>
         <color name="colorPrimary">#d44735</color>
 			
-	<style name="IntensityTheme" parent="@android:style/Theme.AppCompat.Light.NoActionBar">
+	<style name="IntensityTheme" parent="@android:Theme.AppCompat.Light.NoActionBar">
             <item name="colorPrimary">@style/colorPrimary</item>
         </style>  
 </resources>
