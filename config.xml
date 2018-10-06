@@ -2,19 +2,8 @@
 <widget id="com.taylorhamling.intensity" version="2.1.4" versionCode="20014" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
 
     
-    <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="add">
-        <resources>
-            <color name="colorPrimary">#d44735</color>
-            <color name="colorPrimaryDark">#962f22</color>
-        </resources>        
-        <style name="IntensityTheme" parent="Theme.Material.Light.NoActionBar">
-            <item name="colorPrimary">@color/colorPrimary</item>
-            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        </style>          
-    </edit-config>
-    
     <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="merge">
-        <activity android:theme="@android:style/IntensityTheme"></activity>
+        <activity android:theme="@style/IntensityTheme"></activity>
     </edit-config>    
     
 
@@ -54,6 +43,7 @@
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" /> 
         
+        <resource-file src="resources/android/styles.xml" target="res/values/styles.xml" />  
         <resource-file src="resources/android/icon/mdpi_small_icon.png" target="res/drawable-mdpi-v4/small_icon.png" />
         <resource-file src="resources/android/icon/hdpi_small_icon.png" target="res/drawable-hdpi-v4/small_icon.png" />
         <resource-file src="resources/android/icon/xhdpi_small_icon.png" target="res/drawable-xhdpi-v4/small_icon.png" />
