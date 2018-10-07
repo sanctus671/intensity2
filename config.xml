@@ -38,7 +38,7 @@
         <allow-intent href="market:*" />
         <preference name="loadUrlTimeoutValue" value="700000" />
         
-        <resource-file src="resources/android/icon/drawable/ic_launcher_background.xml" target="res/drawable/ic_launcher_background.xml" />
+        <resource-file src="resources/android/icon/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml" />
         <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher.xml" target="res/mipmap-anydpi-v26/ic_launcher.xml" />
         <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_round.xml" target="res/mipmap-anydpi-v26/ic_launcher_round.xml" /> 
         <resource-file src="resources/android/icon/mipmap-ldpi/ic_launcher.png" target="res/mipmap-ldpi-v4/ic_launcher.png" />
