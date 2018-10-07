@@ -37,16 +37,8 @@
 
         <allow-intent href="market:*" />
         <preference name="loadUrlTimeoutValue" value="700000" />
-        <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" /> 
         
         <resource-file src="resources/android/icon/drawable/ic_launcher_background.xml" target="res/drawable/ic_launcher_background.xml" />
-        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_background.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />
-        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_background.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />
         <resource-file src="resources/android/icon/mipmap-ldpi/ic_launcher.png" target="res/mipmap-ldpi-v4/ic_launcher.png" />
         <resource-file src="resources/android/icon/mipmap-hdpi/ic_launcher.png" target="res/mipmap-hdpi-v4/ic_launcher.png" />
         <resource-file src="resources/android/icon/mipmap-hdpi/ic_launcher_round.png" target="res/mipmap-hdpi-v4/ic_launcher_round.png" />
@@ -62,7 +54,9 @@
         <resource-file src="resources/android/icon/mipmap-xxhdpi/ic_launcher_foreground.png" target="res/mipmap-xxhdpi-v4/ic_launcher_foreground.png" />
         <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher.png" target="res/mipmap-xxxhdpi-v4/ic_launcher.png" />
         <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher_round.png" target="res/mipmap-xxxhdpi-v4/ic_launcher_round.png" /> 
-        <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher_foreground.png" target="res/mipmap-xxxhdpi-v4/ic_launcher_foreground.png" />       
+        <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher_foreground.png" target="res/mipmap-xxxhdpi-v4/ic_launcher_foreground.png" /> 
+        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_background.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />
+        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_background.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />      
         
         
         
