@@ -55,8 +55,8 @@
         <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher.png" target="res/mipmap-xxxhdpi-v4/ic_launcher.png" />
         <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher_round.png" target="res/mipmap-xxxhdpi-v4/ic_launcher_round.png" /> 
         <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher_foreground.png" target="res/mipmap-xxxhdpi-v4/ic_launcher_foreground.png" /> 
-        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_background.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />
-        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_background.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />      
+        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />
+        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_round.xml" target="res/mipmap-anydpi-v26/ic_launcher_background.xml" />      
         
         
         
