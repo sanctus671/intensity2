@@ -32,9 +32,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 */
 var DiaryProvider = (function () {
     function DiaryProvider(http, storage, events) {
+        var _this = this;
         this.http = http;
         this.storage = storage;
         this.events = events;
+        this.offlineRequestId = 1;
+        this.storage.get("requests").then(function (data) {
+            if (data && data.length > 0) {
+                _this.offlineRequestId = data[data.length - 1].requestId + 1;
+            }
+        });
     }
     DiaryProvider.prototype.sendPush = function () {
         var _this = this;
@@ -305,6 +312,10 @@ var DiaryProvider = (function () {
                     _this.storage.get("failedRequests").then(function (data) {
                         var requests = data ? data : [];
                         var requestId = requests.length > 0 ? requests[requests.length - 1].requestId + 1 : 1;
+                        if (requestId < _this.offlineRequestId) {
+                            requestId = _this.offlineRequestId;
+                        }
+                        _this.offlineRequestId += 1;
                         requestData["requestId"] = requestId;
                         requests.push(requestData);
                         _this.storage.set("failedRequests", requests);
@@ -440,6 +451,10 @@ var DiaryProvider = (function () {
                         }
                         else {
                             var requestId = requests.length > 0 ? requests[requests.length - 1].requestId + 1 : 1;
+                            if (requestId < _this.offlineRequestId) {
+                                requestId = _this.offlineRequestId;
+                            }
+                            _this.offlineRequestId += 1;
                             console.log(requestId);
                             requestData["requestId"] = requestId;
                             requests.push(requestData);
@@ -455,10 +470,10 @@ var DiaryProvider = (function () {
                                         var existingSet = workoutExercise["sets"][index2];
                                         console.log(existingSet);
                                         console.log(set);
-                                        if (existingSet.id === set.id || existingSet.requestId === set.requestId) {
+                                        if ((existingSet.id === set.id && existingSet.id !== 0) || existingSet.requestId === set.requestId) {
                                             Object.assign(workoutExercise["sets"][index2], set); //not sure if this works
                                         }
-                                        else if (set.massedit) {
+                                        else if (set.massedit || set.updateAll) {
                                             workoutExercise["sets"][index2].reps = set.reps; //not sure if this works
                                             workoutExercise["sets"][index2].weight = set.weight; //not sure if this works
                                         }
@@ -554,6 +569,10 @@ var DiaryProvider = (function () {
                         }
                         else {
                             var requestId = requests.length > 0 ? requests[requests.length - 1].requestId + 1 : 1;
+                            if (requestId < _this.offlineRequestId) {
+                                requestId = _this.offlineRequestId;
+                            }
+                            _this.offlineRequestId += 1;
                             requestData["requestId"] = requestId;
                             requests.push(requestData);
                         }
@@ -566,7 +585,7 @@ var DiaryProvider = (function () {
                                 if (workoutExercise.exerciseid === exerciseId) {
                                     for (var index in workoutExercise["sets"]) {
                                         var existingSet = workoutExercise["sets"][index];
-                                        if (existingSet.id === set.id || existingSet.requestId === set.requestId) {
+                                        if ((existingSet.id === set.id && existingSet.id !== 0) || existingSet.requestId === set.requestId) {
                                             workoutExercise["sets"].splice(index, 1); //not sure if this works
                                         }
                                     }
@@ -608,6 +627,10 @@ var DiaryProvider = (function () {
                     _this.storage.get("failedRequests").then(function (data) {
                         var requests = data ? data : [];
                         var requestId = requests.length > 0 ? requests[requests.length - 1].requestId + 1 : 1;
+                        if (requestId < _this.offlineRequestId) {
+                            requestId = _this.offlineRequestId;
+                        }
+                        _this.offlineRequestId += 1;
                         requestData["requestId"] = requestId;
                         requests.push(requestData);
                         _this.storage.set("failedRequests", requests);
