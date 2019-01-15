@@ -442,7 +442,7 @@ var DiaryProvider = (function () {
                                 //replace the existing set if it was created offline
                                 var request = requests[index];
                                 if (request.requestId === set.requestId) {
-                                    var newRequest = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addresults", exerciseid: exerciseId };
+                                    var newRequest = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addresults", exerciseid: exerciseId, assigneddate: date };
                                     Object.assign(newRequest, set);
                                     requests[index] = newRequest; //not sure if this works       
                                     console.log(requests);
