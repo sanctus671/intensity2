@@ -10027,7 +10027,7 @@ var OfflineProvider = (function () {
         this.network.onConnect().subscribe(function (data) {
             _this.connectionStatus = true;
             _this.events.publish("app:online");
-            setTimeout(function () { _this.doRequests(); }, 2000);
+            setTimeout(function () { _this.doRequests(); }, 10000);
         }, function (error) {
             //console.error(error)
         });
@@ -10082,16 +10082,20 @@ var OfflineProvider = (function () {
             return;
         }
         this.properties.inProgress = true;
+        console.log("doing requests");
         this.storage.get("session").then(function (session) {
             if (session) {
                 _this.storage.get("failedRequests").then(function (requests) {
                     if (requests && requests.length > 0) {
                         _this.properties.requestCount = requests.length;
                         requests = requests.reverse();
+                        console.log(requests);
                         var _loop_1 = function () {
                             var request = requests[i];
+                            console.log(request);
                             _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, request).subscribe(function (res) {
                                 if (res["success"] === true) {
+                                    console.log("request success " + request.requestId);
                                     //remove requestid from item and add proper id
                                     var id = res["data"]["id"];
                                     var requestCopy = Object.assign({}, request);
@@ -10101,6 +10105,7 @@ var OfflineProvider = (function () {
                                 requests.splice(i, 1);
                                 _this.updateRequestCount(requests);
                             }, function () {
+                                console.log("request failed " + request.requestId);
                                 _this.updateRequestCount(requests);
                             });
                         };
@@ -10122,11 +10127,14 @@ var OfflineProvider = (function () {
         var _this = this;
         this.properties.requestCount -= 1;
         if (this.properties.requestCount < 1) {
+            console.log("requests complete");
             this.storage.set("failedRequests", requests).then(function () {
                 _this.events.publish("requests:completed");
                 setTimeout(function () {
                     _this.properties.inProgress = false;
                     if (requests.length > 0) {
+                        console.log("still requests left");
+                        console.log(requests);
                         _this.doRequests();
                     }
                 }, 20000);
