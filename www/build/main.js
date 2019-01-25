@@ -3458,19 +3458,26 @@ var TimerService = (function () {
         Object.assign(this.stopwatchProperties, options);
     };
     TimerService.prototype.sendNotificationBarTimer = function (time) {
+        console.log("here");
         if (this.stopwatchProperties.started && this.countdownTimerProperties.started) {
             return;
         }
+        var formattedTime = "";
+        console.log("here2");
         if (time > 59999) {
-            var total_1 = time / 60000;
-            var m = Math.floor(total_1);
-            var s_1 = Math.floor(((total_1 - m) * 60));
-            return m + ":" + ((s_1 < 10 ? '0' : '') + s_1);
+            var total = time / 60000;
+            var m = Math.floor(total);
+            var s = Math.floor(((total - m) * 60));
+            formattedTime = m + ":" + ((s < 10 ? '0' : '') + s);
         }
-        var total = time / 1000;
-        var s = Math.floor(total);
-        var ms = Math.floor(((total - s) * 100));
-        var formattedTime = ((s < 10 ? '0' : '') + s) + ":" + ((ms < 10 ? '0' : '') + ms);
+        else {
+            var total = time / 1000;
+            var s = Math.floor(total);
+            var ms = Math.floor(((total - s) * 100));
+            formattedTime = ((s < 10 ? '0' : '') + s) + ":" + ((ms < 10 ? '0' : '') + ms);
+        }
+        console.log("scheduling");
+        console.log(formattedTime);
         this.localNotifications.schedule({
             id: 1,
             title: formattedTime,
@@ -3479,8 +3486,7 @@ var TimerService = (function () {
             sticky: true,
             channel: 'timer',
             vibrate: false,
-            sound: null,
-            silent: true
+            sound: null
         });
     };
     TimerService.prototype.startStopwatch = function () {
@@ -10683,8 +10689,8 @@ var TimerModal = (function () {
         this.timerService = timerService;
         this.alertCtrl = alertCtrl;
         this.properties = { activeTab: "stopwatch", stopwatchStarted: false, timerStarted: false, intervalStarted: false, stopwatchInitialStart: true, timerInitialStart: true, intervalInitialStart: true };
-        this.stopwatchOptions = { time: 60000, timeRaw: "1970-01-01T00:01:00.000Z", playSound: false, restart: false };
-        this.timerOptions = { time: 60000, timeRaw: "1970-01-01T00:01:00.000Z", playSound: false, repeat: false, restart: false, force: false };
+        this.stopwatchOptions = { time: 60000, timeRaw: "1970-01-01T00:01:00.000Z", playSound: false, restart: false, showNotifications: false };
+        this.timerOptions = { time: 60000, timeRaw: "1970-01-01T00:01:00.000Z", playSound: false, repeat: false, restart: false, force: false, showNotifications: false };
         this.intervalOptions = { rest: 30000, work: 90000, sets: 3, restRaw: "1970-01-01T00:00:30Z", workRaw: "1970-01-01T00:01:30Z", playSound: false, force: false };
     }
     TimerModal.prototype.ionViewDidEnter = function () {
@@ -10765,7 +10771,7 @@ var TimerModal = (function () {
     TimerModal.prototype.updateBackgroundNotifications = function () {
         var _this = this;
         if (this.timerOptions.force) {
-            var alert_1 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Warning',
                 subTitle: 'Are you sure you want to enable this?',
                 message: 'Background notifications are experimental. Notifications are not guarenteed to work correctly on all devices. Use at your own risk.',
@@ -10784,7 +10790,7 @@ var TimerModal = (function () {
                     },
                 ]
             });
-            alert_1.present();
+            alert.present();
         }
         this.updateTimerProperties();
     };
@@ -10853,7 +10859,7 @@ var TimerModal = (function () {
     TimerModal.prototype.updateBackgroundNotificationsInterval = function () {
         var _this = this;
         if (this.intervalOptions.force) {
-            var alert_2 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Warning',
                 subTitle: 'Are you sure you want to enable this?',
                 message: 'Background notifications are experimental. Notifications are not guarenteed to work correctly on all devices. Use at your own risk.',
@@ -10872,7 +10878,7 @@ var TimerModal = (function () {
                     },
                 ]
             });
-            alert_2.present();
+            alert.present();
         }
         this.updateIntervalTimerProperties();
     };
@@ -10902,9 +10908,10 @@ var TimerModal = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'timer',template:/*ion-inline-start:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/`<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Timer\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text showWhen="ios">Cancel</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n    \n    \n    <ion-segment [(ngModel)]="properties.activeTab">\n        <ion-segment-button value="stopwatch">\n            Stopwatch\n        </ion-segment-button>\n        <ion-segment-button value="timer">\n            Countdown\n        </ion-segment-button>\n        <ion-segment-button value="interval">\n            Interval\n        </ion-segment-button>        \n    </ion-segment>    \n    \n    <div *ngIf="properties.activeTab === \'stopwatch\'" >\n        <div tappable class="stopwatch timer" (click)="toggleStopwatch()" [ngClass]="{\'timer-stopped\':!properties.stopwatchStarted && !properties.stopwatchInitialStart && stopwatchNotZero()}">\n            <div class="time">{{getStopwatchTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  *ngIf="!properties.stopwatchStarted"></ion-icon>\n                <ion-icon name="pause" *ngIf="properties.stopwatchStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetStopwatch()">Reset </button>\n        </div>\n        \n        <ion-list class="timer-options" (click)="showMoreStopwatch = !showMoreStopwatch">\n            <ion-list-header>\n                Stopwatch Options\n                <ion-icon [name]="showMoreStopwatch ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n            </ion-list-header>  \n            <ion-item-group *ngIf="showMoreStopwatch">    \n                <ion-item>\n                    <ion-label>Restart After Set Completed/Added</ion-label>\n                    <ion-checkbox [(ngModel)]="stopwatchOptions.restart" (ionChange)="updateStopwatchProperties()"></ion-checkbox> \n                </ion-item>        \n                <ion-item>\n                    <ion-label>Play Sound At Time</ion-label>\n                    <ion-checkbox [(ngModel)]="stopwatchOptions.playSound" (ionChange)="updateStopwatchProperties()"></ion-checkbox> \n                </ion-item>   \n                <ion-item *ngIf="stopwatchOptions.playSound">\n                    <ion-label>Time</ion-label>\n                    <ion-datetime displayFormat="mm:ss" [(ngModel)]="stopwatchOptions.timeRaw" (ionChange)="updateStopwatchProperties()"></ion-datetime>\n                </ion-item>  \n                <ion-item>\n                    <ion-label>Show In Notification Bar</ion-label>\n                    <ion-checkbox [(ngModel)]="stopwatchOptions.showNotifications" (ionChange)="updateStopwatchProperties()"></ion-checkbox> \n                </ion-item>                   \n            </ion-item-group>        \n        </ion-list>             \n            \n    </div>\n    \n    \n    <div *ngIf="properties.activeTab === \'timer\'">\n\n        <div tappable class="stopwatch timer" (click)="toggleTimer()" [ngClass]="{\'timer-stopped\':!properties.timerStarted && !properties.timerInitialStart && getRawTimerTime() > 0}">\n            <div class="time">{{getTimerTime()}}</div>\n            <a class="timer-actions">\n                <ion-icon name="play"  [hidden]="properties.timerStarted"></ion-icon>\n                <ion-icon name="pause" [hidden]="!properties.timerStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetTimer()">Reset </button>\n            \n\n        </div>        \n        \n        <ion-list class="timer-options" (click)="showMore = !showMore">\n            <ion-list-header>\n                Timer Options\n                <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n            </ion-list-header>\n            <ion-item-group *ngIf="showMore">\n                <ion-item>\n                    <ion-label>Countdown From</ion-label>\n                    <ion-datetime displayFormat="mm:ss" [(ngModel)]="timerOptions.timeRaw" (ionChange)="updateTimerProperties()"></ion-datetime>\n                </ion-item>            \n                <ion-item>\n                    <ion-label>Play Sound At 0</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.playSound" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>            \n                <ion-item>\n                    <ion-label>Repeat</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.repeat" (ionChange)="updateTimerProperties()"></ion-checkbox>   \n                </ion-item>\n                <ion-item>\n                    <ion-label>Restart After Set Completed/Added</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.restart" (ionChange)="updateTimerProperties()"></ion-checkbox> \n                </ion-item>  \n                <ion-item>\n                    <ion-label>Show In Notification Bar</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.showNotifications" (ionChange)="updateTimerProperties()"></ion-checkbox> \n                </ion-item>                           \n                <ion-item>\n                    <ion-label>Force Background Notifications (Experimental)</ion-label>\n                    <ion-checkbox [(ngModel)]="timerOptions.force" (ionChange)="updateBackgroundNotifications()"></ion-checkbox>   \n                </ion-item>                 \n            </ion-item-group>        \n        </ion-list>   \n    </div>\n    \n    \n    \n    <div *ngIf="properties.activeTab === \'interval\'">\n\n        <div tappable class="stopwatch timer interval" (click)="toggleIntervalTimer()" [ngClass]="{\'timer-stopped\':!properties.intervalStarted && !properties.intervalInitialStart && (getRawIntervalWorkTime() > 0 || getRawIntervalRestTime() > 0)}">\n\n            <div class="time">\n                <div class="interval-sets">Set {{getIntervalSets()}}/{{intervalOptions.sets}}</div>\n                <div class="interval-header work-header">Work</div>\n                <div class="work-time" [ngClass]="{\'active\':properties.intervalStarted && getIntervalPhase() === \'work\'}">{{getIntervalWorkTime()}}</div>\n                <div class="interval-header rest-header">Rest</div> \n                <div class="rest-time" [ngClass]="{\'active\':properties.intervalStarted && getIntervalPhase() === \'rest\'}">{{getIntervalRestTime()}}</div>\n            </div>\n            <a class="timer-actions">\n                <ion-icon name="play"  [hidden]="properties.intervalStarted"></ion-icon>\n                <ion-icon name="pause" [hidden]="!properties.intervalStarted"></ion-icon>\n            </a>\n        </div>\n        \n        <div class="timer-extra-actions">\n            <button color="primary" ion-button (click)="resetIntervalTimer()">Reset </button>\n            \n\n        </div>        \n        \n        <ion-list class="timer-options" (click)="showMore = !showMore">\n            <ion-list-header>\n                Interval Options\n                <ion-icon [name]="showMore ? \'md-arrow-dropup\' :\'md-arrow-dropdown\'" item-end></ion-icon>\n            </ion-list-header>\n            <ion-item-group *ngIf="showMore">\n                <ion-item>\n                    <ion-label>Work Countdown</ion-label>\n                    <ion-datetime displayFormat="mm:ss" [(ngModel)]="intervalOptions.workRaw" (ionChange)="updateIntervalTimerProperties()"></ion-datetime>\n                </ion-item>      \n                <ion-item>\n                    <ion-label>Rest Countdown</ion-label>\n                    <ion-datetime displayFormat="mm:ss" [(ngModel)]="intervalOptions.restRaw" (ionChange)="updateIntervalTimerProperties()"></ion-datetime>\n                </ion-item>                    \n                 <ion-item>\n                    <ion-label>Sets</ion-label>\n                    <ion-input name="sets" type="number" [(ngModel)]="intervalOptions.sets" (ionChange)="updateIntervalTimerProperties()"></ion-input>\n                </ion-item>                 \n                <ion-item>\n                    <ion-label>Play Sound At 0</ion-label>\n                    <ion-checkbox [(ngModel)]="intervalOptions.playSound" (ionChange)="updateIntervalTimerProperties()"></ion-checkbox>   \n                </ion-item>   \n                <ion-item>\n                    <ion-label>Force Background Notifications (Experimental)</ion-label>\n                    <ion-checkbox [(ngModel)]="intervalOptions.force" (ionChange)="updateBackgroundNotificationsInterval()"></ion-checkbox>   \n                </ion-item>                 \n            </ion-item-group>        \n        </ion-list>   \n    </div>    \n    \n    \n    \n    \n    \n    \n    \n</ion-content>`/*ion-inline-end:"D:\Taylor\Documents\Websites\intensity2\src\components\tools\timer.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_timer_timer__["a" /* TimerService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
     ], TimerModal);
     return TimerModal;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=timer.js.map
