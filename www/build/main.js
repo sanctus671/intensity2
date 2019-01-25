@@ -3477,10 +3477,10 @@ var TimerService = (function () {
             text: formattedTime,
             smallIcon: 'res://small_icon',
             sticky: true,
-            silent: true,
             vibrate: false,
             sound: null,
-            foreground: false
+            foreground: false,
+            priority: -1
         });
     };
     TimerService.prototype.formatTime = function (time) {
