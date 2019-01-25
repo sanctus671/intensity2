@@ -3299,18 +3299,17 @@ var TimerService = (function () {
         platform.ready().then(function () {
             _this.platform.pause.subscribe(function () {
                 if (_this.stopwatchProperties.started || _this.countdownTimerProperties.started || _this.intervalTimerProperties.started) {
-                    if ((_this.stopwatchProperties.showNotifications && _this.stopwatchProperties.started) || (_this.countdownTimerProperties.showNotifications && _this.countdownTimerProperties.started)) {
-                        //scheduling the timer notifications so skip setting the timer is running notification
-                    }
-                    else {
-                        _this.localNotifications.schedule({
-                            id: 1,
-                            title: 'Timer is running',
-                            text: 'Continue your session!',
-                            smallIcon: 'res://small_icon',
-                            sticky: true
-                        });
-                    }
+                    _this.localNotifications.schedule({
+                        id: 1,
+                        title: 'Timer is running',
+                        text: 'Continue your session!',
+                        smallIcon: 'res://small_icon',
+                        sticky: true,
+                        vibrate: false,
+                        sound: null,
+                        foreground: false,
+                        priority: -1
+                    });
                     _this.pauseTimestamp = Math.floor(Date.now());
                     if (_this.stopwatchProperties.started && _this.stopwatchProperties.playSound && _this.stopwatch < _this.stopwatchProperties.time) {
                         _this.localNotifications.schedule({
@@ -3365,7 +3364,26 @@ var TimerService = (function () {
                 }
             });
             _this.platform.resume.subscribe(function () {
-                _this.localNotifications.clearAll();
+                if ((_this.stopwatchProperties.started || _this.countdownTimerProperties.started) && (_this.stopwatchProperties.showNotifications || _this.countdownTimerProperties.showNotifications) && !(_this.stopwatchProperties.started && _this.countdownTimerProperties.started)) {
+                    //cancel all except id 1 as this is the notification that we are constantly changing
+                    console.log("notification bar");
+                    _this.localNotifications.getTriggeredIds().then(function (ids) {
+                        console.log(ids);
+                        var idIndex = ids.indexOf(1);
+                        if (idIndex) {
+                            ids.splice(idIndex, 1);
+                        }
+                        _this.localNotifications.cancel(ids).then(function () {
+                        }).catch(function () {
+                            _this.localNotifications.clearAll();
+                        });
+                    }).catch(function () {
+                        _this.localNotifications.clearAll();
+                    });
+                }
+                else {
+                    _this.localNotifications.clearAll();
+                }
                 if (_this.stopwatchProperties.started) {
                     _this.stopwatch += (Math.floor(Date.now()) - _this.pauseTimestamp);
                 }
@@ -3462,39 +3480,36 @@ var TimerService = (function () {
         if (this.stopwatchProperties.started && this.countdownTimerProperties.started) {
             return;
         }
-        var formattedTime = "";
-        console.log("here2");
-        if (time > 59999) {
-            var total = time / 60000;
-            var m = Math.floor(total);
-            var s = Math.floor(((total - m) * 60));
-            formattedTime = m + ":" + ((s < 10 ? '0' : '') + s);
-        }
-        else {
-            var total = time / 1000;
-            var s = Math.floor(total);
-            var ms = Math.floor(((total - s) * 100));
-            formattedTime = ((s < 10 ? '0' : '') + s) + ":" + ((ms < 10 ? '0' : '') + ms);
-        }
+        var formattedTime = this.formatTime(time);
         console.log("scheduling");
         console.log(formattedTime);
         this.localNotifications.schedule({
             id: 1,
-            title: formattedTime,
-            text: 'Continue your session!',
+            title: (this.stopwatchProperties.started ? 'Stopwatch' : 'Timer'),
+            text: formattedTime,
             smallIcon: 'res://small_icon',
             sticky: true,
-            channel: 'timer',
             vibrate: false,
-            sound: null
+            sound: null,
+            foreground: false,
+            priority: -1
         });
+    };
+    TimerService.prototype.formatTime = function (time) {
+        var total = time / 60000;
+        var m = Math.floor(total);
+        var s = Math.floor(((total - m) * 60));
+        return m + ":" + ((s < 10 ? '0' : '') + s);
+    };
+    TimerService.prototype.cancelNotificationBarTimer = function () {
+        this.localNotifications.clear(1);
     };
     TimerService.prototype.startStopwatch = function () {
         var _this = this;
         this.stopwatchProperties.started = true;
         this.stopwatchSubscription = this.timer.subscribe(function (t) {
             _this.stopwatch += 10;
-            if (_this.stopwatchProperties.showNotifications && _this.stopwatch % 1000 === 0) {
+            if (_this.stopwatchProperties.showNotifications && _this.stopwatch % 1000 < 10) {
                 _this.sendNotificationBarTimer(_this.stopwatch);
             }
             if (_this.stopwatchProperties.playSound && _this.stopwatchProperties.time === _this.stopwatch) {
@@ -3512,6 +3527,9 @@ var TimerService = (function () {
     TimerService.prototype.stopStopwatch = function () {
         this.stopwatchProperties.started = false;
         this.stopwatchSubscription.unsubscribe();
+        if (this.stopwatchProperties.showNotifications) {
+            this.cancelNotificationBarTimer();
+        }
         this.events.publish("stopwatch:stopped");
     };
     TimerService.prototype.resetStopwatch = function () {
@@ -3543,7 +3561,7 @@ var TimerService = (function () {
         */
         this.timerSubscription = this.timer.subscribe(function (t) {
             _this.countdownTimer -= 10;
-            if (_this.countdownTimerProperties.showNotifications && _this.countdownTimer % 1000 === 0) {
+            if (_this.countdownTimerProperties.showNotifications && _this.countdownTimer % 1000 < 10) {
                 _this.sendNotificationBarTimer(_this.stopwatch);
             }
             if (_this.countdownTimer <= 0) {
@@ -3555,9 +3573,6 @@ var TimerService = (function () {
                 }
                 else {
                     _this.stopTimer();
-                    if (_this.countdownTimerProperties.showNotifications) {
-                        _this.localNotifications.clearAll();
-                    }
                 }
             }
         });
@@ -3567,6 +3582,9 @@ var TimerService = (function () {
         this.countdownTimerProperties.started = false;
         this.backgroundMode.disable();
         //clearInterval(this.timerSubscription);
+        if (this.countdownTimerProperties.showNotifications) {
+            this.cancelNotificationBarTimer();
+        }
         this.timerSubscription.unsubscribe();
         this.events.publish("timer:stopped");
     };
@@ -3643,9 +3661,10 @@ var TimerService = (function () {
     };
     TimerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_local_notifications__["a" /* LocalNotifications */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_background_mode__["a" /* BackgroundMode */]) === "function" && _e || Object])
     ], TimerService);
     return TimerService;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=timer.js.map
