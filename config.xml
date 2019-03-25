@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.taylorhamling.intensity" version="2.2.1" versionCode="20021" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.taylorhamling.intensity" version="2.2.2" versionCode="20022" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity[@android:label='@string/activity_name']">
         <activity android:theme="@style/intensityTheme" />
     </edit-config>
