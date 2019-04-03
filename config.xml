@@ -135,7 +135,7 @@
     <plugin name="cordova-plugin-inapppurchase" spec="^1.2.0" />
     <gap:plugin spec="https://github.com/hypery2k/cordova-email-plugin#master" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
-    <gap:plugin spec="https://github.com/sanctus671/cordova-plugin-local-notifications#master" />
+    <gap:plugin name="cordova-plugin-nativeaudio" source="npm" version="^3.0.8" />
     <gap:plugin name="cordova-plugin-file" source="npm" version="^4.3.3" />
     <gap:plugin name="cordova-plugin-statusbar" source="npm" version="^2.3.0" />
     <gap:plugin name="cordova-plugin-file-transfer" source="npm" version="1.5.1" />
