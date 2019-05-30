@@ -146,4 +146,3 @@
     <plugin name="onesignal-cordova-plugin" spec="2.4.5" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
 </widget>
-
