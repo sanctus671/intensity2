@@ -4,7 +4,7 @@
         <activity android:theme="@style/intensityTheme" />
     </edit-config>
     <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
-        <application android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" />
+        <application android:icon="@mipmap/launcher" android:roundIcon="@mipmap/launcher_round" />
     </edit-config>
     <name>Intensity</name>
     <description>A workout tracking app.</description>
@@ -17,7 +17,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preference name="phonegap-version" value="cli-8.1.1" />
+    <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="pgb-builder-version" value="2" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="BackupWebStorage" value="none" />
@@ -33,25 +33,25 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="loadUrlTimeoutValue" value="700000" />
-        <resource-file src="resources/android/icon/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml" />
-        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher.xml" target="res/mipmap-anydpi-v26/ic_launcher.xml" />
-        <resource-file src="resources/android/icon/mipmap-anydpi-v26/ic_launcher_round.xml" target="res/mipmap-anydpi-v26/ic_launcher_round.xml" />
-        <resource-file src="resources/android/icon/mipmap-ldpi/ic_launcher.png" target="res/mipmap-ldpi-v4/ic_launcher.png" />
-        <resource-file src="resources/android/icon/mipmap-hdpi/ic_launcher.png" target="res/mipmap-hdpi-v4/ic_launcher.png" />
-        <resource-file src="resources/android/icon/mipmap-hdpi/ic_launcher_round.png" target="res/mipmap-hdpi-v4/ic_launcher_round.png" />
-        <resource-file src="resources/android/icon/mipmap-hdpi/ic_launcher_foreground.png" target="res/mipmap-hdpi-v4/ic_launcher_foreground.png" />
-        <resource-file src="resources/android/icon/mipmap-mdpi/ic_launcher.png" target="res/mipmap-mdpi-v4/ic_launcher.png" />
-        <resource-file src="resources/android/icon/mipmap-mdpi/ic_launcher_round.png" target="res/mipmap-mdpi-v4/ic_launcher_round.png" />
-        <resource-file src="resources/android/icon/mipmap-mdpi/ic_launcher_foreground.png" target="res/mipmap-mdpi-v4/ic_launcher_foreground.png" />
-        <resource-file src="resources/android/icon/mipmap-xhdpi/ic_launcher.png" target="res/mipmap-xhdpi-v4/ic_launcher.png" />
-        <resource-file src="resources/android/icon/mipmap-xhdpi/ic_launcher_round.png" target="res/mipmap-xhdpi-v4/ic_launcher_round.png" />
-        <resource-file src="resources/android/icon/mipmap-xhdpi/ic_launcher_foreground.png" target="res/mipmap-xhdpi-v4/ic_launcher_foreground.png" />
-        <resource-file src="resources/android/icon/mipmap-xxhdpi/ic_launcher.png" target="res/mipmap-xxhdpi-v4/ic_launcher.png" />
-        <resource-file src="resources/android/icon/mipmap-xxhdpi/ic_launcher_round.png" target="res/mipmap-xxhdpi-v4/ic_launcher_round.png" />
-        <resource-file src="resources/android/icon/mipmap-xxhdpi/ic_launcher_foreground.png" target="res/mipmap-xxhdpi-v4/ic_launcher_foreground.png" />
-        <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher.png" target="res/mipmap-xxxhdpi-v4/ic_launcher.png" />
-        <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher_round.png" target="res/mipmap-xxxhdpi-v4/ic_launcher_round.png" />
-        <resource-file src="resources/android/icon/mipmap-xxxhdpi/ic_launcher_foreground.png" target="res/mipmap-xxxhdpi-v4/ic_launcher_foreground.png" />
+        <resource-file src="resources/android/icon/values/launcher_background.xml" target="res/values/launcher_background.xml" />
+        <resource-file src="resources/android/icon/mipmap-anydpi-v26/launcher.xml" target="res/mipmap-anydpi-v26/launcher.xml" />
+        <resource-file src="resources/android/icon/mipmap-anydpi-v26/launcher_round.xml" target="res/mipmap-anydpi-v26/launcher_round.xml" />
+        <resource-file src="resources/android/icon/mipmap-ldpi/launcher.png" target="res/mipmap-ldpi-v4/launcher.png" />
+        <resource-file src="resources/android/icon/mipmap-hdpi/launcher.png" target="res/mipmap-hdpi-v4/launcher.png" />
+        <resource-file src="resources/android/icon/mipmap-hdpi/launcher_round.png" target="res/mipmap-hdpi-v4/launcher_round.png" />
+        <resource-file src="resources/android/icon/mipmap-hdpi/launcher_foreground.png" target="res/mipmap-hdpi-v4/launcher_foreground.png" />
+        <resource-file src="resources/android/icon/mipmap-mdpi/launcher.png" target="res/mipmap-mdpi-v4/launcher.png" />
+        <resource-file src="resources/android/icon/mipmap-mdpi/launcher_round.png" target="res/mipmap-mdpi-v4/launcher_round.png" />
+        <resource-file src="resources/android/icon/mipmap-mdpi/launcher_foreground.png" target="res/mipmap-mdpi-v4/launcher_foreground.png" />
+        <resource-file src="resources/android/icon/mipmap-xhdpi/launcher.png" target="res/mipmap-xhdpi-v4/launcher.png" />
+        <resource-file src="resources/android/icon/mipmap-xhdpi/launcher_round.png" target="res/mipmap-xhdpi-v4/launcher_round.png" />
+        <resource-file src="resources/android/icon/mipmap-xhdpi/launcher_foreground.png" target="res/mipmap-xhdpi-v4/launcher_foreground.png" />
+        <resource-file src="resources/android/icon/mipmap-xxhdpi/launcher.png" target="res/mipmap-xxhdpi-v4/launcher.png" />
+        <resource-file src="resources/android/icon/mipmap-xxhdpi/launcher_round.png" target="res/mipmap-xxhdpi-v4/launcher_round.png" />
+        <resource-file src="resources/android/icon/mipmap-xxhdpi/launcher_foreground.png" target="res/mipmap-xxhdpi-v4/launcher_foreground.png" />
+        <resource-file src="resources/android/icon/mipmap-xxxhdpi/launcher.png" target="res/mipmap-xxxhdpi-v4/launcher.png" />
+        <resource-file src="resources/android/icon/mipmap-xxxhdpi/launcher_round.png" target="res/mipmap-xxxhdpi-v4/launcher_round.png" />
+        <resource-file src="resources/android/icon/mipmap-xxxhdpi/launcher_foreground.png" target="res/mipmap-xxxhdpi-v4/launcher_foreground.png" />
         <resource-file src="resources/android/styles.xml" target="res/values/styles.xml" />
         <resource-file src="resources/android/icon/mdpi_small_icon.png" target="res/drawable-mdpi-v4/small_icon.png" />
         <resource-file src="resources/android/icon/hdpi_small_icon.png" target="res/drawable-hdpi-v4/small_icon.png" />
