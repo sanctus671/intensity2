@@ -122,10 +122,21 @@
     <engine name="android" spec="~6.3.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.4.1" />
     <gap:plugin spec="https://github.com/brodysoft/cordova-sqlite-evcore-extbuild-free" />
-    <gap:plugin name="cordova-plugin-facebook4" source="npm" version="1.7.4">
-        <param name="APP_ID" value="414561158706027" />
-        <param name="APP_NAME" value="Intensity" />
-    </gap:plugin>
+    
+    <platform name="ios">
+        <gap:plugin name="cordova-plugin-facebook4" source="npm" version="5.0.0">
+            <param name="APP_ID" value="414561158706027" />
+            <param name="APP_NAME" value="Intensity" />
+        </gap:plugin>
+    </platform>
+    
+    <platform name="android">
+        <gap:plugin name="cordova-plugin-facebook4" source="npm" version="1.7.4">
+            <param name="APP_ID" value="414561158706027" />
+            <param name="APP_NAME" value="Intensity" />
+        </gap:plugin>
+    </platform>    
+    
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <gap:plugin spec="https://github.com/pdyraga/cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
