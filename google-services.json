@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "654916760436",
+    "firebase_url": "https://intensity-1150.firebaseio.com",
+    "project_id": "intensity-1150",
+    "storage_bucket": "intensity-1150.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654916760436:android:2fa403e96dd93d3392f221",
+        "android_client_info": {
+          "package_name": "com.taylorhamling.intensity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654916760436-5av3ljr5ge98nn4qnsm99lhdqcje7co6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmxzQ81nmed8VIOdwEVufIPw79MT9-vno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654916760436-5av3ljr5ge98nn4qnsm99lhdqcje7co6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
