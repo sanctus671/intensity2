@@ -130,7 +130,7 @@
     <splash src="resources/splash.png" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.4.1" />
-    <!--<gap:plugin spec="https://github.com/brodysoft/cordova-sqlite-evcore-extbuild-free" /> -->   
+    <gap:plugin spec="https://github.com/brodysoft/cordova-sqlite-evcore-extbuild-free" />
     <platform name="ios">
         <gap:plugin name="cordova-plugin-facebook4" source="npm" version="5.0.0">
             <param name="APP_ID" value="414561158706027" />
