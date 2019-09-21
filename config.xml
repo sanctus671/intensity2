@@ -95,6 +95,15 @@
         <icon height="152" src="resources/ios/icon/icon-76@2x.png" width="152" />
         <icon height="167" src="resources/ios/icon/icon-167.png" width="167" />
         <icon height="167" src="resources/ios/icon/icon-83.5@2x.png" width="167" />
+        
+        <config-file platform="ios" parent="NSHealthShareUsageDescription">
+            <string>Intensity needs read access to read previously added workouts</string>
+        </config-file>
+        <config-file platform="ios" parent="NSHealthUpdateUsageDescription">
+            <string>Intensity needs write access to save your workouts</string>
+        </config-file>        
+        
+        
     </platform>
     <splash height="480" platform="ios" src="resources/ios/splash/Default~iphone.png" width="320" />
     <splash height="960" platform="ios" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
@@ -121,22 +130,19 @@
     <splash src="resources/splash.png" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.4.1" />
-    <gap:plugin spec="https://github.com/brodysoft/cordova-sqlite-evcore-extbuild-free" />
-    
+    <!--<gap:plugin spec="https://github.com/brodysoft/cordova-sqlite-evcore-extbuild-free" /> -->   
     <platform name="ios">
         <gap:plugin name="cordova-plugin-facebook4" source="npm" version="5.0.0">
             <param name="APP_ID" value="414561158706027" />
             <param name="APP_NAME" value="Intensity" />
         </gap:plugin>
-    </platform>
-    
+    </platform>    
     <platform name="android">
         <gap:plugin name="cordova-plugin-facebook4" source="npm" version="1.7.4">
             <param name="APP_ID" value="414561158706027" />
             <param name="APP_NAME" value="Intensity" />
         </gap:plugin>
-    </platform>    
-    
+    </platform>   
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <gap:plugin spec="https://github.com/pdyraga/cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
@@ -156,4 +162,9 @@
     </gap:plugin>
     <plugin name="onesignal-cordova-plugin" spec="2.4.5" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <gap:plugin name="cordova-plugin-health" source="npm" version="^1.1.3">
+        <param name="HEALTH_READ_PERMISSION" value="App needs read access to read previously added workouts"/>
+        <param name="HEALTH_WRITE_PERMISSION" value="App needs write access to save your workouts"/>
+        <param name="GMS_VERSION" value="16.0.1"/>
+    </gap:plugin>
 </widget>
