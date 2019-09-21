@@ -142,7 +142,7 @@
             <param name="APP_ID" value="414561158706027" />
             <param name="APP_NAME" value="Intensity" />
         </gap:plugin>
-        <resource-file src="google-services.json" target="app/google-services.json" /> 
+        <resource-file src="google-services.json" target="google-services.json" /> 
         <plugin name="cordova-support-google-services" spec="1.0.0" />              
     </platform>   
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
