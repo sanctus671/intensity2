@@ -58,6 +58,11 @@
         <resource-file src="resources/android/icon/xhdpi_small_icon.png" target="res/drawable-xhdpi-v4/small_icon.png" />
         <resource-file src="resources/android/icon/xxhdpi_small_icon.png" target="res/drawable-xxhdpi-v4/small_icon.png" />
         <resource-file src="resources/android/icon/xxxhdpi_small_icon.png" target="res/drawable-xxxhdpi-v4/small_icon.png" />
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" tools:node="remove"/>
+		</config-file>		
+		
     </platform>
     <splash density="port-ldpi" platform="android" src="resources/android/splash/splash-port-ldpi.png" />
     <splash density="port-mdpi" platform="android" src="resources/android/splash/splash-port-mdpi.png" />
