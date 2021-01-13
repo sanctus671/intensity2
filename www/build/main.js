@@ -438,6 +438,9 @@ var DiaryProvider = (function () {
                             item["workoutData"]["set"]["requestId"] = row.insertId;
                             console.log("stored");
                             console.log(row);
+                            if (!_this.queue[date]) {
+                                _this.queue[date] = [];
+                            }
                             _this.queue[date].push(item["workoutData"]);
                             _this.processQueue(date);
                         }).catch(function (e) {
@@ -1187,7 +1190,7 @@ var OfflineProvider = (function () {
                 if (_this.offlineDatabase) {
                     //use the database
                     console.log("using db");
-                    _this.offlineDatabase.executeSql('SELECT * FROM offline_requests ORDER BY id ASC', [])
+                    _this.offlineDatabase.executeSql('SELECT * FROM offline_requests ORDER BY request_id ASC', [])
                         .then(function (data) {
                         console.log(data);
                         _this.doDatabaseRequest(0, data);
