@@ -434,7 +434,7 @@ var DiaryProvider = (function () {
                     var item = { workoutData: { date: date, exerciseId: exerciseId, exercise: exercise, set: set }, request: requestData };
                     if (_this.offlineProvider.offlineDatabase) {
                         console.log("storing in database");
-                        _this.offlineProvider.offlineDatabase.executeSql('INSERT INTO offline_requests (request) VALUES (?)', [requestData]).then(function (row) {
+                        _this.offlineProvider.offlineDatabase.executeSql('INSERT INTO offline_requests (request) VALUES (?)', [JSON.stringify(requestData)]).then(function (row) {
                             item["workoutData"]["set"]["requestId"] = row.insertId;
                             console.log("stored");
                             console.log(row);
@@ -498,11 +498,11 @@ var DiaryProvider = (function () {
                         if (set.requestId) {
                             var newRequest = { key: __WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiKey, session: session, controller: "create", action: "addresults", exerciseid: exerciseId, assigneddate: date };
                             Object.assign(newRequest, set);
-                            _this.offlineProvider.offlineDatabase.executeSql("UPDATE offline_requests SET request = ? WHERE request_id = ?", [newRequest, set.requestId]).then(function () {
+                            _this.offlineProvider.offlineDatabase.executeSql("UPDATE offline_requests SET request = ? WHERE request_id = ?", [JSON.stringify(newRequest), set.requestId]).then(function () {
                             });
                         }
                         else {
-                            _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [requestData]).then(function () {
+                            _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [JSON.stringify(requestData)]).then(function () {
                             });
                         }
                         _this.storage.get("workouts" + date).then(function (workout) {
@@ -609,7 +609,7 @@ var DiaryProvider = (function () {
                 }, function (e) {
                     _this.events.publish("app:heartbeat");
                     if (_this.offlineProvider.offlineDatabase) {
-                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [requestData]).then(function () {
+                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [JSON.stringify(requestData)]).then(function () {
                             _this.storage.get("workouts" + date).then(function (workout) {
                                 if (workout) {
                                     for (var _i = 0, workout_4 = workout; _i < workout_4.length; _i++) {
@@ -699,7 +699,7 @@ var DiaryProvider = (function () {
                 }, function (e) {
                     _this.events.publish("app:heartbeat");
                     if (_this.offlineProvider.offlineDatabase) {
-                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [requestData]).then(function () {
+                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [JSON.stringify(requestData)]).then(function () {
                             _this.storage.get("workouts" + date).then(function (workout) {
                                 if (workout) {
                                     for (var index in workout) {
@@ -907,7 +907,7 @@ var DiaryProvider = (function () {
                 }, function (e) {
                     _this.events.publish("app:heartbeat");
                     if (_this.offlineProvider.offlineDatabase) {
-                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [requestData]).then(function () {
+                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [JSON.stringify(requestData)]).then(function () {
                         });
                     }
                     else {
@@ -939,7 +939,7 @@ var DiaryProvider = (function () {
                 }, function (e) {
                     _this.events.publish("app:heartbeat");
                     if (_this.offlineProvider.offlineDatabase) {
-                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [requestData]).then(function () {
+                        _this.offlineProvider.offlineDatabase.executeSql("INSERT INTO offline_requests (request) VALUES (?)", [JSON.stringify(requestData)]).then(function () {
                         });
                     }
                     else {
@@ -1227,12 +1227,13 @@ var OfflineProvider = (function () {
         }
         var request = requests.rows.item(requestIndex);
         var requestId = request["request_id"];
+        var requestObj = JSON.parse(request["request"]);
         console.log(request);
         this.offlineDatabase.executeSql('SELECT * FROM offline_requests WHERE request_id = ?', [requestId]).then(function (data) {
             //check it hasnt already been deleted
             if (data.rows.length > 0) {
                 console.log("doing");
-                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, request).subscribe(function (res) {
+                _this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_app_settings__["a" /* AppSettings */].apiUrl, requestObj).subscribe(function (res) {
                     if (res["success"] === true) {
                         //remove requestid from item and add proper id
                         console.log("request success");
